@@ -1,6 +1,8 @@
 
-<div class="processList" *ngFor="let p of processList">{{p.name}}</div>
-
-
+<div class="container">
+  <div cdkDropList class="basic-process" (cdkDropListDropped)="drop($event)">
+    <div class="process-box" *ngFor="let p of basicProcessList" cdkDrag>{{p.name}}</div>
+  </div>
+</div>
 
 

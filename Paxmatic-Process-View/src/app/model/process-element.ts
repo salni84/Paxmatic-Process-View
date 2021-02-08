@@ -5,5 +5,4 @@ export class ProcessElement {
   level: string;
   color: string;
   form: string;
-  position: number;
 }

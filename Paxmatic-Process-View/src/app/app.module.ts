@@ -4,7 +4,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BasicProcessComponent } from './basic-process/basic-process.component';
-
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -16,6 +16,7 @@ import { BasicProcessComponent } from './basic-process/basic-process.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
