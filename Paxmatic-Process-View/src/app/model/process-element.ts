@@ -1,8 +1,9 @@
 export class ProcessElement {
 
   id: number;
-  name: string;
   level: string;
+  name: string;
   color: string;
   form: string;
+  position: number;
 }
