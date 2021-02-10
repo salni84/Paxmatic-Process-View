@@ -25,11 +25,19 @@ export class ProcessService {
 
   addProcessElement(process: ProcessElement[]): Promise<any> {
     const headers = {'content-type': 'application/json'};
-
     const body = JSON.stringify(process);
     console.log(body)
 
     return this.http.post(this.serverURL + '/new', body, {headers}).toPromise();
+  }
+
+  updateProcessList(process: ProcessElement[]): Promise<any> {
+    const headers = {'content-type': 'application/json'};
+    const body = JSON.stringify(process);
+    console.log(body)
+
+    return this.http.put(this.serverURL, body, {headers}).toPromise();
+
   }
 }
 

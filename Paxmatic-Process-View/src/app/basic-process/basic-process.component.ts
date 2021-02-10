@@ -17,8 +17,7 @@ export class BasicProcessComponent implements OnInit {
   basicProcessList: ProcessElement[] = [];
 
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 
   getAllProcess() {
@@ -37,9 +36,6 @@ export class BasicProcessComponent implements OnInit {
       this.basicProcessList[x].position = x;
     }
     console.log(this.basicProcessList);
-
-    window.localStorage.setItem('process', JSON.stringify(this.basicProcessList));
-
   }
 
   delete() {
@@ -47,22 +43,11 @@ export class BasicProcessComponent implements OnInit {
   }
 
 
-  loadProcess() {
-    const localSave = window.localStorage.getItem('process');
-    this.basicProcessList = JSON.parse(localSave);
-
-    console.log(this.basicProcessList);
-
-
-   /* this.processServer.getProcess()
-      .subscribe( process => {
-        this.basicProcessList = process;
-      });*/
-  }
-
   saveProcess() {
     this.processServer.addProcessElement(this.basicProcessList);
   }
 
-
+  udpateProcess() {
+    this.processServer.updateProcessList(this.basicProcessList);
+  }
 }
