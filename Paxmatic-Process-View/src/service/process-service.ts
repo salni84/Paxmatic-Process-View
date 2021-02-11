@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {ProcessElement} from '../app/model/process-element';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,25 +19,24 @@ export class ProcessService {
     return this.http.get(this.serverURL);
   }
 
-  deleteAll() {
-    return this.http.delete(this.serverURL)
-      .subscribe((data) => console.log('hallo'));
-  }
 
-  addProcessElement(process: ProcessElement[]): Promise<any> {
+  addProcessElement(process: ProcessElement) {
     const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(process);
-    console.log(body)
 
-    return this.http.post(this.serverURL + '/new', body, {headers}).toPromise();
+    return this.http.post(this.serverURL + '/new', body, {headers});
   }
 
   updateProcessList(process: ProcessElement[]): Promise<any> {
     const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(process);
-    console.log(body)
+    console.log(body);
 
     return this.http.put(this.serverURL, body, {headers}).toPromise();
+  }
+
+  delete(id: number) {
+    return this.http.delete(this.serverURL + '/' + id);
 
   }
 }

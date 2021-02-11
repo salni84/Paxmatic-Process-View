@@ -5,18 +5,26 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BasicProcessComponent } from './basic-process/basic-process.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { CreateProcessComponent } from './create-process/create-process.component';
+import {FormsModule} from '@angular/forms';
+import {MatCardModule} from "@angular/material/card";
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    BasicProcessComponent
+    BasicProcessComponent,
+    CreateProcessComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    DragDropModule
+    DragDropModule,
+    FormsModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

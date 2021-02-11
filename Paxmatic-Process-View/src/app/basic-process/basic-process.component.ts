@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, Input} from '@angular/core';
 import {ProcessService} from '../../service/process-service';
 import {ProcessElement} from '../model/process-element';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
@@ -12,19 +12,22 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 export class BasicProcessComponent implements OnInit {
 
-  constructor( private processServer: ProcessService) { }
+  constructor(private processServer: ProcessService) { }
+
+
+  @Input() newProcess: ProcessElement;
 
   basicProcessList: ProcessElement[] = [];
 
-
-  ngOnInit() {}
+  ngOnInit() {
+    this.getAllProcess();
+  }
 
 
   getAllProcess() {
     this.processServer.getProcess()
       .subscribe((process) => {
         this.basicProcessList = process;
-        console.log(this.basicProcessList);
       });
   }
 
@@ -35,19 +38,28 @@ export class BasicProcessComponent implements OnInit {
 
       this.basicProcessList[x].position = x;
     }
-    console.log(this.basicProcessList);
-  }
-
-  delete() {
-    this.processServer.deleteAll();
   }
 
 
-  saveProcess() {
-    this.processServer.addProcessElement(this.basicProcessList);
+ async addNewProcess(newProcess: ProcessElement) {
+    this.processServer.addProcessElement(newProcess)
+      .subscribe((data) => {
+        console.log(data);
+      });
+    this.basicProcessList.push(newProcess);
+    await this.getAllProcess();
   }
+
 
   udpateProcess() {
     this.processServer.updateProcessList(this.basicProcessList);
   }
+
+ async deleteProcessElement(id: number) {
+    this.processServer.delete(id)
+      .subscribe((data) => {
+        console.log(data);
+        });
+    await this.getAllProcess();
+      }
 }
