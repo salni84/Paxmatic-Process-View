@@ -38,21 +38,30 @@ export class BasicProcessComponent implements OnInit {
 
       this.basicProcessList[x].position = x;
     }
+    console.log(this.basicProcessList);
   }
 
 
- async addNewProcess(newProcess: ProcessElement) {
-    this.processServer.addProcessElement(newProcess)
+ addNewProcess(newProcess: ProcessElement) {
+
+   if (newProcess === undefined) {
+     this.udpateProcess();
+   } else {
+
+     this.processServer.addProcessElement(newProcess)
+       .subscribe((data) => {
+         console.log(data);
+       });
+     this.basicProcessList.push(newProcess);
+     this.getAllProcess();
+   }
+ }
+
+  udpateProcess() {
+    this.processServer.updateProcessList(this.basicProcessList)
       .subscribe((data) => {
         console.log(data);
       });
-    this.basicProcessList.push(newProcess);
-    await this.getAllProcess();
-  }
-
-
-  udpateProcess() {
-    this.processServer.updateProcessList(this.basicProcessList);
   }
 
  async deleteProcessElement(id: number) {

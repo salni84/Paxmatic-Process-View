@@ -27,12 +27,12 @@ export class ProcessService {
     return this.http.post(this.serverURL + '/new', body, {headers});
   }
 
-  updateProcessList(process: ProcessElement[]): Promise<any> {
+  updateProcessList(process: ProcessElement[]) {
     const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(process);
     console.log(body);
 
-    return this.http.put(this.serverURL, body, {headers}).toPromise();
+    return this.http.put(this.serverURL, body, {headers});
   }
 
   delete(id: number) {
