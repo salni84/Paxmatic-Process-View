@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {ProcessElement} from '../app/model/process-element';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,13 +10,32 @@ import {HttpClient} from '@angular/common/http';
 
 export class ProcessService {
 
-  private serverURL: string = 'http://localhost:8080/basic';
+  private serverURL = 'http://localhost:8080/';
 
 
   constructor(private http: HttpClient) { }
 
-  getProcess(): Observable<any> {
-    return this.http.get(this.serverURL);
+  getProcess(level: string, parent: string): Observable<any> {
+    return this.http.get(this.serverURL + level + '/' + parent);
+  }
+
+  addProcessElement(process: ProcessElement, level: string) {
+    const headers = {'content-type': 'application/json'};
+    const body = JSON.stringify(process);
+
+    return this.http.post(this.serverURL + level + '/new', body, {headers});
+  }
+
+  updateProcessList(process: ProcessElement[], level: string) {
+    const headers = {'content-type': 'application/json'};
+    const body = JSON.stringify(process);
+    console.log(body);
+
+    return this.http.put(this.serverURL + level, body, {headers});
+  }
+
+  deleteProcess(id: number, level: string) {
+    return this.http.delete(this.serverURL + level + '/' + id);
   }
 }
 

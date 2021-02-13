@@ -1,6 +1,14 @@
 
-<div class="processList" *ngFor="let p of processList">{{p.name}}</div>
+<div class="container">
+  <div cdkDropList class="basic-process" (cdkDropListDropped)="drop($event)">
+    <mat-card *ngFor="let p of basicProcessList" cdkDrag>
+    <mat-card-header>
+      <mat-card-title><p [routerLink]="p.name">{{p.name}}</p></mat-card-title>
+    </mat-card-header>
+    <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
+    </mat-card>
+  </div>
+</div>
 
-
-
-
+<app-create-process (newProcessEvent)="addNewProcess($event)"
+                    [level]="level"></app-create-process>
