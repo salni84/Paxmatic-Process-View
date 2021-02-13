@@ -44,6 +44,38 @@ function createRouter(db) {
     });
 
 
+    router.get('/department/:parent', function (req, res) {
+        console.log(req.body.parent)
+        db.query(
+            'SELECT * FROM departmentprocess WHERE parent = ? order by position', [req.params.parent],
+            (error, results) => {
+                console.log(results)
+                if (error) {
+                    console.log(error);
+                    res.status(500).json({status: 'error'});
+                }else {
+                    res.status(200).json(results)
+                }
+            }
+        );
+    });
+
+    router.get('/detail/:parent', function (req, res) {
+        console.log(req.body.parent)
+        db.query(
+            'SELECT * FROM detailprocess WHERE parent = ? order by position', [req.params.parent],
+            (error, results) => {
+                console.log(results)
+                if (error) {
+                    console.log(error);
+                    res.status(500).json({status: 'error'});
+                }else {
+                    res.status(200).json(results)
+                }
+            }
+        );
+    });
+
 
     router.delete('/basic/:id', function (req, res) {
         db.query(
@@ -75,6 +107,33 @@ function createRouter(db) {
     });
 
 
+    router.delete('/department/:id', function (req, res) {
+        db.query(
+            'DELETE FROM departmentprocess WHERE id = ?', [req.params.id],
+            (error,results) =>  {
+                console.log(results)
+                if (error) {
+                    res.status(500).json({status: 'error'});
+                }else {
+                    res.status(200).json(results)
+                }
+            }
+        )
+    });
+
+    router.delete('/detail/:id', function (req, res) {
+        db.query(
+            'DELETE FROM detailprocess WHERE id = ?', [req.params.id],
+            (error,results) =>  {
+                console.log(results)
+                if (error) {
+                    res.status(500).json({status: 'error'});
+                }else {
+                    res.status(200).json(results)
+                }
+            }
+        )
+    });
 
     router.post('/basic/new', (req, res) => {
 
@@ -119,6 +178,48 @@ function createRouter(db) {
             });
     });
 
+    router.post('/department/new', (req, res) => {
+
+        let level = req.body.level;
+        let name = req.body.name;
+        let color = req.body.color;
+        let form = req.body.form;
+        let position = req.body.position;
+        let parent = req.body.parent;
+
+        db.query(
+            'INSERT INTO departmentprocess VALUES (?,?,?,?,?,?,?)', [null, level, name, color, form, position, parent],
+            (error, results) => {
+                if (error) {
+                    console.log(error);
+                    res.status(500).json({status: 'error'});
+                }else {
+                    res.status(200).json(results)
+                }
+            });
+    });
+
+    router.post('/detail/new', (req, res) => {
+
+        let level = req.body.level;
+        let name = req.body.name;
+        let color = req.body.color;
+        let form = req.body.form;
+        let position = req.body.position;
+        let parent = req.body.parent;
+
+        db.query(
+            'INSERT INTO detailprocess VALUES (?,?,?,?,?,?,?)', [null, level, name, color, form, position, parent],
+            (error, results) => {
+                if (error) {
+                    console.log(error);
+                    res.status(500).json({status: 'error'});
+                }else {
+                    res.status(200).json(results)
+                }
+            });
+    });
+
 
     router.put('/basic', (req, res) => {
 
@@ -146,6 +247,33 @@ function createRouter(db) {
         res.status(200).json()
     });
 
+
+    router.put('/department', (req, res) => {
+
+        for (let x = 0; x < req.body.length; x++) {
+            let id = req.body[x].id;
+            let position = req.body[x].position;
+
+            db.query(
+                "UPDATE departmentprocess SET position = ? WHERE id = ?", [position, id],
+                () => {})}
+
+        res.status(200).json()
+    });
+
+
+    router.put('/detail', (req, res) => {
+
+        for (let x = 0; x < req.body.length; x++) {
+            let id = req.body[x].id;
+            let position = req.body[x].position;
+
+            db.query(
+                "UPDATE detailprocess SET position = ? WHERE id = ?", [position, id],
+                () => {})}
+
+        res.status(200).json()
+    });
 
     return router
 }
