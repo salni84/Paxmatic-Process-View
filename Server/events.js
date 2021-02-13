@@ -207,9 +207,10 @@ function createRouter(db) {
         let form = req.body.form;
         let position = req.body.position;
         let parent = req.body.parent;
+        let order = req.body.order;
 
         db.query(
-            'INSERT INTO detailprocess VALUES (?,?,?,?,?,?,?)', [null, level, name, color, form, position, parent],
+            'INSERT INTO detailprocess VALUES (?,?,?,?,?,?,?,?)', [null, level, name, color, form, position, parent, order],
             (error, results) => {
                 if (error) {
                     console.log(error);
