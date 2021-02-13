@@ -208,9 +208,10 @@ function createRouter(db) {
         let position = req.body.position;
         let parent = req.body.parent;
         let order = req.body.order;
+        let isVisible = req.body.isVisible
 
         db.query(
-            'INSERT INTO detailprocess VALUES (?,?,?,?,?,?,?,?)', [null, level, name, color, form, position, parent, order],
+            'INSERT INTO detailprocess VALUES (?,?,?,?,?,?,?,?)', [null, level, name, color, form, position, parent, order, isVisible],
             (error, results) => {
                 if (error) {
                     console.log(error);
