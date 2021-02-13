@@ -60,103 +60,91 @@ export class DetailProcessComponent implements OnInit {
 
       .subscribe((process) => {
         this.detailProcessList = process;
-
         this.detailProcessList.forEach((data) => {
 
           if (data.order === 1) {
-
             this.firstProcessRow.push(data);
           }
           if (data.order === 2) {
-
             this.secondProcessRow.push(data);
           }
 
           if (data.order === 3) {
-
             this.thirdProcessRow.push(data);
           }
 
           if (data.order === 4) {
-
             this.fourthProcessRow.push(data);
           }
 
           if (data.order === 5) {
-
             this.fifthProcessRow.push(data);
           }
 
           if (data.order === 6) {
-
             this.sixthProcessRow.push(data);
           }
       });
     });
-
   }
 
   drop1(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.firstProcessRow, event.previousIndex, event.currentIndex);
-    this.showAdd();
     for (let x = 0; x < this.firstProcessRow.length; x++) {
       this.firstProcessRow[x].position = x;
     }
+    this.udpateProcess();
   }
 
   drop2(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.secondProcessRow, event.previousIndex, event.currentIndex);
-    this.showAdd();
     for (let x = 0; x < this.secondProcessRow.length; x++) {
       this.secondProcessRow[x].position = x;
     }
+    this.udpateProcess();
   }
 
   drop3(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.thirdProcessRow, event.previousIndex, event.currentIndex);
-    this.showAdd();
     for (let x = 0; x < this.thirdProcessRow.length; x++) {
       this.thirdProcessRow[x].position = x;
     }
+    this.udpateProcess();
   }
 
   drop4(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.fourthProcessRow, event.previousIndex, event.currentIndex);
-    this.showAdd();
     for (let x = 0; x < this.fourthProcessRow.length; x++) {
       this.fourthProcessRow[x].position = x;
     }
+    this.udpateProcess();
   }
 
   drop5(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.fifthProcessRow, event.previousIndex, event.currentIndex);
-    this.showAdd();
     for (let x = 0; x < this.fifthProcessRow.length; x++) {
       this.fifthProcessRow[x].position = x;
     }
+    this.udpateProcess();
   }
 
   drop6(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.sixthProcessRow, event.previousIndex, event.currentIndex);
-    this.showAdd();
     for (let x = 0; x < this.sixthProcessRow.length; x++) {
       this.sixthProcessRow[x].position = x;
     }
+    this.udpateProcess();
   }
 
 
   async addNewProcess(newProcess: ProcessElement) {
-    if (newProcess.name === undefined) {
-      this.udpateProcess();
-    } else {
-
-      this.processServer.addProcessElement(newProcess, 'detail')
+    this.processServer.addProcessElement(newProcess, 'detail')
         .subscribe((data) => {
           console.log(data);
         });
-      this.detailProcessList.push(newProcess);
-      await this.getAllProcess();
-    }
+    this.detailProcessList.push(newProcess);
+    await this.getAllProcess();
+
   }
 
   udpateProcess() {
@@ -173,5 +161,4 @@ export class DetailProcessComponent implements OnInit {
       });
     await this.getAllProcess();
   }
-
 }

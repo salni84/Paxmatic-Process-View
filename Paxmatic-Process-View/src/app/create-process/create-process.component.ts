@@ -27,9 +27,14 @@ export class CreateProcessComponent implements OnInit {
    this.newProcess.parent = this.parentId;
    this.newProcess.order = this.order;
    this.newProcessEvent.emit(this.newProcess);
-
   }
 
-
-
+  emptyBox() {
+    this.newProcess.name = ' ';
+    this.newProcess.level = this.level;
+    this.newProcess.parent = this.parentId;
+    this.newProcess.order = this.order;
+    this.newProcessEvent.emit(this.newProcess);
+    console.log(this.newProcess);
+  }
 }

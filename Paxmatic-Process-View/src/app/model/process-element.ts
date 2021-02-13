@@ -8,4 +8,5 @@ export class ProcessElement {
   position: number;
   parent: string;
   order: number;
+  isVisible: boolean;
 }

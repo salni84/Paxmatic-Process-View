@@ -11,10 +11,12 @@
           [order]="1"
       ></app-create-process>
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop1($event)">
-        <mat-card *ngFor="let p of firstProcessRow" cdkDrag>
-          <div class="title" >{{p.name}}</div>
-          <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
-        </mat-card>
+        <div  *ngFor="let p of firstProcessRow" >
+          <mat-card [class.isInvisible]="!p.isVisible" cdkDrag>
+            <div class="title" >{{p.name}}</div>
+            <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
+          </mat-card>
+        </div>
       </div>
     </div>
   </div>
@@ -30,10 +32,12 @@
                             [order]="2"
         ></app-create-process>
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop2($event)">
-        <mat-card *ngFor="let p of secondProcessRow" cdkDrag>
-          <div class="title" >{{p.name}}</div>
-          <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
-        </mat-card>
+        <div *ngFor="let p of secondProcessRow">
+          <mat-card [class.isInvisible]="!p.isVisible" cdkDrag>
+            <div class="title" >{{p.name}}</div>
+            <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
+          </mat-card>
+        </div>
       </div>
     </div>
   </div>
@@ -48,10 +52,12 @@
                           [level]="level"
                             [order]="3"></app-create-process>
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop3($event)">
-        <mat-card *ngFor="let p of thirdProcessRow" cdkDrag>
-          <div class="title" >{{p.name}}</div>
-          <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
-        </mat-card>
+        <div *ngFor="let p of thirdProcessRow">
+          <mat-card [class.isInvisible]="!p.isVisible" cdkDrag>
+            <div class="title" >{{p.name}}</div>
+            <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
+          </mat-card>
+        </div>
       </div>
     </div>
   </div>
@@ -66,10 +72,12 @@
                           [level]="level"
                             [order]="4"></app-create-process>
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop4($event)">
-        <mat-card *ngFor="let p of fourthProcessRow" cdkDrag>
-          <div class="title" >{{p.name}}</div>
-          <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
-        </mat-card>
+        <div *ngFor="let p of fourthProcessRow">
+          <mat-card [class.isInvisible]="!p.isVisible" cdkDrag>
+            <div class="title" >{{p.name}}</div>
+            <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
+          </mat-card>
+        </div>
       </div>
     </div>
   </div>
@@ -84,10 +92,12 @@
                           [level]="level"
                             [order]="5"></app-create-process>
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop5($event)">
-        <mat-card *ngFor="let p of fifthProcessRow" cdkDrag>
-          <div class="title" >{{p.name}}</div>
-          <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
-        </mat-card>
+        <div *ngFor="let p of fifthProcessRow">
+          <mat-card [class.isInvisible]="!p.isVisible" cdkDrag>
+            <div class="title" >{{p.name}}</div>
+            <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
+          </mat-card>
+        </div>
       </div>
     </div>
   </div>
@@ -102,10 +112,12 @@
                           [level]="level"
                             [order]="6"></app-create-process>
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop6($event)">
-        <mat-card *ngFor="let p of sixthProcessRow" cdkDrag>
-          <div class="title" >{{p.name}}</div>
-          <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
-        </mat-card>
+        <div *ngFor="let p of sixthProcessRow">
+          <mat-card [class.isInvisible]="!p.isVisible" cdkDrag>
+            <div class="title" >{{p.name}}</div>
+            <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
+          </mat-card>
+        </div>
       </div>
     </div>
   </div>

@@ -29,8 +29,6 @@ export class ProcessService {
   updateProcessList(process: ProcessElement[], level: string) {
     const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(process);
-    console.log(body);
-
     return this.http.put(this.serverURL + level, body, {headers});
   }
 
