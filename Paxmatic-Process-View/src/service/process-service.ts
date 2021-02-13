@@ -10,34 +10,33 @@ import {ProcessElement} from '../app/model/process-element';
 
 export class ProcessService {
 
-  private serverURL = 'http://localhost:8080/basic';
+  private serverURL = 'http://localhost:8080/';
 
 
   constructor(private http: HttpClient) { }
 
-  getProcess(): Observable<any> {
-    return this.http.get(this.serverURL);
+  getProcess(level: string, parent: string): Observable<any> {
+    return this.http.get(this.serverURL + level + '/' + parent);
   }
 
 
-  addProcessElement(process: ProcessElement) {
+  addBasicProcessElement(process: ProcessElement, level: string) {
     const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(process);
 
-    return this.http.post(this.serverURL + '/new', body, {headers});
+    return this.http.post(this.serverURL + level + '/new', body, {headers});
   }
 
-  updateProcessList(process: ProcessElement[]) {
+  updateBasicProcessList(process: ProcessElement[], level: string) {
     const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(process);
     console.log(body);
 
-    return this.http.put(this.serverURL, body, {headers});
+    return this.http.put(this.serverURL + level, body, {headers});
   }
 
-  delete(id: number) {
-    return this.http.delete(this.serverURL + '/' + id);
-
+  deleteBasicProcess(id: number, level: string) {
+    return this.http.delete(this.serverURL + level + '/' + id);
   }
 }
 

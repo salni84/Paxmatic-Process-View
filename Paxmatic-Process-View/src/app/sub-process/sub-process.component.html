@@ -1,0 +1,13 @@
+<div class="container">
+  <div cdkDropList cdkDropListOrientation="horizontal" class="sub-process" (cdkDropListDropped)="drop($event)">
+    <mat-card *ngFor="let p of subProcessList" cdkDrag>
+      <mat-card-header>
+        <mat-card-title>{{p.name}}</mat-card-title>
+      </mat-card-header>
+      <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
+    </mat-card>
+  </div>
+</div>
+
+<app-create-process (newProcessEvent)="addNewProcess($event)"></app-create-process>
+

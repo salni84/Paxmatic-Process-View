@@ -6,4 +6,5 @@ export class ProcessElement {
   color: string;
   form: string;
   position: number;
+  parent: string
 }

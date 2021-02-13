@@ -25,7 +25,7 @@ export class BasicProcessComponent implements OnInit {
 
 
   getAllProcess() {
-    this.processServer.getProcess()
+    this.processServer.getProcess('basic', '')
       .subscribe((process) => {
         this.basicProcessList = process;
       });
@@ -44,11 +44,12 @@ export class BasicProcessComponent implements OnInit {
 
  addNewProcess(newProcess: ProcessElement) {
 
-   if (newProcess === undefined) {
+   console.log(newProcess.name)
+   if (newProcess.name === undefined) {
      this.udpateProcess();
    } else {
 
-     this.processServer.addProcessElement(newProcess)
+     this.processServer.addBasicProcessElement(newProcess, 'basic')
        .subscribe((data) => {
          console.log(data);
        });
@@ -58,14 +59,14 @@ export class BasicProcessComponent implements OnInit {
  }
 
   udpateProcess() {
-    this.processServer.updateProcessList(this.basicProcessList)
+    this.processServer.updateBasicProcessList(this.basicProcessList, 'basic')
       .subscribe((data) => {
         console.log(data);
       });
   }
 
  async deleteProcessElement(id: number) {
-    this.processServer.delete(id)
+    this.processServer.deleteBasicProcess(id, 'basic')
       .subscribe((data) => {
         console.log(data);
         });

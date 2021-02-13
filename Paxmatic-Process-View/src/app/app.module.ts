@@ -9,6 +9,7 @@ import { CreateProcessComponent } from './create-process/create-process.componen
 import {FormsModule} from '@angular/forms';
 import {MatCardModule} from "@angular/material/card";
 import { HomeComponent } from './home/home.component';
+import { SubProcessComponent } from './sub-process/sub-process.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { HomeComponent } from './home/home.component';
     AppComponent,
     BasicProcessComponent,
     CreateProcessComponent,
-    HomeComponent
+    HomeComponent,
+    SubProcessComponent
   ],
   imports: [
     BrowserModule,
