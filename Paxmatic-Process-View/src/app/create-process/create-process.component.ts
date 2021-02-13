@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ProcessElement} from '../model/process-element';
 
 
@@ -11,6 +11,9 @@ export class CreateProcessComponent implements OnInit {
 
   newProcess: ProcessElement = new ProcessElement();
 
+  @Input() parentId;
+  @Input() level;
+  @Input() order;
   @Output() newProcessEvent = new EventEmitter<ProcessElement>();
 
 
@@ -20,6 +23,13 @@ export class CreateProcessComponent implements OnInit {
 
 
  newElement() {
-      this.newProcessEvent.emit(this.newProcess);
+   this.newProcess.level = this.level;
+   this.newProcess.parent = this.parentId;
+   this.newProcess.order = this.order;
+   this.newProcessEvent.emit(this.newProcess);
+
   }
+
+
+
 }

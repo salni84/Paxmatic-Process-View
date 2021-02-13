@@ -19,15 +19,14 @@ export class ProcessService {
     return this.http.get(this.serverURL + level + '/' + parent);
   }
 
-
-  addBasicProcessElement(process: ProcessElement, level: string) {
+  addProcessElement(process: ProcessElement, level: string) {
     const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(process);
 
     return this.http.post(this.serverURL + level + '/new', body, {headers});
   }
 
-  updateBasicProcessList(process: ProcessElement[], level: string) {
+  updateProcessList(process: ProcessElement[], level: string) {
     const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(process);
     console.log(body);
@@ -35,7 +34,7 @@ export class ProcessService {
     return this.http.put(this.serverURL + level, body, {headers});
   }
 
-  deleteBasicProcess(id: number, level: string) {
+  deleteProcess(id: number, level: string) {
     return this.http.delete(this.serverURL + level + '/' + id);
   }
 }

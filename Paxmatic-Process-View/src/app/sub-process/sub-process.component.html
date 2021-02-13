@@ -9,5 +9,7 @@
   </div>
 </div>
 
-<app-create-process (newProcessEvent)="addNewProcess($event)"></app-create-process>
+<app-create-process (newProcessEvent)="addNewProcess($event)"
+                    [parentId]="parentId"
+                    [level]="level"></app-create-process>
 

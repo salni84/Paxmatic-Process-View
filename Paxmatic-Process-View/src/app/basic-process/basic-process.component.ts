@@ -18,6 +18,7 @@ export class BasicProcessComponent implements OnInit {
   @Input() newProcess: ProcessElement;
 
   basicProcessList: ProcessElement[] = [];
+  level = 'basic';
 
   ngOnInit() {
     this.getAllProcess();
@@ -49,7 +50,7 @@ export class BasicProcessComponent implements OnInit {
      this.udpateProcess();
    } else {
 
-     this.processServer.addBasicProcessElement(newProcess, 'basic')
+     this.processServer.addProcessElement(newProcess, 'basic')
        .subscribe((data) => {
          console.log(data);
        });
@@ -59,14 +60,14 @@ export class BasicProcessComponent implements OnInit {
  }
 
   udpateProcess() {
-    this.processServer.updateBasicProcessList(this.basicProcessList, 'basic')
+    this.processServer.updateProcessList(this.basicProcessList, 'basic')
       .subscribe((data) => {
         console.log(data);
       });
   }
 
  async deleteProcessElement(id: number) {
-    this.processServer.deleteBasicProcess(id, 'basic')
+    this.processServer.deleteProcess(id, 'basic')
       .subscribe((data) => {
         console.log(data);
         });

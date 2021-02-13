@@ -17,6 +17,7 @@ export class DepartmentProcessComponent implements OnInit {
 
   departmentProcessList: ProcessElement[] = [];
   parentId: string;
+  level = 'department';
 
 
   ngOnInit() {
@@ -52,7 +53,7 @@ export class DepartmentProcessComponent implements OnInit {
       this.udpateProcess();
     } else {
 
-      this.processServer.addBasicProcessElement(newProcess, 'department')
+      this.processServer.addProcessElement(newProcess, 'department')
         .subscribe((data) => {
           console.log(data);
         });
@@ -62,14 +63,14 @@ export class DepartmentProcessComponent implements OnInit {
   }
 
   udpateProcess() {
-    this.processServer.updateBasicProcessList(this.departmentProcessList, 'department')
+    this.processServer.updateProcessList(this.departmentProcessList, 'department')
       .subscribe((data) => {
         console.log(data);
       });
   }
 
   async deleteProcessElement(id: number) {
-    this.processServer.deleteBasicProcess(id, 'department')
+    this.processServer.deleteProcess(id, 'department')
       .subscribe((data) => {
         console.log(data);
       });

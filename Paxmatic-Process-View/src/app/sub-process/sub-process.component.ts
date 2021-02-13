@@ -15,6 +15,7 @@ export class SubProcessComponent implements OnInit {
 
   subProcessList: ProcessElement[] = [];
   parentId: string;
+  level = 'sub';
 
   constructor(private processServer: ProcessService, private route: ActivatedRoute) { }
 
@@ -52,7 +53,7 @@ export class SubProcessComponent implements OnInit {
       this.udpateProcess();
     } else {
 
-      this.processServer.addBasicProcessElement(newProcess, 'sub')
+      this.processServer.addProcessElement(newProcess, 'sub')
         .subscribe((data) => {
           console.log(data);
         });
@@ -62,14 +63,14 @@ export class SubProcessComponent implements OnInit {
   }
 
   udpateProcess() {
-    this.processServer.updateBasicProcessList(this.subProcessList, 'sub')
+    this.processServer.updateProcessList(this.subProcessList, 'sub')
       .subscribe((data) => {
         console.log(data);
       });
   }
 
   async deleteProcessElement(id: number) {
-    this.processServer.deleteBasicProcess(id, 'sub')
+    this.processServer.deleteProcess(id, 'sub')
       .subscribe((data) => {
         console.log(data);
       });

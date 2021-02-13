@@ -1,26 +1,16 @@
-<div>
-  <label>Level: </label>
-  <input [(ngModel)]="newProcess.level" />
-</div>
-<div>
-  <label>Name: </label>
-  <input [(ngModel)]="newProcess.name" />
-</div>
-<div>
-  <label>color: </label>
-  <input [(ngModel)]="newProcess.color" />
-</div>
-<div>
-  <label>form: </label>
-  <input [(ngModel)]="newProcess.form" />
-</div>
-<div>
-  <label>position: </label>
-  <input type="number" [(ngModel)]="newProcess.position" />
-</div>
-<div>
-  <label>parent: </label>
-  <input [(ngModel)]="newProcess.parent" />
+<div class="container">
+  <div>
+    <label>Name: </label>
+    <input [(ngModel)]="newProcess.name" />
+  </div>
+  <div>
+    <label>color: </label>
+    <input [(ngModel)]="newProcess.color" />
+  </div>
+  <div>
+    <label>form: </label>
+    <input [(ngModel)]="newProcess.form" />
+  </div>
+  <button (click)="newElement()">Save</button>
 </div>
 
-<button (click)="newElement()">Save</button>
