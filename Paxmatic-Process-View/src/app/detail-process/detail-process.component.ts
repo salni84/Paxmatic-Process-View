@@ -21,19 +21,20 @@ export class DetailProcessComponent implements OnInit {
   showCreateElement = false;
   hideCreateElement = false;
   showAddButton = true;
-
+  isAdmin = false;
   firstProcessRow: ProcessElement[] = [];
   secondProcessRow: ProcessElement[] = [];
   thirdProcessRow: ProcessElement[] = [];
   fourthProcessRow: ProcessElement[] = [];
   fifthProcessRow: ProcessElement[] = [];
   sixthProcessRow: ProcessElement[] = [];
+  seventhProcessRow: ProcessElement[] = [];
+  eighthProcessRow: ProcessElement[] = [];
 
   ngOnInit() {
     this.parentId = this.route.snapshot.paramMap.get('detail');
     console.log(this.parentId);
     this.getAllProcess();
-
   }
 
   showAdd() {
@@ -48,6 +49,10 @@ export class DetailProcessComponent implements OnInit {
     this.hideCreateElement = false;
   }
 
+  hasPermission(showAdmin: boolean) {
+    this.isAdmin = showAdmin;
+  }
+
 
   getAllProcess() {
     this.firstProcessRow = [];
@@ -56,6 +61,8 @@ export class DetailProcessComponent implements OnInit {
     this.fourthProcessRow = [];
     this.fifthProcessRow = [];
     this.sixthProcessRow = [];
+    this.seventhProcessRow = [];
+    this.eighthProcessRow = [];
     this.processServer.getProcess('detail', this.parentId)
 
       .subscribe((process) => {
@@ -68,21 +75,23 @@ export class DetailProcessComponent implements OnInit {
           if (data.order === 2) {
             this.secondProcessRow.push(data);
           }
-
           if (data.order === 3) {
             this.thirdProcessRow.push(data);
           }
-
           if (data.order === 4) {
             this.fourthProcessRow.push(data);
           }
-
           if (data.order === 5) {
             this.fifthProcessRow.push(data);
           }
-
           if (data.order === 6) {
             this.sixthProcessRow.push(data);
+          }
+          if (data.order === 7) {
+            this.seventhProcessRow.push(data);
+          }
+          if (data.order === 8) {
+            this.eighthProcessRow.push(data);
           }
       });
     });
@@ -136,29 +145,42 @@ export class DetailProcessComponent implements OnInit {
     this.udpateProcess();
   }
 
+  drop7(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.seventhProcessRow, event.previousIndex, event.currentIndex);
+    for (let x = 0; x < this.seventhProcessRow.length; x++) {
+      this.seventhProcessRow[x].position = x;
+    }
+    this.udpateProcess();
+  }
 
-  async addNewProcess(newProcess: ProcessElement) {
+  drop8(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.eighthProcessRow, event.previousIndex, event.currentIndex);
+    for (let x = 0; x < this.eighthProcessRow.length; x++) {
+      this.eighthProcessRow[x].position = x;
+    }
+    this.udpateProcess();
+  }
+
+
+  addNewProcess(newProcess: ProcessElement) {
     this.processServer.addProcessElement(newProcess, 'detail')
-        .subscribe((data) => {
-          console.log(data);
+        .subscribe(() => {
+          this.getAllProcess();
         });
     this.detailProcessList.push(newProcess);
-    await this.getAllProcess();
-
   }
 
   udpateProcess() {
     this.processServer.updateProcessList(this.detailProcessList, 'detail')
       .subscribe((data) => {
-        console.log(data);
+        this.getAllProcess();
       });
   }
 
-  async deleteProcessElement(id: number) {
+  deleteProcessElement(id: number) {
     this.processServer.deleteProcess(id, 'detail')
-      .subscribe((data) => {
-        console.log(data);
+      .subscribe(() => {
+        this.getAllProcess();
       });
-    await this.getAllProcess();
   }
 }

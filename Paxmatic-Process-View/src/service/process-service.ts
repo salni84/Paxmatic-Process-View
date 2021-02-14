@@ -22,6 +22,7 @@ export class ProcessService {
   addProcessElement(process: ProcessElement, level: string) {
     const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(process);
+    console.log(body)
 
     return this.http.post(this.serverURL + level + '/new', body, {headers});
   }
@@ -32,7 +33,7 @@ export class ProcessService {
     return this.http.put(this.serverURL + level, body, {headers});
   }
 
-  deleteProcess(id: number, level: string) {
+  deleteProcess(id: number, level: string): Observable<any> {
     return this.http.delete(this.serverURL + level + '/' + id);
   }
 }

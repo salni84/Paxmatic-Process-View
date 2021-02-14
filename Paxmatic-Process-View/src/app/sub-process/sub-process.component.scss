@@ -1,17 +1,55 @@
 .container {
   margin: 100px;
+  display: flex;
+}
+
+.process {
+  display: flex;
 }
 
 .mat-card {
   border-style: outset;
+  width: 200px;
+  height: 50px;
+}
+
+.names {
+  display: inline-grid;
+}
+
+.connection {
+  text-align: left;
+  font-size: 10px;
+}
+
+.saveAndUpdate {
+  margin-top: 20px;
+  margin-left: 10px;
+  display: inline-grid;
+
+}
+
+.circle {
+  width: 45px;
+  height: 45px;
+  top: 5px;
+  left: 25px;
+  right: 30px;
+  margin-right: 50px;
+  margin-bottom: 9px;
+  border: 1px solid black;
+  text-align: left;
+  border-radius: 100px;
+}
+
+.title {
+  font-size: 15px;
+  text-align: center;
 }
 
 
-
 .sub-process {
-  width: 1000px;
   max-width: 100%;
-  border: solid 1px #ccc;
   min-height: 60px;
   display: flex;
   flex-direction: row;

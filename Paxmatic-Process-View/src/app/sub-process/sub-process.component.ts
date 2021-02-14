@@ -16,18 +16,36 @@ export class SubProcessComponent implements OnInit {
   subProcessList: ProcessElement[] = [];
   parentId: string;
   level = 'sub';
+  showCreateElement = false;
+  hideCreateElement = false;
+  showAddButton = true;
+  isAdmin = false;
 
   constructor(private processServer: ProcessService, private route: ActivatedRoute) { }
 
 
   ngOnInit() {
     this.parentId = this.route.snapshot.paramMap.get('name');
-    console.log(this.parentId)
+    console.log(this.parentId);
 
     this.getAllProcess();
-
   }
 
+  showAdd() {
+    this.showCreateElement = true;
+    this.hideCreateElement = true;
+    this.showAddButton = false;
+  }
+
+  hideAdd() {
+    this.showCreateElement = false;
+    this.showAddButton = true;
+    this.hideCreateElement = false;
+  }
+
+  hasPermission(showAdmin: boolean) {
+    this.isAdmin = showAdmin;
+  }
 
   getAllProcess() {
     this.processServer.getProcess('sub', this.parentId)
@@ -43,40 +61,29 @@ export class SubProcessComponent implements OnInit {
 
       this.subProcessList[x].position = x;
     }
-    console.log(this.subProcessList);
+    this.udpateProcess();
   }
 
 
   addNewProcess(newProcess: ProcessElement) {
-
-    if (newProcess.name === undefined) {
-      this.udpateProcess();
-    } else {
-
       this.processServer.addProcessElement(newProcess, 'sub')
-        .subscribe((data) => {
-          console.log(data);
+        .subscribe(() => {
+          this.getAllProcess();
         });
       this.subProcessList.push(newProcess);
-      this.getAllProcess();
-    }
   }
 
   udpateProcess() {
     this.processServer.updateProcessList(this.subProcessList, 'sub')
-      .subscribe((data) => {
-        console.log(data);
+      .subscribe(() => {
+        this.getAllProcess();
       });
   }
 
-  async deleteProcessElement(id: number) {
+  deleteProcessElement(id: number) {
     this.processServer.deleteProcess(id, 'sub')
-      .subscribe((data) => {
-        console.log(data);
+      .subscribe(() => {
+        this.getAllProcess();
       });
-    await this.getAllProcess();
   }
-
-
-
 }

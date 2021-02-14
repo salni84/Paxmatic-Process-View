@@ -1,17 +1,51 @@
 .container {
   margin: 100px;
+  display: flex;
+}
+
+.process {
+  display: flex;
+}
+
+.saveAndUpdate {
+  margin-top: 20px;
 }
 
 .mat-card {
   border-style: outset;
+  width: 200px;
+  height: 50px;
+}
+
+.names {
+  display: inline-grid;
+}
+
+.connection {
+  text-align: left;
+  font-size: 10px;
+}
+
+.circle {
+  width: 45px;
+  height: 45px;
+  top: 5px;
+  left: 25px;
+  right: 30px;
+  margin-right: 50px;
+  border: 1px solid black;
+  text-align: left;
+  border-radius: 100px;
+}
+
+.title {
+  font-size: 15px;
+  text-align: center;
 }
 
 
-
-.department-process {
-  width: 1000px;
+.department-process {;
   max-width: 100%;
-  border: solid 1px #ccc;
   min-height: 60px;
   display: flex;
   flex-direction: row;

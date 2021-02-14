@@ -2,5 +2,28 @@
   margin: 10px;
   padding: 10px;
   border-style: outset;
+}
 
+.emptyButton {
+  visibility: hidden;
+}
+
+label {
+  margin-right: 10px;
+}
+
+input {
+  margin: 3px;
+}
+
+select {
+  margin: 3px;
+}
+
+.action {
+  margin: 5px;
+}
+
+.emptyBoxButton {
+  margin-left: 5px;
 }

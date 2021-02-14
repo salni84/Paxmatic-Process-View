@@ -18,16 +18,31 @@ export class DepartmentProcessComponent implements OnInit {
   departmentProcessList: ProcessElement[] = [];
   parentId: string;
   level = 'department';
-
+  showCreateElement = false;
+  hideCreateElement = false;
+  showAddButton = true;
+  isAdmin = false;
 
   ngOnInit() {
     this.parentId = this.route.snapshot.paramMap.get('department');
-    console.log(this.parentId)
-
     this.getAllProcess();
-
   }
 
+  showAdd() {
+    this.showCreateElement = true;
+    this.hideCreateElement = true;
+    this.showAddButton = false;
+  }
+
+  hideAdd() {
+    this.showCreateElement = false;
+    this.showAddButton = true;
+    this.hideCreateElement = false;
+  }
+
+  hasPermission(showAdmin: boolean) {
+    this.isAdmin = showAdmin;
+  }
 
   getAllProcess() {
     this.processServer.getProcess('department', this.parentId)
@@ -43,38 +58,29 @@ export class DepartmentProcessComponent implements OnInit {
 
       this.departmentProcessList[x].position = x;
     }
-    console.log(this.departmentProcessList);
+    this.udpateProcess();
   }
 
 
   addNewProcess(newProcess: ProcessElement) {
-
-    if (newProcess.name === undefined) {
-      this.udpateProcess();
-    } else {
-
       this.processServer.addProcessElement(newProcess, 'department')
-        .subscribe((data) => {
-          console.log(data);
+        .subscribe(() => {
+          this.getAllProcess();
         });
       this.departmentProcessList.push(newProcess);
-      this.getAllProcess();
-    }
   }
 
   udpateProcess() {
     this.processServer.updateProcessList(this.departmentProcessList, 'department')
-      .subscribe((data) => {
-        console.log(data);
+      .subscribe(() => {
+        this.getAllProcess();
       });
   }
 
-  async deleteProcessElement(id: number) {
+  deleteProcessElement(id: number) {
     this.processServer.deleteProcess(id, 'department')
-      .subscribe((data) => {
-        console.log(data);
+      .subscribe(() => {
+        this.getAllProcess();
       });
-    await this.getAllProcess();
   }
-
 }

@@ -1,10 +1,41 @@
 .container {
   margin: 100px;
+  max-width: 1000px;
 }
 
 .mat-card {
   border-style: outset;
+  margin: 20px;
+  height: 60px;
 }
+
+.names {
+  display: inline-grid;
+}
+
+.connection {
+  text-align: left;
+  font-size: 10px;
+}
+
+.saveAndUpdate {
+  display: inline-grid;
+  margin-left: 20px;
+}
+
+.circle {
+  width: 45px;
+  height: 45px;
+  top: 5px;
+  left: 25px;
+  right: 30px;
+  margin-right: 50px;
+  margin-top: 10px;
+  border: 1px solid black;
+  text-align: left;
+  border-radius: 100px;
+}
+
 
 .basic-process {
   width: 500px;

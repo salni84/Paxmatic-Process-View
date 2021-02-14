@@ -19,11 +19,32 @@ export class BasicProcessComponent implements OnInit {
 
   basicProcessList: ProcessElement[] = [];
   level = 'basic';
+  showCreateElement = false;
+  hideCreateElement = false;
+  showAddButton = true;
+  isAdmin = false;
+
+
 
   ngOnInit() {
     this.getAllProcess();
   }
 
+  showAdd() {
+    this.showCreateElement = true;
+    this.hideCreateElement = true;
+    this.showAddButton = false;
+  }
+
+  hideAdd() {
+    this.showCreateElement = false;
+    this.showAddButton = true;
+    this.hideCreateElement = false;
+  }
+
+  hasPermission(showAdmin: boolean) {
+    this.isAdmin = showAdmin;
+  }
 
   getAllProcess() {
     this.processServer.getProcess('basic', '')
@@ -39,38 +60,30 @@ export class BasicProcessComponent implements OnInit {
 
       this.basicProcessList[x].position = x;
     }
-    console.log(this.basicProcessList);
+    this.udpateProcess();
   }
 
 
  addNewProcess(newProcess: ProcessElement) {
-
-   console.log(newProcess.name)
-   if (newProcess.name === undefined) {
-     this.udpateProcess();
-   } else {
-
      this.processServer.addProcessElement(newProcess, 'basic')
-       .subscribe((data) => {
-         console.log(data);
+       .subscribe(() => {
+         this.getAllProcess();
        });
      this.basicProcessList.push(newProcess);
-     this.getAllProcess();
-   }
  }
 
   udpateProcess() {
     this.processServer.updateProcessList(this.basicProcessList, 'basic')
-      .subscribe((data) => {
-        console.log(data);
+      .subscribe(() => {
+        this.getAllProcess();
       });
   }
 
- async deleteProcessElement(id: number) {
+
+ deleteProcessElement(id: number) {
     this.processServer.deleteProcess(id, 'basic')
-      .subscribe((data) => {
-        console.log(data);
+      .subscribe(() => {
+        this.getAllProcess();
         });
-    await this.getAllProcess();
       }
 }

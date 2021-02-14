@@ -1,8 +1,10 @@
 
 <div class="main">
   <div class="container">
+    <div *ngIf="isAdmin">
       <button *ngIf="showAddButton" (click)="showAdd()">+</button>
       <button *ngIf="hideCreateElement" (click)="hideAdd()">-</button>
+    </div>
     <div class="process">
       <app-create-process *ngIf="showCreateElement"
           (newProcessEvent)="addNewProcess($event)"
@@ -12,115 +14,232 @@
       ></app-create-process>
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop1($event)">
         <div  *ngFor="let p of firstProcessRow" >
-          <mat-card [class.isInvisible]="!p.isVisible" cdkDrag>
-            <div class="title" >{{p.name}}</div>
-            <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
+          <mat-card [routerLink]="p.name" [class.circle]="p.form" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
+            <div class="names">
+              <label>{{p.visibleName}}</label>
+              <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
+            </div>
           </mat-card>
+          <div class="saveAndUpdate" *ngIf="isAdmin" [class.isInvisible]="!p.isVisible">
+            <input  class="name" [(ngModel)]="p.visibleName">
+            <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
+            <button class="update" (click)="udpateProcess()">Update Name</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <div class="container">
-    <button *ngIf="showAddButton" (click)="showAdd()">+</button>
-    <button *ngIf="hideCreateElement" (click)="hideAdd()">-</button>
-      <div class="process">
-        <app-create-process *ngIf="showCreateElement"
-          (newProcessEvent)="addNewProcess($event)"
-                            [parentId]="parentId"
+    <div *ngIf="isAdmin">
+      <button *ngIf="showAddButton" (click)="showAdd()">+</button>
+      <button *ngIf="hideCreateElement" (click)="hideAdd()">-</button>
+    </div>
+    <div class="process">
+      <app-create-process *ngIf="showCreateElement"
+                          (newProcessEvent)="addNewProcess($event)"
+                          [parentId]="parentId"
                           [level]="level"
-                            [order]="2"
-        ></app-create-process>
+                          [order]="2"
+      ></app-create-process>
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop2($event)">
-        <div *ngFor="let p of secondProcessRow">
-          <mat-card [class.isInvisible]="!p.isVisible" cdkDrag>
-            <div class="title" >{{p.name}}</div>
-            <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
+        <div  *ngFor="let p of secondProcessRow" >
+          <mat-card [routerLink]="p.name" [class.circle]="p.form" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
+            <div class="names">
+              <label>{{p.visibleName}}</label>
+              <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
+            </div>
           </mat-card>
+          <div class="saveAndUpdate" *ngIf="isAdmin" [class.isInvisible]="!p.isVisible">
+            <input  class="name" [(ngModel)]="p.visibleName">
+            <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
+            <button class="update" (click)="udpateProcess()">Update Name</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <div class="container">
+    <div *ngIf="isAdmin">
       <button *ngIf="showAddButton" (click)="showAdd()">+</button>
       <button *ngIf="hideCreateElement" (click)="hideAdd()">-</button>
-      <div class="process">
-        <app-create-process *ngIf="showCreateElement"
-        (newProcessEvent)="addNewProcess($event)"
+    </div>
+    <div class="process">
+      <app-create-process *ngIf="showCreateElement"
+                          (newProcessEvent)="addNewProcess($event)"
                           [parentId]="parentId"
                           [level]="level"
-                            [order]="3"></app-create-process>
+                          [order]="3"
+      ></app-create-process>
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop3($event)">
-        <div *ngFor="let p of thirdProcessRow">
-          <mat-card [class.isInvisible]="!p.isVisible" cdkDrag>
-            <div class="title" >{{p.name}}</div>
-            <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
+        <div  *ngFor="let p of thirdProcessRow" >
+          <mat-card [routerLink]="p.name" [class.circle]="p.form" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
+            <div class="names">
+              <label>{{p.visibleName}}</label>
+              <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
+            </div>
           </mat-card>
+          <div class="saveAndUpdate" *ngIf="isAdmin" [class.isInvisible]="!p.isVisible">
+            <input  class="name" [(ngModel)]="p.visibleName">
+            <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
+            <button class="update" (click)="udpateProcess()">Update Name</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <div class="container">
+    <div *ngIf="isAdmin">
       <button *ngIf="showAddButton" (click)="showAdd()">+</button>
       <button *ngIf="hideCreateElement" (click)="hideAdd()">-</button>
-      <div class="process">
-        <app-create-process *ngIf="showCreateElement"
-        (newProcessEvent)="addNewProcess($event)"
+    </div>
+    <div class="process">
+      <app-create-process *ngIf="showCreateElement"
+                          (newProcessEvent)="addNewProcess($event)"
                           [parentId]="parentId"
                           [level]="level"
-                            [order]="4"></app-create-process>
+                          [order]="4"
+      ></app-create-process>
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop4($event)">
-        <div *ngFor="let p of fourthProcessRow">
-          <mat-card [class.isInvisible]="!p.isVisible" cdkDrag>
-            <div class="title" >{{p.name}}</div>
-            <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
+        <div  *ngFor="let p of fourthProcessRow" >
+          <mat-card [routerLink]="p.name" [class.circle]="p.form" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
+            <div class="names">
+              <label>{{p.visibleName}}</label>
+              <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
+            </div>
           </mat-card>
+          <div class="saveAndUpdate" *ngIf="isAdmin" [class.isInvisible]="!p.isVisible">
+            <input  class="name" [(ngModel)]="p.visibleName">
+            <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
+            <button class="update" (click)="udpateProcess()">Update Name</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <div class="container">
+    <div *ngIf="isAdmin">
       <button *ngIf="showAddButton" (click)="showAdd()">+</button>
       <button *ngIf="hideCreateElement" (click)="hideAdd()">-</button>
-      <div class="process">
-        <app-create-process *ngIf="showCreateElement"
-        (newProcessEvent)="addNewProcess($event)"
+    </div>
+    <div class="process">
+      <app-create-process *ngIf="showCreateElement"
+                          (newProcessEvent)="addNewProcess($event)"
                           [parentId]="parentId"
                           [level]="level"
-                            [order]="5"></app-create-process>
+                          [order]="5"
+      ></app-create-process>
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop5($event)">
-        <div *ngFor="let p of fifthProcessRow">
-          <mat-card [class.isInvisible]="!p.isVisible" cdkDrag>
-            <div class="title" >{{p.name}}</div>
-            <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
+        <div  *ngFor="let p of fifthProcessRow" >
+          <mat-card [routerLink]="p.name" [class.circle]="p.form" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
+            <div class="names">
+              <label>{{p.visibleName}}</label>
+              <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
+            </div>
           </mat-card>
+          <div class="saveAndUpdate" *ngIf="isAdmin" [class.isInvisible]="!p.isVisible">
+            <input  class="name" [(ngModel)]="p.visibleName">
+            <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
+            <button class="update" (click)="udpateProcess()">Update Name</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <div class="container">
+    <div *ngIf="isAdmin">
       <button *ngIf="showAddButton" (click)="showAdd()">+</button>
       <button *ngIf="hideCreateElement" (click)="hideAdd()">-</button>
-      <div class="process">
-        <app-create-process *ngIf="showCreateElement"
-        (newProcessEvent)="addNewProcess($event)"
+    </div>
+    <div class="process">
+      <app-create-process *ngIf="showCreateElement"
+                          (newProcessEvent)="addNewProcess($event)"
                           [parentId]="parentId"
                           [level]="level"
-                            [order]="6"></app-create-process>
+                          [order]="6"
+      ></app-create-process>
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop6($event)">
-        <div *ngFor="let p of sixthProcessRow">
-          <mat-card [class.isInvisible]="!p.isVisible" cdkDrag>
-            <div class="title" >{{p.name}}</div>
-            <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
+        <div  *ngFor="let p of sixthProcessRow" >
+          <mat-card [routerLink]="p.name" [class.circle]="p.form" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
+            <div class="names">
+              <label>{{p.visibleName}}</label>
+              <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
+            </div>
           </mat-card>
+          <div class="saveAndUpdate" *ngIf="isAdmin" [class.isInvisible]="!p.isVisible">
+            <input  class="name" [(ngModel)]="p.visibleName">
+            <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
+            <button class="update" (click)="udpateProcess()">Update Name</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="container">
+      <div *ngIf="isAdmin">
+        <button *ngIf="showAddButton" (click)="showAdd()">+</button>
+        <button *ngIf="hideCreateElement" (click)="hideAdd()">-</button>
+      </div>
+      <div class="process">
+        <app-create-process *ngIf="showCreateElement"
+                            (newProcessEvent)="addNewProcess($event)"
+                            [parentId]="parentId"
+                            [level]="level"
+                            [order]="7"
+        ></app-create-process>
+        <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop7($event)">
+          <div  *ngFor="let p of seventhProcessRow">
+            <mat-card [routerLink]="p.name" [class.circle]="p.form" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
+              <div class="names">
+                <label>{{p.visibleName}}</label>
+                <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
+              </div>
+            </mat-card>
+            <div class="saveAndUpdate" *ngIf="isAdmin" [class.isInvisible]="!p.isVisible">
+              <input  class="name" [(ngModel)]="p.visibleName">
+              <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
+              <button class="update" (click)="udpateProcess()">Update Name</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div *ngIf="isAdmin">
+        <button *ngIf="showAddButton" (click)="showAdd()">+</button>
+        <button *ngIf="hideCreateElement" (click)="hideAdd()">-</button>
+      </div>
+      <div class="process">
+        <app-create-process *ngIf="showCreateElement"
+                            (newProcessEvent)="addNewProcess($event)"
+                            [parentId]="parentId"
+                            [level]="level"
+                            [order]="8"
+        ></app-create-process>
+        <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop8($event)">
+          <div  *ngFor="let p of eighthProcessRow" >
+            <mat-card [routerLink]="p.name" [class.circle]="p.form" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
+              <div class="names">
+                <label>{{p.visibleName}}</label>
+                <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
+              </div>
+            </mat-card>
+            <div class="saveAndUpdate" *ngIf="isAdmin" [class.isInvisible]="!p.isVisible">
+              <input  class="name" [(ngModel)]="p.visibleName">
+              <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
+              <button class="update" (click)="udpateProcess()">Update Name</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <app-login (isAdmin)="hasPermission($event)"></app-login>
 </div>
 
 

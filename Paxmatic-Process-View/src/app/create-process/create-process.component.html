@@ -4,14 +4,20 @@
     <input [(ngModel)]="newProcess.name" />
   </div>
   <div>
-    <label>color: </label>
+    <label>Farbe: </label>
     <input [(ngModel)]="newProcess.color" />
   </div>
   <div>
-    <label>form: </label>
-    <input [(ngModel)]="newProcess.form" />
+    <label>Form: </label>
+    <select [(ngModel)]="selected">
+      <option *ngFor="let form of forms" >
+        {{form}}
+      </option>
+    </select>
   </div>
-  <button (click)="newElement()">Save</button>
-  <button (click)="emptyBox()">Move to Right</button>
+  <div class="action">
+    <button (click)="newElement()">Save</button>
+    <button class="emptyBoxButton" *ngIf="isNotDetailProcess" (click)="emptyBox()">Move to Right</button>
+  </div>
 </div>
 

@@ -12,6 +12,10 @@ import { HomeComponent } from './home/home.component';
 import { SubProcessComponent } from './sub-process/sub-process.component';
 import { DepartmentProcessComponent } from './department-process/department-process.component';
 import { DetailProcessComponent } from './detail-process/detail-process.component';
+import {MatOptionModule} from "@angular/material/core";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatButtonModule} from "@angular/material/button";
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -22,7 +26,8 @@ import { DetailProcessComponent } from './detail-process/detail-process.componen
     HomeComponent,
     SubProcessComponent,
     DepartmentProcessComponent,
-    DetailProcessComponent
+    DetailProcessComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,10 @@ import { DetailProcessComponent } from './detail-process/detail-process.componen
     HttpClientModule,
     DragDropModule,
     FormsModule,
-    MatCardModule
+    MatCardModule,
+    MatOptionModule,
+    MatFormFieldModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
