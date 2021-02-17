@@ -25,6 +25,9 @@ export class SubProcessComponent implements OnInit {
 
 
   ngOnInit() {
+    if (localStorage.getItem('admin') === 'true') {
+      this.isAdmin = true;
+    }
     this.parentId = this.route.snapshot.paramMap.get('name');
     console.log(this.parentId);
 

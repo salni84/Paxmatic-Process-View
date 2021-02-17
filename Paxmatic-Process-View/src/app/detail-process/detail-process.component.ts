@@ -32,6 +32,9 @@ export class DetailProcessComponent implements OnInit {
   eighthProcessRow: ProcessElement[] = [];
 
   ngOnInit() {
+    if (localStorage.getItem('admin') === 'true') {
+      this.isAdmin = true;
+    }
     this.parentId = this.route.snapshot.paramMap.get('detail');
     console.log(this.parentId);
     this.getAllProcess();
@@ -172,7 +175,7 @@ export class DetailProcessComponent implements OnInit {
 
   udpateProcess() {
     this.processServer.updateProcessList(this.detailProcessList, 'detail')
-      .subscribe((data) => {
+      .subscribe(() => {
         this.getAllProcess();
       });
   }

@@ -1,6 +1,7 @@
 .container {
-  margin: 100px;
-  display: flex;
+  margin-top: 300px;
+  margin-left: 300px;
+  display: block;
 }
 
 .process {
@@ -49,7 +50,7 @@
   min-height: 60px;
   display: flex;
   flex-direction: row;
-  background: white;
+  background: transparent;
   border-radius: 4px;
   overflow: hidden;
 }

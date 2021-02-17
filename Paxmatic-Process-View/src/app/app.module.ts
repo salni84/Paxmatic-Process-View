@@ -7,16 +7,22 @@ import { BasicProcessComponent } from './basic-process/basic-process.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { CreateProcessComponent } from './create-process/create-process.component';
 import {FormsModule} from '@angular/forms';
-import {MatCardModule} from "@angular/material/card";
+import {MatCardModule} from '@angular/material/card';
 import { HomeComponent } from './home/home.component';
 import { SubProcessComponent } from './sub-process/sub-process.component';
 import { DepartmentProcessComponent } from './department-process/department-process.component';
 import { DetailProcessComponent } from './detail-process/detail-process.component';
-import {MatOptionModule} from "@angular/material/core";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatButtonModule} from "@angular/material/button";
+import {MatOptionModule} from '@angular/material/core';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatButtonModule} from '@angular/material/button';
 import { LoginComponent } from './login/login.component';
-
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import { NavbarComponent } from './navbar/navbar.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -27,10 +33,14 @@ import { LoginComponent } from './login/login.component';
     SubProcessComponent,
     DepartmentProcessComponent,
     DetailProcessComponent,
-    LoginComponent
+    LoginComponent,
+    HeaderComponent,
+    FooterComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     DragDropModule,
@@ -38,7 +48,10 @@ import { LoginComponent } from './login/login.component';
     MatCardModule,
     MatOptionModule,
     MatFormFieldModule,
-    MatButtonModule
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]

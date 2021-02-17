@@ -1,6 +1,8 @@
 <div class="login">
-  <label>Enter Password</label>
-  <input [(ngModel)]="password">
-  <button (click)="passwordValidation()">Login</button>
-  <button (click)="logout()">LogOut</button>
+  <div class="action">
+    <input *ngIf="!isLoggedIn" [(ngModel)]="password" placeholder='Passwort eingeben'>
+    <button *ngIf="!isLoggedIn" (click)="passwordValidation()">Login</button>
+    <button *ngIf="isLoggedIn" (click)="logout()">LogOut</button>
+    <p>{{errormessage}}</p>
+  </div>
 </div>

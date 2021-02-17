@@ -1,6 +1,7 @@
 .container {
-  margin: 100px;
-  display: flex;
+  margin-top: 300px;
+  margin-left: 300px;
+  display: block;
 }
 
 .process {
@@ -53,7 +54,7 @@
   min-height: 60px;
   display: flex;
   flex-direction: row;
-  background: white;
+  background: transparent;
   border-radius: 4px;
   overflow: hidden;
 }
@@ -97,3 +98,4 @@
 .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
+

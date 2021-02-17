@@ -24,6 +24,9 @@ export class DepartmentProcessComponent implements OnInit {
   isAdmin = false;
 
   ngOnInit() {
+    if (localStorage.getItem('admin') === 'true') {
+      this.isAdmin = true;
+    }
     this.parentId = this.route.snapshot.paramMap.get('department');
     this.getAllProcess();
   }

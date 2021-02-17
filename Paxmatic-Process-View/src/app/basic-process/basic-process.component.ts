@@ -27,6 +27,9 @@ export class BasicProcessComponent implements OnInit {
 
 
   ngOnInit() {
+    if (localStorage.getItem('admin') === 'true') {
+      this.isAdmin = true;
+    }
     this.getAllProcess();
   }
 
