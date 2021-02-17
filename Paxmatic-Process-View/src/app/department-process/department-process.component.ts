@@ -3,6 +3,7 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {ProcessElement} from '../model/process-element';
 import {ProcessService} from '../../service/process-service';
 import {ActivatedRoute} from '@angular/router';
+import {LoginService} from '../../service/login-service';
 
 @Component({
   selector: 'app-department-process',
@@ -11,7 +12,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class DepartmentProcessComponent implements OnInit {
 
-  constructor(private processServer: ProcessService, private route: ActivatedRoute) { }
+  constructor(private processServer: ProcessService, private route: ActivatedRoute, private loginService: LoginService) { }
 
   @Input() newProcess: ProcessElement;
 
@@ -24,9 +25,13 @@ export class DepartmentProcessComponent implements OnInit {
   isAdmin = false;
 
   ngOnInit() {
-    if (localStorage.getItem('admin') === 'true') {
-      this.isAdmin = true;
-    }
+    this.loginService.getLoginStatus().subscribe((data) => {
+      if (data) {
+        this.isAdmin = true;
+      } else {
+        this.isAdmin = false;
+      }
+    });
     this.parentId = this.route.snapshot.paramMap.get('department');
     this.getAllProcess();
   }

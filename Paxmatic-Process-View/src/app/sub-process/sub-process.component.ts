@@ -3,6 +3,7 @@ import {ProcessElement} from '../model/process-element';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {ProcessService} from '../../service/process-service';
 import {ActivatedRoute} from '@angular/router';
+import {LoginService} from "../../service/login-service";
 
 @Component({
   selector: 'app-sub-process',
@@ -21,17 +22,19 @@ export class SubProcessComponent implements OnInit {
   showAddButton = true;
   isAdmin = false;
 
-  constructor(private processServer: ProcessService, private route: ActivatedRoute) { }
+  constructor(private processServer: ProcessService, private route: ActivatedRoute, private loginService: LoginService) { }
 
 
   ngOnInit() {
-    if (localStorage.getItem('admin') === 'true') {
-      this.isAdmin = true;
-    }
     this.parentId = this.route.snapshot.paramMap.get('name');
-    console.log(this.parentId);
-
     this.getAllProcess();
+    this.loginService.getLoginStatus().subscribe((data) => {
+      if (data) {
+        this.isAdmin = true;
+      } else {
+        this.isAdmin = false;
+      }
+    });
   }
 
   showAdd() {

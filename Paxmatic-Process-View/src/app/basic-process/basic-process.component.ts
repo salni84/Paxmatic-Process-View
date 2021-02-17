@@ -1,7 +1,8 @@
-import {Component, EventEmitter, OnInit, Output, Input} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, Input, OnChanges} from '@angular/core';
 import {ProcessService} from '../../service/process-service';
 import {ProcessElement} from '../model/process-element';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import {LoginService} from '../../service/login-service';
 
 
 @Component({
@@ -12,7 +13,7 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 export class BasicProcessComponent implements OnInit {
 
-  constructor(private processServer: ProcessService) { }
+  constructor(private processServer: ProcessService, private loginService: LoginService) {}
 
 
   @Input() newProcess: ProcessElement;
@@ -27,11 +28,17 @@ export class BasicProcessComponent implements OnInit {
 
 
   ngOnInit() {
-    if (localStorage.getItem('admin') === 'true') {
-      this.isAdmin = true;
-    }
     this.getAllProcess();
+
+    this.loginService.getLoginStatus().subscribe((data) => {
+      if (data) {
+        this.isAdmin = true;
+      } else {
+        this.isAdmin = false;
+      }
+    });
   }
+
 
   showAdd() {
     this.showCreateElement = true;
