@@ -3,7 +3,7 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {ProcessElement} from '../model/process-element';
 import {ProcessService} from '../../service/process-service';
 import {ActivatedRoute} from '@angular/router';
-import {LoginService} from "../../service/login-service";
+import {LoginService} from '../../service/login-service';
 
 @Component({
   selector: 'app-detail-process',

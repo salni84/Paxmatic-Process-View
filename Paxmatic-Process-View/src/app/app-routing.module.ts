@@ -5,6 +5,7 @@ import {SubProcessComponent} from './sub-process/sub-process.component';
 import {DepartmentProcessComponent} from './department-process/department-process.component';
 import {DetailProcessComponent} from './detail-process/detail-process.component';
 import {HomeComponent} from './home/home.component';
+import {DocumentsComponent} from './documents/documents.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'home/basisprozesse', component: BasicProcessComponent },
   { path: 'home/basisprozesse/:name', component: SubProcessComponent},
   { path: 'home/basisprozesse/:name/:department', component: DepartmentProcessComponent},
-  { path: 'home/basisprozesse/:name/:department/:detail', component: DetailProcessComponent}
+  { path: 'home/basisprozesse/:name/:department/:detail', component: DetailProcessComponent},
+  { path: 'home/documents/:parent', component: DocumentsComponent},
 ];
 
 @NgModule({
