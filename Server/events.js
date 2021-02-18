@@ -73,6 +73,22 @@ function createRouter(db) {
         );
     });
 
+    router.get('/document/:parent', function (req, res) {
+        console.log(req.body.parent)
+        db.query(
+            'SELECT * FROM documents WHERE parent = ? order by id', [req.params.parent],
+            (error, results) => {
+                if (error) {
+                    console.log(error);
+                    res.status(500).json({status: 'error'});
+                }else {
+                    res.status(200).json(results)
+                }
+            }
+        );
+    });
+
+
 
     router.delete('/basic/:id', function (req, res) {
         db.query(
