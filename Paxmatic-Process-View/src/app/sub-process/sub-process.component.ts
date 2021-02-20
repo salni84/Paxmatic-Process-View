@@ -22,6 +22,7 @@ export class SubProcessComponent implements OnInit {
   showAddButton = true;
   isAdmin = false;
 
+
   constructor(private processServer: ProcessService, private route: ActivatedRoute, private loginService: LoginService) { }
 
 

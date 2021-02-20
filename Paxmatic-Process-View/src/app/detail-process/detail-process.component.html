@@ -1,5 +1,6 @@
 
 <div class="main">
+  <a class="link" [routerLink] = "['/home/documents', parentId]">Dokumente</a>
   <div class="container">
     <div *ngIf="isAdmin">
       <button *ngIf="showAddButton" (click)="showAdd()">+</button>
@@ -19,6 +20,8 @@
               <label>{{p.visibleName}}</label>
               <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
             </div>
+            <div class="mat-card-after" *ngIf="p.form == 0" [ngStyle]="{'border-left-color': p.color}"></div>
+            <div class="mat-card-before" *ngIf="p.form == 0" [ngStyle]="{'border-top-color': p.color, 'border-bottom-color': p.color}"></div>
           </mat-card>
           <div class="saveAndUpdate" *ngIf="isAdmin" [class.isInvisible]="!p.isVisible">
             <input  class="name" [(ngModel)]="p.visibleName">
@@ -43,12 +46,14 @@
                           [order]="2"
       ></app-create-process>
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop2($event)">
-        <div  *ngFor="let p of secondProcessRow" >
+        <div *ngFor="let p of secondProcessRow">
           <mat-card [routerLink]="p.name" [class.circle]="p.form" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
             <div class="names">
               <label>{{p.visibleName}}</label>
               <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
             </div>
+            <div class="mat-card-after" *ngIf="p.form == 0" [ngStyle]="{'border-left-color': p.color}"></div>
+            <div class="mat-card-before" *ngIf="p.form == 0" [ngStyle]="{'border-top-color': p.color, 'border-bottom-color': p.color}"></div>
           </mat-card>
           <div class="saveAndUpdate" *ngIf="isAdmin" [class.isInvisible]="!p.isVisible">
             <input  class="name" [(ngModel)]="p.visibleName">
@@ -79,6 +84,8 @@
               <label>{{p.visibleName}}</label>
               <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
             </div>
+            <div class="mat-card-after" *ngIf="p.form == 0" [ngStyle]="{'border-left-color': p.color}"></div>
+            <div class="mat-card-before" *ngIf="p.form == 0" [ngStyle]="{'border-top-color': p.color, 'border-bottom-color': p.color}"></div>
           </mat-card>
           <div class="saveAndUpdate" *ngIf="isAdmin" [class.isInvisible]="!p.isVisible">
             <input  class="name" [(ngModel)]="p.visibleName">
@@ -103,12 +110,14 @@
                           [order]="4"
       ></app-create-process>
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop4($event)">
-        <div  *ngFor="let p of fourthProcessRow" >
+        <div *ngFor="let p of fourthProcessRow">
           <mat-card [routerLink]="p.name" [class.circle]="p.form" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
             <div class="names">
               <label>{{p.visibleName}}</label>
               <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
             </div>
+            <div class="mat-card-after" *ngIf="p.form == 0" [ngStyle]="{'border-left-color': p.color}"></div>
+            <div class="mat-card-before" *ngIf="p.form == 0" [ngStyle]="{'border-top-color': p.color, 'border-bottom-color': p.color}"></div>
           </mat-card>
           <div class="saveAndUpdate" *ngIf="isAdmin" [class.isInvisible]="!p.isVisible">
             <input  class="name" [(ngModel)]="p.visibleName">
@@ -133,12 +142,14 @@
                           [order]="5"
       ></app-create-process>
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop5($event)">
-        <div  *ngFor="let p of fifthProcessRow" >
+        <div *ngFor="let p of fifthProcessRow">
           <mat-card [routerLink]="p.name" [class.circle]="p.form" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
             <div class="names">
               <label>{{p.visibleName}}</label>
               <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
             </div>
+            <div class="mat-card-after" *ngIf="p.form == 0" [ngStyle]="{'border-left-color': p.color}"></div>
+            <div class="mat-card-before" *ngIf="p.form == 0" [ngStyle]="{'border-top-color': p.color, 'border-bottom-color': p.color}"></div>
           </mat-card>
           <div class="saveAndUpdate" *ngIf="isAdmin" [class.isInvisible]="!p.isVisible">
             <input  class="name" [(ngModel)]="p.visibleName">
@@ -169,6 +180,8 @@
               <label>{{p.visibleName}}</label>
               <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
             </div>
+            <div class="mat-card-after" *ngIf="p.form == 0" [ngStyle]="{'border-left-color': p.color}"></div>
+            <div class="mat-card-before" *ngIf="p.form == 0" [ngStyle]="{'border-top-color': p.color, 'border-bottom-color': p.color}"></div>
           </mat-card>
           <div class="saveAndUpdate" *ngIf="isAdmin" [class.isInvisible]="!p.isVisible">
             <input  class="name" [(ngModel)]="p.visibleName">
@@ -199,6 +212,8 @@
                 <label>{{p.visibleName}}</label>
                 <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
               </div>
+              <div class="mat-card-after" *ngIf="p.form == 0" [ngStyle]="{'border-left-color': p.color}"></div>
+              <div class="mat-card-before" *ngIf="p.form == 0" [ngStyle]="{'border-top-color': p.color, 'border-bottom-color': p.color}"></div>
             </mat-card>
             <div class="saveAndUpdate" *ngIf="isAdmin" [class.isInvisible]="!p.isVisible">
               <input  class="name" [(ngModel)]="p.visibleName">
@@ -229,6 +244,8 @@
                 <label>{{p.visibleName}}</label>
                 <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
               </div>
+              <div class="mat-card-after" *ngIf="p.form == 0" [ngStyle]="{'border-left-color': p.color}"></div>
+              <div class="mat-card-before" *ngIf="p.form == 0" [ngStyle]="{'border-top-color': p.color, 'border-bottom-color': p.color}"></div>
             </mat-card>
             <div class="saveAndUpdate" *ngIf="isAdmin" [class.isInvisible]="!p.isVisible">
               <input  class="name" [(ngModel)]="p.visibleName">
@@ -239,7 +256,6 @@
         </div>
       </div>
     </div>
-  <a class="link" [routerLink] = "['/home/documents', parentId]">Dokumente</a>
 </div>
 
 

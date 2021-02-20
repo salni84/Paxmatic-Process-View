@@ -4,19 +4,48 @@
   display: block;
 }
 
-.process {
-  display: flex;
-}
 
 .saveAndUpdate {
   margin-top: 20px;
 }
 
 .mat-card {
-  border-style: outset;
-  width: 200px;
+  width: 150px;
   height: 50px;
+  margin-left: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+
+.mat-card-before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -33px;
+  width: 0;
+  height: 2px;
+  border-left: 35px solid transparent;
+  border-top: 40px;
+  border-top-style: solid;
+  border-bottom: 40px solid;
+  border-left: 35px solid transparent
+}
+
+
+.mat-card-after {
+  content: "";
+  position: absolute;
+  left: 181px;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-top: 40px solid transparent;
+  border-bottom: 40px solid transparent;
+  border-left: 35px solid
+}
+
 
 .names {
   display: inline-grid;
@@ -52,7 +81,6 @@
   flex-direction: row;
   background: transparent;
   border-radius: 4px;
-  overflow: hidden;
 }
 
 .procces-box {

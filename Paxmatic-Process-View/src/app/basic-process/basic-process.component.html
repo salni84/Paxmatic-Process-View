@@ -11,11 +11,13 @@
         [level]="level"></app-create-process>
       <div cdkDropList class="sub-process" (cdkDropListDropped)="drop($event)">
         <div *ngFor="let p of basicProcessList">
-          <mat-card [routerLink]="p.name" [class.circle]="p.form" [ngStyle]="{backgroundColor: p.color}" cdkDrag>
+          <mat-card class="mat-card" [routerLink]="p.name" [class.circle]="p.form" [ngStyle]="{backgroundColor: p.color}"  cdkDrag>
             <div class="names">
               <label>{{p.visibleName}}</label>
               <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
             </div>
+            <div class="mat-card-after" [ngStyle]="{'border-left-color': p.color}"></div>
+            <div class="mat-card-before" [ngStyle]="{'border-top-color': p.color, 'border-bottom-color': p.color}"></div>
           </mat-card>
           <div class="saveAndUpdate" *ngIf="isAdmin">
             <input  class="name" [(ngModel)]="p.visibleName">
@@ -26,7 +28,4 @@
       </div>
     </div>
   </div>
-
-
-</div>
 

@@ -1,16 +1,12 @@
 .main {
   display: block;
-  margin-top: 300px;
+  margin-top: 200px;
   margin-left: 300px;
 }
 
 .container {
   margin-top: 10px;
   display: block;
-}
-
-.process {
-  display: flex;
 }
 
 .names {
@@ -32,10 +28,39 @@
 }
 
 .mat-card {
-  border-style: outset;
-  padding: 8px;
-  width: 130px;
+  width: 150px;
   height: 50px;
+  margin-left: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-card-before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -33px;
+  width: 0;
+  height: 2px;
+  border-left: 35px solid transparent;
+  border-top: 40px;
+  border-top-style: solid;
+  border-bottom: 40px solid;
+  border-left: 35px solid transparent;
+
+}
+
+.mat-card-after {
+  content: "";
+  position: absolute;
+  left: 181px;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-top: 40px solid transparent;
+  border-bottom: 40px solid transparent;
+  border-left: 35px solid;
 }
 
 .saveAndUpdate {
@@ -51,7 +76,7 @@
   flex-direction: row;
   background: transparent;
   border-radius: 4px;
-  overflow: hidden;
+
 }
 
 .procces-box {
@@ -74,9 +99,9 @@
   width: 45px;
   height: 45px;
   top: 5px;
-  left: 25px;
+  left: 50px;
   right: 30px;
-  margin-right: 90px;
+  margin-right: 100px;
   margin-bottom: 9px;
   border: 1px solid black;
   text-align: center;
@@ -106,6 +131,3 @@
 .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
-
-
-

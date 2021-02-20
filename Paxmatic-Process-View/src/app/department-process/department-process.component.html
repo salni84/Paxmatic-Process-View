@@ -17,6 +17,8 @@
               <label>{{p.visibleName}}</label>
               <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
             </div>
+              <div class="mat-card-after" *ngIf="p.form == 0" [ngStyle]="{'border-left-color': p.color}"></div>
+              <div class="mat-card-before" *ngIf="p.form == 0" [ngStyle]="{'border-top-color': p.color, 'border-bottom-color': p.color}"></div>
           </mat-card>
           <div class="saveAndUpdate" *ngIf="isAdmin">
             <input  class="name" [(ngModel)]="p.visibleName">

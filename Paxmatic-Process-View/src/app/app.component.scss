@@ -1,9 +1,8 @@
 .main {
   display: flex;
-  background-image: url("https://www.paxmatic.ch/cms/upload/slider/startpageslider/field-5236879_1920_898.jpg");
-  width: 110%;
+  background-image: url(~src/assets/images/background-image.jpg);
   height: 2000px;
-  background-size: cover;
+  width: 100%;
   background-attachment: fixed;
 }
 
@@ -13,5 +12,5 @@
 
 .content {
   float: left;
-  width: auto;
+
 }
