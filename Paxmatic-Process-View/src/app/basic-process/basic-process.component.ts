@@ -35,6 +35,7 @@ export class BasicProcessComponent implements OnInit {
         this.isAdmin = true;
       } else {
         this.isAdmin = false;
+        this.hideAdd();
       }
     });
   }
@@ -50,10 +51,6 @@ export class BasicProcessComponent implements OnInit {
     this.showCreateElement = false;
     this.showAddButton = true;
     this.hideCreateElement = false;
-  }
-
-  hasPermission(showAdmin: boolean) {
-    this.isAdmin = showAdmin;
   }
 
   getAllProcess() {

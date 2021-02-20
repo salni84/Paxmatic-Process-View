@@ -1,18 +1,18 @@
 <div class="main">
   <div class="container">
-    <div *ngIf="isAdmin">
+    <div class="addProcess" *ngIf="isAdmin">
       <button *ngIf="showAddButton" (click)="showAdd()">+</button>
       <button *ngIf="hideCreateElement" (click)="hideAdd()">-</button>
     </div>
     <div class="process">
       <app-create-process
-                          *ngIf="showCreateElement"
-                          (newProcessEvent)="addNewProcess($event)"
-                          [parentId]="parentId"
-                          [level]="level"></app-create-process>
+        *ngIf="showCreateElement"
+        (newProcessEvent)="addNewProcess($event)"
+        [parentId]="parentId"
+        [level]="level"></app-create-process>
       <div cdkDropList cdkDropListOrientation="horizontal" class="department-process" (cdkDropListDropped)="drop($event)">
         <div *ngFor="let p of departmentProcessList">
-            <mat-card [routerLink]="p.name" [class.circle]="p.form" [ngStyle]="{backgroundColor: p.color}" cdkDrag>
+          <mat-card [routerLink]="p.name" [class.circle]="p.form" [ngStyle]="{backgroundColor: p.color}" cdkDrag>
             <div class="names">
               <label>{{p.visibleName}}</label>
               <label class="connection" *ngIf="isAdmin">{{p.name}}</label>

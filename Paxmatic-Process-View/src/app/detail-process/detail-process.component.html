@@ -1,8 +1,9 @@
-
-<div class="main">
+<div class="document-link">
   <a class="link" [routerLink] = "['/home/documents', parentId]">Dokumente</a>
+</div>
+<div class="main">
   <div class="container">
-    <div *ngIf="isAdmin">
+    <div class="addProcess" *ngIf="isAdmin">
       <button *ngIf="showAddButton" (click)="showAdd()">+</button>
       <button *ngIf="hideCreateElement" (click)="hideAdd()">-</button>
     </div>
@@ -34,7 +35,7 @@
   </div>
 
   <div class="container">
-    <div *ngIf="isAdmin">
+    <div class="addProcess" *ngIf="isAdmin">
       <button *ngIf="showAddButton" (click)="showAdd()">+</button>
       <button *ngIf="hideCreateElement" (click)="hideAdd()">-</button>
     </div>
@@ -66,7 +67,7 @@
   </div>
 
   <div class="container">
-    <div *ngIf="isAdmin">
+    <div class="addProcess" *ngIf="isAdmin">
       <button *ngIf="showAddButton" (click)="showAdd()">+</button>
       <button *ngIf="hideCreateElement" (click)="hideAdd()">-</button>
     </div>
@@ -98,7 +99,7 @@
   </div>
 
   <div class="container">
-    <div *ngIf="isAdmin">
+    <div class="addProcess" *ngIf="isAdmin">
       <button *ngIf="showAddButton" (click)="showAdd()">+</button>
       <button *ngIf="hideCreateElement" (click)="hideAdd()">-</button>
     </div>
@@ -130,7 +131,7 @@
   </div>
 
   <div class="container">
-    <div *ngIf="isAdmin">
+    <div class="addProcess" *ngIf="isAdmin">
       <button *ngIf="showAddButton" (click)="showAdd()">+</button>
       <button *ngIf="hideCreateElement" (click)="hideAdd()">-</button>
     </div>
@@ -162,7 +163,7 @@
   </div>
 
   <div class="container">
-    <div *ngIf="isAdmin">
+    <div class="addProcess" *ngIf="isAdmin">
       <button *ngIf="showAddButton" (click)="showAdd()">+</button>
       <button *ngIf="hideCreateElement" (click)="hideAdd()">-</button>
     </div>
@@ -194,7 +195,7 @@
   </div>
 
   <div class="container">
-      <div *ngIf="isAdmin">
+      <div class="addProcess" *ngIf="isAdmin">
         <button *ngIf="showAddButton" (click)="showAdd()">+</button>
         <button *ngIf="hideCreateElement" (click)="hideAdd()">-</button>
       </div>
@@ -226,7 +227,7 @@
     </div>
 
     <div class="container">
-      <div *ngIf="isAdmin">
+      <div class="addProcess" *ngIf="isAdmin">
         <button *ngIf="showAddButton" (click)="showAdd()">+</button>
         <button *ngIf="hideCreateElement" (click)="hideAdd()">-</button>
       </div>

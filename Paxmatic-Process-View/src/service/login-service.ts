@@ -27,6 +27,4 @@ export class LoginService {
   getLoginStatus(): Observable<boolean> {
     return this.isAdmin.asObservable();
   }
-
-
 }

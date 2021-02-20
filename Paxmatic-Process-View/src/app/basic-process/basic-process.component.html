@@ -1,6 +1,6 @@
 <div class="main">
   <div class="container">
-    <div *ngIf="isAdmin">
+    <div class="addProcess" *ngIf="isAdmin">
       <button *ngIf="showAddButton" (click)="showAdd()">+</button>
       <button *ngIf="hideCreateElement" (click)="hideAdd()">-</button>
     </div>
@@ -9,7 +9,7 @@
         *ngIf="showCreateElement"
         (newProcessEvent)="addNewProcess($event)"
         [level]="level"></app-create-process>
-      <div cdkDropList class="sub-process" (cdkDropListDropped)="drop($event)">
+      <div cdkDropList class="basic-process" (cdkDropListDropped)="drop($event)">
         <div *ngFor="let p of basicProcessList">
           <mat-card class="mat-card" [routerLink]="p.name" [class.circle]="p.form" [ngStyle]="{backgroundColor: p.color}"  cdkDrag>
             <div class="names">

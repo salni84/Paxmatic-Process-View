@@ -34,11 +34,7 @@ export class DetailProcessComponent implements OnInit {
 
   ngOnInit() {
     this.loginService.getLoginStatus().subscribe((data) => {
-      if (data) {
-        this.isAdmin = true;
-      } else {
-        this.isAdmin = false;
-      }
+      this.isAdmin = data;
     });
     this.parentId = this.route.snapshot.paramMap.get('detail');
     console.log(this.parentId);
@@ -55,10 +51,6 @@ export class DetailProcessComponent implements OnInit {
     this.showCreateElement = false;
     this.showAddButton = true;
     this.hideCreateElement = false;
-  }
-
-  hasPermission(showAdmin: boolean) {
-    this.isAdmin = showAdmin;
   }
 
 

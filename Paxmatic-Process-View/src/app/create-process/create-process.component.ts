@@ -28,7 +28,6 @@ export class CreateProcessComponent implements OnInit {
     }
   }
 
-
  newElement() {
     if (this.selected === 'Kreis') {
       this.newProcess.form = 1;
@@ -42,15 +41,15 @@ export class CreateProcessComponent implements OnInit {
     this.newProcess.visibleName = this.newProcess.name;
     this.newProcess.position = 0;
     this.newProcessEvent.emit(this.newProcess);
-
   }
 
   emptyBox() {
-    this.newProcess.name = ' ';
+    this.newProcess.name = '';
+    this.newProcess.color = '';
+    this.newProcess.isVisible = 0;
     this.newProcess.level = this.level;
     this.newProcess.parent = this.parentId;
     this.newProcess.order = this.order;
     this.newProcessEvent.emit(this.newProcess);
-    console.log(this.newProcess);
   }
 }

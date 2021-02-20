@@ -1,5 +1,7 @@
-table {
-  width: 100%;
+.main {
+  display: block;
+  margin-top: 200px;
+  margin-left: 300px;
 }
 
 .container {
@@ -7,6 +9,11 @@ table {
   margin-left: 300px;
   display: block;
   width: 100%;
+}
+
+table {
+  width: 100%;
+  background-color: white;
 }
 
 mat-table {

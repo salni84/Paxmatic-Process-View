@@ -30,11 +30,7 @@ export class SubProcessComponent implements OnInit {
     this.parentId = this.route.snapshot.paramMap.get('name');
     this.getAllProcess();
     this.loginService.getLoginStatus().subscribe((data) => {
-      if (data) {
-        this.isAdmin = true;
-      } else {
-        this.isAdmin = false;
-      }
+      this.isAdmin = data;
     });
   }
 
@@ -48,10 +44,6 @@ export class SubProcessComponent implements OnInit {
     this.showCreateElement = false;
     this.showAddButton = true;
     this.hideCreateElement = false;
-  }
-
-  hasPermission(showAdmin: boolean) {
-    this.isAdmin = showAdmin;
   }
 
   getAllProcess() {
