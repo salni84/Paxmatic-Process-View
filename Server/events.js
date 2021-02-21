@@ -144,6 +144,19 @@ function createRouter(db) {
         )
     });
 
+    router.delete('/documents/:id', function (req, res) {
+        db.query(
+            'DELETE FROM documents WHERE id = ?', [req.params.id],
+            (error,results) =>  {
+                if (error) {
+                    res.status(500).json({status: 'error'});
+                }else {
+                    res.status(200).json(results)
+                }
+            }
+        )
+    });
+
     router.post('/basic/new', (req, res) => {
 
             let level = req.body.level;
@@ -228,6 +241,26 @@ function createRouter(db) {
             'INSERT INTO detailprocess VALUES (?,?,?,?,?,?,?,?,?,?)', [null, level, name, color, form, position, parent, order, isVisible, visibleName],
             (error, results) => {
                 console.log(results)
+                if (error) {
+                    console.log(error);
+                    res.status(500).json({status: 'error'});
+                }else {
+                    res.status(200).json(results)
+                }
+            });
+    });
+
+    router.post('/documents/new', (req, res) => {
+
+        let name = req.body.name;
+        let link = req.body.link;
+        let description = req.body.description;
+        let parent = req.body.parent;
+
+
+        db.query(
+            'INSERT INTO documents VALUES (?,?,?,?,?)', [null, name, link, description, parent ],
+            (error, results) => {
                 if (error) {
                     console.log(error);
                     res.status(500).json({status: 'error'});
