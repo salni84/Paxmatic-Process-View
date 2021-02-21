@@ -4,8 +4,11 @@ export class ProcessElement {
   level: string;
   name: string;
   color: string;
-  form: string;
+  form: number;
   position: number;
   parent: string;
   order: number;
+  isVisible: number;
+  visibleName: string;
+
 }

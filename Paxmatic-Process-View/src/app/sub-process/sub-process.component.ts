@@ -3,6 +3,7 @@ import {ProcessElement} from '../model/process-element';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {ProcessService} from '../../service/process-service';
 import {ActivatedRoute} from '@angular/router';
+import {LoginService} from "../../service/login-service";
 
 @Component({
   selector: 'app-sub-process',
@@ -16,18 +17,39 @@ export class SubProcessComponent implements OnInit {
   subProcessList: ProcessElement[] = [];
   parentId: string;
   level = 'sub';
+  showCreateElement = false;
+  hideCreateElement = false;
+  showAddButton = true;
+  isAdmin = false;
 
-  constructor(private processServer: ProcessService, private route: ActivatedRoute) { }
+
+  constructor(private processServer: ProcessService, private route: ActivatedRoute, private loginService: LoginService) { }
 
 
   ngOnInit() {
     this.parentId = this.route.snapshot.paramMap.get('name');
-    console.log(this.parentId)
-
     this.getAllProcess();
-
+    this.loginService.getLoginStatus().subscribe((data) => {
+      if (data) {
+        this.isAdmin = true;
+      } else {
+        this.isAdmin = false;
+        this.hideAdd();
+      }
+    });
   }
 
+  showAdd() {
+    this.showCreateElement = true;
+    this.hideCreateElement = true;
+    this.showAddButton = false;
+  }
+
+  hideAdd() {
+    this.showCreateElement = false;
+    this.showAddButton = true;
+    this.hideCreateElement = false;
+  }
 
   getAllProcess() {
     this.processServer.getProcess('sub', this.parentId)
@@ -43,40 +65,29 @@ export class SubProcessComponent implements OnInit {
 
       this.subProcessList[x].position = x;
     }
-    console.log(this.subProcessList);
+    this.udpateProcess();
   }
 
 
   addNewProcess(newProcess: ProcessElement) {
-
-    if (newProcess.name === undefined) {
-      this.udpateProcess();
-    } else {
-
       this.processServer.addProcessElement(newProcess, 'sub')
-        .subscribe((data) => {
-          console.log(data);
+        .subscribe(() => {
+          this.getAllProcess();
         });
       this.subProcessList.push(newProcess);
-      this.getAllProcess();
-    }
   }
 
   udpateProcess() {
     this.processServer.updateProcessList(this.subProcessList, 'sub')
-      .subscribe((data) => {
-        console.log(data);
+      .subscribe(() => {
+        this.getAllProcess();
       });
   }
 
-  async deleteProcessElement(id: number) {
+  deleteProcessElement(id: number) {
     this.processServer.deleteProcess(id, 'sub')
-      .subscribe((data) => {
-        console.log(data);
+      .subscribe(() => {
+        this.getAllProcess();
       });
-    await this.getAllProcess();
   }
-
-
-
 }

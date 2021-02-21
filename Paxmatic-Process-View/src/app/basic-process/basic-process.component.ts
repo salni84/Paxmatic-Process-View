@@ -1,7 +1,8 @@
-import {Component, EventEmitter, OnInit, Output, Input} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, Input, OnChanges} from '@angular/core';
 import {ProcessService} from '../../service/process-service';
 import {ProcessElement} from '../model/process-element';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import {LoginService} from '../../service/login-service';
 
 
 @Component({
@@ -12,18 +13,43 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 export class BasicProcessComponent implements OnInit {
 
-  constructor(private processServer: ProcessService) { }
-
+  constructor(private processServer: ProcessService, private loginService: LoginService) {}
 
   @Input() newProcess: ProcessElement;
 
   basicProcessList: ProcessElement[] = [];
   level = 'basic';
+  showCreateElement = false;
+  hideCreateElement = false;
+  showAddButton = true;
+  isAdmin = false;
+
 
   ngOnInit() {
     this.getAllProcess();
+
+    this.loginService.getLoginStatus().subscribe((data) => {
+      if (data) {
+        this.isAdmin = true;
+      } else {
+        this.isAdmin = false;
+        this.hideAdd();
+      }
+    });
   }
 
+
+  showAdd() {
+    this.showCreateElement = true;
+    this.hideCreateElement = true;
+    this.showAddButton = false;
+  }
+
+  hideAdd() {
+    this.showCreateElement = false;
+    this.showAddButton = true;
+    this.hideCreateElement = false;
+  }
 
   getAllProcess() {
     this.processServer.getProcess('basic', '')
@@ -39,38 +65,30 @@ export class BasicProcessComponent implements OnInit {
 
       this.basicProcessList[x].position = x;
     }
-    console.log(this.basicProcessList);
+    this.udpateProcess();
   }
 
 
  addNewProcess(newProcess: ProcessElement) {
-
-   console.log(newProcess.name)
-   if (newProcess.name === undefined) {
-     this.udpateProcess();
-   } else {
-
      this.processServer.addProcessElement(newProcess, 'basic')
-       .subscribe((data) => {
-         console.log(data);
+       .subscribe(() => {
+         this.getAllProcess();
        });
      this.basicProcessList.push(newProcess);
-     this.getAllProcess();
-   }
  }
 
   udpateProcess() {
     this.processServer.updateProcessList(this.basicProcessList, 'basic')
-      .subscribe((data) => {
-        console.log(data);
+      .subscribe(() => {
+        this.getAllProcess();
       });
   }
 
- async deleteProcessElement(id: number) {
+
+ deleteProcessElement(id: number) {
     this.processServer.deleteProcess(id, 'basic')
-      .subscribe((data) => {
-        console.log(data);
+      .subscribe(() => {
+        this.getAllProcess();
         });
-    await this.getAllProcess();
       }
 }
