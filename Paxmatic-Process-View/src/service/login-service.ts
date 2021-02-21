@@ -16,12 +16,10 @@ export class LoginService {
 
   isLoggedIn(isAdmin: boolean) {
     this.isAdmin.next(true);
-    console.log(isAdmin)
   }
 
   isLoggedOut(isAdmin: boolean) {
   this.isAdmin.next(false);
-  console.log(isAdmin);
   }
 
   getLoginStatus(): Observable<boolean> {

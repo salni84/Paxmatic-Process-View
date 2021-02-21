@@ -23,8 +23,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
-
 
 .mat-card-before {
   content: "";
@@ -40,7 +40,6 @@
   border-left: 35px solid transparent
 }
 
-
 .mat-card-after {
   content: "";
   position: absolute;
@@ -52,7 +51,6 @@
   border-bottom: 40px solid transparent;
   border-left: 35px solid
 }
-
 
 .circle {
   width: 45px;

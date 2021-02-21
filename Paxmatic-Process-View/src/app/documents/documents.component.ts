@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Document} from '../model/document';
 import {DocumentService} from '../../service/document.service';
 import {ActivatedRoute} from '@angular/router';
-import {log} from "util";
-import {async} from "rxjs";
-
-
+import {Document} from '../model/document';
+import {LoginService} from '../../service/login-service';
 
 
 @Component({
@@ -18,15 +15,44 @@ import {async} from "rxjs";
 export class DocumentsComponent implements OnInit {
 
   documents: Document[] = [];
-  parentId: string
-
-  constructor(private documentService: DocumentService, private route: ActivatedRoute) { }
-
+  parentId: string;
   displayedColumns: string[] = ['nr', 'name', 'link', 'description'];
+  showCreateElement = false;
+  hideCreateElement = false;
+  showAddButton = true;
+  isAdmin = false;
 
+  constructor(private documentService: DocumentService, private route: ActivatedRoute, private loginService: LoginService) { }
 
   ngOnInit(): void {
+    this.loginService.getLoginStatus().subscribe((data) => {
+      if (data) {
+        this.isAdmin = true;
+        this.displayedColumns.push('löschen');
+        this.displayedColumns.filter( ( item, index, inputArray ) => {
+          return inputArray.indexOf(item) === index;
+        });
+
+      } else {
+        this.isAdmin = false;
+        this.hideAdd();
+        const filteredTables = this.displayedColumns.filter( l => l !== 'löschen');
+        this.displayedColumns = filteredTables;
+      }
+    });
     this.getDocuments();
+  }
+
+  showAdd() {
+    this.showCreateElement = true;
+    this.hideCreateElement = true;
+    this.showAddButton = false;
+  }
+
+  hideAdd() {
+    this.showCreateElement = false;
+    this.showAddButton = true;
+    this.hideCreateElement = false;
   }
 
   getDocuments() {
@@ -39,5 +65,19 @@ export class DocumentsComponent implements OnInit {
           console.log(data);
         });
     });
+  }
+
+  addDocument(newDocument: Document) {
+    this.documentService.addDocument(newDocument)
+      .subscribe(() => this.getDocuments());
+    this.documents.push(newDocument);
+    console.log(newDocument)
+  }
+
+  deleteDocument(id: number) {
+    this.documentService.deleteDocument(id)
+      .subscribe(() => {
+        this.getDocuments();
+      });
   }
 }

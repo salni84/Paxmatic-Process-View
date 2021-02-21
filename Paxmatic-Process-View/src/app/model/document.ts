@@ -1,4 +1,5 @@
-export interface Document {
+export class Document {
+
   nr: number;
   name: string;
   link: string;

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {Document} from '../app/model/document';
 
 
 @Injectable({
@@ -20,9 +21,7 @@ export class DocumentService {
   addDocument(document: Document) {
     const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(document);
-    console.log(body)
-
-    return this.http.post(this.serverURL + '/new', body, {headers});
+    return this.http.post(this.serverURL + 'documents/new', body, {headers});
   }
 
   updateDocument(document: Document[], level: string) {
@@ -31,7 +30,7 @@ export class DocumentService {
     return this.http.put(this.serverURL + level, body, {headers});
   }
 
-  deleteDocument(id: number, level: string): Observable<any> {
-    return this.http.delete(this.serverURL + level + '/' + id);
+  deleteDocument(id: number): Observable<any> {
+    return this.http.delete(this.serverURL + 'documents' + '/' + id);
   }
 }

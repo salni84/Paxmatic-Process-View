@@ -30,6 +30,7 @@ export class DepartmentProcessComponent implements OnInit {
         this.isAdmin = true;
       } else {
         this.isAdmin = false;
+        this.hideAdd();
       }
     });
     this.parentId = this.route.snapshot.paramMap.get('department');
@@ -46,10 +47,6 @@ export class DepartmentProcessComponent implements OnInit {
     this.showCreateElement = false;
     this.showAddButton = true;
     this.hideCreateElement = false;
-  }
-
-  hasPermission(showAdmin: boolean) {
-    this.isAdmin = showAdmin;
   }
 
   getAllProcess() {

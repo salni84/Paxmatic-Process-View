@@ -15,7 +15,6 @@ export class BasicProcessComponent implements OnInit {
 
   constructor(private processServer: ProcessService, private loginService: LoginService) {}
 
-
   @Input() newProcess: ProcessElement;
 
   basicProcessList: ProcessElement[] = [];
@@ -24,7 +23,6 @@ export class BasicProcessComponent implements OnInit {
   hideCreateElement = false;
   showAddButton = true;
   isAdmin = false;
-
 
 
   ngOnInit() {

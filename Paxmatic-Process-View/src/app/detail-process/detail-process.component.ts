@@ -34,7 +34,12 @@ export class DetailProcessComponent implements OnInit {
 
   ngOnInit() {
     this.loginService.getLoginStatus().subscribe((data) => {
-      this.isAdmin = data;
+      if (data) {
+        this.isAdmin = true;
+      } else {
+        this.isAdmin = false;
+        this.hideAdd();
+      }
     });
     this.parentId = this.route.snapshot.paramMap.get('detail');
     console.log(this.parentId);

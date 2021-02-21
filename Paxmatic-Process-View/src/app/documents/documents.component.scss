@@ -1,7 +1,7 @@
 .main {
   display: block;
   margin-top: 200px;
-  margin-left: 300px;
+  margin-left: 200px;
 }
 
 .container {
@@ -14,8 +14,13 @@
 table {
   width: 100%;
   background-color: white;
+  border-style: solid;
 }
 
 mat-table {
   width: 150px;
+}
+
+.deleteBox {
+  cursor: pointer;
 }

@@ -25,6 +25,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DocumentsComponent } from './documents/documents.component';
 import {MatTableModule} from "@angular/material/table";
+import { CreateDocumentComponent } from './create-document/create-document.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {MatTableModule} from "@angular/material/table";
     HeaderComponent,
     FooterComponent,
     NavbarComponent,
-    DocumentsComponent
+    DocumentsComponent,
+    CreateDocumentComponent
   ],
   imports: [
     BrowserModule,
