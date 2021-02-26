@@ -35,7 +35,7 @@
 
       <ng-container *ngIf="isAdmin" matColumnDef="löschen">
           <th mat-header-cell *matHeaderCellDef> Löschen </th>
-          <td class="deleteBox" (click)="deleteDocument(element.id)" mat-cell *matCellDef="let element"> X
+          <td class="deleteBox" (click)="deleteDocument(element.id)" mat-cell *matCellDef="let element"> <mat-icon>close</mat-icon>
           </td>
       </ng-container>
 

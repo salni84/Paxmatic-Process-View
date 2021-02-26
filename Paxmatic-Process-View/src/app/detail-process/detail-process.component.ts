@@ -4,6 +4,7 @@ import {ProcessElement} from '../model/process-element';
 import {ProcessService} from '../../service/process-service';
 import {ActivatedRoute} from '@angular/router';
 import {LoginService} from '../../service/login-service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-detail-process',
@@ -12,7 +13,7 @@ import {LoginService} from '../../service/login-service';
 })
 export class DetailProcessComponent implements OnInit {
 
-  constructor(private processServer: ProcessService, private route: ActivatedRoute, private loginService: LoginService) { }
+  constructor(private location: Location, private processServer: ProcessService, private route: ActivatedRoute, private loginService: LoginService) {}
 
   @Input() newProcess: ProcessElement;
 
@@ -187,5 +188,9 @@ export class DetailProcessComponent implements OnInit {
       .subscribe(() => {
         this.getAllProcess();
       });
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

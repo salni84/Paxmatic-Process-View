@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DocumentService} from '../../service/document.service';
 import {ActivatedRoute} from '@angular/router';
 import {Document} from '../model/document';
@@ -36,8 +36,7 @@ export class DocumentsComponent implements OnInit {
       } else {
         this.isAdmin = false;
         this.hideAdd();
-        const filteredTables = this.displayedColumns.filter( l => l !== 'löschen');
-        this.displayedColumns = filteredTables;
+        this.displayedColumns = this.displayedColumns.filter(l => l !== 'löschen');
       }
     });
     this.getDocuments();

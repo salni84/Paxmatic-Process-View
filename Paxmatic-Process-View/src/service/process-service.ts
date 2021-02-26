@@ -22,8 +22,6 @@ export class ProcessService {
   addProcessElement(process: ProcessElement, level: string) {
     const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(process);
-    console.log(body)
-
     return this.http.post(this.serverURL + level + '/new', body, {headers});
   }
 

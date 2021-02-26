@@ -1,6 +1,9 @@
 .container {
   padding: 10px;
-  border-style: outset;
+  border-style: solid;
+  border-color: white;
+  display: flex;
+  background-color: darkred;
 }
 
 .emptyButton {
@@ -14,6 +17,8 @@ label {
 
 input {
   margin-top: 3px;
+  margin-right: 20px;
+  box-sizing: border-box;
 }
 
 select {
@@ -24,4 +29,10 @@ select {
 .action {
   margin: 5px;
   display: flex;
+}
+
+.error {
+  margin-left: 20px;
+  padding-top: 5px;
+  color: white;
 }

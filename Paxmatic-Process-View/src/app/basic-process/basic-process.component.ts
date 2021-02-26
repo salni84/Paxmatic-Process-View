@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output, Input, OnChanges} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {ProcessService} from '../../service/process-service';
 import {ProcessElement} from '../model/process-element';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
@@ -16,7 +16,6 @@ export class BasicProcessComponent implements OnInit {
   constructor(private processServer: ProcessService, private loginService: LoginService) {}
 
   @Input() newProcess: ProcessElement;
-
   basicProcessList: ProcessElement[] = [];
   level = 'basic';
   showCreateElement = false;
@@ -37,7 +36,6 @@ export class BasicProcessComponent implements OnInit {
       }
     });
   }
-
 
   showAdd() {
     this.showCreateElement = true;
@@ -60,9 +58,7 @@ export class BasicProcessComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.basicProcessList, event.previousIndex, event.currentIndex);
-
     for (let x = 0; x < this.basicProcessList.length; x++) {
-
       this.basicProcessList[x].position = x;
     }
     this.udpateProcess();

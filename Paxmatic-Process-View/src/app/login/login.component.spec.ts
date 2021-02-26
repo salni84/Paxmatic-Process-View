@@ -19,7 +19,8 @@ describe('LoginComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should show erorr-message if password is wrong', () => {
+      const password = '123';
+
   });
 });

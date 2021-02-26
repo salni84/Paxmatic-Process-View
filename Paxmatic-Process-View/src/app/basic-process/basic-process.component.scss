@@ -1,17 +1,35 @@
+.basic-title {
+  background-color: black;
+  width: 100%;
+  margin-top: 110px;
+  margin-left: 125px;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+}
+
 
 .main {
-  display: flex;
+  display: inline-block;
   width: 100%;
-  margin-top: 100px;
+  margin-top: 50px;
   margin-left: 300px;
 }
 
 .container {
-  margin-top: 100px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  width: 300px;
 }
 
 .saveAndUpdate {
+  margin-left: 10px;
   display: inline-grid;
+  border-style: outset;
+  padding: 10px;
+  background-color: darkred;
   margin-bottom: 20px;
 }
 

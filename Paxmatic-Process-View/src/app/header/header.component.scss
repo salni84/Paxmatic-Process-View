@@ -1,5 +1,5 @@
 
-.navbar {
+.header {
   width: 100%;
   background-color: darkred;
   overflow: auto;
@@ -7,10 +7,9 @@
   z-index: 1000;
   border-bottom-color: white;
   border-style: solid;
-
 }
 
-.navbar a {
+.header a {
   float: left;
   text-align: center;
   padding: 12px;
@@ -19,7 +18,7 @@
   font-size: 17px;
 }
 
-.navbar a:hover {
+.header a:hover {
   background-color: #000;
 }
 

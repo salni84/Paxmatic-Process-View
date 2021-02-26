@@ -9,9 +9,9 @@ import {LoginService} from '../../service/login-service';
 })
 export class LoginComponent implements OnInit {
 
+  @Output() isAdmin = new EventEmitter<boolean>();
   password: string;
   errormessage: string;
-  @Output() isAdmin = new EventEmitter<boolean>();
   isLoggedIn = false;
 
   constructor(private loginService: LoginService) { }
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   passwordValidation() {
-    if (this.password === 'sss') {
+    if (window.btoa(this.password) === 'c2FsZW5z') {
       this.isAdmin.emit(true);
       this.isLoggedIn = true;
       this.loginService.isLoggedIn(true);

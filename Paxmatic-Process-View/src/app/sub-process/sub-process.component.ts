@@ -3,7 +3,8 @@ import {ProcessElement} from '../model/process-element';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {ProcessService} from '../../service/process-service';
 import {ActivatedRoute} from '@angular/router';
-import {LoginService} from "../../service/login-service";
+import {LoginService} from '../../service/login-service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-sub-process',
@@ -23,7 +24,7 @@ export class SubProcessComponent implements OnInit {
   isAdmin = false;
 
 
-  constructor(private processServer: ProcessService, private route: ActivatedRoute, private loginService: LoginService) { }
+  constructor(private location: Location, private processServer: ProcessService, private route: ActivatedRoute, private loginService: LoginService) { }
 
 
   ngOnInit() {
@@ -89,5 +90,9 @@ export class SubProcessComponent implements OnInit {
       .subscribe(() => {
         this.getAllProcess();
       });
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

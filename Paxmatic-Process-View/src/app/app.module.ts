@@ -24,8 +24,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DocumentsComponent } from './documents/documents.component';
-import {MatTableModule} from "@angular/material/table";
+import {MatTableModule} from '@angular/material/table';
 import { CreateDocumentComponent } from './create-document/create-document.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -57,7 +59,8 @@ import { CreateDocumentComponent } from './create-document/create-document.compo
     MatToolbarModule,
     MatIconModule,
     MatSidenavModule,
-    MatTableModule
+    MatTableModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

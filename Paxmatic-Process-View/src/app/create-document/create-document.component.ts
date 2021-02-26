@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Document} from '../model/document';
 
+
 @Component({
   selector: 'app-create-document',
   templateUrl: './create-document.component.html',
@@ -8,9 +9,10 @@ import {Document} from '../model/document';
 })
 export class CreateDocumentComponent implements OnInit {
 
-  newDocument: Document = new Document();
   @Input() parentId;
   @Output() newDocumentEvent = new EventEmitter<Document>();
+  newDocument: Document = new Document();
+  errorMessage = '';
 
   constructor() {}
 
@@ -19,6 +21,8 @@ export class CreateDocumentComponent implements OnInit {
 
   newElement() {
     this.newDocument.parent = this.parentId;
+    this.errorMessage = '';
     this.newDocumentEvent.emit(this.newDocument);
-  }
+
+    }
 }

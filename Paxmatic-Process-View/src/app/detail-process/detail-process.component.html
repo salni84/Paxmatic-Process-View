@@ -1,6 +1,12 @@
-<div class="document-link">
-  <a class="link" [routerLink] = "['/home/documents', parentId]">Dokumente</a>
+
+<div class="detail-title">
+  <mat-icon class="arrow" (click)='goBack()'>fast_rewind</mat-icon>
+  <h2>Detailprozesse</h2>
+  <a class="link" [routerLink] = "['/home/documents', parentId]">Dokumente
+    <mat-icon>attach_file</mat-icon>
+  </a>
 </div>
+
 <div class="main">
   <div class="container">
     <div class="addProcess" *ngIf="isAdmin">
@@ -26,8 +32,12 @@
           </mat-card>
           <div class="saveAndUpdate" *ngIf="isAdmin" [class.isInvisible]="!p.isVisible">
             <input  class="name" [(ngModel)]="p.visibleName">
-            <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
-            <button class="update" (click)="udpateProcess()">Update Name</button>
+            <div class="buttons">
+              <button class="delete" (click)="deleteProcessElement(p.id)">Delete
+                <mat-icon>delete_forever</mat-icon>
+              </button>
+              <button class="update" (click)="udpateProcess()">Update Name</button>
+            </div>
           </div>
         </div>
       </div>
@@ -58,8 +68,12 @@
           </mat-card>
           <div class="saveAndUpdate" *ngIf="isAdmin" [class.isInvisible]="!p.isVisible">
             <input  class="name" [(ngModel)]="p.visibleName">
-            <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
-            <button class="update" (click)="udpateProcess()">Update Name</button>
+            <div class="buttons">
+              <button class="delete" (click)="deleteProcessElement(p.id)">Delete
+                <mat-icon>delete_forever</mat-icon>
+              </button>
+              <button class="update" (click)="udpateProcess()">Update Name</button>
+            </div>
           </div>
         </div>
       </div>
@@ -90,8 +104,12 @@
           </mat-card>
           <div class="saveAndUpdate" *ngIf="isAdmin" [class.isInvisible]="!p.isVisible">
             <input  class="name" [(ngModel)]="p.visibleName">
-            <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
-            <button class="update" (click)="udpateProcess()">Update Name</button>
+            <div class="buttons">
+              <button class="delete" (click)="deleteProcessElement(p.id)">Delete
+                <mat-icon>delete_forever</mat-icon>
+              </button>
+              <button class="update" (click)="udpateProcess()">Update Name</button>
+            </div>
           </div>
         </div>
       </div>
@@ -122,8 +140,12 @@
           </mat-card>
           <div class="saveAndUpdate" *ngIf="isAdmin" [class.isInvisible]="!p.isVisible">
             <input  class="name" [(ngModel)]="p.visibleName">
-            <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
-            <button class="update" (click)="udpateProcess()">Update Name</button>
+            <div class="buttons">
+              <button class="delete" (click)="deleteProcessElement(p.id)">Delete
+                <mat-icon>delete_forever</mat-icon>
+              </button>
+              <button class="update" (click)="udpateProcess()">Update Name</button>
+            </div>
           </div>
         </div>
       </div>
@@ -154,8 +176,12 @@
           </mat-card>
           <div class="saveAndUpdate" *ngIf="isAdmin" [class.isInvisible]="!p.isVisible">
             <input  class="name" [(ngModel)]="p.visibleName">
-            <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
-            <button class="update" (click)="udpateProcess()">Update Name</button>
+            <div class="buttons">
+              <button class="delete" (click)="deleteProcessElement(p.id)">Delete
+                <mat-icon>delete_forever</mat-icon>
+              </button>
+              <button class="update" (click)="udpateProcess()">Update Name</button>
+            </div>
           </div>
         </div>
       </div>
@@ -186,8 +212,12 @@
           </mat-card>
           <div class="saveAndUpdate" *ngIf="isAdmin" [class.isInvisible]="!p.isVisible">
             <input  class="name" [(ngModel)]="p.visibleName">
-            <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
-            <button class="update" (click)="udpateProcess()">Update Name</button>
+            <div class="buttons">
+              <button class="delete" (click)="deleteProcessElement(p.id)">Delete
+                <mat-icon>delete_forever</mat-icon>
+              </button>
+              <button class="update" (click)="udpateProcess()">Update Name</button>
+            </div>
           </div>
         </div>
       </div>
@@ -218,8 +248,12 @@
             </mat-card>
             <div class="saveAndUpdate" *ngIf="isAdmin" [class.isInvisible]="!p.isVisible">
               <input  class="name" [(ngModel)]="p.visibleName">
-              <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
-              <button class="update" (click)="udpateProcess()">Update Name</button>
+              <div class="buttons">
+                <button class="delete" (click)="deleteProcessElement(p.id)">Delete
+                  <mat-icon>delete_forever</mat-icon>
+                </button>
+                <button class="update" (click)="udpateProcess()">Update Name</button>
+              </div>
             </div>
           </div>
         </div>
@@ -250,8 +284,12 @@
             </mat-card>
             <div class="saveAndUpdate" *ngIf="isAdmin" [class.isInvisible]="!p.isVisible">
               <input  class="name" [(ngModel)]="p.visibleName">
-              <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
-              <button class="update" (click)="udpateProcess()">Update Name</button>
+              <div class="buttons">
+                <button class="delete" (click)="deleteProcessElement(p.id)">Delete
+                  <mat-icon>delete_forever</mat-icon>
+                </button>
+                <button class="update" (click)="udpateProcess()">Update Name</button>
+              </div>
             </div>
           </div>
         </div>

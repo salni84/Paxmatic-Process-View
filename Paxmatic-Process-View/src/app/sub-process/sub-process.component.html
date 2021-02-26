@@ -1,3 +1,8 @@
+<div class="sub-title">
+  <mat-icon class="arrow" (click)='goBack()'>fast_rewind</mat-icon>
+  <h2>Teilprozesse</h2>
+</div>
+
 <div class="main">
   <div class="container">
     <div class="addProcess" *ngIf="isAdmin">
@@ -22,8 +27,12 @@
           </mat-card>
           <div class="saveAndUpdate" *ngIf="isAdmin">
             <input  class="name" [(ngModel)]="p.visibleName">
-            <button class="delete" (click)="deleteProcessElement(p.id)">Delete</button>
-            <button class="update" (click)="udpateProcess()">Update Name</button>
+            <div class="buttons">
+              <button class="delete" (click)="deleteProcessElement(p.id)">Delete
+                <mat-icon>delete_forever</mat-icon>
+              </button>
+              <button class="update" (click)="udpateProcess()">Update Name</button>
+            </div>
           </div>
         </div>
       </div>

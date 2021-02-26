@@ -9,14 +9,13 @@ import {ProcessElement} from '../model/process-element';
 })
 export class CreateProcessComponent implements OnInit {
 
-  newProcess: ProcessElement = new ProcessElement();
-  selected: string;
-  forms = ['Pfeil', 'Kreis'];
-
   @Input() parentId;
   @Input() level;
   @Input() order;
   @Output() newProcessEvent = new EventEmitter<ProcessElement>();
+  newProcess: ProcessElement = new ProcessElement();
+  selected: string;
+  forms = ['Pfeil', 'Kreis'];
   isNotDetailProcess = false;
 
 

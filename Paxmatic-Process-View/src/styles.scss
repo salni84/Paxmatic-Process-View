@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 body {
   margin: 0;
@@ -13,14 +15,41 @@ label {
   cursor: pointer;
 }
 
+.arrow {
+  color: white;
+  cursor: pointer;
+}
+
 .names {
   display: inline-grid;
+}
+
+h2 {
+  font-weight: normal;
+  color: white;
+  background-color: black;
+  width: fit-content;
+  padding: 10px;
 }
 
 .connection {
   text-align: left;
   font-size: 10px;
 }
+
+button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  margin-top: 5px;
+  height: 30px;
+}
+
 
 .cdk-drag-preview {
   box-sizing: border-box;

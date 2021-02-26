@@ -20,6 +20,18 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true
     },
+
+    customLaunchers: {
+      ChromeHeadlessNoSandbox: {
+        base: 'Chrome',
+        diplayName: 'Chrome (headless)',
+        flags: [
+          '--no-sandbox',
+          '--headless'
+        ]
+      }
+    },
+
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,

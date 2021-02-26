@@ -7,6 +7,7 @@ import {Document} from '../app/model/document';
 @Injectable({
   providedIn: 'root'
 })
+
 export class DocumentService {
 
   private serverURL = 'http://localhost:8080/';

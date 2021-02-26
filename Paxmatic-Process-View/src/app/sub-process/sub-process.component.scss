@@ -1,7 +1,24 @@
-.container {
-  margin-top: 300px;
+.sub-title {
+  background-color: black;
+  margin-top: 110px;
+  margin-left: 125px;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+}
+
+.main {
+  display: inline-block;
+  width: 100%;
+  margin-top: 50px;
   margin-left: 300px;
-  width: 300px;
+}
+
+
+.container {
+  margin-top: 200px;
 }
 
 .saveAndUpdate {
@@ -9,6 +26,15 @@
   margin-top: 20px;
   display: inline-grid;
   border-style: outset;
+  padding: 10px;
+  background-color: darkred;
+}
+
+
+h1 {
+  color: white;
+  background-color: darkred;
+  width: fit-content;
   padding: 10px;
 }
 
