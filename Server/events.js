@@ -73,7 +73,7 @@ function createRouter(db) {
         );
     });
 
-    router.get('/document/:parent', function (req, res) {
+    router.get('/documents/:parent', function (req, res) {
         console.log(req.body.parent)
         db.query(
             'SELECT * FROM documents WHERE parent = ? order by id', [req.params.parent],
@@ -88,8 +88,6 @@ function createRouter(db) {
         );
     });
 
-
-
     router.delete('/basic/:id', function (req, res) {
         db.query(
             'DELETE FROM basicprocess WHERE id = ?', [req.params.id],
@@ -103,7 +101,6 @@ function createRouter(db) {
         )
     });
 
-
     router.delete('/sub/:id', function (req, res) {
         db.query(
             'DELETE FROM subprocess WHERE id = ?', [req.params.id],
@@ -116,7 +113,6 @@ function createRouter(db) {
             }
         )
     });
-
 
     router.delete('/department/:id', function (req, res) {
         db.query(
@@ -167,7 +163,6 @@ function createRouter(db) {
             let isVisible = req.body.isVisible;
             let visibleName = req.body.visibleName;
 
-
             db.query(
                 'INSERT INTO basicprocess VALUES (?,?,?,?,?,?,?,?)', [null, level, name, color, form, position, isVisible, visibleName],
                 (error, results) => {
@@ -179,7 +174,6 @@ function createRouter(db) {
                     }
             });
     });
-
 
     router.post('/sub/new', (req, res) => {
 
@@ -270,7 +264,6 @@ function createRouter(db) {
             });
     });
 
-
     router.put('/basic', (req, res) => {
 
         for (let x = 0; x < req.body.length; x++) {
@@ -313,7 +306,6 @@ function createRouter(db) {
 
         res.status(200).json()
     });
-
 
     router.put('/detail', (req, res) => {
 
