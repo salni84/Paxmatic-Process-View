@@ -7,7 +7,7 @@ env:
 
 language: node_js
 node_js:
-  - '12'
+  - '14'
 
 addons:
   firefox: latest
@@ -28,7 +28,6 @@ before_script:
 
 script:
   - npm install
-  - npm run install
   - npm run test
 #  - npm run e2e-headless
 #  - cd Poker-Frontend && sonar-scanner
