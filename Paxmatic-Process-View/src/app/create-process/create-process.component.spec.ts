@@ -1,6 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CreateProcessComponent } from './create-process.component';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 describe('CreateProcessComponent', () => {
   let component: CreateProcessComponent;
@@ -17,9 +16,5 @@ describe('CreateProcessComponent', () => {
     fixture = TestBed.createComponent(CreateProcessComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
   });
 });

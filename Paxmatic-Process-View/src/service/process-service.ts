@@ -19,13 +19,13 @@ export class ProcessService {
     return this.http.get(this.serverURL + level + '/' + parent);
   }
 
-  addProcessElement(process: ProcessElement, level: string) {
+  addProcessElement(process: ProcessElement, level: string): Observable<any> {
     const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(process);
     return this.http.post(this.serverURL + level + '/new', body, {headers});
   }
 
-  updateProcessList(process: ProcessElement[], level: string) {
+  updateProcessList(process: ProcessElement[], level: string): Observable<any> {
     const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(process);
     return this.http.put(this.serverURL + level, body, {headers});

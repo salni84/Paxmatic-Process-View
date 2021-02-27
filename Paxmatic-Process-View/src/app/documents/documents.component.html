@@ -1,4 +1,7 @@
-
+<div class="doc-title">
+  <mat-icon class="arrow" (click)='goBack()'>fast_rewind</mat-icon>
+  <h2>Dokumente</h2>
+</div>
 <div class="main">
   <div class="container">
     <div class="addProcess" *ngIf="isAdmin">
@@ -38,8 +41,6 @@
           <td class="deleteBox" (click)="deleteDocument(element.id)" mat-cell *matCellDef="let element"> <mat-icon>close</mat-icon>
           </td>
       </ng-container>
-
-
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

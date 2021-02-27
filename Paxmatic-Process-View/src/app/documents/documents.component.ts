@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {DocumentService} from '../../service/document.service';
-import {ActivatedRoute} from '@angular/router';
 import {Document} from '../model/document';
 import {LoginService} from '../../service/login-service';
+import {Location} from '@angular/common';
+import {ActivatedRoute} from '@angular/router';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class DocumentsComponent implements OnInit {
   showAddButton = true;
   isAdmin = false;
 
-  constructor(private documentService: DocumentService, private route: ActivatedRoute, private loginService: LoginService) { }
+  constructor(private location: Location, private documentService: DocumentService, private route: ActivatedRoute, private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.loginService.getLoginStatus().subscribe((data) => {
@@ -78,5 +79,9 @@ export class DocumentsComponent implements OnInit {
       .subscribe(() => {
         this.getDocuments();
       });
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

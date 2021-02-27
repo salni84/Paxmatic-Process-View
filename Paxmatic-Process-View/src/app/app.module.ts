@@ -27,6 +27,7 @@ import { DocumentsComponent } from './documents/documents.component';
 import {MatTableModule} from '@angular/material/table';
 import { CreateDocumentComponent } from './create-document/create-document.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import {RouterModule} from "@angular/router";
 
 
 @NgModule({

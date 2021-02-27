@@ -1,6 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CreateDocumentComponent } from './create-document.component';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 describe('CreateDocumentComponent', () => {
   let component: CreateDocumentComponent;
@@ -17,9 +16,5 @@ describe('CreateDocumentComponent', () => {
     fixture = TestBed.createComponent(CreateDocumentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
   });
 });

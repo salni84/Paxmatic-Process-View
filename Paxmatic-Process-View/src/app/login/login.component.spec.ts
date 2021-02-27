@@ -1,6 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LoginComponent } from './login.component';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -17,10 +16,5 @@ describe('LoginComponent', () => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  it('should show erorr-message if password is wrong', () => {
-      const password = '123';
-
   });
 });

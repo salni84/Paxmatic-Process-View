@@ -43,7 +43,6 @@ export class DetailProcessComponent implements OnInit {
       }
     });
     this.parentId = this.route.snapshot.paramMap.get('detail');
-    console.log(this.parentId);
     this.getAllProcess();
   }
 

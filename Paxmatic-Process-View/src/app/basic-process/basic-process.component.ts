@@ -1,8 +1,8 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {ProcessService} from '../../service/process-service';
 import {ProcessElement} from '../model/process-element';
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {LoginService} from '../../service/login-service';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 
 @Component({
@@ -49,6 +49,7 @@ export class BasicProcessComponent implements OnInit {
     this.hideCreateElement = false;
   }
 
+
   getAllProcess() {
     this.processServer.getProcess('basic', '')
       .subscribe((process) => {
@@ -80,8 +81,7 @@ export class BasicProcessComponent implements OnInit {
       });
   }
 
-
- deleteProcessElement(id: number) {
+  deleteProcessElement(id: number) {
     this.processServer.deleteProcess(id, 'basic')
       .subscribe(() => {
         this.getAllProcess();
