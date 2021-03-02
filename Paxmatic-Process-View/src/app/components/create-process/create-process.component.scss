@@ -1,0 +1,41 @@
+.container {
+  padding: 10px;
+  border-style: outset;
+  background-color: linen;
+  border-color: darkred;
+  font-size: 10px;
+}
+
+.emptyButton {
+  visibility: hidden;
+}
+
+label {
+  margin-right: 10px;
+}
+
+input {
+  margin: 3px;
+}
+
+select {
+  margin: 3px;
+  width: 100px;
+}
+
+.action {
+  margin: 5px;
+  display: flex;
+}
+
+.emptyBoxButton {
+  margin-left: 5px;
+  height: 20px;
+  display: inline-flex;
+}
+
+.button {
+  height: 20px;
+  display: inline-flex;
+}
+
