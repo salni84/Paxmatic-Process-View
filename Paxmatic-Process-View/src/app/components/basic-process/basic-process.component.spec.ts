@@ -5,6 +5,7 @@ import { BasicProcessComponent } from './basic-process.component';
 import {ProcessService} from '../../../service/process-service';
 import {of} from 'rxjs';
 import {ProcessMock} from '../../model/process-mock';
+import {DragDropModule} from "@angular/cdk/drag-drop";
 
 
 describe('BasicProcessComponent', () => {
@@ -51,5 +52,10 @@ describe('BasicProcessComponent', () => {
     expect(component.basicProcessList[0].name).toEqual('Projekt');
     expect(component.basicProcessList[1].name).toEqual('Administration');
   }));
+
+  it('should ', function () {
+
+  });
+
 
 });

@@ -1,11 +1,12 @@
 .sub-title {
   background-color: black;
-  margin-top: 110px;
+  margin-top: 60px;
   height: 60px;
   justify-content: center;
   align-items: center;
   text-align: center;
   display: flex;
+  font-family: "Century Gothic", sans-serif;
 }
 
 .addProcess {
@@ -24,9 +25,8 @@
 
 .main {
   display: inline-block;
-  width: 100%;
+  width: -webkit-fill-available;
   margin-top: 50px;
-  margin-left: 300px;
 }
 
 .editButton {
@@ -45,6 +45,7 @@
 
 .container {
   margin-top: 200px;
+  margin-left: 300px;
 }
 
 .saveAndUpdate {
@@ -54,7 +55,7 @@
   border-style: outset;
   padding: 10px;
   background-color: linen;
-  border-color: darkred;
+  border-color: rgb(179, 0, 0);
 }
 
 

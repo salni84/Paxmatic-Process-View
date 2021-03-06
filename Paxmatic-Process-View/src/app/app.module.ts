@@ -28,7 +28,7 @@ import {MatTableModule} from '@angular/material/table';
 import { CreateDocumentComponent } from './components/create-document/create-document.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
-import {MatSelectModule} from "@angular/material/select";
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({

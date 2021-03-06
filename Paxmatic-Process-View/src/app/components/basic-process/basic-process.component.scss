@@ -6,14 +6,12 @@
   align-items: center;
   text-align: center;
   display: flex;
-  width: 300%;
+  font-family: "Century Gothic", sans-serif ;
 }
-
 
 .main {
   display: inline-block;
-  margin-top: 50px;
-  margin-left: 100%;
+  width: -webkit-fill-available;
 }
 
 .create {
@@ -23,7 +21,8 @@
 .container {
   margin-top: 50px;
   margin-bottom: 20px;
-  width: 300px;
+  margin-left: 300px;
+  width: 300px
 }
 
 .saveAndUpdate {
@@ -33,7 +32,7 @@
   border-style: outset;
   padding: 10px;
   background-color: linen;
-  border-color: darkred;
+  border-color: rgb(179, 0, 0);
 }
 
 .editButton {
@@ -67,8 +66,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
 
-  .mat-card-before {
+.mat-card-before {
     position: absolute;
     top: 0;
     left: -33px;
@@ -81,7 +81,7 @@
     border-left: 35px solid transparent
   }
 
-}
+
 .mat-card-after {
   content: "";
   position: absolute;

@@ -14,18 +14,21 @@ export class CreateProcessComponent implements OnInit {
   @Input() order;
   @Output() newProcessEvent = new EventEmitter<ProcessElement>();
   newProcess: ProcessElement = new ProcessElement();
-  selected: string;
+  selected;
   forms = ['Pfeil', 'Kreis'];
   isNotDetailProcess = false;
   value: 'Name';
+  isNotBasic = true;
 
 
   constructor() {}
 
   ngOnInit(): void {
+
     if (this.level === 'detail') {
       this.isNotDetailProcess = true;
     }
+    this.isNotBasic = this.level !== 'basic';
   }
 
  newElement() {
@@ -34,12 +37,12 @@ export class CreateProcessComponent implements OnInit {
     } else {
       this.newProcess.form = 0;
     }
+
     this.newProcess.level = this.level;
     this.newProcess.parent = this.parentId;
     this.newProcess.order = this.order;
     this.newProcess.isVisible = 1;
     this.newProcess.visibleName = this.newProcess.name;
-    //this.newProcess.position = 0;
     this.newProcessEvent.emit(this.newProcess);
   }
 

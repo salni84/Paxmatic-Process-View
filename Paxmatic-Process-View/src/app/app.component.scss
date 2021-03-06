@@ -1,15 +1,31 @@
 .main {
-  display: flex;
+  grid-area: main;
   background-image: url(~src/assets/images/paxmatic-background.jpg);
   height: 2300px;
-  width: 200%;
   background-attachment: fixed;
 }
 
-.navleft {
-  float: left;
+.header {
+  grid-area: header;
 }
 
-.content {
-  float: left;
+.navleft {
+  grid-area: navleft;
 }
+
+.footer {
+  grid-area: footer;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 130px auto;
+  grid-template-areas:
+    'header header'
+  'navleft main'
+  'footer footer';
+}
+
+
+
+

@@ -3,11 +3,13 @@
 }
 
 mat-toolbar {
-  background-color: black;
+  background-color: rgb(26, 26, 26);
   color: white;
   height: 50px;
   position: fixed;
   bottom: 0;
   width: 100%;
   z-index: 200;
+  border-top: white;
+  border-top-style: solid;
 }
