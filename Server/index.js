@@ -3,29 +3,56 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const events = require('./events');
-
-
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'salerno84',
-    database: 'process_Server'
-});
-
-
-connection.connect();
-
-
-
+require("custom-env").env(true);
 const port = process.env.PORT || 8080;
 
-const app = express()
-    .use(cors())
-    .use(bodyParser.json())
-    .use(events(connection));
+if (process.env.NODE_ENV === 'prod'){
 
-app.listen(port, () => {
-    console.log(`Express server listening on port ${port}`)
-});
+    const connection = mysql.createConnection(
+        {
+            host: process.env.DB_HOST,
+            user: process.env.DB_USER,
+            password: process.env.DB_PWD,
+            database: process.env.DB_NAME,
+            port: process.env.PORT
+        });
+
+    connection.connect();
+
+    const app = express()
+        .use(cors())
+        .use(bodyParser.json())
+        .use(events(connection));
+
+    app.listen(port, () => {
+        console.log(`Express server listening on port ${port}`)
+    });
+}
+
+else {
+
+    const connection = mysql.createConnection(
+        {
+            host: process.env.DB_HOST,
+            user: process.env.DB_USER,
+            password: process.env.DB_PWD,
+            database: process.env.DB_NAME,
+            port: process.env.PORT,
+            insecureAuth : true
+        });
+
+    connection.connect();
+
+    const app = express()
+        .use(cors())
+        .use(bodyParser.json())
+        .use(events(connection));
+
+    app.listen(port, () => {
+        console.log(`Express server listening on port ${port}`)
+    });
+}
+
+
 
 

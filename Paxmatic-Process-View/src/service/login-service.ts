@@ -5,6 +5,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class LoginService {
 
   private isAdmin: BehaviorSubject<boolean>;
@@ -12,7 +13,6 @@ export class LoginService {
   constructor() {
     this.isAdmin = new BehaviorSubject<boolean>(false);
   }
-
 
   isLoggedIn(isAdmin: boolean) {
     this.isAdmin.next(true);

@@ -18,7 +18,6 @@ function createRouter(db) {
             'SELECT * FROM basicprocess order by position',
             (error, results) => {
                 if (error) {
-                    console.log(error);
                     res.status(500).json({status: 'error'});
                 }else {
                     res.status(200).json(results)
@@ -28,7 +27,6 @@ function createRouter(db) {
     });
 
     router.get('/sub/:parent', function (req, res) {
-        console.log(req.body.parent)
         db.query(
             'SELECT * FROM subprocess WHERE parent = ? order by position', [req.params.parent],
             (error, results) => {
@@ -44,12 +42,10 @@ function createRouter(db) {
 
 
     router.get('/department/:parent', function (req, res) {
-        console.log(req.body.parent)
         db.query(
             'SELECT * FROM departmentprocess WHERE parent = ? order by position', [req.params.parent],
             (error, results) => {
                 if (error) {
-                    console.log(error);
                     res.status(500).json({status: 'error'});
                 }else {
                     res.status(200).json(results)
@@ -59,12 +55,10 @@ function createRouter(db) {
     });
 
     router.get('/detail/:parent', function (req, res) {
-        console.log(req.body.parent)
         db.query(
             'SELECT * FROM detailprocess WHERE parent = ? order by position', [req.params.parent],
             (error, results) => {
                 if (error) {
-                    console.log(error);
                     res.status(500).json({status: 'error'});
                 }else {
                     res.status(200).json(results)
@@ -73,13 +67,11 @@ function createRouter(db) {
         );
     });
 
-    router.get('/document/:parent', function (req, res) {
-        console.log(req.body.parent)
+    router.get('/documents/:parent', function (req, res) {
         db.query(
             'SELECT * FROM documents WHERE parent = ? order by id', [req.params.parent],
             (error, results) => {
                 if (error) {
-                    console.log(error);
                     res.status(500).json({status: 'error'});
                 }else {
                     res.status(200).json(results)
@@ -87,8 +79,6 @@ function createRouter(db) {
             }
         );
     });
-
-
 
     router.delete('/basic/:id', function (req, res) {
         db.query(
@@ -103,7 +93,6 @@ function createRouter(db) {
         )
     });
 
-
     router.delete('/sub/:id', function (req, res) {
         db.query(
             'DELETE FROM subprocess WHERE id = ?', [req.params.id],
@@ -116,7 +105,6 @@ function createRouter(db) {
             }
         )
     });
-
 
     router.delete('/department/:id', function (req, res) {
         db.query(
@@ -167,19 +155,16 @@ function createRouter(db) {
             let isVisible = req.body.isVisible;
             let visibleName = req.body.visibleName;
 
-
             db.query(
                 'INSERT INTO basicprocess VALUES (?,?,?,?,?,?,?,?)', [null, level, name, color, form, position, isVisible, visibleName],
                 (error, results) => {
                     if (error) {
-                        console.log(error);
                         res.status(500).json({status: 'error'});
                     }else {
                         res.status(200).json(results)
                     }
             });
     });
-
 
     router.post('/sub/new', (req, res) => {
 
@@ -195,7 +180,6 @@ function createRouter(db) {
             'INSERT INTO subprocess VALUES (?,?,?,?,?,?,?,?)', [null, level, name, color, form, position, parent, visibleName],
             (error, results) => {
                 if (error) {
-                    console.log(error);
                     res.status(500).json({status: 'error'});
                 }else {
                     res.status(200).json(results)
@@ -217,7 +201,6 @@ function createRouter(db) {
             'INSERT INTO departmentprocess VALUES (?,?,?,?,?,?,?,?)', [null, level, name, color, form, position, parent, visibleName],
             (error, results) => {
                 if (error) {
-                    console.log(error);
                     res.status(500).json({status: 'error'});
                 }else {
                     res.status(200).json(results)
@@ -240,9 +223,7 @@ function createRouter(db) {
         db.query(
             'INSERT INTO detailprocess VALUES (?,?,?,?,?,?,?,?,?,?)', [null, level, name, color, form, position, parent, order, isVisible, visibleName],
             (error, results) => {
-                console.log(results)
                 if (error) {
-                    console.log(error);
                     res.status(500).json({status: 'error'});
                 }else {
                     res.status(200).json(results)
@@ -262,14 +243,12 @@ function createRouter(db) {
             'INSERT INTO documents VALUES (?,?,?,?,?)', [null, name, link, description, parent ],
             (error, results) => {
                 if (error) {
-                    console.log(error);
                     res.status(500).json({status: 'error'});
                 }else {
                     res.status(200).json(results)
                 }
             });
     });
-
 
     router.put('/basic', (req, res) => {
 
@@ -313,7 +292,6 @@ function createRouter(db) {
 
         res.status(200).json()
     });
-
 
     router.put('/detail', (req, res) => {
 

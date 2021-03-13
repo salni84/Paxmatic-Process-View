@@ -1,0 +1,42 @@
+.container {
+  padding-left: 30px;
+  padding-top: 10px;
+  border-style: outset;
+  background-color: linen;
+  border-color: rgb(179, 0, 0);
+}
+
+.document-form-field {
+  margin-right: 30px;
+}
+
+.emptyButton {
+  visibility: hidden;
+}
+
+label {
+  margin-right: 10px;
+  color: white;
+}
+
+input {
+  margin-top: 3px;
+  margin-right: 20px;
+  box-sizing: border-box;
+}
+
+select {
+  margin: 3px;
+  width: 100px;
+}
+
+.action {
+  margin: 5px;
+  display: inline;
+}
+
+.error {
+  margin-left: 20px;
+  padding-top: 5px;
+  color: white;
+}

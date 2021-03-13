@@ -1,0 +1,44 @@
+
+
+<div class="main">
+  <div class="basic-title">
+    <h2>Geschäftsprozesse</h2>
+  </div>
+  <div class="container">
+    <div class="addProcess" *ngIf="isAdmin">
+      <button mat-raised-button class="addButton" *ngIf="showAddButton" (click)="showAdd()">+</button>
+      <button mat-raised-button class="addButton" *ngIf="hideCreateElement" (click)="hideAdd()">x</button>
+    </div>
+    <div class="process">
+      <div class="create">
+        <app-create-process
+          *ngIf="showCreateElement"
+          (newProcessEvent)="addNewProcess($event)"
+          [level]="level"></app-create-process>
+      </div>
+      <div cdkDropList class="basic-process" (cdkDropListDropped)="drop($event)">
+        <div *ngFor="let p of basicProcessList">
+          <mat-card class="mat-card" [routerLink]="p.name" [class.circle]="p.form" [ngStyle]="{backgroundColor: p.color}"  cdkDrag>
+            <div class="names">
+              <label>{{p.visibleName}}</label>
+              <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
+            </div>
+            <div class="mat-card-after" [ngStyle]="{'border-left-color': p.color}"></div>
+            <div class="mat-card-before" [ngStyle]="{'border-top-color': p.color, 'border-bottom-color': p.color}"></div>
+          </mat-card>
+          <div class="saveAndUpdate" *ngIf="isAdmin">
+            <mat-form-field class="form-field">
+              <input matInput type="text" class="name" [(ngModel)]="p.visibleName">
+            </mat-form-field>
+            <div class="buttons">
+              <button mat-raised-button class="editButton" (click)="deleteProcessElement(p.id)">Delete
+                <mat-icon>delete_forever</mat-icon>
+              </button>
+              <button mat-raised-button class="editButton" (click)="udpateProcess()">Update Name</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

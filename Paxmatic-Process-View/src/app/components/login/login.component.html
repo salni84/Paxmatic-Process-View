@@ -1,0 +1,8 @@
+<div class="login" >
+  <div class="action">
+    <input *ngIf="!isLoggedIn" [(ngModel)]="password" placeholder='Passwort eingeben' type="password">
+    <button mat-raised-button class="button" *ngIf="!isLoggedIn" (click)="passwordValidation()">Login</button>
+    <button mat-raised-button class="button" *ngIf="isLoggedIn" (click)="logout()">LogOut</button>
+    <p>{{errormessage}}</p>
+  </div>
+</div>

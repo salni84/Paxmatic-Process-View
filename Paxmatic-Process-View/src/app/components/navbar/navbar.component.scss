@@ -1,0 +1,39 @@
+.sidenav {
+  height: 100%;
+  position: fixed;
+  z-index: 10;
+  top: 100px;
+  left: 0;
+  background-color: rgb(179, 0, 0);
+  overflow-x: hidden;
+  padding-top: 20px;
+  border-right-color: white;
+  border-style: solid;
+}
+
+.sidenav a {
+  padding: 6px 6px 6px 22px;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  display: block;
+  font-family: "Century Gothic", sans-serif ;
+
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 200px; /* Same as the width of the sidenav */
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}

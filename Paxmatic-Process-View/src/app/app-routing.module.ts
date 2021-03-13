@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {BasicProcessComponent} from './basic-process/basic-process.component';
-import {SubProcessComponent} from './sub-process/sub-process.component';
-import {DepartmentProcessComponent} from './department-process/department-process.component';
-import {DetailProcessComponent} from './detail-process/detail-process.component';
-import {HomeComponent} from './home/home.component';
-import {DocumentsComponent} from './documents/documents.component';
+import {BasicProcessComponent} from './components/basic-process/basic-process.component';
+import {SubProcessComponent} from './components/sub-process/sub-process.component';
+import {DepartmentProcessComponent} from './components/department-process/department-process.component';
+import {DetailProcessComponent} from './components/detail-process/detail-process.component';
+import {HomeComponent} from './components/home/home.component';
+import {DocumentsComponent} from './components/documents/documents.component';
 
 
 const routes: Routes = [

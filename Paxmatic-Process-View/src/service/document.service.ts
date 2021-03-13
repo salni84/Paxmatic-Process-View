@@ -7,6 +7,7 @@ import {Document} from '../app/model/document';
 @Injectable({
   providedIn: 'root'
 })
+
 export class DocumentService {
 
   private serverURL = 'http://localhost:8080/';
@@ -15,7 +16,7 @@ export class DocumentService {
   constructor(private http: HttpClient) { }
 
   getDocuments(parent: string): Observable<any> {
-    return this.http.get(this.serverURL + 'document' + '/' + parent);
+    return this.http.get(this.serverURL + 'documents' + '/' + parent);
   }
 
   addDocument(document: Document) {

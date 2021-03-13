@@ -1,0 +1,32 @@
+<div class="container">
+  <div>
+    <mat-form-field class="process-form-field">
+      <mat-label>Name</mat-label>
+      <input matInput type="text" [(ngModel)]="newProcess.name">
+    </mat-form-field>
+  </div>
+
+  <div>
+  <mat-form-field class="process-form-field">
+    <mat-label>Farbe</mat-label>
+    <input matInput type="text" [(ngModel)]="newProcess.color">
+  </mat-form-field>
+  </div>
+
+  <div *ngIf="isNotBasic">
+    <mat-form-field appearance="fill">
+      <mat-label>Form</mat-label>
+      <mat-select [(ngModel)]="selected">
+        <mat-option *ngFor="let f of forms" [value]="f">
+          {{f}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="action">
+    <button mat-raised-button class="button" (click)="newElement()">Save</button>
+    <button mat-raised-button class="emptyBoxButton" *ngIf="isNotDetailProcess" (click)="emptyBox()">Move</button>
+  </div>
+</div>
+
