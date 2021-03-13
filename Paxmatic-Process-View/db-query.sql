@@ -1,4 +1,4 @@
-DROP table if exists basicprocess, subprocess;
+DROP table if exists basicprocess, subprocess, departmentprocess;
 
 CREATE TABLE `basicprocess` (
                                 `id` int NOT NULL AUTO_INCREMENT,
@@ -12,17 +12,30 @@ CREATE TABLE `basicprocess` (
                                 PRIMARY KEY (`id`));
 
 CREATE TABLE `subprocess` (
-                                     `id` int NOT NULL AUTO_INCREMENT,
-                                     `level` varchar(45) DEFAULT NULL,
-                                     `name` varchar(45) DEFAULT NULL,
-                                     `color` varchar(45) DEFAULT NULL,
-                                     `form` int DEFAULT NULL,
-                                     `position` int DEFAULT NULL,
-                                     `parent` varchar(45) DEFAULT NULL,
-                                     `visibleName` varchar(45) DEFAULT NULL,
-                                     PRIMARY KEY (`id`)
+                                `id` int NOT NULL AUTO_INCREMENT,
+                                `level` varchar(45) DEFAULT NULL,
+                                `name` varchar(45) DEFAULT NULL,
+                                `color` varchar(45) DEFAULT NULL,
+                                `form` int DEFAULT NULL,
+                                `position` int DEFAULT NULL,
+                                `parent` varchar(45) DEFAULT NULL,
+                                `visibleName` varchar(45) DEFAULT NULL,
+                                PRIMARY KEY (`id`)
 );
 
+
+CREATE TABLE `departmentprocess` (
+
+                              `id` int NOT NULL AUTO_INCREMENT,
+                              `level` varchar(45) DEFAULT NULL,
+                              `name` varchar(45) DEFAULT NULL,
+                              `color` varchar(45) DEFAULT NULL,
+                              `form` int DEFAULT NULL,
+                              `position` int DEFAULT NULL,
+                              `parent` varchar(45) DEFAULT NULL,
+                              `visibleName` varchar(45) DEFAULT NULL,
+                              PRIMARY KEY (`id`)
+);
 
 
 INSERT into basicprocess (id, level, name, color, form, position, isVisible, visibleName)

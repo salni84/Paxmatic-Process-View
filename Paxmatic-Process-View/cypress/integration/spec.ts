@@ -1,6 +1,12 @@
 import '@4tw/cypress-drag-drop';
 
 
+describe('end2end tests for process-View', () => {
+
+it('should execute DB-Script', () => {
+  cy.exec('npm run db');
+});
+
 it('loads examples', () => {
   cy.visit('/');
 });
@@ -52,7 +58,7 @@ it('should check static-process-names and edit-window',  () => {
 });
 
 it('should change process visibleName', () => {
-  cy.get('#mat-input-0').clear()
+  cy.get('#mat-input-0').clear();
   cy.get('.mat-form-field-infix.ng-tns-c88-0').type('Test');
   cy.get('div:nth-of-type(2) > .ng-star-inserted.saveAndUpdate > .buttons > button:nth-of-type(2) > .mat-button-wrapper').click();
   cy.get('div:nth-of-type(2) > .cdk-drag.circle.mat-card > div > label:nth-of-type(1)').contains('Test');
@@ -81,15 +87,27 @@ it('should logOut',  () => {
 });
 
 it('should move 1st process-element to the right end', () => {
-  /*cy.get('div:nth-of-type(1) > .cdk-drag.circle.mat-card label')
-    .drag('div:nth-of-type(3) > .cdk-drag.circle.mat-card label');
-*/
   cy.get('div:nth-of-type(1) > .cdk-drag.circle.mat-card')
     .trigger('mousedown', { button: 0 });
 
   cy.get('[id] div:nth-of-type(2) [tabindex]')
     .trigger('mousemove')
-    .click({force: true});
+    .click();
+  cy.get('app-department-process  mat-icon[role=\'img\']').click();
+});
 
+it('should move process-element back to inital-status', () => {
+  cy.get('div:nth-of-type(2) > .cdk-drag.circle.mat-card')
+    .trigger('mousedown', { button: 0 });
 
+  cy.get('[id] div:nth-of-type(1) [tabindex]')
+    .trigger('mousemove')
+    .click();
+  cy.get('app-department-process  mat-icon[role=\'img\']').click();
+});
+
+it('should go back to home-page', () => {
+  cy.get('[href=\'\\/home\']').click();
+  cy.get('h1').contains('Willkommen bei der PAXMATIC AG');
+});
 });

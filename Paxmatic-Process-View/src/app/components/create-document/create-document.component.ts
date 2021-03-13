@@ -12,7 +12,7 @@ export class CreateDocumentComponent implements OnInit {
   @Input() parentId;
   @Output() newDocumentEvent = new EventEmitter<Document>();
   newDocument: Document = new Document();
-  value: 'Name';
+  value = 'Name';
 
 
   constructor() {}
