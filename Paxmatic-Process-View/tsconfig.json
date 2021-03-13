@@ -7,6 +7,7 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
+    "types": ["cypress", "@4tw/cypress-drag-drop"],
     "module": "esnext",
     "moduleResolution": "node",
     "importHelpers": true,

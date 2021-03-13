@@ -1,7 +1,4 @@
-create database test_Process;
-create user 'root' identified by 'password';
-GRANT ALL PRIVILEGES ON test_Process.* TO 'root';
-use test_Process;
+DROP table if exists basicprocess, subprocess;
 
 CREATE TABLE `basicprocess` (
                                 `id` int NOT NULL AUTO_INCREMENT,
@@ -14,7 +11,7 @@ CREATE TABLE `basicprocess` (
                                 `visibleName` varchar(45) DEFAULT NULL,
                                 PRIMARY KEY (`id`));
 
-CREATE TABLE `departmentprocess` (
+CREATE TABLE `subprocess` (
                                      `id` int NOT NULL AUTO_INCREMENT,
                                      `level` varchar(45) DEFAULT NULL,
                                      `name` varchar(45) DEFAULT NULL,
@@ -28,7 +25,16 @@ CREATE TABLE `departmentprocess` (
 
 
 
+INSERT into basicprocess (id, level, name, color, form, position, isVisible, visibleName)
+VALUES
+       (null, 'basic', 'projekt', 'green', 0, 0, 1, 'Projekt' ),
+       (null, 'basic', 'admin', 'red', 0, 1, 1, 'Admin'),
+       (null, 'basic', 'service', 'blue', 0, 2, 1, 'Service');
 
-
+INSERT into subprocess (id, level, name, color, form, position, parent, visibleName)
+VALUES
+    (null, 'sub', 'akquisition', 'red', 1, 0, 'Projekt', 'Akquisition'),
+    (null, 'sub', 'bestellung', 'green', 0, 1, 'Projekt', 'Bestellung'),
+    (null, 'sub', 'kickoff', 'red', 1, 2, 'Projekt', 'Kickoff');
 
 
