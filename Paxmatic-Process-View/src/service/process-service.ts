@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {ProcessElement} from '../app/model/process-element';
+import {environment} from '../environments/environment';
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import {ProcessElement} from '../app/model/process-element';
 
 export class ProcessService {
 
-  private serverURL = 'http://localhost:8080/';
+  private serverURL = environment.serverURL;
 
 
   constructor(private http: HttpClient) { }

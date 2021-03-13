@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Document} from '../app/model/document';
+import {environment} from '../environments/environment';
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import {Document} from '../app/model/document';
 
 export class DocumentService {
 
-  private serverURL = 'http://localhost:8080/';
+  private serverURL = environment.serverURL;
 
 
   constructor(private http: HttpClient) { }

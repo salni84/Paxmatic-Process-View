@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  serverURL: 'http://192.168.1.88:8080/'
 };
