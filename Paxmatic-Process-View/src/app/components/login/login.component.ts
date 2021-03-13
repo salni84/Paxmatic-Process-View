@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   passwordValidation() {
-    if (window.btoa(this.password) === 'c2FsZW5z') {
+    if (this.password === 'salens') {
       this.isAdmin.emit(true);
       this.isLoggedIn = true;
       this.loginService.isLoggedIn(true);
