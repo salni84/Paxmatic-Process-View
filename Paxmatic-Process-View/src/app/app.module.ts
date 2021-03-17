@@ -29,6 +29,7 @@ import { CreateDocumentComponent } from './components/create-document/create-doc
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import { HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 
 @NgModule({
@@ -66,7 +67,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatInputModule,
     MatSelectModule,
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

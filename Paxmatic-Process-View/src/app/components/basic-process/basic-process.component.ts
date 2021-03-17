@@ -87,4 +87,6 @@ export class BasicProcessComponent implements OnInit {
         this.getAllProcess();
         });
       }
+
+
 }

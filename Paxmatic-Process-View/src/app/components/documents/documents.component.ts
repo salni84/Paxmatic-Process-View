@@ -70,7 +70,6 @@ export class DocumentsComponent implements OnInit {
     });
   }
 
-
   addDocument(newDocument: Document) {
     this.documentService.addDocument(newDocument)
       .subscribe(() => this.getDocuments());

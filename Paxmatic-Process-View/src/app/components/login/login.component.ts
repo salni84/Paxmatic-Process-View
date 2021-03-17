@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {LoginService} from '../../../service/login-service';
+import {environment} from '../../../environments/environment';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
   }
 
   passwordValidation() {
-    if (this.password === 'salens') {
+    if (this.password === environment.password) {
       this.isAdmin.emit(true);
       this.isLoggedIn = true;
       this.loginService.isLoggedIn(true);

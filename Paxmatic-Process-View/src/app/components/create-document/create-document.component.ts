@@ -17,8 +17,7 @@ export class CreateDocumentComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   newElement() {
     this.newDocument.parent = this.parentId;

@@ -45,7 +45,7 @@ it('should login as admin',  () => {
   cy.get('.button.mat-button-base.mat-raised-button > .mat-button-wrapper').contains('Login');
   cy.get('input').type('salens');
   cy.wait(1000);
-  cy.get('.button.mat-button-base.mat-raised-button > .mat-button-wrapper').click();
+  cy.get('.button.mat-button-base.mat-raised-button').click();
   cy.get('.button.mat-button-base.mat-raised-button.ng-star-inserted > .mat-button-wrapper').contains('LogOut');
 });
 
@@ -60,7 +60,7 @@ it('should check static-process-names and edit-window',  () => {
 it('should change process visibleName', () => {
   cy.get('#mat-input-0').clear();
   cy.get('.mat-form-field-infix.ng-tns-c88-0').type('Test');
-  cy.get('div:nth-of-type(2) > .ng-star-inserted.saveAndUpdate > .buttons > button:nth-of-type(2) > .mat-button-wrapper').click();
+  cy.get('div:nth-of-type(2) > .ng-star-inserted.saveAndUpdate > div > button:nth-of-type(2)').click();
   cy.get('div:nth-of-type(2) > .cdk-drag.circle.mat-card > div > label:nth-of-type(1)').contains('Test');
 });
 
@@ -82,7 +82,7 @@ it('should delete new process-element and close edit-component',  () => {
 });
 
 it('should logOut',  () => {
-  cy.get('.button.mat-button-base.mat-raised-button.ng-star-inserted > .mat-button-wrapper').click();
+  cy.get('.button.mat-button-base.mat-raised-button.ng-star-inserted').click();
   cy.get('.button.mat-button-base.mat-raised-button.ng-star-inserted > .mat-button-wrapper').contains('Login');
 });
 
@@ -107,7 +107,7 @@ it('should move process-element back to inital-status', () => {
 });
 
 it('should go back to home-page', () => {
-  cy.get('[href=\'\\/home\']').click();
+  cy.get('[href=\'\\#\\/home\']').click();
   cy.get('h1').contains('Willkommen bei der PAXMATIC AG');
 });
 });

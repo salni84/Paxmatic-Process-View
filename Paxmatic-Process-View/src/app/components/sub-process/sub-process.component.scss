@@ -1,12 +1,15 @@
 .sub-title {
   background-color: black;
-  margin-top: 60px;
+  margin-top: 110px;
   height: 60px;
-  justify-content: center;
   align-items: center;
   text-align: center;
   display: flex;
   font-family: "Century Gothic", sans-serif;
+}
+
+.arrow {
+  margin-left: 20%;
 }
 
 .addProcess {
@@ -24,9 +27,8 @@
 }
 
 .main {
-  display: inline-block;
+  display: flow-root;
   width: -webkit-fill-available;
-  margin-top: 50px;
 }
 
 .editButton {
@@ -34,6 +36,10 @@
   display: inline-flex;
   margin: 5px;
   font-size: 12px;
+}
+
+.mat-raised-button {
+  line-height: 0;
 }
 
 .addButton {
@@ -45,7 +51,7 @@
 
 .container {
   margin-top: 200px;
-  margin-left: 20%;
+  margin-left: 10%;
 }
 
 .saveAndUpdate {

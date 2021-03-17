@@ -1,7 +1,6 @@
 .detail-title {
   margin-bottom: 50px;
   display: flex;
-  justify-content: center;
   align-items: center;
   text-align: center;
   background-color: black;
@@ -10,8 +9,16 @@
   margin-top: 110px;
 }
 
+.arrow {
+  margin-left: 20%;
+}
+
+.mat-raised-button {
+  line-height: 0;
+}
+
 .main {
-  display: block;
+  display: flow-root;
   width: -webkit-fill-available;
 }
 

@@ -2,15 +2,18 @@
   background-color: black;
   margin-top: 110px;
   height: 60px;
-  justify-content: center;
   align-items: center;
   text-align: center;
   display: flex;
   font-family: "Century Gothic", sans-serif ;
 }
 
+h2 {
+  margin-left: 20%;
+}
+
 .main {
-  display: inline-block;
+  display: flow-root;
   width: -webkit-fill-available;
 }
 
@@ -53,6 +56,10 @@
   margin-bottom: 10px;
 }
 
+.mat-raised-button {
+  line-height: 0;
+}
+
 
 .mat-card {
   margin-left: 35px;
@@ -79,8 +86,7 @@
     border-top-style: solid;
     border-bottom: 40px solid;
     border-left: 35px solid transparent
-  }
-
+}
 
 .mat-card-after {
   content: "";
@@ -94,7 +100,6 @@
   border-left: 35px solid
 }
 
-
 .circle {
   width: 45px;
   height: 45px;
@@ -107,7 +112,6 @@
   text-align: left;
   border-radius: 100px;
 }
-
 
 .basic-process {
   max-width: 100%;

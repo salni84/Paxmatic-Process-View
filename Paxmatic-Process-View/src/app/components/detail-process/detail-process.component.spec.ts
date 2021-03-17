@@ -40,13 +40,13 @@ describe('DetailProcessComponent', () => {
   });
 
 
-  it('should display detail-process-elements', fakeAsync(() => {
-    spyOn(processService, 'getProcess').and.returnValue(of(expectedProcess));
-    component.getAllProcess();
-
-    tick();
-    expect(component.detailProcessList.length).toEqual(2);
-    expect(component.detailProcessList[0].name).toEqual('Projekt');
-    expect(component.detailProcessList[1].name).toEqual('Administration');
-  }));
+  it('should test drop-function for detail-process',  () => {
+    component.firstProcessRow = expectedProcess;
+    const fakeEvent = processService.createEvent(1, 2);
+    component.drop1(fakeEvent);
+    expect(component.firstProcessRow.length).toBe(3);
+    expect(component.firstProcessRow[0].position).toBe(0);
+    expect(component.firstProcessRow[1].position).toBe(1);
+    expect(component.firstProcessRow[2].position).toBe(2);
+  });
 });
