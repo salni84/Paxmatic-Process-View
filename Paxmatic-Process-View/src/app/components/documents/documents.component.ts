@@ -4,6 +4,9 @@ import {Document} from '../../model/document';
 import {LoginService} from '../../../service/login-service';
 import {Location} from '@angular/common';
 import {ActivatedRoute} from '@angular/router';
+import {ProcessService} from '../../../service/process-service';
+import {map} from 'rxjs/operators';
+
 
 
 @Component({
@@ -17,17 +20,22 @@ export class DocumentsComponent implements OnInit {
 
   documents: Document[] = [];
   parentId: string;
+  coreElement: string;
   displayedColumns: string[] = ['nr', 'name', 'link', 'description'];
   showCreateElement = false;
   hideCreateElement = false;
   showAddButton = true;
   isAdmin = false;
+  nextProcess: any[];
+
+
 
   constructor(
     private location: Location,
     private documentService: DocumentService,
     private route: ActivatedRoute,
-    private loginService: LoginService) { }
+    private loginService: LoginService,
+    private processService: ProcessService) { }
 
   ngOnInit(): void {
     this.loginService.getLoginStatus().subscribe((data) => {
@@ -37,7 +45,6 @@ export class DocumentsComponent implements OnInit {
         this.displayedColumns.filter( ( item, index, inputArray ) => {
           return inputArray.indexOf(item) === index;
         });
-
       } else {
         this.isAdmin = false;
         this.hideAdd();
@@ -45,6 +52,8 @@ export class DocumentsComponent implements OnInit {
       }
     });
     this.getDocuments();
+    this.getNextDocuments();
+    this.getDocumentByCoreElement();
   }
 
   showAdd() {
@@ -61,29 +70,45 @@ export class DocumentsComponent implements OnInit {
 
   getDocuments() {
     this.route.pathFromRoot[1].url.subscribe((val) => {
-      this.parentId = val[2].path;
-
-      this.documentService.getDocuments(this.parentId)
+      this.parentId = val[4].path;
+      this.documentService.getDocumentsByCoreElement(this.parentId)
         .subscribe((data) => {
           this.documents = data;
         });
     });
   }
 
+  getDocumentByCoreElement() {
+    this.route.pathFromRoot[1].url.subscribe((val) => {
+      this.coreElement = val[5].path;
+      this.documentService.getDocumentsByCoreElement(this.coreElement)
+        .subscribe((data) => {
+          this.documents = data;
+        });
+    });
+  }
+
+  getNextDocuments() {
+    this.route.pathFromRoot[1].url.subscribe((value) => {
+      this.coreElement = value[5].path;
+    });
+    this.processService.getProcess('detail', this.parentId)
+        .pipe(
+          map(items => items.filter(item => item.order === 3)))
+        .subscribe((data) => {this.nextProcess = data;
+        });
+  }
+
   addDocument(newDocument: Document) {
     this.documentService.addDocument(newDocument)
-      .subscribe(() => this.getDocuments());
+      .subscribe(() => this.getDocumentByCoreElement());
     this.documents.push(newDocument);
   }
 
   deleteDocument(id: number) {
     this.documentService.deleteDocument(id)
       .subscribe(() => {
-        this.getDocuments();
+        this.getDocumentByCoreElement();
       });
-  }
-
-  goBack() {
-    this.location.back();
   }
 }

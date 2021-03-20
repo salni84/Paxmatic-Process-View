@@ -1,31 +1,25 @@
 .basic-title {
+  margin-top: 10px;
   background-color: black;
-  margin-top: 110px;
   height: 60px;
   align-items: center;
   text-align: center;
   display: flex;
-  font-family: "Century Gothic", sans-serif ;
-}
-
-h2 {
-  margin-left: 20%;
+  font-family: "Century Gothic", sans-serif;
 }
 
 .main {
-  display: flow-root;
   width: -webkit-fill-available;
+}
+
+.container {
+  margin-top: 100px;
+  margin-left: 300px;
+  width: 300px
 }
 
 .create {
   margin-bottom: 20px;
-}
-
-.container {
-  margin-top: 50px;
-  margin-bottom: 20px;
-  margin-left: 300px;
-  width: 300px
 }
 
 .saveAndUpdate {
@@ -56,10 +50,9 @@ h2 {
   margin-bottom: 10px;
 }
 
-.mat-raised-button {
-  line-height: 0;
+h2 {
+  margin-left: 20%;
 }
-
 
 .mat-card {
   margin-left: 35px;

@@ -10,10 +10,9 @@ import {Document} from '../../model/document';
 export class CreateDocumentComponent implements OnInit {
 
   @Input() parentId;
+  @Input() coreElement;
   @Output() newDocumentEvent = new EventEmitter<Document>();
   newDocument: Document = new Document();
-  value = 'Name';
-
 
   constructor() {}
 
@@ -21,6 +20,11 @@ export class CreateDocumentComponent implements OnInit {
 
   newElement() {
     this.newDocument.parent = this.parentId;
+    this.newDocument.coreElement = this.coreElement;
     this.newDocumentEvent.emit(this.newDocument);
+    this.newDocument.description = '';
+    this.newDocument.link = '';
+    this.newDocument.name = '';
+    this.newDocument.nr = '';
     }
 }

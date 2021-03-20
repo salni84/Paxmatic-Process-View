@@ -1,10 +1,6 @@
-
 <div class="detail-title">
-  <mat-icon class="arrow" (click)='goBack()'>fast_rewind</mat-icon>
+  <mat-icon class="arrow" [routerLink]="['../']" >fast_rewind</mat-icon>
   <h2>Detailprozess / {{parentId}}</h2>
-  <a class="link" [routerLink] = "['/home/documents', parentId]">Dokumente
-    <mat-icon>attach_file</mat-icon>
-  </a>
 </div>
 
 <div class="main">
@@ -86,8 +82,8 @@
 
   <div class="container">
     <div class="addProcess" *ngIf="isAdmin">
-      <button mat-raised-button class="addButton" *ngIf="showAddButton[2]" (click)="showAdd(2)">+</button>
-      <button mat-raised-button class="addButton" *ngIf="hideCreateElement[2]" (click)="hideAdd(2)">x</button>
+      <button mat-raised-button class="addButtonCore" *ngIf="showAddButton[2]" (click)="showAdd(2)">+</button>
+      <button mat-raised-button class="addButtonCore" *ngIf="hideCreateElement[2]" (click)="hideAdd(2)">x</button>
     </div>
     <div class="process">
       <app-create-process *ngIf="showCreateElement[2]"
@@ -98,7 +94,8 @@
       ></app-create-process>
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop3($event)">
         <div  *ngFor="let p of thirdProcessRow" >
-          <mat-card [class.circle]="p.form" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
+          <mat-card [routerLink]="p.name" [class.circle]="p.form" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
+            <p class="doc-icon" *ngIf="p.hasDocument"><mat-icon>attach_file</mat-icon></p>
             <div class="names">
               <label>{{p.visibleName}}</label>
               <label class="connection" *ngIf="isAdmin">{{p.name}}</label>

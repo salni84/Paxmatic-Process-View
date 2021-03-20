@@ -1,28 +1,44 @@
 .doc-title {
   background-color: black;
-  margin-top: 110px;
-  height: 60px;
+  height: 100px;
   align-items: center;
   text-align: center;
   display: flex;
   font-family: "Century Gothic", sans-serif ;
 }
 
+.otherDocuments {
+  background-color: black;
+  height: 30px;
+  text-align: center;
+  display: flex;
+  font-family: "Century Gothic", sans-serif ;
+  padding-left: 10%;
+}
+
+.next {
+  margin-right: 20px;
+  color: white;
+}
+
 .main {
   display: flow-root;
-  margin-left: 100px;
   width: -webkit-fill-available;
 }
 
 .arrow {
-  margin-left: 20%;
+  margin-left: 12%;
+}
+
+.addProcess {
+  margin-top: 5%;
 }
 
 .container {
-  margin-top: 150px;
+  margin-top: 50px;
   margin-left: 8%;
   display: block;
-  width: 1000px;
+  width: 1100px;
 }
 
 table {

@@ -58,11 +58,13 @@ export class BasicProcessComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.basicProcessList, event.previousIndex, event.currentIndex);
-    for (let x = 0; x < this.basicProcessList.length; x++) {
-      this.basicProcessList[x].position = x;
+    if (this.isAdmin) {
+      moveItemInArray(this.basicProcessList, event.previousIndex, event.currentIndex);
+      for (let x = 0; x < this.basicProcessList.length; x++) {
+        this.basicProcessList[x].position = x;
+      }
+      this.udpateProcess();
     }
-    this.udpateProcess();
   }
 
 

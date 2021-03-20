@@ -1,8 +1,9 @@
 export class Document {
 
-  nr: number;
+  nr: string;
   name: string;
   link: string;
   description: string;
   parent: string;
+  coreElement: string;
 }

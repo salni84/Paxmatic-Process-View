@@ -16,8 +16,12 @@ export class DocumentService {
 
   constructor(private http: HttpClient) { }
 
-  getDocuments(parent: string): Observable<any> {
+  getDocumentsByParent(parent: string): Observable<any> {
     return this.http.get(this.serverURL + 'documents' + '/' + parent);
+  }
+
+  getDocumentsByCoreElement(core: string): Observable<any> {
+    return this.http.get(this.serverURL + 'document' + '/' + core);
   }
 
   addDocument(document: Document) {

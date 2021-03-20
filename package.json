@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "npm run server:prod & (cd Paxmatic-Process-View && npm run start)",
     "test": "echo \"Error: no test specified\" && exit 1",
     "server:prod": "cd Server && npm run start:prod",
     "server:dev": "cd Server && npm run start:dev" ,

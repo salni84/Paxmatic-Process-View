@@ -1,13 +1,14 @@
-.main {
-  grid-area: main;
+.content {
+  grid-area: content;
+  width: 200%;
+  height: 2000px;
   background-image: url(~src/assets/images/paxmatic-background.jpg);
-  height: 300%;
   background-attachment: fixed;
-  width: 150%;
 }
 
 .header {
   grid-area: header;
+  margin-bottom: 100px;
 }
 
 .navleft {
@@ -23,7 +24,7 @@
   grid-template-columns: 130px auto;
   grid-template-areas:
     'header header'
-    'navleft main'
+    'navleft content'
     'footer footer';
 }
 
