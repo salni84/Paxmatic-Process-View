@@ -3,7 +3,7 @@ import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {ProcessElement} from '../app/model/process-element';
 import {environment} from '../environments/environment';
-import {CdkDragDrop} from "@angular/cdk/drag-drop";
+import {CdkDragDrop} from '@angular/cdk/drag-drop';
 
 
 @Injectable({

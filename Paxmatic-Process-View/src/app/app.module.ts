@@ -32,6 +32,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +66,7 @@ import { HashLocationStrategy, LocationStrategy} from '@angular/common';
     MatTableModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatSelectModule,
+    MatSelectModule
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]

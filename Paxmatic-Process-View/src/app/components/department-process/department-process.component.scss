@@ -106,11 +106,13 @@ h1 {
 .circle {
   width: 45px;
   height: 45px;
+  font-size: 13px;
   top: 5px;
   margin-bottom: 4px;
   border: 1px solid black;
   text-align: left;
   border-radius: 100px;
+  pointer-events: none;
 }
 
 .department-process {;

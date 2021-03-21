@@ -97,7 +97,7 @@ it('should move 1st process-element to the right end', () => {
 });
 
 it('should move process-element back to inital-status', () => {
-  cy.get('div:nth-of-type(2) > .cdk-drag.circle.mat-card')
+  cy.get('div:nth-of-type(1) > .cdk-drag.circle.mat-card')
     .trigger('mousedown', { button: 0 });
 
   cy.get('[id] div:nth-of-type(1) [tabindex]')
