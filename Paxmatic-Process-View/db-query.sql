@@ -46,8 +46,8 @@ VALUES
 
 INSERT into subprocess (id, level, name, color, form, position, parent, visibleName)
 VALUES
-    (null, 'sub', 'akquisition', 'red', 1, 0, 'Projekt', 'Akquisition'),
-    (null, 'sub', 'bestellung', 'green', 0, 1, 'Projekt', 'Bestellung'),
-    (null, 'sub', 'kickoff', 'red', 1, 2, 'Projekt', 'Kickoff');
+    (null, 'sub', 'akquisition', 'red', 0, 0, 'Projekt', 'Akquisition'),
+    (null, 'sub', 'bestellung', 'green', 1, 1, 'Projekt', 'Bestellung'),
+    (null, 'sub', 'kickoff', 'red', 0, 2, 'Projekt', 'Kickoff');
 
 

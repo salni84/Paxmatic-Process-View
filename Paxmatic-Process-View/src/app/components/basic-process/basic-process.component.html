@@ -19,19 +19,24 @@
           <mat-card class="mat-card" [routerLink]="p.name" [class.circle]="p.form" [ngStyle]="{backgroundColor: p.color}"  cdkDrag>
             <div class="names">
               <label>{{p.visibleName}}</label>
-              <label class="connection" *ngIf="isAdmin">{{p.name + ' / ' + p.color}}</label>
+              <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
             </div>
             <div class="mat-card-after" [ngStyle]="{'border-left-color': p.color}"></div>
             <div class="mat-card-before" [ngStyle]="{'border-top-color': p.color, 'border-bottom-color': p.color}"></div>
           </mat-card>
           <div class="saveAndUpdate" *ngIf="isAdmin">
             <mat-form-field class="form-field">
-              <input matInput type="text" class="name" [(ngModel)]="p.visibleName">
+              <input matInput type="text" class="name" [(ngModel)]="p.visibleName" placeholder="Prozessname">
+            </mat-form-field>
+            <mat-form-field class="form-field">
+              <input matInput type="text" class="name" [(ngModel)]="p.color" placeholder="Farbe">
             </mat-form-field>
             <div class="buttons">
               <button mat-raised-button class="editButton" (click)="deleteProcessElement(p.id)">Delete
                 <mat-icon>delete_forever</mat-icon>
               </button>
+              <button mat-raised-button *ngIf="p.form === 0" class="editButton" (click)="p.form = 1">Kreis</button>
+              <button mat-raised-button *ngIf="p.form === 1" class="editButton" (click)="p.form = 0">Pfeil</button>
               <button mat-raised-button class="editButton" (click)="udpateProcess()">Update Name</button>
             </div>
           </div>

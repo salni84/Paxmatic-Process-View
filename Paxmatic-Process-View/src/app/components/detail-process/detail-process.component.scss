@@ -43,6 +43,11 @@
   visibility: hidden ;
 }
 
+.greyedOut {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .title {
   font-size: 15px;
   text-align: initial;
@@ -54,6 +59,11 @@
   height: 30px;
 }
 
+.toggle {
+  display: inline;
+  float: right;
+}
+
 .addButton {
    min-width: 40px;
    line-height: 25px;
@@ -61,6 +71,10 @@
    justify-content: center;
    margin-right: 10px;
  }
+
+.form {
+  width: 20%;
+}
 
 .addButtonCore {
   min-width: 40px;
@@ -179,4 +193,7 @@
   }
   .mat-card {
   }
+
+
+
 }

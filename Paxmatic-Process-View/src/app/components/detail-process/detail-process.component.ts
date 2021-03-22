@@ -8,6 +8,7 @@ import {Location} from '@angular/common';
 import {DocumentService} from '../../../service/document.service';
 import {map} from 'rxjs/operators';
 import {Document} from '../../model/document';
+import {MatSlideToggleChange} from '@angular/material/slide-toggle';
 
 
 @Component({
@@ -16,6 +17,7 @@ import {Document} from '../../model/document';
   styleUrls: ['./detail-process.component.scss']
 })
 export class DetailProcessComponent implements OnInit {
+
 
   constructor(private location: Location,
               private processServer: ProcessService,
@@ -105,7 +107,8 @@ export class DetailProcessComponent implements OnInit {
                 this.matchDocs = i;
                 this.matchDocs.forEach(info => this.matchNames.push(info.coreElement));
                 if (this.matchNames.includes(data.name)) {
-                  data.hasDocument = true; }
+                  data.hasDocument = true;
+                  }
               });
 
             this.thirdProcessRow.push(data);
@@ -210,7 +213,6 @@ export class DetailProcessComponent implements OnInit {
       this.udpateProcess();
     }
   }
-
 
   addNewProcess(newProcess: ProcessElement) {
     this.processServer.addProcessElement(newProcess, 'detail')

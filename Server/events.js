@@ -313,15 +313,17 @@ function createRouter(db) {
 
         for (let x = 0; x < req.body.length; x++) {
             let id = req.body[x].id;
+            let form = req.body[x].form;
             let position = req.body[x].position;
             let visibleName = req.body[x].visibleName;
 
             db.query(
-                "UPDATE detailprocess SET position = ?, visibleName = ? WHERE id = ?", [position, visibleName, id],
+                "UPDATE detailprocess SET position = ?, visibleName = ?, form = ? WHERE id = ?", [position, visibleName, form, id],
                 () => {})}
 
         res.status(200).json()
     });
+
 
     return router
 }

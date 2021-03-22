@@ -35,8 +35,8 @@ it('should open sub-process after click on basic-process',  () => {
 });
 
 it('should check if circle-elements are visible',  () => {
-  cy.get('div:nth-of-type(3) > .cdk-drag.circle.mat-card label').contains('Kickoff');
-  cy.get('div:nth-of-type(1) > .cdk-drag.circle.mat-card').should('have.css', 'border-radius', '100px');
+  cy.get('.cdk-drag.circle.mat-card  label').contains('Bestellung');
+  cy.get('div#cdk-drop-list-0 > div:nth-of-type(2)').should('have.css', 'border-radius', '100px');
   cy.get('div:nth-of-type(3) > .cdk-drag.circle.mat-card').should('have.css', 'width', '45px');
 });
 
