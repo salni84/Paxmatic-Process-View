@@ -1,5 +1,3 @@
-
-
 <div class="main">
   <div class="basic-title">
     <h2>Geschäftsprozesse</h2>
@@ -28,13 +26,18 @@
           </mat-card>
           <div class="saveAndUpdate" *ngIf="isAdmin">
             <mat-form-field class="form-field">
-              <input matInput type="text" class="name" [(ngModel)]="p.visibleName">
+              <input matInput type="text" class="name" [(ngModel)]="p.visibleName" placeholder="Prozessname">
+            </mat-form-field>
+            <mat-form-field class="form-field">
+              <input matInput type="text" class="name" [(ngModel)]="p.color" placeholder="Farbe">
             </mat-form-field>
             <div class="buttons">
               <button mat-raised-button class="editButton" (click)="deleteProcessElement(p.id)">Delete
                 <mat-icon>delete_forever</mat-icon>
               </button>
-              <button mat-raised-button class="editButton" (click)="udpateProcess()">Update Name</button>
+              <button mat-raised-button *ngIf="p.form === 0" class="editButton" (click)="p.form = 1">Kreis</button>
+              <button mat-raised-button *ngIf="p.form === 1" class="editButton" (click)="p.form = 0">Pfeil</button>
+              <button mat-raised-button class="editButton" (click)="udpateProcess()">Update</button>
             </div>
           </div>
         </div>

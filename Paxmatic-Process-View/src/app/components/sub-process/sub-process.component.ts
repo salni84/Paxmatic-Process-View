@@ -63,13 +63,15 @@ export class SubProcessComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.subProcessList, event.previousIndex, event.currentIndex);
+    if (this.isAdmin) {
+      moveItemInArray(this.subProcessList, event.previousIndex, event.currentIndex);
 
-    for (let x = 0; x < this.subProcessList.length; x++) {
+      for (let x = 0; x < this.subProcessList.length; x++) {
 
-      this.subProcessList[x].position = x;
+        this.subProcessList[x].position = x;
+      }
+      this.udpateProcess();
     }
-    this.udpateProcess();
   }
 
 
@@ -93,9 +95,5 @@ export class SubProcessComponent implements OnInit {
       .subscribe(() => {
         this.getAllProcess();
       });
-  }
-
-  goBack() {
-    this.location.back();
   }
 }

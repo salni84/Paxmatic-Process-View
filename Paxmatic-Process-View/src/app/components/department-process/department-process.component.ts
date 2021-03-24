@@ -61,13 +61,15 @@ export class DepartmentProcessComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.departmentProcessList, event.previousIndex, event.currentIndex);
+    if (this.isAdmin) {
+      moveItemInArray(this.departmentProcessList, event.previousIndex, event.currentIndex);
 
-    for (let x = 0; x < this.departmentProcessList.length; x++) {
+      for (let x = 0; x < this.departmentProcessList.length; x++) {
 
-      this.departmentProcessList[x].position = x;
+        this.departmentProcessList[x].position = x;
+      }
+      this.udpateProcess();
     }
-    this.udpateProcess();
   }
 
 
@@ -91,9 +93,5 @@ export class DepartmentProcessComponent implements OnInit {
       .subscribe(() => {
         this.getAllProcess();
       });
-  }
-
-  goBack() {
-    this.location.back();
   }
 }

@@ -1,23 +1,30 @@
 .detail-title {
   margin-bottom: 50px;
+  margin-top: 10px;
   display: flex;
-  justify-content: center;
   align-items: center;
   text-align: center;
   background-color: black;
   height: 60px;
   font-family: "Century Gothic", sans-serif ;
-  margin-top: 110px;
+}
+
+.arrow {
+  margin-left: 20em;
+}
+
+.mat-raised-button {
+  line-height: 0;
 }
 
 .main {
-  display: block;
+  display: flow-root;
   width: -webkit-fill-available;
 }
 
 .container {
   margin-top: 10px;
-  margin-left: 150px;
+  margin-left: 120px;
   display: flex;
 }
 
@@ -36,6 +43,11 @@
   visibility: hidden ;
 }
 
+.greyedOut {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .title {
   font-size: 15px;
   text-align: initial;
@@ -47,12 +59,33 @@
   height: 30px;
 }
 
+.toggle {
+  display: inline;
+  float: right;
+}
+
 .addButton {
+   min-width: 40px;
+   line-height: 25px;
+   text-align: center;
+   justify-content: center;
+   margin-right: 10px;
+ }
+
+.form {
+  width: 20%;
+}
+
+.addButtonCore {
   min-width: 40px;
   line-height: 25px;
   text-align: center;
   justify-content: center;
   margin-right: 10px;
+  background-color: black;
+  color: white;
+  border-style: solid;
+  border-color: white;
 }
 
 .editButton {
@@ -60,6 +93,10 @@
   display: inline-flex;
   margin: 5px;
   font-size: 12px;
+}
+
+.doc-icon {
+  margin-bottom: 0;
 }
 
 .mat-card {
@@ -106,6 +143,7 @@
   padding: 10px;
   background-color: linen;
   border-color: rgb(179, 0, 0);
+  min-width: 287px;
 }
 
 .detail-process {
@@ -137,6 +175,7 @@
   width: 45px;
   height: 45px;
   top: 5px;
+  display: grid;
   left: 50px;
   right: 30px;
   margin-right: 100px;
@@ -144,4 +183,15 @@
   border: 1px solid black;
   text-align: center;
   border-radius: 100px;
+  font-size: 13px;
+  .doc-icon {
+    margin-bottom: 10px;
+    margin-top: 0;
+    height: 10px;
+  }
+  .mat-icon {
+  font-size: 20px;
+  }
+  .mat-card {
+  }
 }

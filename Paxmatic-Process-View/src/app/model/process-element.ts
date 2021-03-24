@@ -10,5 +10,6 @@ export class ProcessElement {
   order: number;
   isVisible: number;
   visibleName: string;
+  hasDocument?: boolean;
 
 }

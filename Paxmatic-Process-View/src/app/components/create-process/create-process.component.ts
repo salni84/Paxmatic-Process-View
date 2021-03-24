@@ -37,7 +37,6 @@ export class CreateProcessComponent implements OnInit {
     } else {
       this.newProcess.form = 0;
     }
-
     this.newProcess.level = this.level;
     this.newProcess.parent = this.parentId;
     this.newProcess.order = this.order;

@@ -16,20 +16,18 @@ export class DocumentService {
 
   constructor(private http: HttpClient) { }
 
-  getDocuments(parent: string): Observable<any> {
+  getDocumentsByParent(parent: string): Observable<any> {
     return this.http.get(this.serverURL + 'documents' + '/' + parent);
+  }
+
+  getDocumentsByCoreElement(core: string): Observable<any> {
+    return this.http.get(this.serverURL + 'document' + '/' + core);
   }
 
   addDocument(document: Document) {
     const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(document);
     return this.http.post(this.serverURL + 'documents/new', body, {headers});
-  }
-
-  updateDocument(document: Document[], level: string) {
-    const headers = {'content-type': 'application/json'};
-    const body = JSON.stringify(document);
-    return this.http.put(this.serverURL + level, body, {headers});
   }
 
   deleteDocument(id: number): Observable<any> {

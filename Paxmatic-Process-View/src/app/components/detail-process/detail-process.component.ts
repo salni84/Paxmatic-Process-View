@@ -5,6 +5,10 @@ import {ProcessService} from '../../../service/process-service';
 import {ActivatedRoute} from '@angular/router';
 import {LoginService} from '../../../service/login-service';
 import {Location} from '@angular/common';
+import {DocumentService} from '../../../service/document.service';
+import {map} from 'rxjs/operators';
+import {Document} from '../../model/document';
+
 
 @Component({
   selector: 'app-detail-process',
@@ -13,10 +17,13 @@ import {Location} from '@angular/common';
 })
 export class DetailProcessComponent implements OnInit {
 
+
   constructor(private location: Location,
               private processServer: ProcessService,
               private route: ActivatedRoute,
-              private loginService: LoginService) {}
+              private loginService: LoginService,
+              private documentService: DocumentService) {
+  }
 
   @Input() newProcess: ProcessElement;
 
@@ -35,6 +42,8 @@ export class DetailProcessComponent implements OnInit {
   sixthProcessRow: ProcessElement[] = [];
   seventhProcessRow: ProcessElement[] = [];
   eighthProcessRow: ProcessElement[] = [];
+  matchDocs: Document[] = [];
+  matchNames: string[] = [];
 
   ngOnInit() {
     this.loginService.getLoginStatus().subscribe((data) => {
@@ -47,7 +56,7 @@ export class DetailProcessComponent implements OnInit {
     });
     this.parentId = this.route.snapshot.paramMap.get('detail');
     this.getAllProcess();
-  }
+}
 
   showAdd(id: number) {
     this.showCreateElement[id] = true;
@@ -66,7 +75,6 @@ export class DetailProcessComponent implements OnInit {
     this.hideCreateElement.fill(false);
     this.showAddButton.fill(true);
   }
-
 
   getAllProcess() {
     this.firstProcessRow = [];
@@ -90,6 +98,18 @@ export class DetailProcessComponent implements OnInit {
             this.secondProcessRow.push(data);
           }
           if (data.order === 3) {
+
+            this.documentService.getDocumentsByParent(this.parentId)
+              .pipe(
+                map(docs => docs.filter(doc => doc.name = this.parentId)))
+              .subscribe((i) => {
+                this.matchDocs = i;
+                this.matchDocs.forEach(info => this.matchNames.push(info.coreElement));
+                if (this.matchNames.includes(data.name)) {
+                  data.hasDocument = true;
+                  }
+              });
+
             this.thirdProcessRow.push(data);
           }
           if (data.order === 4) {
@@ -111,70 +131,86 @@ export class DetailProcessComponent implements OnInit {
     });
   }
 
+
   drop1(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.firstProcessRow, event.previousIndex, event.currentIndex);
-    for (let x = 0; x < this.firstProcessRow.length; x++) {
-      this.firstProcessRow[x].position = x;
+    if (this.isAdmin) {
+      moveItemInArray(this.firstProcessRow, event.previousIndex, event.currentIndex);
+      for (let x = 0; x < this.firstProcessRow.length; x++) {
+        this.firstProcessRow[x].position = x;
+      }
+      this.udpateProcess();
     }
-    this.udpateProcess();
   }
 
   drop2(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.secondProcessRow, event.previousIndex, event.currentIndex);
-    for (let x = 0; x < this.secondProcessRow.length; x++) {
-      this.secondProcessRow[x].position = x;
+    if (this.isAdmin) {
+      moveItemInArray(this.secondProcessRow, event.previousIndex, event.currentIndex);
+      for (let x = 0; x < this.secondProcessRow.length; x++) {
+        this.secondProcessRow[x].position = x;
+      }
+      this.udpateProcess();
     }
-    this.udpateProcess();
   }
 
   drop3(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.thirdProcessRow, event.previousIndex, event.currentIndex);
-    for (let x = 0; x < this.thirdProcessRow.length; x++) {
-      this.thirdProcessRow[x].position = x;
+    if (this.isAdmin) {
+      moveItemInArray(this.thirdProcessRow, event.previousIndex, event.currentIndex);
+      for (let x = 0; x < this.thirdProcessRow.length; x++) {
+        this.thirdProcessRow[x].position = x;
+      }
+      this.udpateProcess();
     }
-    this.udpateProcess();
   }
 
   drop4(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.fourthProcessRow, event.previousIndex, event.currentIndex);
-    for (let x = 0; x < this.fourthProcessRow.length; x++) {
-      this.fourthProcessRow[x].position = x;
+    if (this.isAdmin) {
+      moveItemInArray(this.fourthProcessRow, event.previousIndex, event.currentIndex);
+      for (let x = 0; x < this.fourthProcessRow.length; x++) {
+        this.fourthProcessRow[x].position = x;
+      }
+      this.udpateProcess();
     }
-    this.udpateProcess();
   }
 
   drop5(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.fifthProcessRow, event.previousIndex, event.currentIndex);
-    for (let x = 0; x < this.fifthProcessRow.length; x++) {
-      this.fifthProcessRow[x].position = x;
+    if (this.isAdmin) {
+      moveItemInArray(this.fifthProcessRow, event.previousIndex, event.currentIndex);
+      for (let x = 0; x < this.fifthProcessRow.length; x++) {
+        this.fifthProcessRow[x].position = x;
+      }
+      this.udpateProcess();
     }
-    this.udpateProcess();
   }
 
   drop6(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.sixthProcessRow, event.previousIndex, event.currentIndex);
-    for (let x = 0; x < this.sixthProcessRow.length; x++) {
-      this.sixthProcessRow[x].position = x;
+    if (this.isAdmin) {
+      moveItemInArray(this.sixthProcessRow, event.previousIndex, event.currentIndex);
+      for (let x = 0; x < this.sixthProcessRow.length; x++) {
+        this.sixthProcessRow[x].position = x;
+      }
+      this.udpateProcess();
     }
-    this.udpateProcess();
   }
 
   drop7(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.seventhProcessRow, event.previousIndex, event.currentIndex);
-    for (let x = 0; x < this.seventhProcessRow.length; x++) {
-      this.seventhProcessRow[x].position = x;
+    if (this.isAdmin) {
+      moveItemInArray(this.seventhProcessRow, event.previousIndex, event.currentIndex);
+      for (let x = 0; x < this.seventhProcessRow.length; x++) {
+        this.seventhProcessRow[x].position = x;
+      }
+      this.udpateProcess();
     }
-    this.udpateProcess();
   }
 
   drop8(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.eighthProcessRow, event.previousIndex, event.currentIndex);
-    for (let x = 0; x < this.eighthProcessRow.length; x++) {
-      this.eighthProcessRow[x].position = x;
+    if (this.isAdmin) {
+      moveItemInArray(this.eighthProcessRow, event.previousIndex, event.currentIndex);
+      for (let x = 0; x < this.eighthProcessRow.length; x++) {
+        this.eighthProcessRow[x].position = x;
+      }
+      this.udpateProcess();
     }
-    this.udpateProcess();
   }
-
 
   addNewProcess(newProcess: ProcessElement) {
     this.processServer.addProcessElement(newProcess, 'detail')
@@ -196,9 +232,5 @@ export class DetailProcessComponent implements OnInit {
       .subscribe(() => {
         this.getAllProcess();
       });
-  }
-
-  goBack() {
-    this.location.back();
   }
 }

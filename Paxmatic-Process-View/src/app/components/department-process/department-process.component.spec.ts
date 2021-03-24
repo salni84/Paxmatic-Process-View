@@ -39,13 +39,15 @@ describe('DepartmentProcessComponent', () => {
     expect(element.querySelector('h2').innerText).toBe('Abteilungsprozess /');
   });
 
-  it('should display department-process-elements', fakeAsync(() => {
-    spyOn(processService, 'getProcess').and.returnValue(of(expectedProcess));
-    component.getAllProcess();
 
-    tick();
-    expect(component.departmentProcessList.length).toEqual(2);
-    expect(component.departmentProcessList[0].name).toEqual('Projekt');
-    expect(component.departmentProcessList[1].name).toEqual('Administration');
-  }));
+  it('should test drop-function for department-process',  () => {
+    component.departmentProcessList = expectedProcess;
+    component.isAdmin = true;
+    const fakeEvent = processService.createEvent(1, 2);
+    component.drop(fakeEvent);
+    expect(component.departmentProcessList.length).toBe(3);
+    expect(component.departmentProcessList[0].position).toBe(0);
+    expect(component.departmentProcessList[1].position).toBe(1);
+    expect(component.departmentProcessList[2].position).toBe(2);
+  });
 });

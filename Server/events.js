@@ -67,6 +67,19 @@ function createRouter(db) {
         );
     });
 
+    router.get('/document/:coreElement', function (req, res) {
+        db.query(
+            'SELECT * FROM documents WHERE coreElement = ? order by id', [req.params.coreElement],
+            (error, results) => {
+                if (error) {
+                    res.status(500).json({status: 'error'});
+                }else {
+                    res.status(200).json(results)
+                }
+            }
+        );
+    });
+
     router.get('/documents/:parent', function (req, res) {
         db.query(
             'SELECT * FROM documents WHERE parent = ? order by id', [req.params.parent],
@@ -79,6 +92,7 @@ function createRouter(db) {
             }
         );
     });
+
 
     router.delete('/basic/:id', function (req, res) {
         db.query(
@@ -237,10 +251,12 @@ function createRouter(db) {
         let link = req.body.link;
         let description = req.body.description;
         let parent = req.body.parent;
+        let coreElement = req.body.coreElement;
+        let nr = req.body.nr;
 
 
         db.query(
-            'INSERT INTO documents VALUES (?,?,?,?,?)', [null, name, link, description, parent ],
+            'INSERT INTO documents VALUES (?,?,?,?,?,?,?)', [null, name, link, description, parent, coreElement, nr],
             (error, results) => {
                 if (error) {
                     res.status(500).json({status: 'error'});
@@ -297,15 +313,17 @@ function createRouter(db) {
 
         for (let x = 0; x < req.body.length; x++) {
             let id = req.body[x].id;
+            let form = req.body[x].form;
             let position = req.body[x].position;
             let visibleName = req.body[x].visibleName;
 
             db.query(
-                "UPDATE detailprocess SET position = ?, visibleName = ? WHERE id = ?", [position, visibleName, id],
+                "UPDATE detailprocess SET position = ?, visibleName = ?, form = ? WHERE id = ?", [position, visibleName, form, id],
                 () => {})}
 
         res.status(200).json()
     });
+
 
     return router
 }

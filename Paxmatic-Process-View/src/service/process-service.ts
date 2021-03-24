@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {ProcessElement} from '../app/model/process-element';
 import {environment} from '../environments/environment';
+import {CdkDragDrop} from '@angular/cdk/drag-drop';
 
 
 @Injectable({
@@ -12,7 +13,6 @@ import {environment} from '../environments/environment';
 export class ProcessService {
 
   private serverURL = environment.serverURL;
-
 
   constructor(private http: HttpClient) { }
 
@@ -34,6 +34,18 @@ export class ProcessService {
 
   deleteProcess(id: number, level: string): Observable<any> {
     return this.http.delete(this.serverURL + level + '/' + id);
+  }
+
+  createEvent(previousIndex: number, currentIndex: number): CdkDragDrop<any[], any[]> {
+    return {
+      previousIndex,
+      currentIndex,
+      item: undefined,
+      container: undefined,
+      previousContainer: undefined,
+      isPointerOverContainer: true,
+      distance: { x: 0, y: 0 }
+    };
   }
 }
 

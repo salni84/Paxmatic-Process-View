@@ -1,4 +1,4 @@
-DROP table if exists basicprocess, subprocess, departmentprocess;
+DROP table if exists basicprocess, subprocess, departmentprocess, detailprocess, documents;
 
 CREATE TABLE `basicprocess` (
                                 `id` int NOT NULL AUTO_INCREMENT,
@@ -7,9 +7,10 @@ CREATE TABLE `basicprocess` (
                                 `color` varchar(45) DEFAULT NULL,
                                 `form` int DEFAULT NULL,
                                 `position` int DEFAULT NULL,
-                                `isVisible` tinyint DEFAULT NULL,
+                                `isVisible` TINYINT DEFAULT NULL,
                                 `visibleName` varchar(45) DEFAULT NULL,
-                                PRIMARY KEY (`id`));
+                                PRIMARY KEY (`id`)
+);
 
 CREATE TABLE `subprocess` (
                                 `id` int NOT NULL AUTO_INCREMENT,
@@ -38,16 +39,59 @@ CREATE TABLE `departmentprocess` (
 );
 
 
+CREATE TABLE `detailprocess` (
+
+                            `id` int NOT NULL AUTO_INCREMENT,
+                            `level` varchar(45) DEFAULT NULL,
+                            `name` varchar(45) DEFAULT NULL,
+                            `color` varchar(45) DEFAULT NULL,
+                            `form` int DEFAULT NULL,
+                            `position` int DEFAULT NULL,
+                            `parent` varchar(45) DEFAULT NULL,
+                            `order` int DEFAULT NULL,
+                            `isVisible` TINYINT DEFAULT NULL,
+                            `visibleName` varchar(45) DEFAULT NULL,
+                            PRIMARY KEY (`id`)
+);
+
+
+CREATE TABLE `documents` (
+                             `id` int NOT NULL AUTO_INCREMENT,
+                             `link` varchar(45) DEFAULT NULL,
+                             `descripton` varchar(45) DEFAULT NULL,
+                             `coreElement` varchar(45) DEFAULT NULL,
+                             `nr` varchar(45) DEFAULT NULL,
+                             `parent` varchar(45) DEFAULT NULL,
+                             `name` varchar(45) DEFAULT NULL,
+                            PRIMARY KEY (`id`)
+);
+
+
 INSERT into basicprocess (id, level, name, color, form, position, isVisible, visibleName)
 VALUES
-       (null, 'basic', 'projekt', 'green', 0, 0, 1, 'Projekt' ),
-       (null, 'basic', 'admin', 'red', 0, 1, 1, 'Admin'),
-       (null, 'basic', 'service', 'blue', 0, 2, 1, 'Service');
+    (null, 'basic', 'Projekt', 'green', 0, 0, 1, 'Projekt'),
+    (null, 'basic', 'Admin', 'red', 0, 1, 1, 'Admin'),
+    (null, 'basic', 'Service', 'blue', 0, 2, 1, 'Service');
 
 INSERT into subprocess (id, level, name, color, form, position, parent, visibleName)
 VALUES
-    (null, 'sub', 'akquisition', 'red', 1, 0, 'Projekt', 'Akquisition'),
-    (null, 'sub', 'bestellung', 'green', 0, 1, 'Projekt', 'Bestellung'),
-    (null, 'sub', 'kickoff', 'red', 1, 2, 'Projekt', 'Kickoff');
+    (null, 'sub', 'Akquisition', 'red', 0, 0, 'Projekt', 'Akquisition'),
+    (null, 'sub', 'Bestellung', 'green', 1, 1, 'Projekt', 'Bestellung'),
+    (null, 'sub', 'Kickoff', 'red', 0, 2, 'Projekt', 'Kickoff');
 
+INSERT into departmentprocess (id, level, name, color, form, position, parent, visibleName)
+VALUES
+    (null, 'department', 'Service', 'red', 0, 0, 'Kickoff', 'Service'),
+    (null, 'department', 'Ersatzteil', 'green', 0, 1, 'Kickoff', 'Ersatzteil'),
+    (null, 'department', 'Kickoff', 'red', 1, 2, 'Kickoff', 'Kickoff');
 
+INSERT into detailprocess (id, level, name, color, form, position, parent, visibleName, isVisible, `order`)
+VALUES
+    (null, 'detail', 'Kundenkontakt', 'red', 0, 0, 'Ersatzteil', 'Kundenkontakt', 1, 2),
+    (null, 'detail', 'Abnahme', 'green', 0, 1, 'Ersatzteil', 'Abnahme', 1, 3),
+    (null, 'detail', 'Kickoff', 'red', 1, 2, 'Ersatzteil', 'Kickoff', 1, 4),
+    (null, 'detail', 'Bestellung', 'green', 1, 2, 'Ersatzteil', 'Bestellung', 1, 3);
+
+INSERT into documents (id, name, link, descripton, parent, coreElement, nr)
+VALUES
+    (null, 'checkliste', 'docs/checkliste.pdf', 'liste zum checken', 'Ersatzteil', 'Abnahme', '1-00-1')

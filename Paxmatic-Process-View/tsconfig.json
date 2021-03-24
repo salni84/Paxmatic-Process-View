@@ -27,6 +27,7 @@
     "strictInjectionParameters": true
   },
 
+    "include": ["src/**/*"],
   "exclude": [
     "typings/browser.d.ts",
     "typings/browser",

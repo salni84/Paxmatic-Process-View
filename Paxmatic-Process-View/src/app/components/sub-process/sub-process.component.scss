@@ -1,12 +1,24 @@
 .sub-title {
+  margin-top: 10px;
   background-color: black;
-  margin-top: 60px;
   height: 60px;
-  justify-content: center;
   align-items: center;
   text-align: center;
   display: flex;
   font-family: "Century Gothic", sans-serif;
+}
+
+.main {
+  width: -webkit-fill-available;
+}
+
+.container {
+  margin-top: 200px;
+  margin-left: 10em;
+}
+
+.arrow {
+  margin-left: 20em;
 }
 
 .addProcess {
@@ -23,12 +35,6 @@
   display: flex;
 }
 
-.main {
-  display: inline-block;
-  width: -webkit-fill-available;
-  margin-top: 50px;
-}
-
 .editButton {
   height: 22px;
   display: inline-flex;
@@ -36,16 +42,15 @@
   font-size: 12px;
 }
 
+.mat-raised-button {
+  line-height: 0;
+}
+
 .addButton {
   min-width: 40px;
   line-height: 25px;
   text-align: center;
   justify-content: center;
-}
-
-.container {
-  margin-top: 200px;
-  margin-left: 20%;
 }
 
 .saveAndUpdate {
@@ -56,13 +61,6 @@
   padding: 10px;
   background-color: linen;
   border-color: rgb(179, 0, 0);
-}
-
-h1 {
-  color: white;
-  background-color: darkred;
-  width: fit-content;
-  padding: 10px;
 }
 
 .mat-card {
@@ -104,6 +102,7 @@ h1 {
 .circle {
   width: 45px;
   height: 45px;
+  font-size: 13px;
   top: 5px;
   margin-bottom: 5px;
   text-align: left;
