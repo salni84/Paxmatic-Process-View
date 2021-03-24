@@ -43,6 +43,7 @@ describe('SubProcessComponent', () => {
 
   it('should test drop-function for sub-process',  () => {
     component.subProcessList = expectedProcess;
+    component.isAdmin = true;
     const fakeEvent = processService.createEvent(1, 2);
     component.drop(fakeEvent);
     expect(component.subProcessList.length).toBe(3);

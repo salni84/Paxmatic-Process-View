@@ -10,7 +10,7 @@
 }
 
 .arrow {
-  margin-left: 20%;
+  margin-left: 20em;
 }
 
 .mat-raised-button {
@@ -24,7 +24,7 @@
 
 .container {
   margin-top: 10px;
-  margin-left: 150px;
+  margin-left: 120px;
   display: flex;
 }
 
@@ -143,6 +143,7 @@
   padding: 10px;
   background-color: linen;
   border-color: rgb(179, 0, 0);
+  min-width: 287px;
 }
 
 .detail-process {
@@ -193,7 +194,4 @@
   }
   .mat-card {
   }
-
-
-
 }

@@ -42,6 +42,7 @@ describe('DepartmentProcessComponent', () => {
 
   it('should test drop-function for department-process',  () => {
     component.departmentProcessList = expectedProcess;
+    component.isAdmin = true;
     const fakeEvent = processService.createEvent(1, 2);
     component.drop(fakeEvent);
     expect(component.departmentProcessList.length).toBe(3);

@@ -8,7 +8,6 @@ import {Location} from '@angular/common';
 import {DocumentService} from '../../../service/document.service';
 import {map} from 'rxjs/operators';
 import {Document} from '../../model/document';
-import {MatSlideToggleChange} from '@angular/material/slide-toggle';
 
 
 @Component({
@@ -131,7 +130,6 @@ export class DetailProcessComponent implements OnInit {
       });
     });
   }
-
 
 
   drop1(event: CdkDragDrop<string[]>) {

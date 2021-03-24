@@ -252,11 +252,11 @@ function createRouter(db) {
         let description = req.body.description;
         let parent = req.body.parent;
         let coreElement = req.body.coreElement;
-        let nr = req.body.nr
+        let nr = req.body.nr;
 
 
         db.query(
-            'INSERT INTO documents VALUES (?,?,?,?,?,?,?)', [null, name, link, description, parent, coreElement, nr ],
+            'INSERT INTO documents VALUES (?,?,?,?,?,?,?)', [null, name, link, description, parent, coreElement, nr],
             (error, results) => {
                 if (error) {
                     res.status(500).json({status: 'error'});

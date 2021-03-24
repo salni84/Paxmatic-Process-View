@@ -38,6 +38,7 @@ describe('BasicProcessComponent', () => {
     fixture.detectChanges();
   }));
 
+
   it('should test header', () => {
     expect(element.querySelector('h2').innerText).toBe('Geschäftsprozesse');
   });
@@ -45,8 +46,10 @@ describe('BasicProcessComponent', () => {
 
   it('should test drop-function for basic-process',  () => {
     component.basicProcessList = expectedProcess;
-    const fakeEvent = processService.createEvent(1, 2);
+    component.isAdmin = true;
+    const fakeEvent = processService.createEvent(0, 2);
     component.drop(fakeEvent);
+
     expect(component.basicProcessList.length).toBe(3);
     expect(component.basicProcessList[0].position).toBe(0);
     expect(component.basicProcessList[1].position).toBe(1);
