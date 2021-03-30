@@ -1,4 +1,3 @@
-# Semesterarbeit
 Paxmatic-Process-View
 
 ## Einleitung
