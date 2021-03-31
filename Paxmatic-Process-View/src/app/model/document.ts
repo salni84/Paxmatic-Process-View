@@ -1,5 +1,4 @@
 export class Document {
-
   nr: string;
   name: string;
   link: string;

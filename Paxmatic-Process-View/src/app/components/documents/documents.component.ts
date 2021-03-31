@@ -6,7 +6,7 @@ import {Location} from '@angular/common';
 import {ActivatedRoute} from '@angular/router';
 import {ProcessService} from '../../../service/process-service';
 import {map} from 'rxjs/operators';
-
+import {DomSanitizer} from '@angular/platform-browser';
 
 
 @Component({
@@ -29,13 +29,14 @@ export class DocumentsComponent implements OnInit {
   nextProcess: any[];
 
 
-
   constructor(
     private location: Location,
     private documentService: DocumentService,
     private route: ActivatedRoute,
     private loginService: LoginService,
-    private processService: ProcessService) { }
+    private processService: ProcessService,
+    private sanitizer: DomSanitizer) { }
+
 
   ngOnInit(): void {
     this.loginService.getLoginStatus().subscribe((data) => {
@@ -47,7 +48,7 @@ export class DocumentsComponent implements OnInit {
         });
       } else {
         this.isAdmin = false;
-        this.hideAdd();
+        this.hideAddProcessComponent();
         this.displayedColumns = this.displayedColumns.filter(l => l !== 'löschen');
       }
     });
@@ -56,13 +57,13 @@ export class DocumentsComponent implements OnInit {
     this.getDocumentByCoreElement();
   }
 
-  showAdd() {
+  showAddProcessComponent() {
     this.showCreateElement = true;
     this.hideCreateElement = true;
     this.showAddButton = false;
   }
 
-  hideAdd() {
+  hideAddProcessComponent() {
     this.showCreateElement = false;
     this.showAddButton = true;
     this.hideCreateElement = false;
@@ -110,5 +111,9 @@ export class DocumentsComponent implements OnInit {
       .subscribe(() => {
         this.getDocumentByCoreElement();
       });
+  }
+
+  sanitize(url: string) {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 }

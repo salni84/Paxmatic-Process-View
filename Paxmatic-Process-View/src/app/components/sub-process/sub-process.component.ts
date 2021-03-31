@@ -38,18 +38,18 @@ export class SubProcessComponent implements OnInit {
         this.isAdmin = true;
       } else {
         this.isAdmin = false;
-        this.hideAdd();
+        this.hideAddProcessComponent();
       }
     });
   }
 
-  showAdd() {
+  showAddProcessComponent() {
     this.showCreateElement = true;
     this.hideCreateElement = true;
     this.showAddButton = false;
   }
 
-  hideAdd() {
+  hideAddProcessComponent() {
     this.showCreateElement = false;
     this.showAddButton = true;
     this.hideCreateElement = false;
@@ -65,15 +65,12 @@ export class SubProcessComponent implements OnInit {
   drop(event: CdkDragDrop<string[]>) {
     if (this.isAdmin) {
       moveItemInArray(this.subProcessList, event.previousIndex, event.currentIndex);
-
       for (let x = 0; x < this.subProcessList.length; x++) {
-
         this.subProcessList[x].position = x;
       }
       this.udpateProcess();
     }
   }
-
 
   addNewProcess(newProcess: ProcessElement) {
       this.processServer.addProcessElement(newProcess, 'sub')

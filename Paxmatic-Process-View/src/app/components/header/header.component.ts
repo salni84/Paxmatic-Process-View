@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
       this.loginButton = 'Close';
     } else {
       this.loginButton = 'Login';
-      this.loginService.isLoggedOut(true);
+      this.loginService.isUserLoggedOut(true);
     }
   }
 }

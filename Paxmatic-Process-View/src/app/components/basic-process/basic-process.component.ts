@@ -32,23 +32,22 @@ export class BasicProcessComponent implements OnInit {
         this.isAdmin = true;
       } else {
         this.isAdmin = false;
-        this.hideAdd();
+        this.hideAddProcessComponent();
       }
     });
   }
 
-  showAdd() {
+  showAddProcessComponent() {
     this.showCreateElement = true;
     this.hideCreateElement = true;
     this.showAddButton = false;
   }
 
-  hideAdd() {
+  hideAddProcessComponent() {
     this.showCreateElement = false;
     this.showAddButton = true;
     this.hideCreateElement = false;
   }
-
 
   getAllProcess() {
    this.processServer.getProcess('basic', '')
@@ -66,7 +65,6 @@ export class BasicProcessComponent implements OnInit {
       this.udpateProcess();
     }
   }
-
 
  addNewProcess(newProcess: ProcessElement) {
      this.processServer.addProcessElement(newProcess, 'basic')

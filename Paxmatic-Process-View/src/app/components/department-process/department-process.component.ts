@@ -13,11 +13,6 @@ import {Location} from '@angular/common';
 })
 export class DepartmentProcessComponent implements OnInit {
 
-  constructor(private location: Location,
-              private processServer: ProcessService,
-              private route: ActivatedRoute,
-              private loginService: LoginService) {  }
-
   @Input() newProcess: ProcessElement;
 
   departmentProcessList: ProcessElement[] = [];
@@ -28,26 +23,32 @@ export class DepartmentProcessComponent implements OnInit {
   showAddButton = true;
   isAdmin = false;
 
+  constructor(private location: Location,
+              private processServer: ProcessService,
+              private route: ActivatedRoute,
+              private loginService: LoginService) {  }
+
+
   ngOnInit() {
     this.loginService.getLoginStatus().subscribe((data) => {
       if (data) {
         this.isAdmin = true;
       } else {
         this.isAdmin = false;
-        this.hideAdd();
+        this.hideAddProcessComponent();
       }
     });
     this.parentId = this.route.snapshot.paramMap.get('department');
     this.getAllProcess();
   }
 
-  showAdd() {
+  showAddProcessComponent() {
     this.showCreateElement = true;
     this.hideCreateElement = true;
     this.showAddButton = false;
   }
 
-  hideAdd() {
+  hideAddProcessComponent() {
     this.showCreateElement = false;
     this.showAddButton = true;
     this.hideCreateElement = false;
@@ -63,15 +64,12 @@ export class DepartmentProcessComponent implements OnInit {
   drop(event: CdkDragDrop<string[]>) {
     if (this.isAdmin) {
       moveItemInArray(this.departmentProcessList, event.previousIndex, event.currentIndex);
-
       for (let x = 0; x < this.departmentProcessList.length; x++) {
-
         this.departmentProcessList[x].position = x;
       }
       this.udpateProcess();
     }
   }
-
 
   addNewProcess(newProcess: ProcessElement) {
       this.processServer.addProcessElement(newProcess, 'department')

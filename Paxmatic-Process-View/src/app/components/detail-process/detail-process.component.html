@@ -6,8 +6,8 @@
 <div class="main">
   <div class="container">
     <div class="addProcess" *ngIf="isAdmin">
-      <button mat-raised-button class="addButton" *ngIf="showAddButton[0]" (click)="showAdd(0)">+</button>
-      <button mat-raised-button class="addButton" *ngIf="hideCreateElement[0]" (click)="hideAdd(0)">x</button>
+      <button mat-raised-button class="addButton" *ngIf="showAddButton[0]" (click)="showAddProcessComponent(0)">+</button>
+      <button mat-raised-button class="addButton" *ngIf="hideCreateElement[0]" (click)="hideAddProcessComponent(0)">x</button>
     </div>
     <div class="process">
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop1($event)">
@@ -49,8 +49,8 @@
 
   <div class="container">
     <div class="addProcess" *ngIf="isAdmin">
-      <button mat-raised-button class="addButton" *ngIf="showAddButton[1]" (click)="showAdd(1)">+</button>
-      <button mat-raised-button class="addButton" *ngIf="hideCreateElement[1]" (click)="hideAdd(1)">x</button>
+      <button mat-raised-button class="addButton" *ngIf="showAddButton[1]" (click)="showAddProcessComponent(1)">+</button>
+      <button mat-raised-button class="addButton" *ngIf="hideCreateElement[1]" (click)="hideAddProcessComponent(1)">x</button>
     </div>
     <div class="process">
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop2($event)">
@@ -92,8 +92,8 @@
 
   <div class="container">
     <div class="addProcess" *ngIf="isAdmin">
-      <button mat-raised-button class="addButtonCore" *ngIf="showAddButton[2]" (click)="showAdd(2)">+</button>
-      <button mat-raised-button class="addButtonCore" *ngIf="hideCreateElement[2]" (click)="hideAdd(2)">x</button>
+      <button mat-raised-button class="addButtonCore" *ngIf="showAddButton[2]" (click)="showAddProcessComponent(2)">+</button>
+      <button mat-raised-button class="addButtonCore" *ngIf="hideCreateElement[2]" (click)="hideAddProcessComponent(2)">x</button>
     </div>
     <div class="process">
       <app-create-process *ngIf="showCreateElement[2]"
@@ -137,8 +137,8 @@
 
   <div class="container">
     <div class="addProcess" *ngIf="isAdmin">
-      <button mat-raised-button class="addButton" *ngIf="showAddButton[3]" (click)="showAdd(3)">+</button>
-      <button mat-raised-button class="addButton" *ngIf="hideCreateElement[3]" (click)="hideAdd(3)">x</button>
+      <button mat-raised-button class="addButton" *ngIf="showAddButton[3]" (click)="showAddProcessComponent(3)">+</button>
+      <button mat-raised-button class="addButton" *ngIf="hideCreateElement[3]" (click)="hideAddProcessComponent(3)">x</button>
     </div>
     <div class="process">
       <app-create-process *ngIf="showCreateElement[3]"
@@ -180,8 +180,8 @@
 
   <div class="container">
     <div class="addProcess" *ngIf="isAdmin">
-      <button mat-raised-button class="addButton" *ngIf="showAddButton[4]" (click)="showAdd(4)">+</button>
-      <button mat-raised-button class="addButton" *ngIf="hideCreateElement[4]" (click)="hideAdd(4)">x</button>
+      <button mat-raised-button class="addButton" *ngIf="showAddButton[4]" (click)="showAddProcessComponent(4)">+</button>
+      <button mat-raised-button class="addButton" *ngIf="hideCreateElement[4]" (click)="hideAddProcessComponent(4)">x</button>
     </div>
     <div class="process">
       <app-create-process *ngIf="showCreateElement[4]"
@@ -223,8 +223,8 @@
 
   <div class="container">
     <div class="addProcess" *ngIf="isAdmin">
-      <button mat-raised-button class="addButton" *ngIf="showAddButton[5]" (click)="showAdd(5)">+</button>
-      <button mat-raised-button class="addButton" *ngIf="hideCreateElement[5]" (click)="hideAdd(5)">x</button>
+      <button mat-raised-button class="addButton" *ngIf="showAddButton[5]" (click)="showAddProcessComponent(5)">+</button>
+      <button mat-raised-button class="addButton" *ngIf="hideCreateElement[5]" (click)="hideAddProcessComponent(5)">x</button>
     </div>
     <div class="process">
       <app-create-process *ngIf="showCreateElement[5]"
@@ -266,8 +266,8 @@
 
   <div class="container">
       <div class="addProcess" *ngIf="isAdmin">
-        <button mat-raised-button class="addButton" *ngIf="showAddButton[6]" (click)="showAdd(6)">+</button>
-        <button mat-raised-button class="addButton" *ngIf="hideCreateElement[6]" (click)="hideAdd(6)">x</button>
+        <button mat-raised-button class="addButton" *ngIf="showAddButton[6]" (click)="showAddProcessComponent(6)">+</button>
+        <button mat-raised-button class="addButton" *ngIf="hideCreateElement[6]" (click)="hideAddProcessComponent(6)">x</button>
       </div>
       <div class="process">
         <app-create-process *ngIf="showCreateElement[6]"
@@ -309,8 +309,8 @@
 
     <div class="container">
       <div class="addProcess" *ngIf="isAdmin">
-        <button mat-raised-button class="addButton" *ngIf="showAddButton[7]" (click)="showAdd(7)">+</button>
-        <button mat-raised-button class="addButton" *ngIf="hideCreateElement[7]" (click)="hideAdd(7)">x</button>
+        <button mat-raised-button class="addButton" *ngIf="showAddButton[7]" (click)="showAddProcessComponent(7)">+</button>
+        <button mat-raised-button class="addButton" *ngIf="hideCreateElement[7]" (click)="hideAddProcessComponent(7)">x</button>
       </div>
       <div class="process">
         <app-create-process *ngIf="showCreateElement[7]"

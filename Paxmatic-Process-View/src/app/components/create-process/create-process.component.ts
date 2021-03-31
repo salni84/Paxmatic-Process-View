@@ -31,7 +31,7 @@ export class CreateProcessComponent implements OnInit {
     this.isNotBasic = this.level !== 'basic';
   }
 
- newElement() {
+ createNewProcessElement() {
     if (this.selected === 'Kreis') {
       this.newProcess.form = 1;
     } else {
@@ -45,7 +45,7 @@ export class CreateProcessComponent implements OnInit {
     this.newProcessEvent.emit(this.newProcess);
   }
 
-  emptyBox() {
+  createEmptyProcessElement() {
     this.newProcess.name = '';
     this.newProcess.color = '';
     this.newProcess.isVisible = 0;

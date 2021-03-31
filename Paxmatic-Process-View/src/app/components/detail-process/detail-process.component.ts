@@ -18,13 +18,6 @@ import {Document} from '../../model/document';
 export class DetailProcessComponent implements OnInit {
 
 
-  constructor(private location: Location,
-              private processServer: ProcessService,
-              private route: ActivatedRoute,
-              private loginService: LoginService,
-              private documentService: DocumentService) {
-  }
-
   @Input() newProcess: ProcessElement;
 
   detailProcessList: ProcessElement[] = [];
@@ -45,32 +38,39 @@ export class DetailProcessComponent implements OnInit {
   matchDocs: Document[] = [];
   matchNames: string[] = [];
 
+  constructor(private location: Location,
+              private processServer: ProcessService,
+              private route: ActivatedRoute,
+              private loginService: LoginService,
+              private documentService: DocumentService) {
+  }
+
   ngOnInit() {
     this.loginService.getLoginStatus().subscribe((data) => {
       if (data) {
         this.isAdmin = true;
       } else {
         this.isAdmin = false;
-        this.hideAll();
+        this.hideAllAddProcessComponent();
       }
     });
     this.parentId = this.route.snapshot.paramMap.get('detail');
     this.getAllProcess();
 }
 
-  showAdd(id: number) {
+  showAddProcessComponent(id: number) {
     this.showCreateElement[id] = true;
     this.hideCreateElement[id] = true;
     this.showAddButton[id] = false;
   }
 
-  hideAdd(id: number) {
+  hideAddProcessComponent(id: number) {
     this.showCreateElement[id] = false;
     this.showAddButton[id] =  true;
     this.hideCreateElement[id] = false;
   }
 
-  hideAll() {
+  hideAllAddProcessComponent() {
     this.showCreateElement.fill(false);
     this.hideCreateElement.fill(false);
     this.showAddButton.fill(true);
@@ -86,11 +86,9 @@ export class DetailProcessComponent implements OnInit {
     this.seventhProcessRow = [];
     this.eighthProcessRow = [];
     this.processServer.getProcess('detail', this.parentId)
-
       .subscribe((process) => {
         this.detailProcessList = process;
         this.detailProcessList.forEach((data) => {
-
           if (data.order === 1) {
             this.firstProcessRow.push(data);
           }
@@ -98,7 +96,6 @@ export class DetailProcessComponent implements OnInit {
             this.secondProcessRow.push(data);
           }
           if (data.order === 3) {
-
             this.documentService.getDocumentsByParent(this.parentId)
               .pipe(
                 map(docs => docs.filter(doc => doc.name = this.parentId)))
@@ -109,7 +106,6 @@ export class DetailProcessComponent implements OnInit {
                   data.hasDocument = true;
                   }
               });
-
             this.thirdProcessRow.push(data);
           }
           if (data.order === 4) {
@@ -130,7 +126,6 @@ export class DetailProcessComponent implements OnInit {
       });
     });
   }
-
 
   drop1(event: CdkDragDrop<string[]>) {
     if (this.isAdmin) {

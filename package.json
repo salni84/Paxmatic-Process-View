@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run server:prod & (cd Paxmatic-Process-View && npm run start)",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "server:prod": "cd Server && npm run start:prod",
     "server:dev": "cd Server && npm run start:dev" ,
-    "e2e": "npm run server:dev & (cd Paxmatic-Process-View && npm run e2e)"
+    "e2e": "npm run server:dev & (cd Paxmatic-Process-View && npm run e2e)",
+    "install-both": "(cd Server && npm install) && (cd Paxmatic-Process-View && npm install)"
   },
   "repository": {
     "type": "git",
