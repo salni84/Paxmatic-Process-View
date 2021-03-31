@@ -272,9 +272,12 @@ function createRouter(db) {
             let id = req.body[x].id;
             let position = req.body[x].position;
             let visibleName = req.body[x].visibleName;
+            let color = req.body[x].color;
+            let form = req.body[x].form;
+
 
             db.query(
-                "UPDATE basicprocess SET position = ?, visibleName = ? WHERE id = ?", [position, visibleName, id],
+                "UPDATE basicprocess SET position = ?, visibleName = ?, form = ?, color = ? WHERE id = ?", [position, visibleName, form, color, id],
                 () => {})}
 
             res.status(200).json()
@@ -286,9 +289,11 @@ function createRouter(db) {
             let id = req.body[x].id;
             let position = req.body[x].position;
             let visibleName = req.body[x].visibleName;
+            let color = req.body[x].color;
+            let form = req.body[x].form;
 
             db.query(
-                "UPDATE subprocess SET position = ?, visibleName = ? WHERE id = ?", [position, visibleName, id],
+                "UPDATE subprocess SET position = ?, visibleName = ?, form = ?, color = ? WHERE id = ?", [position, visibleName, form, color, id],
                 () => {})}
 
         res.status(200).json()
@@ -301,9 +306,11 @@ function createRouter(db) {
             let id = req.body[x].id;
             let position = req.body[x].position;
             let visibleName = req.body[x].visibleName;
+            let form = req.body[x].form;
+            let color = req.body[x].color;
 
             db.query(
-                "UPDATE departmentprocess SET position = ?, visibleName = ? WHERE id = ?", [position, visibleName, id],
+                "UPDATE departmentprocess SET position = ?, visibleName = ?, form = ?, color = ? WHERE id = ?", [position, visibleName, form, color, id],
                 () => {})}
 
         res.status(200).json()
@@ -316,9 +323,10 @@ function createRouter(db) {
             let form = req.body[x].form;
             let position = req.body[x].position;
             let visibleName = req.body[x].visibleName;
+            let color = req.body[x].color;
 
             db.query(
-                "UPDATE detailprocess SET position = ?, visibleName = ?, form = ? WHERE id = ?", [position, visibleName, form, id],
+                "UPDATE detailprocess SET position = ?, visibleName = ?, form = ?, color = ? WHERE id = ?", [position, visibleName, form, color, id],
                 () => {})}
 
         res.status(200).json()

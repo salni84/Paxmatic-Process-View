@@ -35,8 +35,6 @@
               <button mat-raised-button class="editButton" (click)="deleteProcessElement(p.id)">Delete
                 <mat-icon>delete_forever</mat-icon>
               </button>
-              <button mat-raised-button *ngIf="p.form === 0" class="editButton" (click)="p.form = 1">Kreis</button>
-              <button mat-raised-button *ngIf="p.form === 1" class="editButton" (click)="p.form = 0">Pfeil</button>
               <button mat-raised-button class="editButton" (click)="udpateProcess()">Update</button>
             </div>
           </div>

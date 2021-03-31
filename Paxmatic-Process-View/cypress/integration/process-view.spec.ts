@@ -2,6 +2,7 @@ import '@4tw/cypress-drag-drop';
 import {environment} from '../../src/environments/environment.prod';
 
 
+
 describe('end2end tests for process-View', () => {
 
 it('should execute DB-Script', () => {
@@ -56,6 +57,13 @@ it('should check static-process-names and edit-window',  () => {
     .contains('Delete');
   cy.get('div:nth-of-type(2) > .ng-star-inserted.saveAndUpdate > div > button:nth-of-type(3)')
     .contains('Update');
+});
+
+it('should check if form-change works', () => {
+  cy.get('div:nth-of-type(2) > .ng-star-inserted.saveAndUpdate > .buttons > .editButton.mat-button-base.mat-raised-button.ng-star-inserted').click();
+  cy.get('div:nth-of-type(2) > .cdk-drag.circle.mat-card');
+  cy.get('div:nth-of-type(2) > .ng-star-inserted.saveAndUpdate > .buttons > .editButton.mat-button-base.mat-raised-button.ng-star-inserted').click();
+  cy.get('div:nth-of-type(2) > .cdk-drag.mat-card');
 });
 
 it('should add new process Element', () => {

@@ -38,7 +38,6 @@ else {
             password: process.env.DB_PWD,
             database: process.env.DB_NAME,
             port: process.env.PORT,
-            insecureAuth : true
         });
 
     connection.connect();
