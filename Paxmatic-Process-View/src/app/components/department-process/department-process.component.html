@@ -13,8 +13,8 @@
         [level]="level"></app-create-process>
       <div cdkDropList cdkDropListOrientation="horizontal" class="department-process" (cdkDropListDropped)="drop($event)">
         <div class="addProcess" *ngIf="isAdmin">
-          <button mat-raised-button class="addButton" *ngIf="showAddButton" (click)="showAdd()">+</button>
-          <button mat-raised-button class="addButton" *ngIf="hideCreateElement" (click)="hideAdd()">x</button>
+          <button mat-raised-button class="addButton" *ngIf="showAddButton" (click)="showAddProcessComponent()">+</button>
+          <button mat-raised-button class="addButton" *ngIf="hideCreateElement" (click)="hideAddProcessComponent()">x</button>
         </div>
         <div *ngFor="let p of departmentProcessList">
           <mat-card [routerLink]="p.name" [class.circle]="p.form" [ngStyle]="{backgroundColor: p.color}" cdkDrag>
@@ -46,5 +46,3 @@
     </div>
   </div>
 </div>
-
-

@@ -1,5 +1,3 @@
-
-
 <div class="main">
   <div class="sub-title">
     <mat-icon class="arrow" [routerLink]="['../']">fast_rewind</mat-icon>
@@ -15,8 +13,8 @@
         [level]="level"></app-create-process>
       <div cdkDropList cdkDropListOrientation="horizontal" class="sub-process" (cdkDropListDropped)="drop($event)">
         <div class="addProcess" *ngIf="isAdmin">
-          <button mat-raised-button class="addButton" *ngIf="showAddButton" (click)="showAdd()">+</button>
-          <button mat-raised-button class="addButton" *ngIf="hideCreateElement" (click)="hideAdd()">x</button>
+          <button mat-raised-button class="addButton" *ngIf="showAddButton" (click)="showAddProcessComponent()">+</button>
+          <button mat-raised-button class="addButton" *ngIf="hideCreateElement" (click)="hideAddProcessComponent()">x</button>
         </div>
         <div *ngFor="let p of subProcessList">
           <mat-card [routerLink]="p.name" [class.circle]="p.form" [ngStyle]="{backgroundColor: p.color}" cdkDrag>

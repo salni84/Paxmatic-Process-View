@@ -1,5 +1,4 @@
 export class ProcessElement {
-
   id: number;
   level: string;
   name: string;
@@ -11,5 +10,4 @@ export class ProcessElement {
   isVisible: number;
   visibleName: string;
   hasDocument?: boolean;
-
 }

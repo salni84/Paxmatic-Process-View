@@ -22,14 +22,14 @@ export class LoginComponent implements OnInit {
   logout() {
     this.isAdmin.emit(false);
     this.isLoggedIn = false;
-    this.loginService.isLoggedOut(false);
+    this.loginService.isUserLoggedOut(false);
   }
 
   passwordValidation() {
     if (this.password === environment.password) {
       this.isAdmin.emit(true);
       this.isLoggedIn = true;
-      this.loginService.isLoggedIn(true);
+      this.loginService.isUserLoggedIn(true);
       this.password = '';
       this.errormessage = '';
     } else {

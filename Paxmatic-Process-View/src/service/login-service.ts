@@ -14,11 +14,11 @@ export class LoginService {
     this.isAdmin = new BehaviorSubject<boolean>(false);
   }
 
-  isLoggedIn(isAdmin: boolean) {
+  isUserLoggedIn(isAdmin: boolean) {
     this.isAdmin.next(true);
   }
 
-  isLoggedOut(isAdmin: boolean) {
+  isUserLoggedOut(isAdmin: boolean) {
   this.isAdmin.next(false);
   }
 

@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {ProcessService} from '../../../service/process-service';
-import {ProcessElement} from '../../model/process-element';
 
 
 @Component({
@@ -10,13 +8,7 @@ import {ProcessElement} from '../../model/process-element';
 })
 export class HomeComponent implements OnInit {
 
-
-
-
-  constructor(private processService: ProcessService) { }
-
+  constructor() { }
 
   ngOnInit(): void {}
-
-
 }

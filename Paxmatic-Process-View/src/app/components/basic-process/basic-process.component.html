@@ -4,8 +4,8 @@
   </div>
   <div class="container">
     <div class="addProcess" *ngIf="isAdmin">
-      <button mat-raised-button class="addButton" *ngIf="showAddButton" (click)="showAdd()">+</button>
-      <button mat-raised-button class="addButton" *ngIf="hideCreateElement" (click)="hideAdd()">x</button>
+      <button mat-raised-button class="addButton" *ngIf="showAddButton" (click)="showAddProcessComponent()">+</button>
+      <button mat-raised-button class="addButton" *ngIf="hideCreateElement" (click)="hideAddProcessComponent()">x</button>
     </div>
     <div class="process">
       <div class="create">
