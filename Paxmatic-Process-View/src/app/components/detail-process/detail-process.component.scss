@@ -1,16 +1,19 @@
 .detail-title {
-  margin-bottom: 50px;
   margin-top: 10px;
   display: flex;
   align-items: center;
   text-align: center;
   background-color: black;
   height: 60px;
-  font-family: "Century Gothic", sans-serif ;
+  font-family: "Century Gothic", sans-serif;
 }
 
 .arrow {
   margin-left: 20em;
+}
+
+h2 {
+  margin-right: 20px;
 }
 
 .mat-raised-button {

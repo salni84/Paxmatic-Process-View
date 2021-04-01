@@ -1,0 +1,22 @@
+<div class="container">
+  <mat-accordion class="legend">
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Prozess-Legende
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+           <div cdkDropList cdkDropListOrientation="horizontal" class="departmentDrop" (cdkDropListDropped)="drop($event)">
+             <div class="departmentBox" *ngFor="let c of filteredColors" [ngStyle]="{backgroundColor: c}" >{{c}}</div>
+           </div>
+
+          <div cdkDropList cdkDropListOrientation="horizontal" class="departmentDrop" (cdkDropListDropped)="drop($event)">
+            <div class="departmentBox" *ngFor="let d of departmentlist"  cdkDrag>{{d.departmentName}}</div>
+          </div>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+

@@ -37,6 +37,8 @@ export class DetailProcessComponent implements OnInit {
   eighthProcessRow: ProcessElement[] = [];
   matchDocs: Document[] = [];
   matchNames: string[] = [];
+  filteredColors: string[];
+
 
   constructor(private location: Location,
               private processServer: ProcessService,
@@ -124,6 +126,7 @@ export class DetailProcessComponent implements OnInit {
             this.eighthProcessRow.push(data);
           }
       });
+        this.showLegend();
     });
   }
 
@@ -211,6 +214,7 @@ export class DetailProcessComponent implements OnInit {
     this.processServer.addProcessElement(newProcess, 'detail')
         .subscribe(() => {
           this.getAllProcess();
+          this.showLegend();
         });
     this.detailProcessList.push(newProcess);
   }
@@ -219,6 +223,7 @@ export class DetailProcessComponent implements OnInit {
     this.processServer.updateProcessList(this.detailProcessList, 'detail')
       .subscribe(() => {
         this.getAllProcess();
+        this.showLegend();
       });
   }
 
@@ -226,6 +231,38 @@ export class DetailProcessComponent implements OnInit {
     this.processServer.deleteProcess(id, 'detail')
       .subscribe(() => {
         this.getAllProcess();
+        this.showLegend();
       });
   }
+
+  showLegend() {
+    const allRows: string[] = [];
+
+    this.firstProcessRow.forEach(data =>
+      allRows.push(data.color)
+    );
+    this.secondProcessRow.forEach(data =>
+      allRows.push(data.color)
+    );
+    this.thirdProcessRow.forEach(data =>
+      allRows.push(data.color)
+    );
+    this.fourthProcessRow.forEach(data =>
+     allRows.push(data.color)
+    );
+    this.fifthProcessRow.forEach(data =>
+      allRows.push(data.color)
+    );
+    this.sixthProcessRow.forEach(data =>
+      allRows.push(data.color)
+    );
+    this.seventhProcessRow.forEach(data =>
+      allRows.push(data.color)
+    );
+    this.eighthProcessRow.forEach(data =>
+      allRows.push(data.color)
+    );
+    this.filteredColors = Array.from(new Set(allRows));
+  }
 }
+
