@@ -38,8 +38,6 @@
               <button mat-raised-button *ngIf="p.form === 1" class="editButton" (click)="p.form = 0">Pfeil</button>
               <button mat-raised-button *ngIf="p.isStart === 0" class="editButton" (click)="p.isStart = 1">Start</button>
               <button mat-raised-button *ngIf="p.isStart === 1" class="editButton" (click)="p.isStart = 0">Pfeil</button>
-
-
               <button mat-raised-button class="editButton" (click)="deleteProcessElement(p.id)">Delete
                 <mat-icon>delete_forever</mat-icon>
               </button>
@@ -368,8 +366,3 @@
       </div>
     </div>
 </div>
-
-
-
-
-
