@@ -233,9 +233,10 @@ function createRouter(db) {
         let order = req.body.order;
         let isVisible = req.body.isVisible;
         let visibleName = req.body.visibleName;
+        let isStart = req.body.isStart;
 
         db.query(
-            'INSERT INTO detailprocess VALUES (?,?,?,?,?,?,?,?,?,?)', [null, level, name, color, form, position, parent, order, isVisible, visibleName],
+            'INSERT INTO detailprocess VALUES (?,?,?,?,?,?,?,?,?,?,?)', [null, level, name, color, form, position, parent, order, isVisible, visibleName, isStart],
             (error, results) => {
                 if (error) {
                     res.status(500).json({status: 'error'});
@@ -324,38 +325,10 @@ function createRouter(db) {
             let position = req.body[x].position;
             let visibleName = req.body[x].visibleName;
             let color = req.body[x].color;
+            let isStart = req.body[x].isStart;
 
             db.query(
-                "UPDATE detailprocess SET position = ?, visibleName = ?, form = ?, color = ? WHERE id = ?", [position, visibleName, form, color, id],
-                () => {})}
-
-        res.status(200).json()
-    });
-
-    router.get('/departments',  (req, res) => {
-        db.query(
-            'SELECT * FROM departments order by position',
-            (error, results) => {
-                if (error) {
-                    res.status(500).json({status: 'error'});
-                }else {
-                    res.status(200).json(results)
-                }
-            }
-        );
-    });
-
-
-    router.put('/departments', (req, res) => {
-
-        for (let x = 0; x < req.body.length; x++) {
-            let nr = req.body[x].nr;
-            let departmentName = req.body[x].departmentName;
-            let position = req.body[x].position;
-            console.log(req)
-
-            db.query(
-                "UPDATE departments SET departmentName = ?, position = ? WHERE nr = ?", [departmentName, position, nr],
+                "UPDATE detailprocess SET position = ?, visibleName = ?, form = ?, color = ?, isStart = ? WHERE id = ?", [position, visibleName, form, color, isStart, id],
                 () => {})}
 
         res.status(200).json()

@@ -1,4 +1,5 @@
 .detail-title {
+  margin-bottom: 50px;
   margin-top: 10px;
   display: flex;
   align-items: center;
@@ -195,6 +196,25 @@ h2 {
   .mat-icon {
   font-size: 20px;
   }
-  .mat-card {
+}
+
+.start {
+  width: 115px;
+  height: 45px;
+  top: 5px;
+  display: grid;
+  left: 50px;
+  right: 30px;
+  margin-right: 30px;
+  margin-bottom: 4px;
+  border: 1px solid black;
+  text-align: center;
+  border-radius: 70%;
+  font-size: 13px;
+  .mat-card-after {
+    display: none;
+  }
+  .mat-card-before {
+    display: none;
   }
 }

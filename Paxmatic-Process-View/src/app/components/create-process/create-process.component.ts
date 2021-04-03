@@ -15,7 +15,7 @@ export class CreateProcessComponent implements OnInit {
   @Output() newProcessEvent = new EventEmitter<ProcessElement>();
   newProcess: ProcessElement = new ProcessElement();
   selected;
-  forms = ['Pfeil', 'Kreis'];
+  forms = ['Pfeil', 'Kreis', 'Start'];
   isNotDetailProcess = false;
   value: 'Name';
   isNotBasic = true;
@@ -34,6 +34,9 @@ export class CreateProcessComponent implements OnInit {
  createNewProcessElement() {
     if (this.selected === 'Kreis') {
       this.newProcess.form = 1;
+    } else if (this.selected === 'Start') {
+      this.newProcess.isStart = 1;
+      this.newProcess.form = 0;
     } else {
       this.newProcess.form = 0;
     }

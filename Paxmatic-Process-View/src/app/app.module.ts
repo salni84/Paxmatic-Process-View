@@ -31,8 +31,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import { LegendComponent } from './components/legend/legend.component';
-import {MatExpansionModule} from "@angular/material/expansion";
+
 
 
 
@@ -50,8 +49,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
     FooterComponent,
     NavbarComponent,
     DocumentsComponent,
-    CreateDocumentComponent,
-    LegendComponent
+    CreateDocumentComponent
   ],
   imports: [
     BrowserModule,
@@ -71,8 +69,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
     ReactiveFormsModule,
     MatInputModule,
     MatSelectModule,
-    MatSlideToggleModule,
-    MatExpansionModule
+    MatSlideToggleModule
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
