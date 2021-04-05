@@ -31,6 +31,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatDialogModule} from "@angular/material/dialog";
+import { DialogModalComponent } from './dialog/dialog-modal/dialog-modal.component';
 
 
 
@@ -49,7 +51,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     FooterComponent,
     NavbarComponent,
     DocumentsComponent,
-    CreateDocumentComponent
+    CreateDocumentComponent,
+    DialogModalComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +72,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     ReactiveFormsModule,
     MatInputModule,
     MatSelectModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatDialogModule
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
