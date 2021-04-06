@@ -38,6 +38,7 @@ export class DetailProcessComponent implements OnInit {
   matchDocs: Document[] = [];
   matchNames: string[] = [];
 
+
   constructor(private location: Location,
               private processServer: ProcessService,
               private route: ActivatedRoute,
@@ -229,3 +230,4 @@ export class DetailProcessComponent implements OnInit {
       });
   }
 }
+

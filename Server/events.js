@@ -13,7 +13,7 @@ function createRouter(db) {
 
 
 
-    router.get('/basic', function (req, res) {
+    router.get('/basic', (req, res) => {
         db.query(
             'SELECT * FROM basicprocess order by position',
             (error, results) => {
@@ -26,7 +26,7 @@ function createRouter(db) {
         );
     });
 
-    router.get('/sub/:parent', function (req, res) {
+    router.get('/sub/:parent', (req, res) => {
         db.query(
             'SELECT * FROM subprocess WHERE parent = ? order by position', [req.params.parent],
             (error, results) => {
@@ -41,7 +41,7 @@ function createRouter(db) {
     });
 
 
-    router.get('/department/:parent', function (req, res) {
+    router.get('/department/:parent', (req, res) => {
         db.query(
             'SELECT * FROM departmentprocess WHERE parent = ? order by position', [req.params.parent],
             (error, results) => {
@@ -54,7 +54,7 @@ function createRouter(db) {
         );
     });
 
-    router.get('/detail/:parent', function (req, res) {
+    router.get('/detail/:parent', (req, res) => {
         db.query(
             'SELECT * FROM detailprocess WHERE parent = ? order by position', [req.params.parent],
             (error, results) => {
@@ -67,7 +67,7 @@ function createRouter(db) {
         );
     });
 
-    router.get('/document/:coreElement', function (req, res) {
+    router.get('/document/:coreElement', (req, res) => {
         db.query(
             'SELECT * FROM documents WHERE coreElement = ? order by id', [req.params.coreElement],
             (error, results) => {
@@ -80,7 +80,7 @@ function createRouter(db) {
         );
     });
 
-    router.get('/documents/:parent', function (req, res) {
+    router.get('/documents/:parent', (req, res) => {
         db.query(
             'SELECT * FROM documents WHERE parent = ? order by id', [req.params.parent],
             (error, results) => {
@@ -94,7 +94,7 @@ function createRouter(db) {
     });
 
 
-    router.delete('/basic/:id', function (req, res) {
+    router.delete('/basic/:id', (req, res) => {
         db.query(
             'DELETE FROM basicprocess WHERE id = ?', [req.params.id],
             (error,results) =>  {
@@ -107,7 +107,7 @@ function createRouter(db) {
         )
     });
 
-    router.delete('/sub/:id', function (req, res) {
+    router.delete('/sub/:id', (req, res) => {
         db.query(
             'DELETE FROM subprocess WHERE id = ?', [req.params.id],
             (error,results) =>  {
@@ -120,7 +120,7 @@ function createRouter(db) {
         )
     });
 
-    router.delete('/department/:id', function (req, res) {
+    router.delete('/department/:id', (req, res) => {
         db.query(
             'DELETE FROM departmentprocess WHERE id = ?', [req.params.id],
             (error,results) =>  {
@@ -133,7 +133,7 @@ function createRouter(db) {
         )
     });
 
-    router.delete('/detail/:id', function (req, res) {
+    router.delete('/detail/:id', (req, res)  => {
         db.query(
             'DELETE FROM detailprocess WHERE id = ?', [req.params.id],
             (error,results) =>  {
@@ -146,7 +146,7 @@ function createRouter(db) {
         )
     });
 
-    router.delete('/documents/:id', function (req, res) {
+    router.delete('/documents/:id', (req, res) => {
         db.query(
             'DELETE FROM documents WHERE id = ?', [req.params.id],
             (error,results) =>  {
@@ -233,9 +233,10 @@ function createRouter(db) {
         let order = req.body.order;
         let isVisible = req.body.isVisible;
         let visibleName = req.body.visibleName;
+        let isStart = req.body.isStart;
 
         db.query(
-            'INSERT INTO detailprocess VALUES (?,?,?,?,?,?,?,?,?,?)', [null, level, name, color, form, position, parent, order, isVisible, visibleName],
+            'INSERT INTO detailprocess VALUES (?,?,?,?,?,?,?,?,?,?,?)', [null, level, name, color, form, position, parent, order, isVisible, visibleName, isStart],
             (error, results) => {
                 if (error) {
                     res.status(500).json({status: 'error'});
@@ -272,9 +273,12 @@ function createRouter(db) {
             let id = req.body[x].id;
             let position = req.body[x].position;
             let visibleName = req.body[x].visibleName;
+            let color = req.body[x].color;
+            let form = req.body[x].form;
+
 
             db.query(
-                "UPDATE basicprocess SET position = ?, visibleName = ? WHERE id = ?", [position, visibleName, id],
+                "UPDATE basicprocess SET position = ?, visibleName = ?, form = ?, color = ? WHERE id = ?", [position, visibleName, form, color, id],
                 () => {})}
 
             res.status(200).json()
@@ -286,9 +290,11 @@ function createRouter(db) {
             let id = req.body[x].id;
             let position = req.body[x].position;
             let visibleName = req.body[x].visibleName;
+            let color = req.body[x].color;
+            let form = req.body[x].form;
 
             db.query(
-                "UPDATE subprocess SET position = ?, visibleName = ? WHERE id = ?", [position, visibleName, id],
+                "UPDATE subprocess SET position = ?, visibleName = ?, form = ?, color = ? WHERE id = ?", [position, visibleName, form, color, id],
                 () => {})}
 
         res.status(200).json()
@@ -301,9 +307,11 @@ function createRouter(db) {
             let id = req.body[x].id;
             let position = req.body[x].position;
             let visibleName = req.body[x].visibleName;
+            let form = req.body[x].form;
+            let color = req.body[x].color;
 
             db.query(
-                "UPDATE departmentprocess SET position = ?, visibleName = ? WHERE id = ?", [position, visibleName, id],
+                "UPDATE departmentprocess SET position = ?, visibleName = ?, form = ?, color = ? WHERE id = ?", [position, visibleName, form, color, id],
                 () => {})}
 
         res.status(200).json()
@@ -316,9 +324,11 @@ function createRouter(db) {
             let form = req.body[x].form;
             let position = req.body[x].position;
             let visibleName = req.body[x].visibleName;
+            let color = req.body[x].color;
+            let isStart = req.body[x].isStart;
 
             db.query(
-                "UPDATE detailprocess SET position = ?, visibleName = ?, form = ? WHERE id = ?", [position, visibleName, form, id],
+                "UPDATE detailprocess SET position = ?, visibleName = ?, form = ?, color = ?, isStart = ? WHERE id = ?", [position, visibleName, form, color, isStart, id],
                 () => {})}
 
         res.status(200).json()

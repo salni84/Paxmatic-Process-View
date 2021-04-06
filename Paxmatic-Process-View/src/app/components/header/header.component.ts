@@ -9,7 +9,7 @@ import {LoginService} from '../../../service/login-service';
 export class HeaderComponent implements OnInit {
 
   isLoginWindowVisible = false;
-  loginButton = 'Login';
+  loginButton = 'Admin-Login';
 
   constructor(private loginService: LoginService) { }
 
@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
     if (this.isLoginWindowVisible) {
       this.loginButton = 'Close';
     } else {
-      this.loginButton = 'Login';
+      this.loginButton = 'Admin-Login';
       this.loginService.isUserLoggedOut(true);
     }
   }

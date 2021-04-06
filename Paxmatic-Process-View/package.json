@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "cypress": "concurrently \"ng serve\" \"cypress open\"",
-    "db": "run-sql src/mysql-scripts/db-query.sql --user='test' --password='test' --database='test_Process'"
+    "db": "run-sql src/mysql-scripts/db-query.sql --user='testuser' --password='test' --database='test_Process'"
   },
   "private": true,
   "dependencies": {

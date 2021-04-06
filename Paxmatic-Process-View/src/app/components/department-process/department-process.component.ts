@@ -5,6 +5,8 @@ import {ProcessService} from '../../../service/process-service';
 import {ActivatedRoute} from '@angular/router';
 import {LoginService} from '../../../service/login-service';
 import {Location} from '@angular/common';
+import {MatDialog} from "@angular/material/dialog";
+import {DialogModalComponent} from "../../dialog/dialog-modal/dialog-modal.component";
 
 @Component({
   selector: 'app-department-process',
@@ -26,7 +28,8 @@ export class DepartmentProcessComponent implements OnInit {
   constructor(private location: Location,
               private processServer: ProcessService,
               private route: ActivatedRoute,
-              private loginService: LoginService) {  }
+              private loginService: LoginService,
+              private dialog: MatDialog) {  }
 
 
   ngOnInit() {
@@ -86,10 +89,23 @@ export class DepartmentProcessComponent implements OnInit {
       });
   }
 
-  deleteProcessElement(id: number) {
-    this.processServer.deleteProcess(id, 'department')
-      .subscribe(() => {
-        this.getAllProcess();
-      });
+  deleteProcessElement(id: number, name: string) {
+    this.processServer.getProcess('detail', name)
+      .subscribe(data => {
+          if (data.toString().length > 0) {
+            this.openDialog();
+          } else {
+
+            this.processServer.deleteProcess(id, 'department')
+              .subscribe(() => {
+                this.getAllProcess();
+              });
+          }
+        }
+      );
+  }
+
+  openDialog() {
+    this.dialog.open(DialogModalComponent);
   }
 }

@@ -3,6 +3,8 @@ import {ProcessService} from '../../../service/process-service';
 import {ProcessElement} from '../../model/process-element';
 import {LoginService} from '../../../service/login-service';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import {DialogModalComponent} from '../../dialog/dialog-modal/dialog-modal.component';
+import {MatDialog} from '@angular/material/dialog';
 
 
 @Component({
@@ -13,7 +15,9 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 export class BasicProcessComponent implements OnInit {
 
-  constructor(private processServer: ProcessService, private loginService: LoginService) {}
+  constructor(private processServer: ProcessService,
+              private loginService: LoginService,
+              private dialog: MatDialog) {}
 
   @Input() newProcess: ProcessElement;
   basicProcessList: ProcessElement[] = [];
@@ -81,10 +85,24 @@ export class BasicProcessComponent implements OnInit {
       });
   }
 
-  deleteProcessElement(id: number) {
-    this.processServer.deleteProcess(id, 'basic')
-      .subscribe(() => {
-        this.getAllProcess();
-        });
-      }
+  deleteProcessElement(id: number, name: string) {
+
+    this.processServer.getProcess('sub', name)
+      .subscribe(data => {
+          if (data.toString().length > 0) {
+            this.openDialog();
+          } else {
+
+            this.processServer.deleteProcess(id, 'basic')
+              .subscribe(() => {
+                this.getAllProcess();
+              });
+          }
+        }
+      );
+  }
+
+  openDialog() {
+    this.dialog.open(DialogModalComponent);
+  }
 }
