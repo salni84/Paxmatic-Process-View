@@ -3,7 +3,9 @@ import {ProcessService} from '../../../service/process-service';
 import {ProcessElement} from '../../model/process-element';
 import {LoginService} from '../../../service/login-service';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-
+import {DialogModalComponent} from '../../dialog/dialog-modal/dialog-modal.component';
+import {MatDialog} from '@angular/material/dialog';
+import {LegendService} from "../../../service/legend-service";
 
 @Component({
   selector: 'app-basic-process',
@@ -13,8 +15,6 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 export class BasicProcessComponent implements OnInit {
 
-  constructor(private processServer: ProcessService, private loginService: LoginService) {}
-
   @Input() newProcess: ProcessElement;
   basicProcessList: ProcessElement[] = [];
   level = 'basic';
@@ -22,10 +22,16 @@ export class BasicProcessComponent implements OnInit {
   hideCreateElement = false;
   showAddButton = true;
   isAdmin = false;
+  departments: any = [];
 
+  constructor(private processServer: ProcessService,
+              private loginService: LoginService,
+              private dialog: MatDialog,
+              private legend: LegendService) {}
 
   ngOnInit() {
     this.getAllProcess();
+    this.getDepartments();
 
     this.loginService.getLoginStatus().subscribe((data) => {
       if (data) {
@@ -81,10 +87,29 @@ export class BasicProcessComponent implements OnInit {
       });
   }
 
-  deleteProcessElement(id: number) {
-    this.processServer.deleteProcess(id, 'basic')
-      .subscribe(() => {
-        this.getAllProcess();
-        });
-      }
+
+  deleteProcessElement(id: number, name: string) {
+    this.processServer.getProcess('sub', name)
+      .subscribe(data => {
+          if (data.toString().length > 0) {
+            this.openDialog();
+          } else {
+            this.processServer.deleteProcess(id, 'basic')
+              .subscribe(() => {
+                this.getAllProcess();
+              });
+          }}
+      );
+  }
+
+  getDepartments() {
+    this.legend.getDepartments()
+      .subscribe(data => {
+        this.departments = data;
+      });
+  }
+
+  openDialog() {
+    this.dialog.open(DialogModalComponent);
+  }
 }

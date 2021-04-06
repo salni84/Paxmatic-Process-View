@@ -8,6 +8,7 @@ import {Location} from '@angular/common';
 import {DocumentService} from '../../../service/document.service';
 import {map} from 'rxjs/operators';
 import {Document} from '../../model/document';
+import {LegendService} from '../../../service/legend-service';
 
 
 @Component({
@@ -19,7 +20,6 @@ export class DetailProcessComponent implements OnInit {
 
 
   @Input() newProcess: ProcessElement;
-
   detailProcessList: ProcessElement[] = [];
   parentId: string;
   level = 'detail';
@@ -37,12 +37,14 @@ export class DetailProcessComponent implements OnInit {
   eighthProcessRow: ProcessElement[] = [];
   matchDocs: Document[] = [];
   matchNames: string[] = [];
+  departments: any = [];
 
   constructor(private location: Location,
               private processServer: ProcessService,
               private route: ActivatedRoute,
               private loginService: LoginService,
-              private documentService: DocumentService) {
+              private documentService: DocumentService,
+              private legend: LegendService) {
   }
 
   ngOnInit() {
@@ -56,6 +58,7 @@ export class DetailProcessComponent implements OnInit {
     });
     this.parentId = this.route.snapshot.paramMap.get('detail');
     this.getAllProcess();
+    this.getDepartments();
 }
 
   showAddProcessComponent(id: number) {
@@ -226,6 +229,13 @@ export class DetailProcessComponent implements OnInit {
     this.processServer.deleteProcess(id, 'detail')
       .subscribe(() => {
         this.getAllProcess();
+      });
+  }
+
+  getDepartments() {
+    this.legend.getDepartments()
+      .subscribe(data => {
+        this.departments = data;
       });
   }
 }

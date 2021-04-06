@@ -5,6 +5,9 @@ import {ProcessService} from '../../../service/process-service';
 import {ActivatedRoute} from '@angular/router';
 import {LoginService} from '../../../service/login-service';
 import {Location} from '@angular/common';
+import {DialogModalComponent} from '../../dialog/dialog-modal/dialog-modal.component';
+import {MatDialog} from '@angular/material/dialog';
+import {LegendService} from '../../../service/legend-service';
 
 @Component({
   selector: 'app-department-process',
@@ -14,7 +17,6 @@ import {Location} from '@angular/common';
 export class DepartmentProcessComponent implements OnInit {
 
   @Input() newProcess: ProcessElement;
-
   departmentProcessList: ProcessElement[] = [];
   parentId: string;
   level = 'department';
@@ -22,11 +24,15 @@ export class DepartmentProcessComponent implements OnInit {
   hideCreateElement = false;
   showAddButton = true;
   isAdmin = false;
+  departments: any = [];
 
   constructor(private location: Location,
               private processServer: ProcessService,
               private route: ActivatedRoute,
-              private loginService: LoginService) {  }
+              private loginService: LoginService,
+              private dialog: MatDialog,
+              private legend: LegendService
+              ) {  }
 
 
   ngOnInit() {
@@ -40,6 +46,7 @@ export class DepartmentProcessComponent implements OnInit {
     });
     this.parentId = this.route.snapshot.paramMap.get('department');
     this.getAllProcess();
+    this.getDepartments();
   }
 
   showAddProcessComponent() {
@@ -86,10 +93,28 @@ export class DepartmentProcessComponent implements OnInit {
       });
   }
 
-  deleteProcessElement(id: number) {
-    this.processServer.deleteProcess(id, 'department')
-      .subscribe(() => {
-        this.getAllProcess();
+  deleteProcessElement(id: number, name: string) {
+    this.processServer.getProcess('detail', name)
+      .subscribe(data => {
+          if (data.toString().length > 0) {
+            this.openDialog();
+          } else {
+            this.processServer.deleteProcess(id, 'department')
+              .subscribe(() => {
+                this.getAllProcess();
+              });
+          }}
+      );
+  }
+
+  getDepartments() {
+    this.legend.getDepartments()
+      .subscribe(data => {
+        this.departments = data;
       });
+  }
+
+  openDialog() {
+    this.dialog.open(DialogModalComponent);
   }
 }

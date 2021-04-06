@@ -5,6 +5,9 @@ import {ProcessService} from '../../../service/process-service';
 import {ActivatedRoute} from '@angular/router';
 import {LoginService} from '../../../service/login-service';
 import {Location} from '@angular/common';
+import {DialogModalComponent} from '../../dialog/dialog-modal/dialog-modal.component';
+import {MatDialog} from '@angular/material/dialog';
+import {LegendService} from '../../../service/legend-service';
 
 @Component({
   selector: 'app-sub-process',
@@ -22,17 +25,22 @@ export class SubProcessComponent implements OnInit {
   hideCreateElement = false;
   showAddButton = true;
   isAdmin = false;
+  departments: any = [];
 
 
   constructor(private location: Location,
               private processServer: ProcessService,
               private route: ActivatedRoute,
-              private loginService: LoginService) { }
+              private loginService: LoginService,
+              private dialog: MatDialog,
+              private legend: LegendService) {}
+
 
 
   ngOnInit() {
     this.parentId = this.route.snapshot.paramMap.get('name');
     this.getAllProcess();
+    this.getDepartments();
     this.loginService.getLoginStatus().subscribe((data) => {
       if (data) {
         this.isAdmin = true;
@@ -87,10 +95,28 @@ export class SubProcessComponent implements OnInit {
       });
   }
 
-  deleteProcessElement(id: number) {
-    this.processServer.deleteProcess(id, 'sub')
-      .subscribe(() => {
-        this.getAllProcess();
+  deleteProcessElement(id: number, name: string) {
+    this.processServer.getProcess('department', name)
+      .subscribe(data => {
+        if (data.toString().length > 0) {
+          this.openDialog();
+        } else {
+          this.processServer.deleteProcess(id, 'sub')
+            .subscribe(() => {
+              this.getAllProcess();
+            });
+        }
       });
+  }
+
+  getDepartments() {
+    this.legend.getDepartments()
+      .subscribe(data => {
+        this.departments = data;
+      });
+  }
+
+  openDialog() {
+    this.dialog.open(DialogModalComponent);
   }
 }

@@ -95,7 +95,7 @@ export class DocumentsComponent implements OnInit {
     });
     this.processService.getProcess('detail', this.parentId)
         .pipe(
-          map(items => items.filter(item => item.order === 3)))
+          map(items => items.filter(item => item.order === 3 && !item.isStart)))
         .subscribe((data) => {this.nextProcess = data;
         });
   }

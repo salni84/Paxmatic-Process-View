@@ -5,6 +5,7 @@ import { SubProcessComponent } from './sub-process.component';
 import {ProcessMock} from '../../model/process-mock';
 import {of} from 'rxjs';
 import {ProcessService} from '../../../service/process-service';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 describe('SubProcessComponent', () => {
@@ -20,7 +21,8 @@ describe('SubProcessComponent', () => {
       declarations: [ SubProcessComponent ],
       imports: [
         HttpClientTestingModule,
-        RouterTestingModule],
+        RouterTestingModule,
+        MatDialogModule],
       providers: [{
         ProcessService,
         useValue: {getAllProcess: () => of(expectedProcess)}

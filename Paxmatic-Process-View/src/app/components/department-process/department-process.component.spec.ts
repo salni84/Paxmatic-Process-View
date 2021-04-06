@@ -5,6 +5,7 @@ import { DepartmentProcessComponent } from './department-process.component';
 import {of} from 'rxjs';
 import {ProcessService} from '../../../service/process-service';
 import {ProcessMock} from '../../model/process-mock';
+import {MatDialogModule} from "@angular/material/dialog";
 
 describe('DepartmentProcessComponent', () => {
   let component: DepartmentProcessComponent;
@@ -18,7 +19,8 @@ describe('DepartmentProcessComponent', () => {
       declarations: [ DepartmentProcessComponent ],
       imports: [
         HttpClientTestingModule,
-        RouterTestingModule],
+        RouterTestingModule,
+        MatDialogModule],
       providers: [{
         ProcessService,
         useValue: {getAllProcess: () => of(expectedProcess)}

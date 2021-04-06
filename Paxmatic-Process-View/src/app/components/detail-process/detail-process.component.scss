@@ -1,3 +1,4 @@
+
 .detail-title {
   margin-bottom: 50px;
   margin-top: 10px;
@@ -6,11 +7,15 @@
   text-align: center;
   background-color: black;
   height: 60px;
-  font-family: "Century Gothic", sans-serif ;
+  font-family: "Century Gothic", sans-serif;
 }
 
 .arrow {
   margin-left: 20em;
+}
+
+h2 {
+  margin-right: 20px;
 }
 
 .mat-raised-button {
@@ -40,7 +45,7 @@
 }
 
 .isInvisible {
-  visibility: hidden ;
+  opacity: 0 ;
 }
 
 .greyedOut {
@@ -65,12 +70,12 @@
 }
 
 .addButton {
-   min-width: 40px;
-   line-height: 25px;
-   text-align: center;
-   justify-content: center;
-   margin-right: 10px;
- }
+  min-width: 40px;
+  line-height: 25px;
+  text-align: center;
+  justify-content: center;
+  margin-right: 10px;
+}
 
 .form {
   width: 20%;
@@ -190,8 +195,34 @@
     height: 10px;
   }
   .mat-icon {
-  font-size: 20px;
+    font-size: 20px;
   }
-  .mat-card {
+}
+
+.dep {
+  background-color: white;
+  height: 40px;
+  width: 40px;
+  margin-top: 20px;
+}
+
+.start {
+  width: 115px;
+  height: 45px;
+  top: 5px;
+  display: grid;
+  left: 50px;
+  right: 30px;
+  margin-right: 30px;
+  margin-bottom: 4px;
+  border: 1px solid black;
+  text-align: center;
+  border-radius: 70%;
+  font-size: 13px;
+  .mat-card-after {
+    display: none;
+  }
+  .mat-card-before {
+    display: none;
   }
 }
