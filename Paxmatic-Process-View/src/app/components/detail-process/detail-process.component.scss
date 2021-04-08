@@ -1,6 +1,5 @@
 
 .detail-title {
-  margin-bottom: 50px;
   margin-top: 10px;
   display: flex;
   align-items: center;
@@ -25,11 +24,18 @@ h2 {
 .main {
   display: flow-root;
   width: -webkit-fill-available;
+  padding-top: 50px;
 }
 
 .container {
   margin-top: 10px;
-  margin-left: 120px;
+  margin-left: 138px;
+  display: flex;
+}
+
+.core-container {
+  margin-top: 10px;
+  margin-left: 40px;
   display: flex;
 }
 
@@ -199,12 +205,35 @@ h2 {
   }
 }
 
-.dep {
-  background-color: white;
-  height: 40px;
-  width: 40px;
-  margin-top: 20px;
+.coreProcess {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: yellow;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
 }
+
+.coreProcess-after {
+  content: "";
+  left: 181px;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-top: 40px solid transparent;
+  border-bottom: 40px solid transparent;
+  border-left: 35px solid;
+  border-left-color: yellow;
+}
+
+.kern {
+  display: flex;
+}
+
 
 .start {
   width: 115px;
@@ -225,4 +254,18 @@ h2 {
   .mat-card-before {
     display: none;
   }
+}
+
+.otherDetailProcess {
+  background-color: black;
+  height: 30px;
+  text-align: center;
+  display: flex;
+  font-family: "Century Gothic", sans-serif ;
+  padding-left: 10%;
+}
+
+.next {
+  margin-right: 20px;
+  color: white;
 }

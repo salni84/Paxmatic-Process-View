@@ -2,7 +2,7 @@
 
 <div class="header">
   <img class="logo" src="./assets/images/logo-paxmatic.jpg">
-  <a class="active" routerLink="/home"><i class="fa fa-fw fa-home"></i> Home</a>
+  <a class="active" routerLink="/home" (click)="scrollUp()"><i class="fa fa-fw fa-home"></i> Home</a>
   <a (click)="showLogin()"><i class="fa fa-fw fa-user"></i> {{loginButton}}</a>
   <div class="login">
     <app-login *ngIf="isLoginWindowVisible"></app-login>

@@ -3,9 +3,9 @@ import {ProcessService} from '../../../service/process-service';
 import {ProcessElement} from '../../model/process-element';
 import {LoginService} from '../../../service/login-service';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-import {DialogModalComponent} from '../../dialog/dialog-modal/dialog-modal.component';
 import {MatDialog} from '@angular/material/dialog';
-import {LegendService} from "../../../service/legend-service";
+import {LegendService} from '../../../service/legend-service';
+import {DialogService} from "../../../service/dialog-service";
 
 @Component({
   selector: 'app-basic-process',
@@ -26,7 +26,7 @@ export class BasicProcessComponent implements OnInit {
 
   constructor(private processServer: ProcessService,
               private loginService: LoginService,
-              private dialog: MatDialog,
+              private dialog: DialogService,
               private legend: LegendService) {}
 
   ngOnInit() {
@@ -92,7 +92,7 @@ export class BasicProcessComponent implements OnInit {
     this.processServer.getProcess('sub', name)
       .subscribe(data => {
           if (data.toString().length > 0) {
-            this.openDialog();
+            this.dialog.openDeleteDialog();
           } else {
             this.processServer.deleteProcess(id, 'basic')
               .subscribe(() => {
@@ -107,9 +107,5 @@ export class BasicProcessComponent implements OnInit {
       .subscribe(data => {
         this.departments = data;
       });
-  }
-
-  openDialog() {
-    this.dialog.open(DialogModalComponent);
   }
 }

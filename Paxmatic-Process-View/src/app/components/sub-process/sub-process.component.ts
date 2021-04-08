@@ -5,9 +5,8 @@ import {ProcessService} from '../../../service/process-service';
 import {ActivatedRoute} from '@angular/router';
 import {LoginService} from '../../../service/login-service';
 import {Location} from '@angular/common';
-import {DialogModalComponent} from '../../dialog/dialog-modal/dialog-modal.component';
-import {MatDialog} from '@angular/material/dialog';
 import {LegendService} from '../../../service/legend-service';
+import {DialogService} from '../../../service/dialog-service';
 
 @Component({
   selector: 'app-sub-process',
@@ -17,7 +16,7 @@ import {LegendService} from '../../../service/legend-service';
 export class SubProcessComponent implements OnInit {
 
   @Input() newProcess: ProcessElement;
-
+  checkDuplikatesList: ProcessElement [] = [];
   subProcessList: ProcessElement[] = [];
   parentId: string;
   level = 'sub';
@@ -32,7 +31,7 @@ export class SubProcessComponent implements OnInit {
               private processServer: ProcessService,
               private route: ActivatedRoute,
               private loginService: LoginService,
-              private dialog: MatDialog,
+              private dialog: DialogService,
               private legend: LegendService) {}
 
 
@@ -40,6 +39,7 @@ export class SubProcessComponent implements OnInit {
   ngOnInit() {
     this.parentId = this.route.snapshot.paramMap.get('name');
     this.getAllProcess();
+    this.getAllSubProcesses();
     this.getDepartments();
     this.loginService.getLoginStatus().subscribe((data) => {
       if (data) {
@@ -70,6 +70,13 @@ export class SubProcessComponent implements OnInit {
       });
   }
 
+  getAllSubProcesses() {
+    this.processServer.getAllProcess('sub')
+      .subscribe((process) => {
+        this.checkDuplikatesList = process;
+      });
+  }
+
   drop(event: CdkDragDrop<string[]>) {
     if (this.isAdmin) {
       moveItemInArray(this.subProcessList, event.previousIndex, event.currentIndex);
@@ -81,11 +88,15 @@ export class SubProcessComponent implements OnInit {
   }
 
   addNewProcess(newProcess: ProcessElement) {
+    if (this.checkDuplikates(newProcess) === true) {
+      return;
+    } else {
       this.processServer.addProcessElement(newProcess, 'sub')
         .subscribe(() => {
           this.getAllProcess();
         });
       this.subProcessList.push(newProcess);
+    }
   }
 
   udpateProcess() {
@@ -99,7 +110,7 @@ export class SubProcessComponent implements OnInit {
     this.processServer.getProcess('department', name)
       .subscribe(data => {
         if (data.toString().length > 0) {
-          this.openDialog();
+          this.dialog.openDeleteDialog();
         } else {
           this.processServer.deleteProcess(id, 'sub')
             .subscribe(() => {
@@ -116,7 +127,14 @@ export class SubProcessComponent implements OnInit {
       });
   }
 
-  openDialog() {
-    this.dialog.open(DialogModalComponent);
+  checkDuplikates(newProcess: ProcessElement): boolean {
+    let check = false;
+    this.checkDuplikatesList.forEach(data => {
+      if (data.name === newProcess.name) {
+        check = true;
+        this.dialog.openDuplikateDialog();
+      }
+    });
+    return check;
   }
 }

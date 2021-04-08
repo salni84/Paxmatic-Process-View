@@ -11,7 +11,7 @@
       <div class="departmentDrop" >
         <div class="departmentBox" *ngFor="let d of departmentlist" >
           <div class="box">
-            <input class="combi" [ngStyle]="{backgroundColor: d.color}" [(ngModel)]="d.name" >
+            <input class="combi" [ngStyle]="{backgroundColor: d.color}" [(ngModel)]="d.name" [class.readOnly]="!isAdmin">
             <th class="deleteBox" *ngIf="isAdmin" (click)="deleteDepartment(d.id)"> <mat-icon>close</mat-icon></th>
           </div>
           <input *ngIf="isAdmin" type="text" class="editColor" [(ngModel)]="d.color" >

@@ -4,8 +4,8 @@
 </div>
 <div class="otherDocuments">
   <a class="next" *ngFor="let p of nextProcess" [routerLink]="['../' + p.name]" >{{p.name}}</a>
-
 </div>
+
 <div class="main">
   <div class="container">
       <div class="addProcess" *ngIf="isAdmin">

@@ -54,6 +54,32 @@ function createRouter(db) {
         );
     });
 
+    router.get('/department', (req, res) => {
+        db.query(
+            'SELECT * FROM departmentprocess order by position', [req.params.parent],
+            (error, results) => {
+                if (error) {
+                    res.status(500).json({status: 'error'});
+                }else {
+                    res.status(200).json(results)
+                }
+            }
+        );
+    });
+
+    router.get('/sub', (req, res) => {
+        db.query(
+            'SELECT * FROM subprocess order by position', [req.params.parent],
+            (error, results) => {
+                if (error) {
+                    res.status(500).json({status: 'error'});
+                }else {
+                    res.status(200).json(results)
+                }
+            }
+        );
+    });
+
     router.get('/detail/:parent', (req, res) => {
         db.query(
             'SELECT * FROM detailprocess WHERE parent = ? order by position', [req.params.parent],
@@ -261,10 +287,10 @@ function createRouter(db) {
         let order = req.body.order;
         let isVisible = req.body.isVisible;
         let visibleName = req.body.visibleName;
-        let isStart = req.body.isStart;
+        let isBubble = req.body.isBubble;
 
         db.query(
-            'INSERT INTO detailprocess VALUES (?,?,?,?,?,?,?,?,?,?,?)', [null, level, name, color, form, position, parent, order, isVisible, visibleName, isStart],
+            'INSERT INTO detailprocess VALUES (?,?,?,?,?,?,?,?,?,?,?)', [null, level, name, color, form, position, parent, order, isVisible, visibleName, isBubble],
             (error, results) => {
                 if (error) {
                     res.status(500).json({status: 'error'});
@@ -368,10 +394,10 @@ function createRouter(db) {
             let position = req.body[x].position;
             let visibleName = req.body[x].visibleName;
             let color = req.body[x].color;
-            let isStart = req.body[x].isStart;
+            let isBubble = req.body[x].isBubble;
 
             db.query(
-                "UPDATE detailprocess SET position = ?, visibleName = ?, form = ?, color = ?, isStart = ? WHERE id = ?", [position, visibleName, form, color, isStart, id],
+                "UPDATE detailprocess SET position = ?, visibleName = ?, form = ?, color = ?, isStart = ? WHERE id = ?", [position, visibleName, form, color, isBubble, id],
                 () => {})}
 
         res.status(200).json()

@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {}
 
   showLogin() {
+    this.scrollUp(),
     this.isLoginWindowVisible = !this.isLoginWindowVisible;
 
     if (this.isLoginWindowVisible) {
@@ -24,5 +25,9 @@ export class HeaderComponent implements OnInit {
       this.loginButton = 'Admin-Login';
       this.loginService.isUserLoggedOut(true);
     }
+  }
+
+  scrollUp() {
+    window.scrollTo(0, 0);
   }
 }

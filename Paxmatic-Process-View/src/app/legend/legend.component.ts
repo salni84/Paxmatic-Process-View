@@ -1,9 +1,8 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatAccordion} from '@angular/material/expansion';
-import {ProcessService} from '../../service/process-service';
 import {LoginService} from '../../service/login-service';
 import {Departments} from '../model/departments';
-import {LegendService} from "../../service/legend-service";
+import {LegendService} from '../../service/legend-service';
 
 
 @Component({
@@ -35,7 +34,6 @@ export class LegendComponent implements OnInit {
     this.legend.getDepartments()
       .subscribe( data => {
         this.departmentlist = data;
-        console.log(this.departmentlist)
       });
   }
 

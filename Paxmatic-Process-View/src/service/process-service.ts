@@ -20,6 +20,10 @@ export class ProcessService {
     return this.http.get(this.serverURL + level + '/' + parent);
   }
 
+  getAllProcess(level: string): Observable<any> {
+    return this.http.get(this.serverURL + level);
+  }
+
   addProcessElement(process: ProcessElement, level: string): Observable<any> {
     const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(process);
@@ -36,8 +40,6 @@ export class ProcessService {
     return this.http.delete(this.serverURL + level + '/' + id);
   }
 
-
-
   createEvent(previousIndex: number, currentIndex: number): CdkDragDrop<any[], any[]> {
     return {
       previousIndex,
@@ -50,4 +52,3 @@ export class ProcessService {
     };
   }
 }
-

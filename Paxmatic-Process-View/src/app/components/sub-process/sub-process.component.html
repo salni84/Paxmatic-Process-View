@@ -3,7 +3,6 @@
     <mat-icon class="arrow" [routerLink]="['../']">fast_rewind</mat-icon>
     <h2>Teilprozess / {{parentId}}</h2>
   </div>
-  <app-legend></app-legend>
   <div class="container">
     <div class="process">
       <app-create-process
@@ -18,7 +17,7 @@
         </div>
 
         <div *ngFor="let p of subProcessList">
-          <mat-card [routerLink]="p.name" [class.circle]="p.form" [ngStyle]="{backgroundColor: p.color}" cdkDrag>
+          <mat-card [routerLink]="'../' + p.parent + '/' + p.name" [class.circle]="p.form" [ngStyle]="{backgroundColor: p.color}" cdkDrag>
             <div class="names">
               <label>{{p.visibleName}}</label>
               <label class="connection" *ngIf="isAdmin">{{p.name}}</label>

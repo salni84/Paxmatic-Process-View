@@ -6,8 +6,9 @@ import {ActivatedRoute} from '@angular/router';
 import {LoginService} from '../../../service/login-service';
 import {Location} from '@angular/common';
 import {DialogModalComponent} from '../../dialog/dialog-modal/dialog-modal.component';
-import {MatDialog} from '@angular/material/dialog';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {LegendService} from '../../../service/legend-service';
+import {DialogService} from "../../../service/dialog-service";
 
 @Component({
   selector: 'app-department-process',
@@ -18,6 +19,7 @@ export class DepartmentProcessComponent implements OnInit {
 
   @Input() newProcess: ProcessElement;
   departmentProcessList: ProcessElement[] = [];
+  checkDuplikatesList: ProcessElement [] = [];
   parentId: string;
   level = 'department';
   showCreateElement = false;
@@ -30,8 +32,8 @@ export class DepartmentProcessComponent implements OnInit {
               private processServer: ProcessService,
               private route: ActivatedRoute,
               private loginService: LoginService,
-              private dialog: MatDialog,
-              private legend: LegendService
+              private legend: LegendService,
+              private dialog: DialogService
               ) {  }
 
 
@@ -45,6 +47,7 @@ export class DepartmentProcessComponent implements OnInit {
       }
     });
     this.parentId = this.route.snapshot.paramMap.get('department');
+    this.getAllDepartmentProcesses();
     this.getAllProcess();
     this.getDepartments();
   }
@@ -68,6 +71,13 @@ export class DepartmentProcessComponent implements OnInit {
       });
   }
 
+  getAllDepartmentProcesses() {
+    this.processServer.getAllProcess('department')
+      .subscribe((process) => {
+        this.checkDuplikatesList = process;
+      });
+  }
+
   drop(event: CdkDragDrop<string[]>) {
     if (this.isAdmin) {
       moveItemInArray(this.departmentProcessList, event.previousIndex, event.currentIndex);
@@ -79,11 +89,16 @@ export class DepartmentProcessComponent implements OnInit {
   }
 
   addNewProcess(newProcess: ProcessElement) {
+    if (this.checkDuplikates(newProcess) === true) {
+      return;
+    } else {
       this.processServer.addProcessElement(newProcess, 'department')
         .subscribe(() => {
+          this.getAllDepartmentProcesses();
           this.getAllProcess();
         });
       this.departmentProcessList.push(newProcess);
+    }
   }
 
   udpateProcess() {
@@ -97,7 +112,7 @@ export class DepartmentProcessComponent implements OnInit {
     this.processServer.getProcess('detail', name)
       .subscribe(data => {
           if (data.toString().length > 0) {
-            this.openDialog();
+            this.dialog.openDeleteDialog();
           } else {
             this.processServer.deleteProcess(id, 'department')
               .subscribe(() => {
@@ -114,7 +129,14 @@ export class DepartmentProcessComponent implements OnInit {
       });
   }
 
-  openDialog() {
-    this.dialog.open(DialogModalComponent);
+  checkDuplikates(newProcess: ProcessElement): boolean {
+    let check = false;
+    this.checkDuplikatesList.forEach(data => {
+      if (data.name === newProcess.name) {
+        check = true;
+        this.dialog.openDuplikateDialog();
+      }
+    });
+    return check;
   }
 }

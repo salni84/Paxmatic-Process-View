@@ -47,7 +47,7 @@ export class CreateProcessComponent implements OnInit {
     if (this.selectedForm === 'Kreis') {
       this.newProcess.form = 1;
     } else if (this.selectedForm === 'Start') {
-      this.newProcess.isStart = 1;
+      this.newProcess.isBubble = 1;
       this.newProcess.form = 0;
     } else {
       this.newProcess.form = 0;
@@ -68,7 +68,7 @@ export class CreateProcessComponent implements OnInit {
     this.newProcess.level = this.level;
     this.newProcess.parent = this.parentId;
     this.newProcess.order = this.order;
-    this.newProcess.isStart = 0;
+    this.newProcess.isBubble = 0;
     this.newProcess.form = 0;
     this.newProcess.position = 0;
     this.newProcess.visibleName = '';

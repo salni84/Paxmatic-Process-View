@@ -12,7 +12,7 @@ export class ProcessMock {
       order: 1,
       level: 'basic',
       parent: ' ',
-      isStart: 0
+      isBubble: 0
     },
     {
       id: 2,
@@ -24,7 +24,7 @@ export class ProcessMock {
       order: 1,
       level: 'basic',
       parent: ' ',
-      isStart: 0
+      isBubble: 0
     },
     {
       id: 3,
@@ -36,7 +36,7 @@ export class ProcessMock {
       order: 1,
       level: 'basic',
       parent: ' ',
-      isStart: 0
+      isBubble: 0
     }
   ];
 }

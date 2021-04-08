@@ -39,6 +39,7 @@ export class DocumentsComponent implements OnInit {
 
 
   ngOnInit(): void {
+    console.log("hallo")
     this.loginService.getLoginStatus().subscribe((data) => {
       if (data) {
         this.isAdmin = true;
