@@ -11,7 +11,7 @@
   <div>
     <mat-form-field class="process-form-field">
       <mat-label>Abeteilung</mat-label>
-      <mat-select [(ngModel)]="selectedDepartment">
+      <mat-select [(ngModel)]="selectedDepartment" class="selectDepartment">
         <mat-option *ngFor="let d of departments" [value]="d.color" [ngStyle]="{backgroundColor: d.color}">
           {{d.name}}
         </mat-option>
@@ -20,7 +20,7 @@
   </div>
 
   <div *ngIf="isNotBasic">
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="selectForm">
       <mat-label>Form</mat-label>
       <mat-select [(ngModel)]="selectedForm">
         <mat-option *ngFor="let f of forms" [value]="f">

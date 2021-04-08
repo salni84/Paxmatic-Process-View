@@ -18,7 +18,6 @@ import {LegendService} from '../../../service/legend-service';
 })
 export class DetailProcessComponent implements OnInit {
 
-
   @Input() newProcess: ProcessElement;
   detailProcessList: ProcessElement[] = [];
   parentId: string;
@@ -38,16 +37,13 @@ export class DetailProcessComponent implements OnInit {
   matchDocs: Document[] = [];
   matchNames: string[] = [];
   departments: any = [];
-  nextProcess: any[];
-  grandParentId: string;
 
   constructor(private location: Location,
               private processServer: ProcessService,
               private route: ActivatedRoute,
               private loginService: LoginService,
               private documentService: DocumentService,
-              private legend: LegendService) {
-  }
+              private legend: LegendService) {}
 
 
   ngOnInit() {
@@ -62,7 +58,6 @@ export class DetailProcessComponent implements OnInit {
     this.parentId = this.route.snapshot.paramMap.get('detail');
     this.getAllProcess();
     this.getDepartments();
-    this.getOtherDetailProcess();
 }
 
   showAddProcessComponent(id: number) {
@@ -240,15 +235,6 @@ export class DetailProcessComponent implements OnInit {
     this.legend.getDepartments()
       .subscribe(data => {
         this.departments = data;
-      });
-  }
-
-  getOtherDetailProcess() {
-    this.route.pathFromRoot[1].url.subscribe((value) => {
-      this.grandParentId = value[3].path;
-    });
-    this.processServer.getProcess('department', this.grandParentId)
-      .subscribe((data) => {this.nextProcess = data;
       });
   }
 }

@@ -10,7 +10,13 @@ GRANT all privileges on test_Process.* to 'testuser'@'localhost';
 flush privileges;
 
 
-DROP table if exists test_Process.basicprocess, test_Process.subprocess, test_Process.departmentprocess, test_Process.detailprocess, test_Process.documents;
+DROP table if exists
+    test_Process.basicprocess,
+    test_Process.subprocess,
+    test_Process.departmentprocess,
+    test_Process.detailprocess,
+    test_Process.documents,
+    test_Process.departments;
 
 CREATE TABLE `test_Process`.`basicprocess`
 (
@@ -84,6 +90,14 @@ CREATE TABLE `test_Process`.`documents`
     PRIMARY KEY (`id`)
 );
 
+CREATE TABLE `test_Process`.`departments`
+(
+    `id` int NOT NULL AUTO_INCREMENT,
+    `name` varchar(45) DEFAULT NULL,
+    `color` varchar(45) DEFAULT NULL,
+    PRIMARY KEY (`id`)
+);
+
 
 INSERT into test_Process.basicprocess (id, level, name, color, form, position, isVisible, visibleName)
 VALUES
@@ -112,4 +126,10 @@ VALUES
 
 INSERT into test_Process.documents (id, name, link, descripton, parent, coreElement, nr)
 VALUES
-(null, 'checkliste', 'docs/checkliste.pdf', 'liste zum checken', 'Ersatzteil', 'Abnahme', '1-00-1')
+(null, 'checkliste', 'docs/checkliste.pdf', 'liste zum checken', 'Ersatzteil', 'Abnahme', '1-00-1'),
+
+INSERT into test_Process.departments (id, name, color)
+VALUES
+(null, 'Projektleitung', 'blue'),
+(null, 'Fertigung', 'green'),
+(null, 'Reparatur', 'yellow')

@@ -1,9 +1,6 @@
 <div class="detail-title" xmlns="http://www.w3.org/1999/html">
   <mat-icon class="arrow" [routerLink]="['../']" >fast_rewind</mat-icon>
-  <h2>Detailprozess / {{parentId}}</h2>
-</div>
-<div class="otherDetailProcess">
-  <a class="next" *ngFor="let p of nextProcess" [routerLink]="[ '../' +  p.name]" >{{p.name}}</a>
+  <h2>Detailprozess</h2>
 </div>
 <app-legend></app-legend>
 <div class="main">
@@ -21,7 +18,7 @@
                             [order]="1"
         ></app-create-process>
         <div  *ngFor="let p of firstProcessRow" >
-          <mat-card [class.circle]="p.form" [class.start]="p.isBubble" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
+          <mat-card [class.circle]="p.form" [class.bubble]="p.isBubble" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
             <div class="names">
               <label>{{p.visibleName}}</label>
               <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
@@ -43,10 +40,10 @@
             </mat-form-field>
             <div class="buttons">
               <ng-container *ngIf="p.isVisible">
-                <button mat-raised-button *ngIf="p.form === 0"  class="editButton" (click)="p.form = 1">Kreis</button>
-                <button mat-raised-button *ngIf="p.form === 1" class="editButton" (click)="p.form = 0">Pfeil</button>
-                <button mat-raised-button *ngIf="p.isBubble === 0" class="editButton" (click)="p.isBubble = 1">Start</button>
-                <button mat-raised-button *ngIf="p.isBubble === 1" class="editButton" (click)="p.isBubble = 0">Pfeil</button>
+                <button mat-raised-button *ngIf="!p.form && !p.isBubble"   class="editButton" (click)="p.form = 1">Kreis</button>
+                <button mat-raised-button *ngIf="p.form && !p.isBubble" class="editButton" (click)="p.form = 0">Pfeil</button>
+                <button mat-raised-button *ngIf="!p.isBubble" class="editButton" (click)="p.isBubble = 1">Oval</button>
+                <button mat-raised-button *ngIf="p.isBubble" class="editButton" (click)="p.isBubble = 0">Pfeil</button>
               </ng-container>
               <button mat-raised-button class="editButton" (click)="deleteProcessElement(p.id)">Löschen
                 <mat-icon>delete_forever</mat-icon>
@@ -73,7 +70,7 @@
                             [order]="2"
         ></app-create-process>
         <div *ngFor="let p of secondProcessRow">
-          <mat-card [class.circle]="p.form" [class.start]="p.isBubble" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
+          <mat-card [class.circle]="p.form" [class.bubble]="p.isBubble" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
             <div class="names">
               <label>{{p.visibleName}}</label>
               <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
@@ -95,10 +92,10 @@
             </mat-form-field>
             <div class="buttons">
               <ng-container *ngIf="p.isVisible">
-                <button mat-raised-button *ngIf="p.form === 0"  class="editButton" (click)="p.form = 1">Kreis</button>
-                <button mat-raised-button *ngIf="p.form === 1" class="editButton" (click)="p.form = 0">Pfeil</button>
-                <button mat-raised-button *ngIf="p.isBubble === 0" class="editButton" (click)="p.isBubble = 1">Start</button>
-                <button mat-raised-button *ngIf="p.isBubble === 1" class="editButton" (click)="p.isBubble = 0">Pfeil</button>
+                <button mat-raised-button *ngIf="!p.form && !p.isBubble"   class="editButton" (click)="p.form = 1">Kreis</button>
+                <button mat-raised-button *ngIf="p.form && !p.isBubble" class="editButton" (click)="p.form = 0">Pfeil</button>
+                <button mat-raised-button *ngIf="!p.isBubble" class="editButton" (click)="p.isBubble = 1">Oval</button>
+                <button mat-raised-button *ngIf="p.isBubble" class="editButton" (click)="p.isBubble = 0">Pfeil</button>
               </ng-container>
               <button mat-raised-button class="editButton" (click)="deleteProcessElement(p.id)">Löschen
                 <mat-icon>delete_forever</mat-icon>
@@ -133,7 +130,7 @@
 
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop3($event)">
         <div class="core" *ngFor="let p of thirdProcessRow" >
-          <mat-card [routerLink]="p.name" [class.circle]="p.form" [class.start]="p.isBubble" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
+          <mat-card [routerLink]="p.name" [class.circle]="p.form" [class.bubble]="p.isBubble" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
             <p class="doc-icon" *ngIf="p.hasDocument"><mat-icon>attach_file</mat-icon></p>
             <div class="names">
               <label>{{p.visibleName}}</label>
@@ -156,10 +153,10 @@
             </mat-form-field>
             <div class="buttons">
               <ng-container *ngIf="p.isVisible">
-                <button mat-raised-button *ngIf="p.form === 0"  class="editButton" (click)="p.form = 1">Kreis</button>
-                <button mat-raised-button *ngIf="p.form === 1" class="editButton" (click)="p.form = 0">Pfeil</button>
-                <button mat-raised-button *ngIf="p.isBubble === 0" class="editButton" (click)="p.isBubble = 1">Start</button>
-                <button mat-raised-button *ngIf="p.isBubble === 1" class="editButton" (click)="p.isBubble = 0">Pfeil</button>
+                <button mat-raised-button *ngIf="!p.form && !p.isBubble"   class="editButton" (click)="p.form = 1">Kreis</button>
+                <button mat-raised-button *ngIf="p.form && !p.isBubble" class="editButton" (click)="p.form = 0">Pfeil</button>
+                <button mat-raised-button *ngIf="!p.isBubble" class="editButton" (click)="p.isBubble = 1">Oval</button>
+                <button mat-raised-button *ngIf="p.isBubble" class="editButton" (click)="p.isBubble = 0">Pfeil</button>
               </ng-container>
               <button [class.greyedOut]="p.hasDocument" mat-raised-button class="editButton" (click)="deleteProcessElement(p.id)">Löschen
                 <mat-icon>delete_forever</mat-icon>
@@ -186,7 +183,7 @@
       ></app-create-process>
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop4($event)">
         <div *ngFor="let p of fourthProcessRow">
-          <mat-card [class.circle]="p.form" [class.start]="p.isBubble" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
+          <mat-card [class.circle]="p.form" [class.bubble]="p.isBubble" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
             <div class="names">
               <label>{{p.visibleName}}</label>
               <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
@@ -208,10 +205,10 @@
             </mat-form-field>
             <div class="buttons">
               <ng-container *ngIf="p.isVisible">
-                <button mat-raised-button *ngIf="p.form === 0"  class="editButton" (click)="p.form = 1">Kreis</button>
-                <button mat-raised-button *ngIf="p.form === 1" class="editButton" (click)="p.form = 0">Pfeil</button>
-                <button mat-raised-button *ngIf="p.isBubble === 0" class="editButton" (click)="p.isBubble = 1">Start</button>
-                <button mat-raised-button *ngIf="p.isBubble === 1" class="editButton" (click)="p.isBubble = 0">Pfeil</button>
+                <button mat-raised-button *ngIf="!p.form && !p.isBubble"   class="editButton" (click)="p.form = 1">Kreis</button>
+                <button mat-raised-button *ngIf="p.form && !p.isBubble" class="editButton" (click)="p.form = 0">Pfeil</button>
+                <button mat-raised-button *ngIf="!p.isBubble" class="editButton" (click)="p.isBubble = 1">Oval</button>
+                <button mat-raised-button *ngIf="p.isBubble" class="editButton" (click)="p.isBubble = 0">Pfeil</button>
               </ng-container>
 
               <button mat-raised-button class="editButton" (click)="deleteProcessElement(p.id)">Löschen
@@ -239,7 +236,7 @@
       ></app-create-process>
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop5($event)">
         <div *ngFor="let p of fifthProcessRow">
-          <mat-card [class.circle]="p.form" [class.start]="p.isBubble" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
+          <mat-card [class.circle]="p.form" [class.bubble]="p.isBubble" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
             <div class="names">
               <label>{{p.visibleName}}</label>
               <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
@@ -261,10 +258,10 @@
             </mat-form-field>
             <div class="buttons">
               <ng-container *ngIf="p.isVisible">
-                <button mat-raised-button *ngIf="p.form === 0"  class="editButton" (click)="p.form = 1">Kreis</button>
-                <button mat-raised-button *ngIf="p.form === 1" class="editButton" (click)="p.form = 0">Pfeil</button>
-                <button mat-raised-button *ngIf="p.isBubble === 0" class="editButton" (click)="p.isBubble = 1">Start</button>
-                <button mat-raised-button *ngIf="p.isBubble === 1" class="editButton" (click)="p.isBubble = 0">Pfeil</button>
+                <button mat-raised-button *ngIf="!p.form && !p.isBubble"   class="editButton" (click)="p.form = 1">Kreis</button>
+                <button mat-raised-button *ngIf="p.form && !p.isBubble" class="editButton" (click)="p.form = 0">Pfeil</button>
+                <button mat-raised-button *ngIf="!p.isBubble" class="editButton" (click)="p.isBubble = 1">Oval</button>
+                <button mat-raised-button *ngIf="p.isBubble" class="editButton" (click)="p.isBubble = 0">Pfeil</button>
               </ng-container>
               <button mat-raised-button class="editButton" (click)="deleteProcessElement(p.id)">Löschen
                 <mat-icon>delete_forever</mat-icon>
@@ -291,7 +288,7 @@
       ></app-create-process>
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop6($event)">
         <div  *ngFor="let p of sixthProcessRow" >
-          <mat-card [class.circle]="p.form" [class.start]="p.isBubble" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
+          <mat-card [class.circle]="p.form" [class.bubble]="p.isBubble" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
             <div class="names">
               <label>{{p.visibleName}}</label>
               <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
@@ -313,10 +310,10 @@
             </mat-form-field>
             <div class="buttons">
               <ng-container *ngIf="p.isVisible">
-                <button mat-raised-button *ngIf="p.form === 0"  class="editButton" (click)="p.form = 1">Kreis</button>
-                <button mat-raised-button *ngIf="p.form === 1" class="editButton" (click)="p.form = 0">Pfeil</button>
-                <button mat-raised-button *ngIf="p.isBubble === 0" class="editButton" (click)="p.isBubble = 1">Start</button>
-                <button mat-raised-button *ngIf="p.isBubble === 1" class="editButton" (click)="p.isBubble = 0">Pfeil</button>
+                <button mat-raised-button *ngIf="!p.form && !p.isBubble"   class="editButton" (click)="p.form = 1">Kreis</button>
+                <button mat-raised-button *ngIf="p.form && !p.isBubble" class="editButton" (click)="p.form = 0">Pfeil</button>
+                <button mat-raised-button *ngIf="!p.isBubble" class="editButton" (click)="p.isBubble = 1">Oval</button>
+                <button mat-raised-button *ngIf="p.isBubble" class="editButton" (click)="p.isBubble = 0">Pfeil</button>
               </ng-container>
               <button mat-raised-button class="editButton" (click)="deleteProcessElement(p.id)">Löschen
                 <mat-icon>delete_forever</mat-icon>
@@ -343,7 +340,7 @@
       ></app-create-process>
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop7($event)">
         <div  *ngFor="let p of seventhProcessRow">
-          <mat-card [class.circle]="p.form" [class.start]="p.isBubble" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
+          <mat-card [class.circle]="p.form" [class.bubble]="p.isBubble" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
             <div class="names">
               <label>{{p.visibleName}}</label>
               <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
@@ -365,10 +362,10 @@
             </mat-form-field>
             <div class="buttons">
               <ng-container *ngIf="p.isVisible">
-                <button mat-raised-button *ngIf="p.form === 0"  class="editButton" (click)="p.form = 1">Kreis</button>
-                <button mat-raised-button *ngIf="p.form === 1" class="editButton" (click)="p.form = 0">Pfeil</button>
-                <button mat-raised-button *ngIf="p.isBubble === 0" class="editButton" (click)="p.isBubble = 1">Start</button>
-                <button mat-raised-button *ngIf="p.isBubble === 1" class="editButton" (click)="p.isBubble = 0">Pfeil</button>
+                <button mat-raised-button *ngIf="!p.form && !p.isBubble"   class="editButton" (click)="p.form = 1">Kreis</button>
+                <button mat-raised-button *ngIf="p.form && !p.isBubble" class="editButton" (click)="p.form = 0">Pfeil</button>
+                <button mat-raised-button *ngIf="!p.isBubble" class="editButton" (click)="p.isBubble = 1">Oval</button>
+                <button mat-raised-button *ngIf="p.isBubble" class="editButton" (click)="p.isBubble = 0">Pfeil</button>
               </ng-container>
               <button mat-raised-button class="editButton" (click)="deleteProcessElement(p.id)">Löschen
                 <mat-icon>delete_forever</mat-icon>
@@ -395,7 +392,7 @@
       ></app-create-process>
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop8($event)">
         <div  *ngFor="let p of eighthProcessRow" >
-          <mat-card [class.circle]="p.form" [class.start]="p.isBubble" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
+          <mat-card [class.circle]="p.form" [class.bubble]="p.isBubble" [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
             <div class="names">
               <label>{{p.visibleName}}</label>
               <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
@@ -417,10 +414,10 @@
             </mat-form-field>
             <div class="buttons">
               <ng-container *ngIf="p.isVisible">
-                <button mat-raised-button *ngIf="p.form === 0"  class="editButton" (click)="p.form = 1">Kreis</button>
-                <button mat-raised-button *ngIf="p.form === 1" class="editButton" (click)="p.form = 0">Pfeil</button>
-                <button mat-raised-button *ngIf="p.isBubble === 0" class="editButton" (click)="p.isBubble = 1">Start</button>
-                <button mat-raised-button *ngIf="p.isBubble === 1" class="editButton" (click)="p.isBubble = 0">Pfeil</button>
+                <button mat-raised-button *ngIf="!p.form && !p.isBubble"   class="editButton" (click)="p.form = 1">Kreis</button>
+                <button mat-raised-button *ngIf="p.form && !p.isBubble" class="editButton" (click)="p.form = 0">Pfeil</button>
+                <button mat-raised-button *ngIf="!p.isBubble" class="editButton" (click)="p.isBubble = 1">Oval</button>
+                <button mat-raised-button *ngIf="p.isBubble" class="editButton" (click)="p.isBubble = 0">Pfeil</button>
               </ng-container>
               <button mat-raised-button class="editButton" (click)="deleteProcessElement(p.id)">Löschen
                 <mat-icon>delete_forever</mat-icon>

@@ -1,7 +1,7 @@
 <div class="main">
   <div class="sub-title">
     <mat-icon class="arrow" [routerLink]="['../']">fast_rewind</mat-icon>
-    <h2>Teilprozess / {{parentId}}</h2>
+    <h2>Teilprozess</h2>
   </div>
   <div class="container">
     <div class="process">
@@ -40,8 +40,8 @@
               </mat-select>
             </mat-form-field>
             <div class="buttons">
-              <button mat-raised-button *ngIf="p.form === 0" class="editButton" (click)="p.form = 1">Kreis</button>
-              <button mat-raised-button *ngIf="p.form === 1" class="editButton" (click)="p.form = 0">Pfeil</button>
+              <button mat-raised-button *ngIf="!p.form" class="editButton" (click)="p.form = 1">Kreis</button>
+              <button mat-raised-button *ngIf="p.form" class="editButton" (click)="p.form = 0">Pfeil</button>
               <button mat-raised-button class="editButton" (click)="deleteProcessElement(p.id, p.name)">Delete
                 <mat-icon>delete_forever</mat-icon>
               </button>

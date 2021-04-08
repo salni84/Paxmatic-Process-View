@@ -5,10 +5,8 @@ import {ProcessService} from '../../../service/process-service';
 import {ActivatedRoute} from '@angular/router';
 import {LoginService} from '../../../service/login-service';
 import {Location} from '@angular/common';
-import {DialogModalComponent} from '../../dialog/dialog-modal/dialog-modal.component';
-import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {LegendService} from '../../../service/legend-service';
-import {DialogService} from "../../../service/dialog-service";
+import {DialogService} from '../../../service/dialog-service';
 
 @Component({
   selector: 'app-department-process',
