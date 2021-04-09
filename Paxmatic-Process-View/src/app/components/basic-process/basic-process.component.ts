@@ -3,14 +3,8 @@ import {ProcessService} from '../../../service/process-service';
 import {ProcessElement} from '../../model/process-element';
 import {LoginService} from '../../../service/login-service';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-<<<<<<< HEAD
 import {LegendService} from '../../../service/legend-service';
 import {DialogService} from '../../../service/dialog-service';
-=======
-import {DialogModalComponent} from '../../dialog/dialog-modal/dialog-modal.component';
-import {MatDialog} from '@angular/material/dialog';
-
->>>>>>> origin/master
 
 @Component({
   selector: 'app-basic-process',
@@ -20,13 +14,6 @@ import {MatDialog} from '@angular/material/dialog';
 
 export class BasicProcessComponent implements OnInit {
 
-<<<<<<< HEAD
-=======
-  constructor(private processServer: ProcessService,
-              private loginService: LoginService,
-              private dialog: MatDialog) {}
-
->>>>>>> origin/master
   @Input() newProcess: ProcessElement;
   basicProcessList: ProcessElement[] = [];
   level = 'basic';
@@ -101,21 +88,11 @@ export class BasicProcessComponent implements OnInit {
   }
 
   deleteProcessElement(id: number, name: string) {
-<<<<<<< HEAD
     this.processServer.getProcess('sub', name)
       .subscribe(data => {
           if (data.toString().length > 0) {
             this.dialog.openDeleteDialog();
           } else {
-=======
-
-    this.processServer.getProcess('sub', name)
-      .subscribe(data => {
-          if (data.toString().length > 0) {
-            this.openDialog();
-          } else {
-
->>>>>>> origin/master
             this.processServer.deleteProcess(id, 'basic')
               .subscribe(() => {
                 this.getAllProcess();
@@ -125,15 +102,10 @@ export class BasicProcessComponent implements OnInit {
       );
   }
 
-<<<<<<< HEAD
   getDepartments() {
     this.legend.getDepartments()
       .subscribe(data => {
         this.departments = data;
       });
-=======
-  openDialog() {
-    this.dialog.open(DialogModalComponent);
->>>>>>> origin/master
   }
 }

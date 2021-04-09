@@ -11,13 +11,8 @@ export class ProcessMock {
       visibleName: 'Projekt',
       order: 1,
       level: 'basic',
-<<<<<<< HEAD
       parent: '',
       isBubble: 0
-=======
-      parent: ' ',
-      isStart: 0
->>>>>>> origin/master
     },
     {
       id: 2,
@@ -29,13 +24,8 @@ export class ProcessMock {
       visibleName: 'Test2',
       order: 1,
       level: 'basic',
-<<<<<<< HEAD
       parent: '',
       isBubble: 0
-=======
-      parent: ' ',
-      isStart: 0
->>>>>>> origin/master
     },
     {
       id: 3,
@@ -47,13 +37,8 @@ export class ProcessMock {
       visibleName: 'Test3',
       order: 1,
       level: 'basic',
-<<<<<<< HEAD
       parent: '',
       isBubble: 0
-=======
-      parent: ' ',
-      isStart: 0
->>>>>>> origin/master
     }
 ];
   expectedSubProcess = [

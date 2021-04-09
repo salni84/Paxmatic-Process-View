@@ -73,11 +73,7 @@ CREATE TABLE `test_Process`.`detailprocess`
     `order`       int         DEFAULT NULL,
     `isVisible`   TINYINT     DEFAULT NULL,
     `visibleName` varchar(45) DEFAULT NULL,
-<<<<<<< HEAD
     `isBubble`     TINYINT     DEFAULT NULL,
-=======
-    `isStart`     TINYINT     DEFAULT NULL,
->>>>>>> origin/master
     PRIMARY KEY (`id`)
 );
 
@@ -121,11 +117,7 @@ VALUES
 (null, 'department', 'Ersatzteil', 'green', 0, 1, 'Kickoff', 'Ersatzteil'),
 (null, 'department', 'Kickoff', 'red', 1, 2, 'Kickoff', 'Kickoff');
 
-<<<<<<< HEAD
 INSERT into test_Process.detailprocess (id, level, name, color, form, position, parent, visibleName, isVisible, `order`, isBubble)
-=======
-INSERT into test_Process.detailprocess (id, level, name, color, form, position, parent, visibleName, isVisible, `order`, isStart)
->>>>>>> origin/master
 VALUES
 (null, 'detail', 'Kundenkontakt', 'red', 0, 0, 'Ersatzteil', 'Kundenkontakt', 1, 2, 0),
 (null, 'detail', 'Abnahme', 'green', 0, 1, 'Ersatzteil', 'Abnahme', 1, 3, 0),

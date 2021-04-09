@@ -2,7 +2,6 @@ import '@4tw/cypress-drag-drop';
 import {environment} from '../../src/environments/environment.prod';
 
 
-
 describe('end2end tests for process-View', () => {
 
   it('should execute DB-Script', () => {
@@ -37,7 +36,6 @@ describe('end2end tests for process-View', () => {
     cy.wait(1000);
     cy.get('.button.mat-button-base.mat-raised-button').click();
     cy.get('.button.mat-button-base.mat-raised-button.ng-star-inserted > .mat-button-wrapper').contains('LogOut');
-<<<<<<< HEAD
   });
 
   it('should open sub-process after click on basic-process', () => {
@@ -79,55 +77,6 @@ describe('end2end tests for process-View', () => {
   });
 
   it('should move 1st process-element to the right end', () => {
-=======
-});
-
-it('should open sub-process after click on basic-process',  () => {
-  cy.get('div:nth-of-type(1) > .cdk-drag.mat-card').click();
-  cy.get('h2').contains('Teilprozess / Projekt');
-  cy.url().should('contain', '/Projekt');
-});
-
-it('should check if circle-elements are visible',  () => {
-  cy.get('.cdk-drag.circle.mat-card  label').contains('Bestellung');
-  cy.get('.cdk-drag.circle.mat-card').should('have.css', 'border-radius', '100px');
-  cy.get('.cdk-drag.circle.mat-card').should('have.css', 'width', '45px');
-});
-
-it('should check static-process-names and edit-window',  () => {
-  cy.get('div:nth-of-type(2) > .cdk-drag.mat-card  .connection.ng-star-inserted').contains('Akquisition');
-  cy.get('div:nth-of-type(2) > .ng-star-inserted.saveAndUpdate > .buttons > button:nth-of-type(2) > .mat-button-wrapper')
-    .contains('Delete');
-  cy.get('div:nth-of-type(2) > .ng-star-inserted.saveAndUpdate > div > button:nth-of-type(3)')
-    .contains('Update');
-});
-
-it('should check if form-change works', () => {
-  cy.get('div:nth-of-type(2) > .ng-star-inserted.saveAndUpdate > .buttons > .editButton.mat-button-base.mat-raised-button.ng-star-inserted').click();
-  cy.get('div:nth-of-type(2) > .cdk-drag.circle.mat-card');
-  cy.get('div:nth-of-type(2) > .ng-star-inserted.saveAndUpdate > .buttons > .editButton.mat-button-base.mat-raised-button.ng-star-inserted').click();
-  cy.get('div:nth-of-type(2) > .cdk-drag.mat-card');
-});
-
-it('should add new process Element', () => {
-  cy.get('.addButton.mat-button-base.mat-raised-button.ng-star-inserted').click();
-  cy.get('.createName').type('test-element');
-  cy.get('.createColor').type('blue');
-  cy.get('.mat-select').click();
-  cy.get('mat-option:nth-of-type(1) > .mat-option-text').click();
-  cy.get('app-create-process button').click();
-  cy.get('div:nth-of-type(2) > .cdk-drag.mat-card > .names > label:nth-of-type(1)').contains('test-element');
-});
-
-it('should delete new process-element and close edit-component',  () => {
-  cy.get('div:nth-of-type(2) > .ng-star-inserted.saveAndUpdate > .buttons > button:nth-of-type(2) > .mat-button-wrapper').click();
-  cy.get('div:nth-of-type(2) > .cdk-drag.mat-card > .names > label:nth-of-type(1)').contains('test').should('not.exist');
-  cy.get('div:nth-of-type(2) > .cdk-drag.mat-card').should('have.css', 'background-color', 'rgb(255, 0, 0)');
-  cy.get('.addButton.mat-button-base.mat-raised-button.ng-star-inserted').click();
-});
-
-it('should move 1st process-element to the right end', () => {
->>>>>>> origin/master
     cy.get('div:nth-of-type(2) > .cdk-drag.mat-card')
       .trigger('mousedown', {button: 0});
 

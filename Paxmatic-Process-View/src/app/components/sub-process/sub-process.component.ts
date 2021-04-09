@@ -5,13 +5,8 @@ import {ProcessService} from '../../../service/process-service';
 import {ActivatedRoute} from '@angular/router';
 import {LoginService} from '../../../service/login-service';
 import {Location} from '@angular/common';
-<<<<<<< HEAD
 import {LegendService} from '../../../service/legend-service';
 import {DialogService} from '../../../service/dialog-service';
-=======
-import {MatDialog} from '@angular/material/dialog';
-import {DialogModalComponent} from '../../dialog/dialog-modal/dialog-modal.component';
->>>>>>> origin/master
 
 @Component({
   selector: 'app-sub-process',
@@ -36,14 +31,9 @@ export class SubProcessComponent implements OnInit {
               private processServer: ProcessService,
               private route: ActivatedRoute,
               private loginService: LoginService,
-<<<<<<< HEAD
               private dialog: DialogService,
               private legend: LegendService) {
   }
-=======
-              private dialog: MatDialog)
-  {}
->>>>>>> origin/master
 
 
   ngOnInit() {
@@ -117,27 +107,16 @@ export class SubProcessComponent implements OnInit {
   }
 
   deleteProcessElement(id: number, name: string) {
-<<<<<<< HEAD
     this.processServer.getProcess('department', name)
       .subscribe(data => {
         if (data.toString().length > 0) {
           this.dialog.openDeleteDialog();
         } else {
-=======
-
-    this.processServer.getProcess('department', name)
-      .subscribe(data => {
-        if (data.toString().length > 0) {
-          this.openDialog();
-        } else {
-
->>>>>>> origin/master
           this.processServer.deleteProcess(id, 'sub')
             .subscribe(() => {
               this.getAllProcess();
             });
         }
-<<<<<<< HEAD
       });
   }
 
@@ -146,14 +125,6 @@ export class SubProcessComponent implements OnInit {
       .subscribe(data => {
         this.departments = data;
       });
-=======
-        }
-      );
-  }
-
-  openDialog() {
-    this.dialog.open(DialogModalComponent);
->>>>>>> origin/master
   }
 
   checkDuplikates(newProcess: ProcessElement): boolean {

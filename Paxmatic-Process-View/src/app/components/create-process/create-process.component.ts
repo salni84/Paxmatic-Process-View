@@ -16,14 +16,9 @@ export class CreateProcessComponent implements OnInit {
   @Input() order;
   @Output() newProcessEvent = new EventEmitter<ProcessElement>();
   newProcess: ProcessElement = new ProcessElement();
-<<<<<<< HEAD
   selectedForm;
   selectedDepartment;
   forms = ['Pfeil', 'Kreis'];
-=======
-  selected;
-  forms = ['Pfeil', 'Kreis', 'Start'];
->>>>>>> origin/master
   isNotDetailProcess = false;
   value: 'Name';
   isNotBasic = true;
@@ -51,13 +46,8 @@ export class CreateProcessComponent implements OnInit {
   createNewProcessElement() {
     if (this.selectedForm === 'Kreis') {
       this.newProcess.form = 1;
-<<<<<<< HEAD
     } else if (this.selectedForm === 'Start') {
       this.newProcess.isBubble = 1;
-=======
-    } else if (this.selected === 'Start') {
-      this.newProcess.isStart = 1;
->>>>>>> origin/master
       this.newProcess.form = 0;
     } else {
       this.newProcess.form = 0;
