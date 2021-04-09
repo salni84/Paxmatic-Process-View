@@ -5,8 +5,13 @@ import {ProcessService} from '../../../service/process-service';
 import {ActivatedRoute} from '@angular/router';
 import {LoginService} from '../../../service/login-service';
 import {Location} from '@angular/common';
+<<<<<<< HEAD
 import {LegendService} from '../../../service/legend-service';
 import {DialogService} from '../../../service/dialog-service';
+=======
+import {MatDialog} from "@angular/material/dialog";
+import {DialogModalComponent} from "../../dialog/dialog-modal/dialog-modal.component";
+>>>>>>> origin/master
 
 @Component({
   selector: 'app-department-process',
@@ -30,10 +35,14 @@ export class DepartmentProcessComponent implements OnInit {
               private processServer: ProcessService,
               private route: ActivatedRoute,
               private loginService: LoginService,
+<<<<<<< HEAD
               private legend: LegendService,
               private dialog: DialogService
   ) {
   }
+=======
+              private dialog: MatDialog) {  }
+>>>>>>> origin/master
 
 
   ngOnInit() {
@@ -111,8 +120,14 @@ export class DepartmentProcessComponent implements OnInit {
     this.processServer.getProcess('detail', name)
       .subscribe(data => {
           if (data.toString().length > 0) {
+<<<<<<< HEAD
             this.dialog.openDeleteDialog();
           } else {
+=======
+            this.openDialog();
+          } else {
+
+>>>>>>> origin/master
             this.processServer.deleteProcess(id, 'department')
               .subscribe(() => {
                 this.getAllProcess();
@@ -122,11 +137,16 @@ export class DepartmentProcessComponent implements OnInit {
       );
   }
 
+<<<<<<< HEAD
   getDepartments() {
     this.legend.getDepartments()
       .subscribe(data => {
         this.departments = data;
       });
+=======
+  openDialog() {
+    this.dialog.open(DialogModalComponent);
+>>>>>>> origin/master
   }
 
   checkDuplikates(newProcess: ProcessElement): boolean {

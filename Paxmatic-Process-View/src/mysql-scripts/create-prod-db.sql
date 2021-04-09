@@ -58,6 +58,7 @@ CREATE TABLE `process_Server`.`departmentprocess`
 );
 
 
+<<<<<<< HEAD
 CREATE TABLE `process_Server`.`detailprocess`
 (
 
@@ -73,6 +74,22 @@ CREATE TABLE `process_Server`.`detailprocess`
     `visibleName` varchar(45) DEFAULT NULL,
     `isBubble`    TINYINT     DEFAULT NULL,
     PRIMARY KEY (`id`)
+=======
+CREATE TABLE `process_Server`.`detailprocess` (
+
+                                 `id` int NOT NULL AUTO_INCREMENT,
+                                 `level` varchar(45) DEFAULT NULL,
+                                 `name` varchar(45) DEFAULT NULL,
+                                 `color` varchar(45) DEFAULT NULL,
+                                 `form` int DEFAULT NULL,
+                                 `position` int DEFAULT NULL,
+                                 `parent` varchar(45) DEFAULT NULL,
+                                 `order` int DEFAULT NULL,
+                                 `isVisible` TINYINT DEFAULT NULL,
+                                 `visibleName` varchar(45) DEFAULT NULL,
+                                 `isStart` TINYINT DEFAULT NULL,
+                                 PRIMARY KEY (`id`)
+>>>>>>> origin/master
 );
 
 
@@ -108,6 +125,7 @@ VALUES (null, 'sub', 'Akquisition', 'red', 0, 0, 'Projekt', 'Akquisition'),
        (null, 'sub', 'Kickoff', 'red', 0, 2, 'Projekt', 'Kickoff');
 
 INSERT into process_Server.departmentprocess (id, level, name, color, form, position, parent, visibleName)
+<<<<<<< HEAD
 VALUES (null, 'department', 'Service', 'red', 0, 0, 'Kickoff', 'Service'),
        (null, 'department', 'Ersatzteil', 'green', 0, 1, 'Kickoff', 'Ersatzteil'),
        (null, 'department', 'Kickoff', 'red', 1, 2, 'Kickoff', 'Kickoff');
@@ -118,6 +136,19 @@ VALUES (null, 'detail', 'Kundenkontakt', 'red', 0, 0, 'Ersatzteil', 'Kundenkonta
        (null, 'detail', 'Abnahme', 'green', 0, 1, 'Ersatzteil', 'Abnahme', 1, 3, 0),
        (null, 'detail', 'Kickoff', 'red', 1, 2, 'Ersatzteil', 'Kickoff', 1, 4, 0),
        (null, 'detail', 'Bestellung', 'green', 1, 2, 'Ersatzteil', 'Bestellung', 1, 3, 0);
+=======
+VALUES
+(null, 'department', 'Service', 'red', 0, 0, 'Kickoff', 'Service'),
+(null, 'department', 'Ersatzteil', 'green', 0, 1, 'Kickoff', 'Ersatzteil'),
+(null, 'department', 'Kickoff', 'red', 1, 2, 'Kickoff', 'Kickoff');
+
+INSERT into process_Server.detailprocess (id, level, name, color, form, position, parent, visibleName, isVisible, `order`, isStart)
+VALUES
+(null, 'detail', 'Kundenkontakt', 'red', 0, 0, 'Ersatzteil', 'Kundenkontakt', 1, 2, 0),
+(null, 'detail', 'Abnahme', 'green', 0, 1, 'Ersatzteil', 'Abnahme', 1, 3, 0),
+(null, 'detail', 'Kickoff', 'red', 1, 2, 'Ersatzteil', 'Kickoff', 1, 4, 0),
+(null, 'detail', 'Bestellung', 'green', 1, 2, 'Ersatzteil', 'Bestellung', 1, 3, 0);
+>>>>>>> origin/master
 
 INSERT into process_Server.documents (id, name, link, descripton, parent, coreElement, nr)
 VALUES (null, 'checkliste', 'docs/checkliste.pdf', 'liste zum checken', 'Ersatzteil', 'Abnahme', '1-00-1');

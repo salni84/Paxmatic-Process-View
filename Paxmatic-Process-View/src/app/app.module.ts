@@ -31,10 +31,17 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+<<<<<<< HEAD
 import {MatDialogModule} from '@angular/material/dialog';
 import {DialogModalComponent} from './dialog/dialog-modal/dialog-modal.component';
 import {LegendComponent} from './components/legend/legend.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+=======
+import {MatDialogModule} from "@angular/material/dialog";
+import { DialogModalComponent } from './dialog/dialog-modal/dialog-modal.component';
+
+
+>>>>>>> origin/master
 
 
 @NgModule({
@@ -52,8 +59,12 @@ import {MatExpansionModule} from '@angular/material/expansion';
     NavbarComponent,
     DocumentsComponent,
     CreateDocumentComponent,
+<<<<<<< HEAD
     DialogModalComponent,
     LegendComponent
+=======
+    DialogModalComponent
+>>>>>>> origin/master
   ],
   imports: [
     BrowserModule,
@@ -74,8 +85,12 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatInputModule,
     MatSelectModule,
     MatSlideToggleModule,
+<<<<<<< HEAD
     MatDialogModule,
     MatExpansionModule
+=======
+    MatDialogModule
+>>>>>>> origin/master
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]

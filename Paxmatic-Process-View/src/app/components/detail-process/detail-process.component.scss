@@ -207,6 +207,7 @@ h2 {
   }
 }
 
+<<<<<<< HEAD
 .coreProcess {
   width: 50px;
   height: 50px;
@@ -237,6 +238,9 @@ h2 {
 }
 
 .bubble {
+=======
+.start {
+>>>>>>> origin/master
   width: 115px;
   height: 45px;
   top: 5px;
@@ -249,9 +253,17 @@ h2 {
   text-align: center;
   border-radius: 70%;
   font-size: 13px;
+<<<<<<< HEAD
 
   .mat-card-after {
     display: none;
+=======
+  .mat-card-after {
+    display: none;
+  }
+  .mat-card-before {
+    display: none;
+>>>>>>> origin/master
   }
 
   .mat-card-before {

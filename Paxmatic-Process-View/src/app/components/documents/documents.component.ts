@@ -95,11 +95,18 @@ export class DocumentsComponent implements OnInit {
       this.coreElement = value[5].path;
     });
     this.processService.getProcess('detail', this.parentId)
+<<<<<<< HEAD
       .pipe(
         map(items => items.filter(item => item.order === 3 && !item.isStart)))
       .subscribe((data) => {
         this.nextProcess = data;
       });
+=======
+        .pipe(
+          map(items => items.filter(item => item.order === 3 && !item.isStart)))
+        .subscribe((data) => {this.nextProcess = data;
+        });
+>>>>>>> origin/master
   }
 
   addDocument(newDocument: Document) {
