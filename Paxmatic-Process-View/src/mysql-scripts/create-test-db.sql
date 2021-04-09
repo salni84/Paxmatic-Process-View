@@ -6,7 +6,6 @@ CREATE database test_Process;
 
 GRANT all privileges on test_Process.* to 'testuser'@'localhost';
 
-
 flush privileges;
 
 
@@ -132,4 +131,4 @@ INSERT into test_Process.departments (id, name, color)
 VALUES
 (null, 'Projektleitung', 'blue'),
 (null, 'Fertigung', 'green'),
-(null, 'Reparatur', 'yellow')
+(null, 'Reparatur', 'yellow');

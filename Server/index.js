@@ -14,7 +14,8 @@ if (process.env.NODE_ENV === 'prod') {
             user: process.env.DB_USER,
             password: process.env.DB_PWD,
             database: process.env.DB_NAME,
-            port: process.env.PORT
+            port: process.env.PORT,
+            insecureAuth: true
         });
 
     connection.connect();

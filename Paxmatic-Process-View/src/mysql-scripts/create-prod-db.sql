@@ -120,9 +120,9 @@ VALUES (null, 'detail', 'Kundenkontakt', 'red', 0, 0, 'Ersatzteil', 'Kundenkonta
        (null, 'detail', 'Bestellung', 'green', 1, 2, 'Ersatzteil', 'Bestellung', 1, 3, 0);
 
 INSERT into process_Server.documents (id, name, link, descripton, parent, coreElement, nr)
-VALUES (null, 'checkliste', 'docs/checkliste.pdf', 'liste zum checken', 'Ersatzteil', 'Abnahme', '1-00-1')
+VALUES (null, 'checkliste', 'docs/checkliste.pdf', 'liste zum checken', 'Ersatzteil', 'Abnahme', '1-00-1');
 
 INSERT into process_Server.departments (id, name, color)
-VALUES (null, 'Projektleitung', 'blue'),
+VALUES (null, 'Projektleitung', 'red'),
        (null, 'Fertigung', 'green'),
-       (null, 'Reparatur', 'yellow')
+       (null, 'Reparatur', 'yellow');
