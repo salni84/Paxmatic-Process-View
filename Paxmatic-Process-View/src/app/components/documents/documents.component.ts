@@ -15,7 +15,6 @@ import {DomSanitizer} from '@angular/platform-browser';
   styleUrls: ['./documents.component.scss']
 })
 
-
 export class DocumentsComponent implements OnInit {
 
   documents: Document[] = [];
@@ -35,15 +34,17 @@ export class DocumentsComponent implements OnInit {
     private route: ActivatedRoute,
     private loginService: LoginService,
     private processService: ProcessService,
-    private sanitizer: DomSanitizer) { }
+    private sanitizer: DomSanitizer) {
+  }
 
 
   ngOnInit(): void {
+    console.log("hallo")
     this.loginService.getLoginStatus().subscribe((data) => {
       if (data) {
         this.isAdmin = true;
         this.displayedColumns.push('löschen');
-        this.displayedColumns.filter( ( item, index, inputArray ) => {
+        this.displayedColumns.filter((item, index, inputArray) => {
           return inputArray.indexOf(item) === index;
         });
       } else {
@@ -94,10 +95,18 @@ export class DocumentsComponent implements OnInit {
       this.coreElement = value[5].path;
     });
     this.processService.getProcess('detail', this.parentId)
+<<<<<<< HEAD
+      .pipe(
+        map(items => items.filter(item => item.order === 3 && !item.isStart)))
+      .subscribe((data) => {
+        this.nextProcess = data;
+      });
+=======
         .pipe(
           map(items => items.filter(item => item.order === 3 && !item.isStart)))
         .subscribe((data) => {this.nextProcess = data;
         });
+>>>>>>> origin/master
   }
 
   addDocument(newDocument: Document) {

@@ -10,7 +10,11 @@ describe('DialogModalComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ DialogModalComponent ]
     })
+<<<<<<< HEAD
+      .compileComponents();
+=======
     .compileComponents();
+>>>>>>> origin/master
   });
 
   beforeEach(() => {
@@ -18,8 +22,11 @@ describe('DialogModalComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
+<<<<<<< HEAD
+=======
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+>>>>>>> origin/master
 });

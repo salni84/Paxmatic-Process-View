@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {ProcessElement} from '../app/model/process-element';
@@ -14,10 +14,15 @@ export class ProcessService {
 
   private serverURL = environment.serverURL;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getProcess(level: string, parent: string): Observable<any> {
     return this.http.get(this.serverURL + level + '/' + parent);
+  }
+
+  getAllProcess(level: string): Observable<any> {
+    return this.http.get(this.serverURL + level);
   }
 
   addProcessElement(process: ProcessElement, level: string): Observable<any> {
@@ -44,8 +49,7 @@ export class ProcessService {
       container: undefined,
       previousContainer: undefined,
       isPointerOverContainer: true,
-      distance: { x: 0, y: 0 }
+      distance: {x: 0, y: 0}
     };
   }
 }
-

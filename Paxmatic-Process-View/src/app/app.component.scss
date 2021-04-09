@@ -22,12 +22,5 @@
 .grid-container {
   display: grid;
   grid-template-columns: 130px auto;
-  grid-template-areas:
-    'header header'
-    'navleft content'
-    'footer footer';
+  grid-template-areas: 'header header' 'navleft content' 'footer footer';
 }
-
-
-
-

@@ -15,11 +15,14 @@ export class LoginComponent implements OnInit {
   errormessage: string;
   isLoggedIn = false;
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   logout() {
+    this.scrollUp();
     this.isAdmin.emit(false);
     this.isLoggedIn = false;
     this.loginService.isUserLoggedOut(false);
@@ -27,6 +30,7 @@ export class LoginComponent implements OnInit {
 
   passwordValidation() {
     if (this.password === environment.password) {
+      this.scrollUp();
       this.isAdmin.emit(true);
       this.isLoggedIn = true;
       this.loginService.isUserLoggedIn(true);
@@ -35,5 +39,9 @@ export class LoginComponent implements OnInit {
     } else {
       this.errormessage = 'Passwort nicht korrekt!';
     }
+  }
+
+  scrollUp() {
+    window.scrollTo(0, 0);
   }
 }

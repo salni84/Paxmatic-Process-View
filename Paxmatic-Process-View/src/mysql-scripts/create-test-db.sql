@@ -10,7 +10,13 @@ GRANT all privileges on test_Process.* to 'testuser'@'localhost';
 flush privileges;
 
 
-DROP table if exists test_Process.basicprocess, test_Process.subprocess, test_Process.departmentprocess, test_Process.detailprocess, test_Process.documents;
+DROP table if exists
+    test_Process.basicprocess,
+    test_Process.subprocess,
+    test_Process.departmentprocess,
+    test_Process.detailprocess,
+    test_Process.documents,
+    test_Process.departments;
 
 CREATE TABLE `test_Process`.`basicprocess`
 (
@@ -67,7 +73,11 @@ CREATE TABLE `test_Process`.`detailprocess`
     `order`       int         DEFAULT NULL,
     `isVisible`   TINYINT     DEFAULT NULL,
     `visibleName` varchar(45) DEFAULT NULL,
+<<<<<<< HEAD
+    `isBubble`     TINYINT     DEFAULT NULL,
+=======
     `isStart`     TINYINT     DEFAULT NULL,
+>>>>>>> origin/master
     PRIMARY KEY (`id`)
 );
 
@@ -81,6 +91,14 @@ CREATE TABLE `test_Process`.`documents`
     `nr`          varchar(45) DEFAULT NULL,
     `parent`      varchar(45) DEFAULT NULL,
     `name`        varchar(45) DEFAULT NULL,
+    PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `test_Process`.`departments`
+(
+    `id` int NOT NULL AUTO_INCREMENT,
+    `name` varchar(45) DEFAULT NULL,
+    `color` varchar(45) DEFAULT NULL,
     PRIMARY KEY (`id`)
 );
 
@@ -103,7 +121,11 @@ VALUES
 (null, 'department', 'Ersatzteil', 'green', 0, 1, 'Kickoff', 'Ersatzteil'),
 (null, 'department', 'Kickoff', 'red', 1, 2, 'Kickoff', 'Kickoff');
 
+<<<<<<< HEAD
+INSERT into test_Process.detailprocess (id, level, name, color, form, position, parent, visibleName, isVisible, `order`, isBubble)
+=======
 INSERT into test_Process.detailprocess (id, level, name, color, form, position, parent, visibleName, isVisible, `order`, isStart)
+>>>>>>> origin/master
 VALUES
 (null, 'detail', 'Kundenkontakt', 'red', 0, 0, 'Ersatzteil', 'Kundenkontakt', 1, 2, 0),
 (null, 'detail', 'Abnahme', 'green', 0, 1, 'Ersatzteil', 'Abnahme', 1, 3, 0),
@@ -112,4 +134,10 @@ VALUES
 
 INSERT into test_Process.documents (id, name, link, descripton, parent, coreElement, nr)
 VALUES
-(null, 'checkliste', 'docs/checkliste.pdf', 'liste zum checken', 'Ersatzteil', 'Abnahme', '1-00-1')
+(null, 'checkliste', 'docs/checkliste.pdf', 'liste zum checken', 'Ersatzteil', 'Abnahme', '1-00-1');
+
+INSERT into test_Process.departments (id, name, color)
+VALUES
+(null, 'Projektleitung', 'blue'),
+(null, 'Fertigung', 'green'),
+(null, 'Reparatur', 'yellow');

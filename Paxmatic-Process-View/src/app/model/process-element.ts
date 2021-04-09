@@ -10,5 +10,9 @@ export class ProcessElement {
   isVisible: number;
   visibleName: string;
   hasDocument?: boolean;
+<<<<<<< HEAD
+  isBubble: number;
+=======
   isStart: number;
+>>>>>>> origin/master
 }

@@ -5,13 +5,14 @@ import { SubProcessComponent } from './sub-process.component';
 import {ProcessMock} from '../../model/process-mock';
 import {of} from 'rxjs';
 import {ProcessService} from '../../../service/process-service';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 describe('SubProcessComponent', () => {
   let component: SubProcessComponent;
   let fixture: ComponentFixture<SubProcessComponent>;
   let element;
-  const expectedProcess = new ProcessMock().expectedProcess;
+  const expectedProcess = new ProcessMock().expectedBasicProcess;
   let processService: ProcessService;
 
 
@@ -20,7 +21,8 @@ describe('SubProcessComponent', () => {
       declarations: [ SubProcessComponent ],
       imports: [
         HttpClientTestingModule,
-        RouterTestingModule],
+        RouterTestingModule,
+        MatDialogModule],
       providers: [{
         ProcessService,
         useValue: {getAllProcess: () => of(expectedProcess)}
@@ -38,7 +40,7 @@ describe('SubProcessComponent', () => {
   }));
 
   it('should test header', () => {
-    expect(element.querySelector('h2').innerText).toBe('Teilprozess /');
+    expect(element.querySelector('h2').innerText).toBe('Teilprozess');
   });
 
   it('should test drop-function for sub-process',  () => {

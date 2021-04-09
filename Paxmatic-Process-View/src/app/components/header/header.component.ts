@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LoginService} from '../../../service/login-service';
 
 @Component({
@@ -11,12 +11,15 @@ export class HeaderComponent implements OnInit {
   isLoginWindowVisible = false;
   loginButton = 'Admin-Login';
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   showLogin() {
-    this.isLoginWindowVisible = !this.isLoginWindowVisible;
+    this.scrollUp(),
+      this.isLoginWindowVisible = !this.isLoginWindowVisible;
 
     if (this.isLoginWindowVisible) {
       this.loginButton = 'Close';
@@ -24,5 +27,9 @@ export class HeaderComponent implements OnInit {
       this.loginButton = 'Admin-Login';
       this.loginService.isUserLoggedOut(true);
     }
+  }
+
+  scrollUp() {
+    window.scrollTo(0, 0);
   }
 }

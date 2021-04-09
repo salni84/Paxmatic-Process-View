@@ -9,18 +9,20 @@
   </div>
 
   <div>
-  <mat-form-field class="process-form-field">
-    <mat-label>Farbe</mat-label>
-    <label>
-      <input matInput type="text" class="createColor" [(ngModel)]="newProcess.color">
-    </label>
-  </mat-form-field>
+    <mat-form-field class="process-form-field">
+      <mat-label>Abeteilung</mat-label>
+      <mat-select [(ngModel)]="selectedDepartment" class="selectDepartment">
+        <mat-option *ngFor="let d of departments" [value]="d.color" [ngStyle]="{backgroundColor: d.color}">
+          {{d.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 
   <div *ngIf="isNotBasic">
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="selectForm">
       <mat-label>Form</mat-label>
-      <mat-select [(ngModel)]="selected">
+      <mat-select [(ngModel)]="selectedForm">
         <mat-option *ngFor="let f of forms" [value]="f">
           {{f}}
         </mat-option>
@@ -30,6 +32,8 @@
 
   <div class="action">
     <button mat-raised-button class="button" (click)="createNewProcessElement()">Save</button>
-    <button mat-raised-button class="emptyBoxButton" *ngIf="isNotDetailProcess" (click)="createEmptyProcessElement()">Move</button>
+    <button mat-raised-button class="emptyBoxButton" *ngIf="isNotDetailProcess" (click)="createEmptyProcessElement()">
+      Move
+    </button>
   </div>
 </div>

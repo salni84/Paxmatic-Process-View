@@ -5,12 +5,14 @@ import { DetailProcessComponent } from './detail-process.component';
 import {of} from 'rxjs';
 import {ProcessMock} from '../../model/process-mock';
 import {ProcessService} from '../../../service/process-service';
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 describe('DetailProcessComponent', () => {
   let component: DetailProcessComponent;
   let fixture: ComponentFixture<DetailProcessComponent>;
   let element;
-  const expectedProcess = new ProcessMock().expectedProcess;
+  const expectedProcess = new ProcessMock().expectedBasicProcess;
   let processService: ProcessService;
 
   beforeEach((() => {
@@ -18,7 +20,8 @@ describe('DetailProcessComponent', () => {
       declarations: [ DetailProcessComponent ],
       imports: [
         HttpClientTestingModule,
-        RouterTestingModule],
+        RouterTestingModule,
+        MatDialogModule],
       providers: [{
         ProcessService,
         useValue: {getAllProcess: () => of(expectedProcess)}
@@ -36,7 +39,7 @@ describe('DetailProcessComponent', () => {
   }));
 
   it('should test header', () => {
-    expect(element.querySelector('h2').innerText).toBe('Detailprozess /');
+    expect(element.querySelector('h2').innerText).toBe('Detailprozess');
   });
 
 

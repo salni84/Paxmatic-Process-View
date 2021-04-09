@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 
 
@@ -19,7 +19,7 @@ export class LoginService {
   }
 
   isUserLoggedOut(isAdmin: boolean) {
-  this.isAdmin.next(false);
+    this.isAdmin.next(false);
   }
 
   getLoginStatus(): Observable<boolean> {

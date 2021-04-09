@@ -4,7 +4,5 @@
     <file url="file://$PROJECT_DIR$/Paxmatic-Process-View/src/mysql-scripts/create-prod-db.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/Paxmatic-Process-View/src/mysql-scripts/create-test-db.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/Paxmatic-Process-View/src/mysql-scripts/db-query.sql" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/Server/events.js" dialect="MySQL" />
-    <file url="PROJECT" dialect="MySQL" />
   </component>
 </project>

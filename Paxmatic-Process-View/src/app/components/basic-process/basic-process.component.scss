@@ -15,7 +15,7 @@
 .container {
   margin-top: 100px;
   margin-left: 300px;
-  width: 300px
+  width: 300px;
 }
 
 .create {
@@ -69,16 +69,16 @@ h2 {
 }
 
 .mat-card-before {
-    position: absolute;
-    top: 0;
-    left: -33px;
-    width: 0;
-    height: 0;
-    border-left: 35px solid transparent;
-    border-top: 40px;
-    border-top-style: solid;
-    border-bottom: 40px solid;
-    border-left: 35px solid transparent
+  position: absolute;
+  top: 0;
+  left: -33px;
+  width: 0;
+  height: 0;
+  border-left: 35px solid transparent;
+  border-top: 40px;
+  border-top-style: solid;
+  border-bottom: 40px solid;
+  border-left: 35px solid transparent
 }
 
 .mat-card-after {
@@ -136,3 +136,14 @@ h2 {
   height: 100vh;
   display: flex;
 }
+
+.options {
+  border-color: white;
+  border-style: solid;
+  height: 2em;
+}
+
+
+
+
+

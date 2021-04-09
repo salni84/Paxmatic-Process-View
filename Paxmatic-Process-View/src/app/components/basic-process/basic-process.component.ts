@@ -3,9 +3,14 @@ import {ProcessService} from '../../../service/process-service';
 import {ProcessElement} from '../../model/process-element';
 import {LoginService} from '../../../service/login-service';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+<<<<<<< HEAD
+import {LegendService} from '../../../service/legend-service';
+import {DialogService} from '../../../service/dialog-service';
+=======
 import {DialogModalComponent} from '../../dialog/dialog-modal/dialog-modal.component';
 import {MatDialog} from '@angular/material/dialog';
 
+>>>>>>> origin/master
 
 @Component({
   selector: 'app-basic-process',
@@ -15,10 +20,13 @@ import {MatDialog} from '@angular/material/dialog';
 
 export class BasicProcessComponent implements OnInit {
 
+<<<<<<< HEAD
+=======
   constructor(private processServer: ProcessService,
               private loginService: LoginService,
               private dialog: MatDialog) {}
 
+>>>>>>> origin/master
   @Input() newProcess: ProcessElement;
   basicProcessList: ProcessElement[] = [];
   level = 'basic';
@@ -26,10 +34,17 @@ export class BasicProcessComponent implements OnInit {
   hideCreateElement = false;
   showAddButton = true;
   isAdmin = false;
+  departments: any = [];
 
+  constructor(private processServer: ProcessService,
+              private loginService: LoginService,
+              private dialog: DialogService,
+              private legend: LegendService) {
+  }
 
   ngOnInit() {
     this.getAllProcess();
+    this.getDepartments();
 
     this.loginService.getLoginStatus().subscribe((data) => {
       if (data) {
@@ -54,7 +69,7 @@ export class BasicProcessComponent implements OnInit {
   }
 
   getAllProcess() {
-   this.processServer.getProcess('basic', '')
+    this.processServer.getProcess('basic', '')
       .subscribe((process) => {
         this.basicProcessList = process;
       });
@@ -70,13 +85,13 @@ export class BasicProcessComponent implements OnInit {
     }
   }
 
- addNewProcess(newProcess: ProcessElement) {
-     this.processServer.addProcessElement(newProcess, 'basic')
-       .subscribe(() => {
-         this.getAllProcess();
-       });
-     this.basicProcessList.push(newProcess);
- }
+  addNewProcess(newProcess: ProcessElement) {
+    this.processServer.addProcessElement(newProcess, 'basic')
+      .subscribe(() => {
+        this.getAllProcess();
+      });
+    this.basicProcessList.push(newProcess);
+  }
 
   udpateProcess() {
     this.processServer.updateProcessList(this.basicProcessList, 'basic')
@@ -86,6 +101,13 @@ export class BasicProcessComponent implements OnInit {
   }
 
   deleteProcessElement(id: number, name: string) {
+<<<<<<< HEAD
+    this.processServer.getProcess('sub', name)
+      .subscribe(data => {
+          if (data.toString().length > 0) {
+            this.dialog.openDeleteDialog();
+          } else {
+=======
 
     this.processServer.getProcess('sub', name)
       .subscribe(data => {
@@ -93,6 +115,7 @@ export class BasicProcessComponent implements OnInit {
             this.openDialog();
           } else {
 
+>>>>>>> origin/master
             this.processServer.deleteProcess(id, 'basic')
               .subscribe(() => {
                 this.getAllProcess();
@@ -102,7 +125,15 @@ export class BasicProcessComponent implements OnInit {
       );
   }
 
+<<<<<<< HEAD
+  getDepartments() {
+    this.legend.getDepartments()
+      .subscribe(data => {
+        this.departments = data;
+      });
+=======
   openDialog() {
     this.dialog.open(DialogModalComponent);
+>>>>>>> origin/master
   }
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Document} from '../app/model/document';
@@ -14,7 +14,8 @@ export class DocumentService {
   private serverURL = environment.serverURL;
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getDocumentsByParent(parent: string): Observable<any> {
     return this.http.get(this.serverURL + 'documents' + '/' + parent);

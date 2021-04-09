@@ -1,5 +1,5 @@
+
 .detail-title {
-  margin-bottom: 50px;
   margin-top: 10px;
   display: flex;
   align-items: center;
@@ -24,11 +24,18 @@ h2 {
 .main {
   display: flow-root;
   width: -webkit-fill-available;
+  padding-top: 50px;
 }
 
 .container {
   margin-top: 10px;
-  margin-left: 120px;
+  margin-left: 138px;
+  display: flex;
+}
+
+.core-container {
+  margin-top: 10px;
+  margin-left: 40px;
   display: flex;
 }
 
@@ -44,7 +51,7 @@ h2 {
 }
 
 .isInvisible {
-  visibility: hidden ;
+  opacity: 0;
 }
 
 .greyedOut {
@@ -69,12 +76,12 @@ h2 {
 }
 
 .addButton {
-   min-width: 40px;
-   line-height: 25px;
-   text-align: center;
-   justify-content: center;
-   margin-right: 10px;
- }
+  min-width: 40px;
+  line-height: 25px;
+  text-align: center;
+  justify-content: center;
+  margin-right: 10px;
+}
 
 .form {
   width: 20%;
@@ -188,17 +195,52 @@ h2 {
   text-align: center;
   border-radius: 100px;
   font-size: 13px;
+
   .doc-icon {
     margin-bottom: 10px;
     margin-top: 0;
     height: 10px;
   }
+
   .mat-icon {
-  font-size: 20px;
+    font-size: 20px;
   }
 }
 
+<<<<<<< HEAD
+.coreProcess {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: yellow;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+}
+
+.coreProcess-after {
+  content: "";
+  left: 181px;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-top: 40px solid transparent;
+  border-bottom: 40px solid transparent;
+  border-left: 35px solid;
+  border-left-color: yellow;
+}
+
+.kern {
+  display: flex;
+}
+
+.bubble {
+=======
 .start {
+>>>>>>> origin/master
   width: 115px;
   height: 45px;
   top: 5px;
@@ -211,10 +253,34 @@ h2 {
   text-align: center;
   border-radius: 70%;
   font-size: 13px;
+<<<<<<< HEAD
+
+  .mat-card-after {
+    display: none;
+=======
   .mat-card-after {
     display: none;
   }
   .mat-card-before {
     display: none;
+>>>>>>> origin/master
   }
+
+  .mat-card-before {
+    display: none;
+  }
+}
+
+.otherDetailProcess {
+  background-color: black;
+  height: 30px;
+  text-align: center;
+  display: flex;
+  font-family: "Century Gothic", sans-serif;
+  padding-left: 10%;
+}
+
+.next {
+  margin-right: 20px;
+  color: white;
 }

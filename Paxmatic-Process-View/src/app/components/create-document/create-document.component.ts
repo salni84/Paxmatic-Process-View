@@ -14,9 +14,11 @@ export class CreateDocumentComponent implements OnInit {
   @Output() newDocumentEvent = new EventEmitter<Document>();
   newDocument: Document = new Document();
 
-  constructor() {}
+  constructor() {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   createNewDocument() {
     this.newDocument.parent = this.parentId;
@@ -26,5 +28,5 @@ export class CreateDocumentComponent implements OnInit {
     this.newDocument.link = '';
     this.newDocument.name = '';
     this.newDocument.nr = '';
-    }
+  }
 }

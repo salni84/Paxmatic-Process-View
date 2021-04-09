@@ -5,8 +5,13 @@ import {ProcessService} from '../../../service/process-service';
 import {ActivatedRoute} from '@angular/router';
 import {LoginService} from '../../../service/login-service';
 import {Location} from '@angular/common';
+<<<<<<< HEAD
+import {LegendService} from '../../../service/legend-service';
+import {DialogService} from '../../../service/dialog-service';
+=======
 import {MatDialog} from "@angular/material/dialog";
 import {DialogModalComponent} from "../../dialog/dialog-modal/dialog-modal.component";
+>>>>>>> origin/master
 
 @Component({
   selector: 'app-department-process',
@@ -16,20 +21,28 @@ import {DialogModalComponent} from "../../dialog/dialog-modal/dialog-modal.compo
 export class DepartmentProcessComponent implements OnInit {
 
   @Input() newProcess: ProcessElement;
-
   departmentProcessList: ProcessElement[] = [];
+  checkDuplikatesList: ProcessElement [] = [];
   parentId: string;
   level = 'department';
   showCreateElement = false;
   hideCreateElement = false;
   showAddButton = true;
   isAdmin = false;
+  departments: any = [];
 
   constructor(private location: Location,
               private processServer: ProcessService,
               private route: ActivatedRoute,
               private loginService: LoginService,
+<<<<<<< HEAD
+              private legend: LegendService,
+              private dialog: DialogService
+  ) {
+  }
+=======
               private dialog: MatDialog) {  }
+>>>>>>> origin/master
 
 
   ngOnInit() {
@@ -42,7 +55,9 @@ export class DepartmentProcessComponent implements OnInit {
       }
     });
     this.parentId = this.route.snapshot.paramMap.get('department');
+    this.getAllDepartmentProcesses();
     this.getAllProcess();
+    this.getDepartments();
   }
 
   showAddProcessComponent() {
@@ -64,6 +79,13 @@ export class DepartmentProcessComponent implements OnInit {
       });
   }
 
+  getAllDepartmentProcesses() {
+    this.processServer.getAllProcess('department')
+      .subscribe((process) => {
+        this.checkDuplikatesList = process;
+      });
+  }
+
   drop(event: CdkDragDrop<string[]>) {
     if (this.isAdmin) {
       moveItemInArray(this.departmentProcessList, event.previousIndex, event.currentIndex);
@@ -75,11 +97,16 @@ export class DepartmentProcessComponent implements OnInit {
   }
 
   addNewProcess(newProcess: ProcessElement) {
+    if (this.checkDuplikates(newProcess) === true) {
+      return;
+    } else {
       this.processServer.addProcessElement(newProcess, 'department')
         .subscribe(() => {
+          this.getAllDepartmentProcesses();
           this.getAllProcess();
         });
       this.departmentProcessList.push(newProcess);
+    }
   }
 
   udpateProcess() {
@@ -93,9 +120,14 @@ export class DepartmentProcessComponent implements OnInit {
     this.processServer.getProcess('detail', name)
       .subscribe(data => {
           if (data.toString().length > 0) {
+<<<<<<< HEAD
+            this.dialog.openDeleteDialog();
+          } else {
+=======
             this.openDialog();
           } else {
 
+>>>>>>> origin/master
             this.processServer.deleteProcess(id, 'department')
               .subscribe(() => {
                 this.getAllProcess();
@@ -105,7 +137,26 @@ export class DepartmentProcessComponent implements OnInit {
       );
   }
 
+<<<<<<< HEAD
+  getDepartments() {
+    this.legend.getDepartments()
+      .subscribe(data => {
+        this.departments = data;
+      });
+=======
   openDialog() {
     this.dialog.open(DialogModalComponent);
+>>>>>>> origin/master
+  }
+
+  checkDuplikates(newProcess: ProcessElement): boolean {
+    let check = false;
+    this.checkDuplikatesList.forEach(data => {
+      if (data.name === newProcess.name) {
+        check = true;
+        this.dialog.openDuplikateDialog();
+      }
+    });
+    return check;
   }
 }
