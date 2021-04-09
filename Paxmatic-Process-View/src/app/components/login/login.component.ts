@@ -15,9 +15,11 @@ export class LoginComponent implements OnInit {
   errormessage: string;
   isLoggedIn = false;
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   logout() {
     this.scrollUp();

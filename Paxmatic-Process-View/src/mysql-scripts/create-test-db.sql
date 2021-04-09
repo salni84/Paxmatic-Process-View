@@ -126,7 +126,7 @@ VALUES
 
 INSERT into test_Process.documents (id, name, link, descripton, parent, coreElement, nr)
 VALUES
-(null, 'checkliste', 'docs/checkliste.pdf', 'liste zum checken', 'Ersatzteil', 'Abnahme', '1-00-1'),
+(null, 'checkliste', 'docs/checkliste.pdf', 'liste zum checken', 'Ersatzteil', 'Abnahme', '1-00-1');
 
 INSERT into test_Process.departments (id, name, color)
 VALUES

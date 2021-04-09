@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatAccordion} from '@angular/material/expansion';
-import {LoginService} from '../../service/login-service';
-import {Departments} from '../model/departments';
-import {LegendService} from '../../service/legend-service';
+import {LoginService} from '../../../service/login-service';
+import {Departments} from '../../model/departments';
+import {LegendService} from '../../../service/legend-service';
 
 
 @Component({
@@ -17,11 +17,12 @@ export class LegendComponent implements OnInit {
   panelOpenState = false;
   isAdmin = false;
   color: any[] = [];
-  department: Departments = { name: 'Abteilung', color: 'white'};
+  department: Departments = {name: 'Abteilung', color: 'white'};
 
   constructor(private legend: LegendService,
               private loginService: LoginService,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.getLegend();
@@ -32,7 +33,7 @@ export class LegendComponent implements OnInit {
 
   getLegend() {
     this.legend.getDepartments()
-      .subscribe( data => {
+      .subscribe(data => {
         this.departmentlist = data;
       });
   }
@@ -52,7 +53,7 @@ export class LegendComponent implements OnInit {
     this.departmentlist.push(this.department);
   }
 
-  deleteDepartment(id: number){
+  deleteDepartment(id: number) {
     this.legend.deleteDepartment(id)
       .subscribe(() => {
         this.getLegend();

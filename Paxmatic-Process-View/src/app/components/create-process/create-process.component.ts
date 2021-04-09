@@ -25,8 +25,8 @@ export class CreateProcessComponent implements OnInit {
   departments: any = [];
 
 
-
-  constructor(private processService: ProcessService, private legend: LegendService) {}
+  constructor(private processService: ProcessService, private legend: LegendService) {
+  }
 
   ngOnInit(): void {
     this.getDepartments();

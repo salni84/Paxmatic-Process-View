@@ -5,12 +5,11 @@ const bodyParser = require("body-parser");
 function createRouter(db) {
     const router = express.Router();
     const app = express();
-    app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(bodyParser.urlencoded({extended: false}));
     app.use(bodyParser.json());
     app.use(function (req, res) {
         res.end(JSON.stringify(req.body, null, 2))
     });
-
 
 
     router.get('/basic', (req, res) => {
@@ -19,7 +18,7 @@ function createRouter(db) {
             (error, results) => {
                 if (error) {
                     res.status(500).json({status: 'error'});
-                }else {
+                } else {
                     res.status(200).json(results)
                 }
             }
@@ -33,7 +32,7 @@ function createRouter(db) {
                 if (error) {
                     console.log(error);
                     res.status(500).json({status: 'error'});
-                }else {
+                } else {
                     res.status(200).json(results)
                 }
             }
@@ -47,7 +46,7 @@ function createRouter(db) {
             (error, results) => {
                 if (error) {
                     res.status(500).json({status: 'error'});
-                }else {
+                } else {
                     res.status(200).json(results)
                 }
             }
@@ -60,7 +59,7 @@ function createRouter(db) {
             (error, results) => {
                 if (error) {
                     res.status(500).json({status: 'error'});
-                }else {
+                } else {
                     res.status(200).json(results)
                 }
             }
@@ -73,7 +72,7 @@ function createRouter(db) {
             (error, results) => {
                 if (error) {
                     res.status(500).json({status: 'error'});
-                }else {
+                } else {
                     res.status(200).json(results)
                 }
             }
@@ -86,7 +85,7 @@ function createRouter(db) {
             (error, results) => {
                 if (error) {
                     res.status(500).json({status: 'error'});
-                }else {
+                } else {
                     res.status(200).json(results)
                 }
             }
@@ -99,7 +98,7 @@ function createRouter(db) {
             (error, results) => {
                 if (error) {
                     res.status(500).json({status: 'error'});
-                }else {
+                } else {
                     res.status(200).json(results)
                 }
             }
@@ -112,7 +111,7 @@ function createRouter(db) {
             (error, results) => {
                 if (error) {
                     res.status(500).json({status: 'error'});
-                }else {
+                } else {
                     res.status(200).json(results)
                 }
             }
@@ -126,7 +125,7 @@ function createRouter(db) {
             (error, results) => {
                 if (error) {
                     res.status(500).json({status: 'error'});
-                }else {
+                } else {
                     res.status(200).json(results)
                 }
             }
@@ -134,14 +133,13 @@ function createRouter(db) {
     });
 
 
-
     router.delete('/basic/:id', (req, res) => {
         db.query(
             'DELETE FROM basicprocess WHERE id = ?', [req.params.id],
-            (error,results) =>  {
+            (error, results) => {
                 if (error) {
                     res.status(500).json({status: 'error'});
-                }else {
+                } else {
                     res.status(200).json(results)
                 }
             }
@@ -151,10 +149,10 @@ function createRouter(db) {
     router.delete('/sub/:id', (req, res) => {
         db.query(
             'DELETE FROM subprocess WHERE id = ?', [req.params.id],
-            (error,results) =>  {
+            (error, results) => {
                 if (error) {
                     res.status(500).json({status: 'error'});
-                }else {
+                } else {
                     res.status(200).json(results)
                 }
             }
@@ -164,23 +162,23 @@ function createRouter(db) {
     router.delete('/department/:id', (req, res) => {
         db.query(
             'DELETE FROM departmentprocess WHERE id = ?', [req.params.id],
-            (error,results) =>  {
+            (error, results) => {
                 if (error) {
                     res.status(500).json({status: 'error'});
-                }else {
+                } else {
                     res.status(200).json(results)
                 }
             }
         )
     });
 
-    router.delete('/detail/:id', (req, res)  => {
+    router.delete('/detail/:id', (req, res) => {
         db.query(
             'DELETE FROM detailprocess WHERE id = ?', [req.params.id],
-            (error,results) =>  {
+            (error, results) => {
                 if (error) {
                     res.status(500).json({status: 'error'});
-                }else {
+                } else {
                     res.status(200).json(results)
                 }
             }
@@ -190,10 +188,10 @@ function createRouter(db) {
     router.delete('/documents/:id', (req, res) => {
         db.query(
             'DELETE FROM documents WHERE id = ?', [req.params.id],
-            (error,results) =>  {
+            (error, results) => {
                 if (error) {
                     res.status(500).json({status: 'error'});
-                }else {
+                } else {
                     res.status(200).json(results)
                 }
             }
@@ -203,10 +201,10 @@ function createRouter(db) {
     router.delete('/departments/:id', (req, res) => {
         db.query(
             'DELETE FROM departments WHERE id = ?', [req.params.id],
-            (error,results) =>  {
+            (error, results) => {
                 if (error) {
                     res.status(500).json({status: 'error'});
-                }else {
+                } else {
                     res.status(200).json(results)
                 }
             }
@@ -228,7 +226,7 @@ function createRouter(db) {
             (error, results) => {
                 if (error) {
                     res.status(500).json({status: 'error'});
-                }else {
+                } else {
                     res.status(200).json(results)
                 }
             });
@@ -249,7 +247,7 @@ function createRouter(db) {
             (error, results) => {
                 if (error) {
                     res.status(500).json({status: 'error'});
-                }else {
+                } else {
                     res.status(200).json(results)
                 }
             });
@@ -270,7 +268,7 @@ function createRouter(db) {
             (error, results) => {
                 if (error) {
                     res.status(500).json({status: 'error'});
-                }else {
+                } else {
                     res.status(200).json(results)
                 }
             });
@@ -294,7 +292,7 @@ function createRouter(db) {
             (error, results) => {
                 if (error) {
                     res.status(500).json({status: 'error'});
-                }else {
+                } else {
                     res.status(200).json(results)
                 }
             });
@@ -314,7 +312,7 @@ function createRouter(db) {
             (error, results) => {
                 if (error) {
                     res.status(500).json({status: 'error'});
-                }else {
+                } else {
                     res.status(200).json(results)
                 }
             });
@@ -330,7 +328,7 @@ function createRouter(db) {
             (error, results) => {
                 if (error) {
                     res.status(500).json({status: 'error'});
-                }else {
+                } else {
                     res.status(200).json(results)
                 }
             });
@@ -348,7 +346,9 @@ function createRouter(db) {
 
             db.query(
                 "UPDATE basicprocess SET position = ?, visibleName = ?, form = ?, color = ? WHERE id = ?", [position, visibleName, form, color, id],
-                () => {})}
+                () => {
+                })
+        }
 
         res.status(200).json()
     });
@@ -364,7 +364,9 @@ function createRouter(db) {
 
             db.query(
                 "UPDATE subprocess SET position = ?, visibleName = ?, form = ?, color = ? WHERE id = ?", [position, visibleName, form, color, id],
-                () => {})}
+                () => {
+                })
+        }
 
         res.status(200).json()
     });
@@ -381,7 +383,9 @@ function createRouter(db) {
 
             db.query(
                 "UPDATE departmentprocess SET position = ?, visibleName = ?, form = ?, color = ? WHERE id = ?", [position, visibleName, form, color, id],
-                () => {})}
+                () => {
+                })
+        }
 
         res.status(200).json()
     });
@@ -398,7 +402,9 @@ function createRouter(db) {
 
             db.query(
                 "UPDATE detailprocess SET position = ?, visibleName = ?, form = ?, color = ?, isStart = ? WHERE id = ?", [position, visibleName, form, color, isBubble, id],
-                () => {})}
+                () => {
+                })
+        }
 
         res.status(200).json()
     });
@@ -412,7 +418,9 @@ function createRouter(db) {
 
             db.query(
                 "UPDATE departments SET name = ?, color = ? WHERE id = ?", [name, color, id],
-                () => {})}
+                () => {
+                })
+        }
 
         res.status(200).json()
     });

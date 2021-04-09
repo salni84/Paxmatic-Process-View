@@ -3,9 +3,8 @@ import {ProcessService} from '../../../service/process-service';
 import {ProcessElement} from '../../model/process-element';
 import {LoginService} from '../../../service/login-service';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-import {MatDialog} from '@angular/material/dialog';
 import {LegendService} from '../../../service/legend-service';
-import {DialogService} from "../../../service/dialog-service";
+import {DialogService} from '../../../service/dialog-service';
 
 @Component({
   selector: 'app-basic-process',
@@ -27,7 +26,8 @@ export class BasicProcessComponent implements OnInit {
   constructor(private processServer: ProcessService,
               private loginService: LoginService,
               private dialog: DialogService,
-              private legend: LegendService) {}
+              private legend: LegendService) {
+  }
 
   ngOnInit() {
     this.getAllProcess();
@@ -56,7 +56,7 @@ export class BasicProcessComponent implements OnInit {
   }
 
   getAllProcess() {
-   this.processServer.getProcess('basic', '')
+    this.processServer.getProcess('basic', '')
       .subscribe((process) => {
         this.basicProcessList = process;
       });
@@ -72,13 +72,13 @@ export class BasicProcessComponent implements OnInit {
     }
   }
 
- addNewProcess(newProcess: ProcessElement) {
-     this.processServer.addProcessElement(newProcess, 'basic')
-       .subscribe(() => {
-         this.getAllProcess();
-       });
-     this.basicProcessList.push(newProcess);
- }
+  addNewProcess(newProcess: ProcessElement) {
+    this.processServer.addProcessElement(newProcess, 'basic')
+      .subscribe(() => {
+        this.getAllProcess();
+      });
+    this.basicProcessList.push(newProcess);
+  }
 
   udpateProcess() {
     this.processServer.updateProcessList(this.basicProcessList, 'basic')
@@ -86,7 +86,6 @@ export class BasicProcessComponent implements OnInit {
         this.getAllProcess();
       });
   }
-
 
   deleteProcessElement(id: number, name: string) {
     this.processServer.getProcess('sub', name)
@@ -98,7 +97,8 @@ export class BasicProcessComponent implements OnInit {
               .subscribe(() => {
                 this.getAllProcess();
               });
-          }}
+          }
+        }
       );
   }
 

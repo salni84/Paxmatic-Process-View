@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {DialogModalComponent} from '../app/dialog/dialog-modal/dialog-modal.component';
 import {MatDialog} from '@angular/material/dialog';
 
@@ -7,7 +7,8 @@ import {MatDialog} from '@angular/material/dialog';
 })
 export class DialogService {
 
-  constructor(private dialog: MatDialog,) { }
+  constructor(private dialog: MatDialog,) {
+  }
 
   openDuplikateDialog() {
     this.dialog.open(DialogModalComponent, {

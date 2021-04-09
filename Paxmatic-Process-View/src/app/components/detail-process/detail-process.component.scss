@@ -51,7 +51,7 @@ h2 {
 }
 
 .isInvisible {
-  opacity: 0 ;
+  opacity: 0;
 }
 
 .greyedOut {
@@ -195,11 +195,13 @@ h2 {
   text-align: center;
   border-radius: 100px;
   font-size: 13px;
+
   .doc-icon {
     margin-bottom: 10px;
     margin-top: 0;
     height: 10px;
   }
+
   .mat-icon {
     font-size: 20px;
   }
@@ -234,7 +236,6 @@ h2 {
   display: flex;
 }
 
-
 .bubble {
   width: 115px;
   height: 45px;
@@ -248,9 +249,11 @@ h2 {
   text-align: center;
   border-radius: 70%;
   font-size: 13px;
+
   .mat-card-after {
     display: none;
   }
+
   .mat-card-before {
     display: none;
   }
@@ -261,7 +264,7 @@ h2 {
   height: 30px;
   text-align: center;
   display: flex;
-  font-family: "Century Gothic", sans-serif ;
+  font-family: "Century Gothic", sans-serif;
   padding-left: 10%;
 }
 

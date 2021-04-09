@@ -35,7 +35,7 @@ describe('NavComponent', () => {
   });
 
   it('should test header', () => {
-    expect(element.querySelector('a').innerText).toBe('Prozessemiscellaneous_services');
+    expect(element.querySelector('a').innerText).toBe('Prozesse miscellaneous_services');
   });
 
 

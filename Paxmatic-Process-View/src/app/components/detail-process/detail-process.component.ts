@@ -39,11 +39,12 @@ export class DetailProcessComponent implements OnInit {
   departments: any = [];
 
   constructor(private location: Location,
-              private processServer: ProcessService,
+              private processService: ProcessService,
               private route: ActivatedRoute,
               private loginService: LoginService,
               private documentService: DocumentService,
-              private legend: LegendService) {}
+              private legend: LegendService) {
+  }
 
 
   ngOnInit() {
@@ -58,7 +59,7 @@ export class DetailProcessComponent implements OnInit {
     this.parentId = this.route.snapshot.paramMap.get('detail');
     this.getAllProcess();
     this.getDepartments();
-}
+  }
 
   showAddProcessComponent(id: number) {
     this.showCreateElement[id] = true;
@@ -68,7 +69,7 @@ export class DetailProcessComponent implements OnInit {
 
   hideAddProcessComponent(id: number) {
     this.showCreateElement[id] = false;
-    this.showAddButton[id] =  true;
+    this.showAddButton[id] = true;
     this.hideCreateElement[id] = false;
   }
 
@@ -87,7 +88,8 @@ export class DetailProcessComponent implements OnInit {
     this.sixthProcessRow = [];
     this.seventhProcessRow = [];
     this.eighthProcessRow = [];
-    this.processServer.getProcess('detail', this.parentId)
+
+    this.processService.getProcess('detail', this.parentId)
       .subscribe((process) => {
         this.detailProcessList = process;
         this.detailProcessList.forEach((data) => {
@@ -98,16 +100,7 @@ export class DetailProcessComponent implements OnInit {
             this.secondProcessRow.push(data);
           }
           if (data.order === 3) {
-            this.documentService.getDocumentsByParent(this.parentId)
-              .pipe(
-                map(docs => docs.filter(doc => doc.name = this.parentId)))
-              .subscribe((i) => {
-                this.matchDocs = i;
-                this.matchDocs.forEach(info => this.matchNames.push(info.coreElement));
-                if (this.matchNames.includes(data.name)) {
-                  data.hasDocument = true;
-                  }
-              });
+            this.showDocuments(data);
             this.thirdProcessRow.push(data);
           }
           if (data.order === 4) {
@@ -125,8 +118,8 @@ export class DetailProcessComponent implements OnInit {
           if (data.order === 8) {
             this.eighthProcessRow.push(data);
           }
+        });
       });
-    });
   }
 
   drop1(event: CdkDragDrop<string[]>) {
@@ -210,22 +203,22 @@ export class DetailProcessComponent implements OnInit {
   }
 
   addNewProcess(newProcess: ProcessElement) {
-    this.processServer.addProcessElement(newProcess, 'detail')
-        .subscribe(() => {
-          this.getAllProcess();
-        });
+    this.processService.addProcessElement(newProcess, 'detail')
+      .subscribe(() => {
+        this.getAllProcess();
+      });
     this.detailProcessList.push(newProcess);
   }
 
   udpateProcess() {
-    this.processServer.updateProcessList(this.detailProcessList, 'detail')
+    this.processService.updateProcessList(this.detailProcessList, 'detail')
       .subscribe(() => {
         this.getAllProcess();
       });
   }
 
   deleteProcessElement(id: number) {
-    this.processServer.deleteProcess(id, 'detail')
+    this.processService.deleteProcess(id, 'detail')
       .subscribe(() => {
         this.getAllProcess();
       });
@@ -235,6 +228,19 @@ export class DetailProcessComponent implements OnInit {
     this.legend.getDepartments()
       .subscribe(data => {
         this.departments = data;
+      });
+  }
+
+  showDocuments(data) {
+    this.documentService.getDocumentsByParent(this.parentId)
+      .pipe(
+        map(docs => docs.filter(doc => doc.name = this.parentId)))
+      .subscribe((i) => {
+        this.matchDocs = i;
+        this.matchDocs.forEach(info => this.matchNames.push(info.coreElement));
+        if (this.matchNames.includes(data.name)) {
+          data.hasDocument = true;
+        }
       });
   }
 }

@@ -62,7 +62,7 @@ describe('end2end tests for process-View', () => {
     cy.get('.addButton.mat-button-base.mat-raised-button.ng-star-inserted').click();
     cy.get('.createName').type('test-element');
     cy.get('app-create-process .container > div:nth-of-type(2)').click();
-    cy.get('mat-option:nth-of-type(1) > .mat-option-text').click();
+    cy.get('mat-option:nth-of-type(1)').click();
     cy.get('app-create-process .container > div:nth-of-type(3)').click();
     cy.get('mat-option:nth-of-type(1) > .mat-option-text').click();
     cy.get('app-create-process button').click();

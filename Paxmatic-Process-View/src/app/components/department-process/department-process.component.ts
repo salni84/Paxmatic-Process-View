@@ -32,7 +32,8 @@ export class DepartmentProcessComponent implements OnInit {
               private loginService: LoginService,
               private legend: LegendService,
               private dialog: DialogService
-              ) {  }
+  ) {
+  }
 
 
   ngOnInit() {
@@ -116,7 +117,8 @@ export class DepartmentProcessComponent implements OnInit {
               .subscribe(() => {
                 this.getAllProcess();
               });
-          }}
+          }
+        }
       );
   }
 

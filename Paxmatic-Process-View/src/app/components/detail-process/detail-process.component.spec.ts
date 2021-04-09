@@ -12,7 +12,7 @@ describe('DetailProcessComponent', () => {
   let component: DetailProcessComponent;
   let fixture: ComponentFixture<DetailProcessComponent>;
   let element;
-  const expectedProcess = new ProcessMock().expectedProcess;
+  const expectedProcess = new ProcessMock().expectedBasicProcess;
   let processService: ProcessService;
 
   beforeEach((() => {
@@ -39,7 +39,7 @@ describe('DetailProcessComponent', () => {
   }));
 
   it('should test header', () => {
-    expect(element.querySelector('h2').innerText).toBe('Detailprozess /');
+    expect(element.querySelector('h2').innerText).toBe('Detailprozess');
   });
 
 

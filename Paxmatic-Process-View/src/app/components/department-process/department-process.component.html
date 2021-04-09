@@ -10,10 +10,13 @@
         (newProcessEvent)="addNewProcess($event)"
         [parentId]="parentId"
         [level]="level"></app-create-process>
-      <div cdkDropList cdkDropListOrientation="horizontal" class="department-process" (cdkDropListDropped)="drop($event)">
+      <div cdkDropList cdkDropListOrientation="horizontal" class="department-process"
+           (cdkDropListDropped)="drop($event)">
         <div class="addProcess" *ngIf="isAdmin">
-          <button mat-raised-button class="addButton" *ngIf="showAddButton" (click)="showAddProcessComponent()">+</button>
-          <button mat-raised-button class="addButton" *ngIf="hideCreateElement" (click)="hideAddProcessComponent()">x</button>
+          <button mat-raised-button class="addButton" *ngIf="showAddButton" (click)="showAddProcessComponent()">+
+          </button>
+          <button mat-raised-button class="addButton" *ngIf="hideCreateElement" (click)="hideAddProcessComponent()">x
+          </button>
         </div>
         <div *ngFor="let p of departmentProcessList">
           <mat-card [routerLink]="p.name" [class.circle]="p.form" [ngStyle]="{backgroundColor: p.color}" cdkDrag>
@@ -21,8 +24,9 @@
               <label>{{p.visibleName}}</label>
               <label class="connection" *ngIf="isAdmin">{{p.name}}</label>
             </div>
-              <div class="mat-card-after" *ngIf="p.form == 0" [ngStyle]="{'border-left-color': p.color}"></div>
-              <div class="mat-card-before" *ngIf="p.form == 0" [ngStyle]="{'border-top-color': p.color, 'border-bottom-color': p.color}"></div>
+            <div class="mat-card-after" *ngIf="p.form == 0" [ngStyle]="{'border-left-color': p.color}"></div>
+            <div class="mat-card-before" *ngIf="p.form == 0"
+                 [ngStyle]="{'border-top-color': p.color, 'border-bottom-color': p.color}"></div>
           </mat-card>
           <div class="saveAndUpdate" *ngIf="isAdmin">
             <mat-form-field class="form-field">
@@ -32,7 +36,8 @@
             <mat-form-field appearance="fill">
               <mat-label>Abteilung</mat-label>
               <mat-select [(ngModel)]="p.color">
-                <mat-option class="options" *ngFor="let d of departments" [value]="d.color" [ngStyle]="{backgroundColor: d.color}">
+                <mat-option class="options" *ngFor="let d of departments" [value]="d.color"
+                            [ngStyle]="{backgroundColor: d.color}">
                   {{d.name}}
                 </mat-option>
               </mat-select>

@@ -12,7 +12,7 @@ describe('SubProcessComponent', () => {
   let component: SubProcessComponent;
   let fixture: ComponentFixture<SubProcessComponent>;
   let element;
-  const expectedProcess = new ProcessMock().expectedProcess;
+  const expectedProcess = new ProcessMock().expectedBasicProcess;
   let processService: ProcessService;
 
 
@@ -40,7 +40,7 @@ describe('SubProcessComponent', () => {
   }));
 
   it('should test header', () => {
-    expect(element.querySelector('h2').innerText).toBe('Teilprozess /');
+    expect(element.querySelector('h2').innerText).toBe('Teilprozess');
   });
 
   it('should test drop-function for sub-process',  () => {

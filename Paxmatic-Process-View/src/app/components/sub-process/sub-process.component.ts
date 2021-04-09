@@ -32,8 +32,8 @@ export class SubProcessComponent implements OnInit {
               private route: ActivatedRoute,
               private loginService: LoginService,
               private dialog: DialogService,
-              private legend: LegendService) {}
-
+              private legend: LegendService) {
+  }
 
 
   ngOnInit() {

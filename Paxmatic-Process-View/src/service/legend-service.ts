@@ -5,7 +5,6 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +13,8 @@ export class LegendService {
 
   private serverURL = environment.serverURL;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getDepartments() {
     return this.http.get(this.serverURL + 'departments');
