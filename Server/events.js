@@ -401,7 +401,7 @@ function createRouter(db) {
             let isBubble = req.body[x].isBubble;
 
             db.query(
-                "UPDATE detailprocess SET position = ?, visibleName = ?, form = ?, color = ?, isStart = ? WHERE id = ?", [position, visibleName, form, color, isBubble, id],
+                "UPDATE detailprocess SET position = ?, visibleName = ?, form = ?, color = ?, isBubble = ? WHERE id = ?", [position, visibleName, form, color, isBubble, id],
                 () => {
                 })
         }

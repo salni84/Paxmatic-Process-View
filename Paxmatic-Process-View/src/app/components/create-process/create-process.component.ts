@@ -46,12 +46,10 @@ export class CreateProcessComponent implements OnInit {
   createNewProcessElement() {
     if (this.selectedForm === 'Kreis') {
       this.newProcess.form = 1;
-    } else if (this.selectedForm === 'Start') {
-      this.newProcess.isBubble = 1;
-      this.newProcess.form = 0;
-    } else {
+    } else if (this.selectedForm === 'Pfeil') {
       this.newProcess.form = 0;
     }
+    this.newProcess.isBubble = 0;
     this.newProcess.color = this.selectedDepartment;
     this.newProcess.level = this.level;
     this.newProcess.parent = this.parentId;
@@ -70,7 +68,6 @@ export class CreateProcessComponent implements OnInit {
     this.newProcess.order = this.order;
     this.newProcess.isBubble = 0;
     this.newProcess.form = 0;
-    this.newProcess.position = 0;
     this.newProcess.visibleName = '';
     this.newProcessEvent.emit(this.newProcess);
   }

@@ -19,7 +19,7 @@
         </div>
 
         <div *ngFor="let p of subProcessList">
-          <mat-card [routerLink]="'../' + p.parent + '/' + p.name" [class.circle]="p.form"
+          <mat-card [routerLink]="p.name" [class.circle]="p.form"
                     [ngStyle]="{backgroundColor: p.color}" cdkDrag>
             <div class="names">
               <label>{{p.visibleName}}</label>
