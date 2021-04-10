@@ -1,6 +1,6 @@
 <div class="doc-title">
   <mat-icon class="arrow" [routerLink]="['../']">fast_rewind</mat-icon>
-  <h2>Dokumente / {{parentId}} / {{coreElement}}</h2>
+  <h2>Dokumente</h2>
 </div>
 <div class="otherDocuments">
   <a class="next" *ngFor="let p of nextProcess" [routerLink]="['../' + p.name]">{{p.name}}</a>
