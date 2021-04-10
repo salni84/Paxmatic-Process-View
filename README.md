@@ -37,7 +37,3 @@ Um die End2End-Tests im CLI zu starten, kann im *Hauptverzeichnis* der Befehl `n
 - Angular cli
 - Chrome (für Tests benötigt)
 - Mac OS X oder Linux   
-
-### Troubleshooting
-Falls Express-Server aufrund der Fehlermeldung "Access-Denied" nicht gestartet werden kann, muss entprechende DB-Statement im File 
-
