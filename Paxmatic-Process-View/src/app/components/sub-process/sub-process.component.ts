@@ -37,6 +37,7 @@ export class SubProcessComponent implements OnInit {
 
 
   ngOnInit() {
+    this.scrollUp();
     this.parentId = this.route.snapshot.paramMap.get('name');
     this.getAllProcess();
     this.getAllSubProcesses();
@@ -136,5 +137,9 @@ export class SubProcessComponent implements OnInit {
       }
     });
     return check;
+  }
+
+  scrollUp() {
+    window.scrollTo(0, 0);
   }
 }

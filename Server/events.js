@@ -308,7 +308,7 @@ function createRouter(db) {
         let nr = req.body.nr;
 
         db.query(
-            'INSERT INTO documents VALUES (?,?,?,?,?,?,?)', [null, name, link, description, parent, nr, coreElement],
+            'INSERT INTO documents VALUES (?,?,?,?,?,?,?)', [null, link, description, coreElement, nr, parent, name],
             (error, results) => {
                 if (error) {
                     res.status(500).json({status: 'error'});

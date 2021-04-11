@@ -39,7 +39,7 @@ export class DocumentsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log("hallo")
+    this.scrollUp();
     this.loginService.getLoginStatus().subscribe((data) => {
       if (data) {
         this.isAdmin = true;
@@ -117,5 +117,9 @@ export class DocumentsComponent implements OnInit {
 
   sanitize(url: string) {
     return this.sanitizer.bypassSecurityTrustUrl(url);
+  }
+
+  scrollUp() {
+    window.scrollTo(0, 0);
   }
 }

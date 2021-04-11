@@ -10,7 +10,7 @@
 
   <div>
     <mat-form-field class="process-form-field">
-      <mat-label>Abeteilung</mat-label>
+      <mat-label>Abteilung</mat-label>
       <mat-select [(ngModel)]="selectedDepartment" class="selectDepartment">
         <mat-option *ngFor="let d of departments" [value]="d.color" [ngStyle]="{backgroundColor: d.color}">
           {{d.name}}

@@ -82,7 +82,7 @@ CREATE TABLE `test_Process`.`documents`
 (
     `id`          int NOT NULL AUTO_INCREMENT,
     `link`        varchar(45) DEFAULT NULL,
-    `descripton`  varchar(45) DEFAULT NULL,
+    `description`  varchar(45) DEFAULT NULL,
     `coreElement` varchar(45) DEFAULT NULL,
     `nr`          varchar(45) DEFAULT NULL,
     `parent`      varchar(45) DEFAULT NULL,
@@ -124,7 +124,7 @@ VALUES
 (null, 'detail', 'Kickoff', 'red', 1, 2, 'Ersatzteil', 'Kickoff', 1, 4, 0),
 (null, 'detail', 'Bestellung', 'green', 1, 2, 'Ersatzteil', 'Bestellung', 1, 3, 0);
 
-INSERT into test_Process.documents (id, name, link, descripton, parent, coreElement, nr)
+INSERT into test_Process.documents (id, name, link, description, parent, coreElement, nr)
 VALUES
 (null, 'checkliste', 'docs/checkliste.pdf', 'liste zum checken', 'Ersatzteil', 'Abnahme', '1-00-1');
 
