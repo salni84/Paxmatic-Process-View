@@ -32,10 +32,17 @@ describe('end2end tests for process-View', () => {
   it('should login as admin', () => {
     cy.get('app-header .header a:nth-child(3)').click();
     cy.get('.button.mat-button-base.mat-raised-button > .mat-button-wrapper').contains('Login');
-    cy.get('input').type(environment.password);
+    cy.get('.ng-pristine.ng-star-inserted.ng-untouched.ng-valid').type(environment.password);
     cy.wait(1000);
     cy.get('.button.mat-button-base.mat-raised-button').click();
     cy.get('.button.mat-button-base.mat-raised-button.ng-star-inserted > .mat-button-wrapper').contains('LogOut');
+  });
+
+  it('should open legend and add new department', () => {
+    cy.get('mat-expansion-panel-header').contains('Legende');
+    cy.get('mat-expansion-panel-header').click();
+    cy.get('div#cdk-accordion-child-0');
+
   });
 
   it('should open sub-process after click on basic-process', () => {
@@ -112,12 +119,6 @@ describe('end2end tests for process-View', () => {
 
   it('should check if document-icon is existing', () => {
     cy.get('.cdk-drag.mat-card > .doc-icon').should('have.css', 'margin-bottom', '0px');
-  });
-
-  it('should open legend and add new department', () => {
-    cy.get('mat-expansion-panel-header#mat-expansion-panel-header-0').click();
-    cy.get('div#cdk-accordion-child-0');
-
   });
 
   it('should click to document-component', () => {

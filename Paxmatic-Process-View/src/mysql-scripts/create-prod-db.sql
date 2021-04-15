@@ -1,8 +1,8 @@
-DROP user if exists 'testuser'@'localhost';
-CREATE user 'testuser'@'localhost' identified with mysql_native_password by 'test';
-
 DROP database if exists process_Server;
 CREATE database process_Server;
+
+DROP user if exists 'testuser'@'localhost';
+CREATE user 'testuser'@'localhost' identified with mysql_native_password by 'test';
 
 GRANT all privileges on process_Server.* to 'testuser'@'localhost';
 
@@ -120,7 +120,7 @@ VALUES (null, 'detail', 'Kundenkontakt', 'red', 0, 0, 'Ersatzteil', 'Kundenkonta
        (null, 'detail', 'Bestellung', 'green', 1, 2, 'Ersatzteil', 'Bestellung', 1, 3, 0);
 
 INSERT into process_Server.documents (id, name, link, description, parent, coreElement, nr)
-VALUES (null, 'checkliste', 'docs/checkliste.pdf', 'liste zum checken', 'Ersatzteil', 'Abnahme', '1-00-1')
+VALUES (null, 'checkliste', 'docs/checkliste.pdf', 'liste zum checken', 'Ersatzteil', 'Abnahme', '1-00-1');
 
 INSERT into process_Server.departments (id, name, color)
 VALUES (null, 'Projektleitung', 'blue'),
