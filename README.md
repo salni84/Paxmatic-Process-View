@@ -13,8 +13,7 @@ Damit werden die benötigten Pakete für den Express-Server- wie auch das Angula
 
 ### MySQL-Datenbank starten für Start der App
 1. Lokalen MySQL-Server starten und als root-user einloggen. 
-2. Folgendes Statement ausführen: GRANT ALL PRIVILEGES ON * . * TO 'testuser'@'localhost';
-3. anschliessend DB-Statement im File: "create-prod-db.sql" ausführen.
+2. anschliessend DB-Statement im File: "create-prod-db.sql" ausführen.
 
 ### Applikation starten
 Mit dem Befehl `npm run start` in der CLI im *Hauptverzeichnis* wird der Server und das Frontend gestartet.   
@@ -29,7 +28,7 @@ Um die Unit-Tests im CLI zu starten, kann im Verzeichnis *Paxmatic-Process-View*
 
 ### End2End-Tests
 Falls Express-Server noch läuft, diesen beenden um den Port:8080 freizugeben.
-Lokalen MySQL-Server als root-user starten und anschliessend folgendes DB-Statement im File: "create-test-db.sql" ausführen. (Falls App zuvor noch nicht gestartet wurde, Statement GRANT ALL PRIVILEGES ON * . * TO 'testuser'@'localhost' vorgängig ausführen. 
+Lokalen MySQL-Server als root-user starten und anschliessend folgendes DB-Statement im File: "create-test-db.sql" ausführen. 
 Um die End2End-Tests im CLI zu starten, kann im *Hauptverzeichnis* der Befehl `npm run e2e` ausgeführt werden.   
 
 ### Systemvoraussetzungen
