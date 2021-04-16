@@ -27,6 +27,7 @@
     "css-file-icons": "^0.1.0",
     "ng-drag-drop": "^5.0.0",
     "nginx": "0.0.0",
+    "run-my-sql-file": "^1.0.0",
     "rxjs": "^6.6.3",
     "tslib": "^1.10.0",
     "zone.js": "^0.11.3"
