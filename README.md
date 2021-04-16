@@ -39,3 +39,4 @@ Um die End2End-Tests im CLI zu starten, kann im *Hauptverzeichnis* der Befehl `n
 
 ### Troubleshooting
 Je nach installierter Version von mySQL ist eine andere Authentifizierungs-Methode erforderlich. Erscheint beim Starten des Servers eine Fehler bezüglich "Auth-Mode", dann muss im den beiden oben erwähnten Scripts der Abschnitt "with mysql_native_password" gelöscht werden.
+Für das Ausführen der End2End-Tests muss das npm-package "run-my-sql-file" Paket global oder lokal installiert sein. 
