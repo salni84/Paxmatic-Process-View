@@ -36,3 +36,6 @@ Um die End2End-Tests im CLI zu starten, kann im *Hauptverzeichnis* der Befehl `n
 - Angular cli
 - Chrome (für Tests benötigt)
 - Mac OS X oder Linux   
+
+### Troubleshooting
+Je nach installierter Version von mySQL ist eine andere Authentifizierungs-Methode erforderlich. Erscheint beim Starten des Servers eine Fehler bezüglich "Auth-Mode", dann muss im den beiden oben erwähnten Scripts der Abschnitt "with mysql_native_password" gelöscht werden.
