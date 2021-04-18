@@ -28,9 +28,10 @@ Um in den Editor-Modus zu gelangen muss vorgängig das Passwort "salens" in der 
 Um die Unit-Tests im CLI zu starten, kann im Verzeichnis *Paxmatic-Process-View* der Befehl `npm run test` ausgeführt werden.   
 
 ### End2End-Tests
-Falls Express-Server noch läuft, diesen beenden um den Port:8080 freizugeben.
-Lokalen MySQL-Server als root-user starten und anschliessend folgendes DB-Statement im File: "create-test-db.sql" ausführen. Pfad: Paxmatic-Process-View/src/mysql-scripts/create-test-db.sql
-Um die End2End-Tests im CLI zu starten, kann im *Hauptverzeichnis* der Befehl `npm run e2e` ausgeführt werden.   
+1. Falls Express-Server noch läuft, diesen beenden um den Port:8080 freizugeben.
+2. Lokalen MySQL-Server als root-user starten.
+3. Folgendes DB-Statement im File: "create-test-db.sql" ausführen. Pfad: Paxmatic-Process-View/src/mysql-scripts/create-test-db.sql
+4. Um die End2End-Tests im CLI zu starten, kann im *Hauptverzeichnis* der Befehl `npm run e2e` ausgeführt werden.   
 
 ### Systemvoraussetzungen
 - Node.js (Version 12 oder 14) inkl. npm
