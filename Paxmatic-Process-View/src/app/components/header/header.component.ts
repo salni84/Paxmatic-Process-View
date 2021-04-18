@@ -18,8 +18,8 @@ export class HeaderComponent implements OnInit {
   }
 
   showLogin() {
-    this.scrollUp(),
-      this.isLoginWindowVisible = !this.isLoginWindowVisible;
+    this.scrollUp();
+    this.isLoginWindowVisible = !this.isLoginWindowVisible;
 
     if (this.isLoginWindowVisible) {
       this.loginButton = 'Close';

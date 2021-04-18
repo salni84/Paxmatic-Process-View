@@ -1,13 +1,12 @@
 DROP database if exists test_Process;
 CREATE database test_Process;
 
-DROP user if exists 'testuser'@'localhost';
 CREATE user 'testuser'@'localhost' identified with mysql_native_password by 'test';
+
 GRANT all privileges on test_Process.* to 'testuser'@'localhost';
 
 
 flush privileges;
-
 
 DROP table if exists
     test_Process.basicprocess,

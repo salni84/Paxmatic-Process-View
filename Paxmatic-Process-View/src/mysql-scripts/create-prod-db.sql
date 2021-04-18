@@ -1,10 +1,10 @@
 DROP database if exists process_Server;
 CREATE database process_Server;
 
-DROP user if exists 'testuser'@'localhost';
 CREATE user 'testuser'@'localhost' identified with mysql_native_password by 'test';
 
 GRANT all privileges on process_Server.* to 'testuser'@'localhost';
+
 
 flush privileges;
 

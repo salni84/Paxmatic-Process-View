@@ -21,6 +21,7 @@
         ></app-create-process>
         <div *ngFor="let p of firstProcessRow">
           <mat-card [class.circle]="p.form" [class.bubble]="p.isBubble" [ngStyle]="{backgroundColor: p.color}"
+                    [class.disableLink]="p.form && !isAdmin"
                     [class.isInvisible]="!p.isVisible" cdkDrag>
             <div class="names">
               <label>{{p.visibleName}}</label>
@@ -80,6 +81,7 @@
         ></app-create-process>
         <div *ngFor="let p of secondProcessRow">
           <mat-card [class.circle]="p.form" [class.bubble]="p.isBubble" [ngStyle]="{backgroundColor: p.color}"
+                    [class.disableLink]="p.form && !isAdmin"
                     [class.isInvisible]="!p.isVisible" cdkDrag>
             <div class="names">
               <label>{{p.visibleName}}</label>
@@ -148,6 +150,7 @@
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop3($event)">
         <div class="core" *ngFor="let p of thirdProcessRow">
           <mat-card [routerLink]="p.name" [class.circle]="p.form" [class.bubble]="p.isBubble"
+                    [class.disableLink]="p.form && !isAdmin"
                     [ngStyle]="{backgroundColor: p.color}" [class.isInvisible]="!p.isVisible" cdkDrag>
             <p class="doc-icon" *ngIf="p.hasDocument">
               <mat-icon>attach_file</mat-icon>
@@ -211,6 +214,7 @@
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop4($event)">
         <div *ngFor="let p of fourthProcessRow">
           <mat-card [class.circle]="p.form" [class.bubble]="p.isBubble" [ngStyle]="{backgroundColor: p.color}"
+                    [class.disableLink]="p.form && !isAdmin"
                     [class.isInvisible]="!p.isVisible" cdkDrag>
             <div class="names">
               <label>{{p.visibleName}}</label>
@@ -271,6 +275,7 @@
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop5($event)">
         <div *ngFor="let p of fifthProcessRow">
           <mat-card [class.circle]="p.form" [class.bubble]="p.isBubble" [ngStyle]="{backgroundColor: p.color}"
+                    [class.disableLink]="p.form && !isAdmin"
                     [class.isInvisible]="!p.isVisible" cdkDrag>
             <div class="names">
               <label>{{p.visibleName}}</label>
@@ -330,6 +335,7 @@
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop6($event)">
         <div *ngFor="let p of sixthProcessRow">
           <mat-card [class.circle]="p.form" [class.bubble]="p.isBubble" [ngStyle]="{backgroundColor: p.color}"
+                    [class.disableLink]="p.form && !isAdmin"
                     [class.isInvisible]="!p.isVisible" cdkDrag>
             <div class="names">
               <label>{{p.visibleName}}</label>
@@ -389,6 +395,7 @@
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop7($event)">
         <div *ngFor="let p of seventhProcessRow">
           <mat-card [class.circle]="p.form" [class.bubble]="p.isBubble" [ngStyle]="{backgroundColor: p.color}"
+                    [class.disableLink]="p.form && !isAdmin"
                     [class.isInvisible]="!p.isVisible" cdkDrag>
             <div class="names">
               <label>{{p.visibleName}}</label>
@@ -448,6 +455,7 @@
       <div cdkDropList cdkDropListOrientation="horizontal" class="detail-process" (cdkDropListDropped)="drop8($event)">
         <div *ngFor="let p of eighthProcessRow">
           <mat-card [class.circle]="p.form" [class.bubble]="p.isBubble" [ngStyle]="{backgroundColor: p.color}"
+                    [class.disableLink]="p.form && !isAdmin"
                     [class.isInvisible]="!p.isVisible" cdkDrag>
             <div class="names">
               <label>{{p.visibleName}}</label>

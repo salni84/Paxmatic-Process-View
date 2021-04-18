@@ -1,6 +1,14 @@
-DROP table if exists basicprocess, subprocess, departmentprocess, detailprocess, documents, departments;
 
-CREATE TABLE `basicprocess`
+
+DROP table if exists
+    test_Process.basicprocess,
+    test_Process.subprocess,
+    test_Process.departmentprocess,
+    test_Process.detailprocess,
+    test_Process.documents,
+    test_Process.departments;
+
+CREATE TABLE `test_Process`.`basicprocess`
 (
     `id`          int         NOT NULL AUTO_INCREMENT,
     `level`       varchar(45) NOT NULL,
@@ -13,7 +21,7 @@ CREATE TABLE `basicprocess`
     PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `subprocess`
+CREATE TABLE `test_Process`.`subprocess`
 (
     `id`          int NOT NULL AUTO_INCREMENT,
     `level`       varchar(45) DEFAULT NULL,
@@ -27,7 +35,7 @@ CREATE TABLE `subprocess`
 );
 
 
-CREATE TABLE `departmentprocess`
+CREATE TABLE `test_Process`.`departmentprocess`
 (
 
     `id`          int NOT NULL AUTO_INCREMENT,
@@ -42,7 +50,7 @@ CREATE TABLE `departmentprocess`
 );
 
 
-CREATE TABLE `detailprocess`
+CREATE TABLE `test_Process`.`detailprocess`
 (
 
     `id`          int NOT NULL AUTO_INCREMENT,
@@ -60,7 +68,7 @@ CREATE TABLE `detailprocess`
 );
 
 
-CREATE TABLE `documents`
+CREATE TABLE `test_Process`.`documents`
 (
     `id`          int NOT NULL AUTO_INCREMENT,
     `link`        varchar(45) DEFAULT NULL,
@@ -73,7 +81,7 @@ CREATE TABLE `documents`
 );
 
 
-CREATE TABLE `departments`
+CREATE TABLE `test_Process`.`departments`
 (
     `id`    int NOT NULL AUTO_INCREMENT,
     `name`  varchar(45) DEFAULT NULL,

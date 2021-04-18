@@ -50,6 +50,10 @@ button {
   height: 30px;
 }
 
+.disableLink {
+  pointer-events: none;
+}
+
 .cdk-drag-preview {
   box-sizing: border-box;
   border-radius: 4px;
