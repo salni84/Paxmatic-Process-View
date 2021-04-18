@@ -2,7 +2,8 @@ Paxmatic-Process-View
 
 ## Einleitung
 Dieses Projekt ist eine App mit welcher Geschäftsprozesse modelliert und dokumentiert werden können. Zusätzlich ermöglicht es Betriebsdokumente zu vewalten resp. zu verlinken.
-  
+
+Eine kurze Video-Instruktion dieser App ist unter diesem Link verfügbar: https://www.mycloud.ch/s/S00566BF462735363BF8FAFD466B60FDA8B84D61173
 
 ## Vorbereitung und Applikationsstart
 GIT Repository clonen oder ZIP download
