@@ -2,7 +2,8 @@ Paxmatic-Process-View
 
 ## Einleitung
 Dieses Projekt ist eine App mit welcher Geschäftsprozesse modelliert und dokumentiert werden können. Zusätzlich ermöglicht es Betriebsdokumente zu vewalten resp. zu verlinken.
-  
+
+Eine kurze Video-Instruktion dieser App ist unter diesem Link verfügbar: https://www.mycloud.ch/s/S00566BF462735363BF8FAFD466B60FDA8B84D61173
 
 ## Vorbereitung und Applikationsstart
 GIT Repository clonen oder ZIP download
@@ -27,9 +28,10 @@ Um in den Editor-Modus zu gelangen muss vorgängig das Passwort "salens" in der 
 Um die Unit-Tests im CLI zu starten, kann im Verzeichnis *Paxmatic-Process-View* der Befehl `npm run test` ausgeführt werden.   
 
 ### End2End-Tests
-Falls Express-Server noch läuft, diesen beenden um den Port:8080 freizugeben.
-Lokalen MySQL-Server als root-user starten und anschliessend folgendes DB-Statement im File: "create-test-db.sql" ausführen. Pfad: Paxmatic-Process-View/src/mysql-scripts/create-test-db.sql
-Um die End2End-Tests im CLI zu starten, kann im *Hauptverzeichnis* der Befehl `npm run e2e` ausgeführt werden.   
+1. Falls Express-Server noch läuft, diesen beenden um den Port:8080 freizugeben.
+2. Lokalen MySQL-Server als root-user starten.
+3. Folgendes DB-Statement im File: "create-test-db.sql" ausführen. Pfad: Paxmatic-Process-View/src/mysql-scripts/create-test-db.sql
+4. Um die End2End-Tests im CLI zu starten, kann im *Hauptverzeichnis* der Befehl `npm run e2e` ausgeführt werden.   
 
 ### Systemvoraussetzungen
 - Node.js (Version 12 oder 14) inkl. npm
@@ -38,5 +40,5 @@ Um die End2End-Tests im CLI zu starten, kann im *Hauptverzeichnis* der Befehl `n
 - Mac OS X oder Linux   
 
 ### Troubleshooting
-1. Je nach installierter Version von mySQL ist eine andere Authentifizierungs-Methode erforderlich. Erscheint beim Starten des Servers eine Fehler bezüglich "Auth-Mode", dann muss im den beiden oben erwähnten Scripts der Abschnitt "with mysql_native_password" gelöscht werden.
-2. Für das Ausführen der End2End-Tests muss das npm-package "run-my-sql-file" Paket global oder lokal installiert sein. 
+- Je nach installierter Version von mySQL ist eine andere Authentifizierungs-Methode erforderlich. Erscheint beim Starten des Servers eine Fehler bezüglich "Auth-Mode", dann muss im den beiden oben erwähnten Scripts der Abschnitt "with mysql_native_password" gelöscht werden.
+- Für das Ausführen der End2End-Tests muss das npm-package "run-my-sql-file" Paket global oder lokal installiert sein. 

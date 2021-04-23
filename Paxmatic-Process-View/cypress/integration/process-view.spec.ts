@@ -92,7 +92,7 @@ describe('end2end tests for process-View', () => {
       .click();
   });
 
-  it('should move process-element back to inital-status', () => {
+  it('should move process-element back to initial-status', () => {
     cy.get('.cdk-drag.circle.mat-card')
       .trigger('mousedown', {button: 0});
 
