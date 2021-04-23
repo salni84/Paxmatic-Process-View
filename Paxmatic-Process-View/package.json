@@ -55,7 +55,7 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "run-my-sql-file": "^1.0.0",
-    "ts-loader": "latest",
+    "ts-loader": "8.0.6",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "^4.1.3"
