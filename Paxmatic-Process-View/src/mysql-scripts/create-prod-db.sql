@@ -104,19 +104,19 @@ VALUES (null, 'basic', 'Projekt', 'green', 0, 0, 1, 'Projekt'),
 
 INSERT into process_Server.subprocess (id, level, name, color, form, position, parent, visibleName)
 VALUES (null, 'sub', 'Akquisition', 'red', 0, 0, 'Projekt', 'Akquisition'),
-       (null, 'sub', 'Bestellung', 'green', 1, 1, 'Projekt', 'Bestellung'),
+       (null, 'sub', 'Bestellung', 'red', 1, 1, 'Projekt', 'Bestellung'),
        (null, 'sub', 'Kickoff', 'red', 0, 2, 'Projekt', 'Kickoff');
 
 INSERT into process_Server.departmentprocess (id, level, name, color, form, position, parent, visibleName)
 VALUES (null, 'department', 'Service', 'red', 0, 0, 'Kickoff', 'Service'),
-       (null, 'department', 'Ersatzteil', 'green', 0, 1, 'Kickoff', 'Ersatzteil'),
+       (null, 'department', 'Ersatzteil', 'red', 0, 1, 'Kickoff', 'Ersatzteil'),
        (null, 'department', 'Kickoff', 'red', 1, 2, 'Kickoff', 'Kickoff');
 
 INSERT into process_Server.detailprocess (id, level, name, color, form, position, parent, visibleName, isVisible,
                                           `order`, isBubble)
-VALUES (null, 'detail', 'Kundenkontakt', 'red', 0, 0, 'Ersatzteil', 'Kundenkontakt', 1, 2, 0),
+VALUES (null, 'detail', 'Kundenkontakt', 'blue', 0, 0, 'Ersatzteil', 'Kundenkontakt', 1, 2, 0),
        (null, 'detail', 'Abnahme', 'green', 0, 1, 'Ersatzteil', 'Abnahme', 1, 3, 0),
-       (null, 'detail', 'Kickoff', 'red', 1, 2, 'Ersatzteil', 'Kickoff', 1, 4, 0),
+       (null, 'detail', 'Kickoff', 'yellow', 1, 2, 'Ersatzteil', 'Kickoff', 1, 4, 0),
        (null, 'detail', 'Bestellung', 'green', 1, 2, 'Ersatzteil', 'Bestellung', 1, 3, 0);
 
 INSERT into process_Server.documents (id, name, link, description, parent, coreElement, nr)
@@ -124,5 +124,5 @@ VALUES (null, 'checkliste', 'docs/checkliste.pdf', 'liste zum checken', 'Ersatzt
 
 INSERT into process_Server.departments (id, name, color)
 VALUES (null, 'Projektleitung', 'blue'),
-       (null, 'Fertigung', 'green'),
+       (null, 'Hauptprozess', 'green'),
        (null, 'Reparatur', 'yellow');
