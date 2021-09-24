@@ -12,23 +12,28 @@ import {CdkDragDrop} from '@angular/cdk/drag-drop';
 
 export class ProcessService {
 
-  private serverURL = environment.serverURL;
+  private serverURL = 'http://robertobackend-env.eba-nwy2bvpi.us-east-2.elasticbeanstalk.com/';
 
   constructor(private http: HttpClient) {
   }
 
-  getProcess(level: string, parent: string): Observable<any> {
-    return this.http.get(this.serverURL + level + '/' + parent);
+
+  getProcess(uuid?: number): Observable<any> {
+    if (uuid) {
+      return this.http.get(this.serverURL + uuid);
+    } else {
+      return this.http.get(this.serverURL + 'basic' + '/' + 1);
+    }
   }
 
-  getAllProcess(level: string): Observable<any> {
-    return this.http.get(this.serverURL + level);
+  getAllProcess(level: number): Observable<any> {
+    return this.http.get(this.serverURL + level) ;
   }
 
-  addProcessElement(process: ProcessElement, level: string): Observable<any> {
+  addProcessElement(process: ProcessElement): Observable<any> {
     const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(process);
-    return this.http.post(this.serverURL + level + '/new', body, {headers});
+    return this.http.post(this.serverURL + 'new', body, {headers});
   }
 
   updateProcessList(process: ProcessElement[], level: string): Observable<any> {
@@ -37,8 +42,8 @@ export class ProcessService {
     return this.http.put(this.serverURL + level, body, {headers});
   }
 
-  deleteProcess(id: number, level: string): Observable<any> {
-    return this.http.delete(this.serverURL + level + '/' + id);
+  deleteProcess(id: number): Observable<any> {
+    return this.http.delete(this.serverURL + id);
   }
 
   createEvent(previousIndex: number, currentIndex: number): CdkDragDrop<any[], any[]> {
