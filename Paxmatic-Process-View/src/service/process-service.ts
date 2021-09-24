@@ -26,7 +26,7 @@ export class ProcessService {
   }
 
   getAllProcess(level: number): Observable<any> {
-    return this.http.get(this.serverURL + level) ;
+    return this.http.get(this.serverURL + level);
   }
 
   addProcessElement(process: ProcessElement): Observable<any> {

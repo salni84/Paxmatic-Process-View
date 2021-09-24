@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 export class ProcessElement {
   id: number;
   level: number;
@@ -15,4 +13,3 @@ export class ProcessElement {
   bubble: boolean;
   uuid: number;
 }
->>>>>>> origin/googleRefactoring
