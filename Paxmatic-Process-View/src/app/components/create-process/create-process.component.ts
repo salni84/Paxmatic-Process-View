@@ -4,6 +4,7 @@ import {ProcessService} from '../../../service/process-service';
 import {LegendService} from '../../../service/legend-service';
 
 
+
 @Component({
   selector: 'app-create-process',
   templateUrl: './create-process.component.html',
@@ -11,9 +12,10 @@ import {LegendService} from '../../../service/legend-service';
 })
 export class CreateProcessComponent implements OnInit {
 
-  @Input() parentId;
+  @Input() parent;
   @Input() level;
   @Input() order;
+  @Input() uuid;
   @Output() newProcessEvent = new EventEmitter<ProcessElement>();
   newProcess: ProcessElement = new ProcessElement();
   selectedForm;
@@ -43,32 +45,39 @@ export class CreateProcessComponent implements OnInit {
       });
   }
 
+  getRandomNumber() {
+    return Math.floor((1000000 + Math.random() * 900000));
+  }
+
   createNewProcessElement() {
     if (this.selectedForm === 'Kreis') {
       this.newProcess.form = 1;
     } else if (this.selectedForm === 'Pfeil') {
       this.newProcess.form = 0;
     }
-    this.newProcess.isBubble = 0;
-    this.newProcess.color = this.selectedDepartment;
+    this.newProcess.bubble = false;
+    // this.newProcess.color = this.selectedDepartment;
+    this.newProcess.color = 'blue';
     this.newProcess.level = this.level;
-    this.newProcess.parent = this.parentId;
-    this.newProcess.order = this.order;
-    this.newProcess.isVisible = 1;
-    this.newProcess.visibleName = this.newProcess.name;
+    this.newProcess.verticalorder = this.order;
+    this.newProcess.visible = true;
+    this.newProcess.visiblename = this.newProcess.name;
+    this.newProcess.uuid = this.getRandomNumber();
+    this.newProcess.parent = this.uuid;
+    this.newProcess.position = 0;
     this.newProcessEvent.emit(this.newProcess);
+
   }
 
   createEmptyProcessElement() {
     this.newProcess.name = '';
     this.newProcess.color = '';
-    this.newProcess.isVisible = 0;
+    this.newProcess.visible = false;
     this.newProcess.level = this.level;
-    this.newProcess.parent = this.parentId;
-    this.newProcess.order = this.order;
-    this.newProcess.isBubble = 0;
+    this.newProcess.verticalorder = this.order;
+    this.newProcess.bubble = false;
     this.newProcess.form = 0;
-    this.newProcess.visibleName = '';
+    this.newProcess.visiblename = '';
     this.newProcessEvent.emit(this.newProcess);
   }
 }

@@ -3,15 +3,12 @@ import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {BasicProcessComponent} from './components/basic-process/basic-process.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {CreateProcessComponent} from './components/create-process/create-process.component';
 import {FormsModule} from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import {HomeComponent} from './components/home/home.component';
-import {SubProcessComponent} from './components/sub-process/sub-process.component';
-import {DepartmentProcessComponent} from './components/department-process/department-process.component';
-import {DetailProcessComponent} from './components/detail-process/detail-process.component';
+import {ProcessComponent} from './components/process/process.component';
 import {MatOptionModule} from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
@@ -35,17 +32,17 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {DialogModalComponent} from './dialog/dialog-modal/dialog-modal.component';
 import {LegendComponent} from './components/legend/legend.component';
 import {MatExpansionModule} from '@angular/material/expansion';
-
+import {StoreModule} from '@ngrx/store';
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
+import {loginReducer} from "./store/reducers/login.reducer";
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BasicProcessComponent,
     CreateProcessComponent,
     HomeComponent,
-    SubProcessComponent,
-    DepartmentProcessComponent,
-    DetailProcessComponent,
+    ProcessComponent,
     LoginComponent,
     HeaderComponent,
     FooterComponent,
@@ -75,7 +72,10 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatSelectModule,
     MatSlideToggleModule,
     MatDialogModule,
-    MatExpansionModule
+    MatExpansionModule,
+    StoreModule.forRoot({login: loginReducer}),
+    StoreDevtoolsModule.instrument(),
+    EffectsModule.forRoot([]),
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]

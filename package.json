@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run server:prod & (cd Paxmatic-Process-View && npm run start)",
     "server:prod": "cd Server && npm run start:prod",
-    "server:dev": "cd Server && npm run start:dev" ,
+    "server:dev": "cd Server && npm run start:dev",
     "e2e": "npm run server:dev & (cd Paxmatic-Process-View && npm run e2e)",
     "install-both": "(cd Server && npm install) && (cd Paxmatic-Process-View && npm install)"
   },
@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/salni84/Paxmatic-Process-View/issues"
   },
-  "homepage": "https://github.com/salni84/Paxmatic-Process-View#readme"
+  "homepage": "https://github.com/salni84/Paxmatic-Process-View#readme",
+  "dependencies": {
+    "@ngrx/effects": "^12.1.0"
+  }
 }
