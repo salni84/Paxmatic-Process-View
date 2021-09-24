@@ -1,14 +1,15 @@
 export class ProcessElement {
   id: number;
-  level: string;
+  level: number;
   name: string;
   color: string;
   form: number;
   position: number;
-  parent: string;
-  order: number;
-  isVisible: number;
-  visibleName: string;
+  parent: number;
+  verticalorder: number;
+  visible: boolean;
+  visiblename: string;
   hasDocument?: boolean;
-  isBubble: number;
+  bubble: boolean;
+  uuid: number;
 }

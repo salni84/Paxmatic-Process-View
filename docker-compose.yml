@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+
+  backendserver:
+    build: ./paxmatic/
+    ports:
+      - "8081"
+    restart: "no"
+    volumes:
+     - ~/.config:/root/.config
+    environment:
+      # You must set an URL to access your database. On sequelize (nodejs) it follows this
+        # format: db-type://user:password@host:port/database-name
+        # the one below is for a MySQL database.
+      DATABASE_URL: mjdbc:mysql://pax-db.cknakxvegoha.us-east-2.rds.amazonaws.com:3306/process_db
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: salerno84
+
+  frontend:
+    build: ./Paxmatic-Process-View/
+    links:
+      - "backendserver"
+    depends_on:
+      - "backendserver"
+    ports:
+      - "80:80"

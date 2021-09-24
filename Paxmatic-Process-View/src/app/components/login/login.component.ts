@@ -1,7 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {LoginService} from '../../../service/login-service';
 import {environment} from '../../../environments/environment';
-
+import { Store } from '@ngrx/store';
+import {ActionTypes, IsLoggedIn} from "../../store/actions/login.actions";
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   errormessage: string;
   isLoggedIn = false;
 
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService, private store: Store) {
   }
 
   ngOnInit(): void {
@@ -23,17 +24,15 @@ export class LoginComponent implements OnInit {
 
   logout() {
     this.scrollUp();
-    this.isAdmin.emit(false);
+    this.store.dispatch(new IsLoggedIn(false));
     this.isLoggedIn = false;
-    this.loginService.isUserLoggedOut(false);
   }
 
   passwordValidation() {
     if (this.password === environment.password) {
+    this.store.dispatch(new IsLoggedIn(true));
       this.scrollUp();
-      this.isAdmin.emit(true);
       this.isLoggedIn = true;
-      this.loginService.isUserLoggedIn(true);
       this.password = '';
       this.errormessage = '';
     } else {

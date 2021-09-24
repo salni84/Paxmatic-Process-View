@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {ProcessService} from "../../../service/process-service";
+import {ProcessComponent} from "../process/process.component";
 
 @Component({
   selector: 'app-navbar',
@@ -8,6 +10,7 @@ import {Component, OnInit} from '@angular/core';
 export class NavbarComponent implements OnInit {
 
   constructor() {
+
   }
 
   ngOnInit() {
@@ -16,4 +19,6 @@ export class NavbarComponent implements OnInit {
   scrollUp() {
     window.scrollTo(0, 0);
   }
+
+
 }

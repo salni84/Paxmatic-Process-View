@@ -18,7 +18,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 export class DocumentsComponent implements OnInit {
 
   documents: Document[] = [];
-  parentId: string;
+  parentId: number;
   coreElement: string;
   displayedColumns: string[] = ['nr', 'name', 'link', 'description'];
   showCreateElement = false;
@@ -53,7 +53,7 @@ export class DocumentsComponent implements OnInit {
         this.displayedColumns = this.displayedColumns.filter(l => l !== 'löschen');
       }
     });
-    this.getDocuments();
+    // this.getDocuments();
     this.getNextDocuments();
     this.getDocumentByCoreElement();
   }
@@ -70,15 +70,15 @@ export class DocumentsComponent implements OnInit {
     this.hideCreateElement = false;
   }
 
-  getDocuments() {
+/*  getDocuments() {
     this.route.pathFromRoot[1].url.subscribe((val) => {
-      this.parentId = val[4].path;
-      this.documentService.getDocumentsByCoreElement(this.parentId)
-        .subscribe((data) => {
-          this.documents = data;
+      //this.parentId = val[4].path;
+      //this.documentService.getDocumentsByCoreElement(this.parentId)
+       // .subscribe((data) => {
+         // this.documents = data;
         });
     });
-  }
+  }*/
 
   getDocumentByCoreElement() {
     this.route.pathFromRoot[1].url.subscribe((val) => {
@@ -94,7 +94,7 @@ export class DocumentsComponent implements OnInit {
     this.route.pathFromRoot[1].url.subscribe((value) => {
       this.coreElement = value[5].path;
     });
-    this.processService.getProcess('detail', this.parentId)
+    this.processService.getProcess( this.parentId)
       .pipe(
         map(items => items.filter(item => item.order === 3 && !item.isStart)))
       .subscribe((data) => {

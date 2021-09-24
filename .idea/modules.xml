@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Diplomarbeit.iml" filepath="$PROJECT_DIR$/.idea/Diplomarbeit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/paxmatic/paxmatic.iml" filepath="$PROJECT_DIR$/paxmatic/paxmatic.iml" />
     </modules>
   </component>
 </project>
