@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {LoginService} from '../../../service/login-service';
 import {environment} from '../../../environments/environment';
 import { Store } from '@ngrx/store';
-import {ActionTypes, IsLoggedIn} from "../../store/actions/login.actions";
+import {ActionTypes, IsLoggedIn} from '../../store/actions/login.actions';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
   logout() {
@@ -31,10 +32,10 @@ export class LoginComponent implements OnInit {
   passwordValidation() {
     if (this.password === environment.password) {
     this.store.dispatch(new IsLoggedIn(true));
-      this.scrollUp();
-      this.isLoggedIn = true;
-      this.password = '';
-      this.errormessage = '';
+    this.scrollUp();
+    this.isLoggedIn = true;
+    this.password = '';
+    this.errormessage = '';
     } else {
       this.errormessage = 'Passwort nicht korrekt!';
     }

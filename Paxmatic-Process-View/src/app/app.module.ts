@@ -36,6 +36,9 @@ import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {loginReducer} from "./store/reducers/login.reducer";
 import { EffectsModule } from '@ngrx/effects';
+import {processReducer} from "./store/reducers/process.reducer";
+import {ProcessEffects} from "./store/effects/process.effects";
+import {reducers} from "./store/state/app.state";
 
 @NgModule({
   declarations: [
@@ -55,6 +58,7 @@ import { EffectsModule } from '@ngrx/effects';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
     DragDropModule,
@@ -73,9 +77,14 @@ import { EffectsModule } from '@ngrx/effects';
     MatSlideToggleModule,
     MatDialogModule,
     MatExpansionModule,
-    StoreModule.forRoot({login: loginReducer}),
+    StoreModule.forRoot(reducers, {
+      runtimeChecks: {
+        strictStateImmutability: false,
+        strictActionImmutability: false,
+      },
+    }),
     StoreDevtoolsModule.instrument(),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([ProcessEffects]),
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]

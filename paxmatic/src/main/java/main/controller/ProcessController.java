@@ -18,6 +18,11 @@ public class ProcessController {
       return processService.findByParent(parent);
    }
 
+   @GetMapping(path="/all" )
+   public Iterable<BasicProcess> getAllProcess(){
+      return processService.findAll();
+   }
+
    @GetMapping(path="basic/{level}")
    public Iterable<BasicProcess> getAllBasicProcess(@PathVariable Integer level ) {
       return processService.findByLevel(level);
@@ -33,4 +38,13 @@ public class ProcessController {
        return processService.deleteprocess(id);
    }
 
+   @PutMapping("/update")
+   public Iterable<BasicProcess> updateProcess(@RequestBody BasicProcess process) {
+      return processService.updateProcess(process);
+   }
+
+   @PutMapping("/updateOrder")
+   public Iterable<BasicProcess> updateProcess(@RequestBody BasicProcess[] process) {
+      return processService.updateProcessOrder(process);
+   }
 }

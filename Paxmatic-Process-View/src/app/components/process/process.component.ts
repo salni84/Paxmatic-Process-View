@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {ProcessElement} from '../../model/process-element';
 import {ProcessService} from '../../../service/process-service';
 import {ActivatedRoute} from '@angular/router';
@@ -8,6 +7,13 @@ import {Location} from '@angular/common';
 import {DocumentService} from '../../../service/document.service';
 import {Document} from '../../model/document';
 import {LegendService} from '../../../service/legend-service';
+import {select, State, Store} from '@ngrx/store';
+import {Observable, pipe} from 'rxjs';
+import {getProcess} from '../../store/selectors/process.selector';
+import {isLoggedIn} from '../../store/selectors/login.selector';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import {filter, first, map, switchMap} from 'rxjs/operators';
+
 
 
 @Component({
@@ -18,7 +24,6 @@ import {LegendService} from '../../../service/legend-service';
 export class ProcessComponent implements OnInit {
 
   @Input() newProcess: ProcessElement;
-  detailProcessList: ProcessElement[] = [];
   level = 1;
   uuid: number;
   parent: number;
@@ -26,39 +31,38 @@ export class ProcessComponent implements OnInit {
   hideCreateElement: boolean[] = [false, false, false, false, false, false, false, false];
   showAddButton: boolean[] = [true, true, true, true, true, true, true, true];
   isAdmin = false;
-  firstProcessRow: ProcessElement[] = [];
-  secondProcessRow: ProcessElement[] = [];
-  thirdProcessRow: ProcessElement[] = [];
-  fourthProcessRow: ProcessElement[] = [];
-  fifthProcessRow: ProcessElement[] = [];
-  sixthProcessRow: ProcessElement[] = [];
-  seventhProcessRow: ProcessElement[] = [];
-  eighthProcessRow: ProcessElement[] = [];
   matchDocs: Document[] = [];
   matchNames: string[] = [];
   departments: any = [];
+  loginStatus$: Observable<any>;
+  processList$: Observable<ProcessElement[]>;
+
 
 
   constructor(private location: Location,
+              private store: Store<{login: boolean}>,
+              private store1: Store<{process: ProcessElement[]}>,
+              private processStore: Store<any>,
               private processService: ProcessService,
               private route: ActivatedRoute,
               private loginService: LoginService,
               private documentService: DocumentService,
               private legend: LegendService) {
+    this.loginStatus$ = store.select(isLoggedIn);
+    this.processList$ = store1.select(getProcess);
+    this.store.dispatch({ type: '[Process] loadAllProcess' });
   }
 
 
   ngOnInit() {
-    this.loginService.getLoginStatus().subscribe((data) => {
-    //  if (data) {
-        this.isAdmin = true;
-     /* } else {
-        this.isAdmin = false;
-        this.hideAllAddProcessComponent();
-      }*/
+    this.loginStatus$.subscribe((loginStatus) => {
+     if (loginStatus) {
+       this.isAdmin = true;
+     } else {
+       this.hideAllAddProcessComponent();
+       this.isAdmin = false;
+     }
     });
-  //  this.parentId = this.route.snapshot.paramMap.get('detail');
-    this.getAllProcess();
     this.getDepartments();
   }
 
@@ -81,160 +85,156 @@ export class ProcessComponent implements OnInit {
   }
 
   getAllProcess(parent?: number, uuid?: number, increase?: number) {
-
     this.uuid = uuid;
     if (increase) {
       this.level = this.level + increase;
       localStorage.setItem('parent', uuid?.toString());
-      console.log(uuid)
+      console.log(uuid);
     }
     if (parent === undefined) {
       uuid = this.parent;
     }
-
-    this.clearProcessRows();
-    console.log(uuid)
-    this.processService.getProcess(uuid)
-      .subscribe((process) => {
-        this.distributeProcessElements(process);
-      });
   }
 
-  distributeProcessElements(process) {
-    this.clearProcessRows();
-    this.detailProcessList = process;
-    this.detailProcessList.forEach((data) => {
 
-      if (data.verticalorder === 1) {
-        this.firstProcessRow.push(data);
-      }
-      if (data.verticalorder === 2) {
-        this.secondProcessRow.push(data);
-      }
-      if (data.verticalorder === 3) {
-        this.showDocuments(data);
-        this.thirdProcessRow.push(data);
-      }
-      if (data.verticalorder === 4) {
-        this.fourthProcessRow.push(data);
-      }
-      if (data.verticalorder === 5) {
-        this.fifthProcessRow.push(data);
-      }
-      if (data.verticalorder === 6) {
-        this.sixthProcessRow.push(data);
-      }
-      if (data.verticalorder === 7) {
-        this.seventhProcessRow.push(data);
-      }
-      if (data.verticalorder === 8) {
-        this.eighthProcessRow.push(data);
-      }
-    });
-  }
 
-  drop1(event: CdkDragDrop<string[]>) {
-    if (this.isAdmin) {
-      moveItemInArray(this.firstProcessRow, event.previousIndex, event.currentIndex);
-      for (let x = 0; x < this.firstProcessRow.length; x++) {
-        this.firstProcessRow[x].position = x;
-      }
-      this.udpateProcess();
-    }
-  }
+ drop1(event: CdkDragDrop<string[]>) {
+   if (this.isAdmin) {
 
-  drop2(event: CdkDragDrop<string[]>) {
-    if (this.isAdmin) {
-      moveItemInArray(this.secondProcessRow, event.previousIndex, event.currentIndex);
-      for (let x = 0; x < this.secondProcessRow.length; x++) {
-        this.secondProcessRow[x].position = x;
-      }
-      this.udpateProcess();
-    }
-  }
+     const firstList: any = [];
+     this.processList$.pipe(map((data) =>
+       data.filter((process) => process.verticalorder === 1))).subscribe((pro) => firstList.push(pro));
 
-  drop3(event: CdkDragDrop<string[]>) {
-    if (this.isAdmin) {
-      moveItemInArray(this.thirdProcessRow, event.previousIndex, event.currentIndex);
-      for (let x = 0; x < this.thirdProcessRow.length; x++) {
-        this.thirdProcessRow[x].position = x;
-      }
-      this.udpateProcess();
-    }
-  }
+     moveItemInArray(firstList[0], event.previousIndex, event.currentIndex);
+     for (let x = 0; x < firstList[0].length; x++) {
+       firstList[0][x].position = x;
+     }
+     this.udpateProcessOrder(firstList[0]);
+   }
+ }
 
-  drop4(event: CdkDragDrop<string[]>) {
-    if (this.isAdmin) {
-      moveItemInArray(this.fourthProcessRow, event.previousIndex, event.currentIndex);
-      for (let x = 0; x < this.fourthProcessRow.length; x++) {
-        this.fourthProcessRow[x].position = x;
-      }
-      this.udpateProcess();
-    }
-  }
+   drop2(event: CdkDragDrop<string[]>) {
+     if (this.isAdmin) {
 
-  drop5(event: CdkDragDrop<string[]>) {
-    if (this.isAdmin) {
-      moveItemInArray(this.fifthProcessRow, event.previousIndex, event.currentIndex);
-      for (let x = 0; x < this.fifthProcessRow.length; x++) {
-        this.fifthProcessRow[x].position = x;
-      }
-      this.udpateProcess();
-    }
-  }
+       const secondList: any = [];
+       this.processList$.pipe(map((data) =>
+         data.filter((process) => process.verticalorder === 2))).subscribe((pro) => secondList.push(pro));
 
-  drop6(event: CdkDragDrop<string[]>) {
-    if (this.isAdmin) {
-      moveItemInArray(this.sixthProcessRow, event.previousIndex, event.currentIndex);
-      for (let x = 0; x < this.sixthProcessRow.length; x++) {
-        this.sixthProcessRow[x].position = x;
-      }
-      this.udpateProcess();
-    }
-  }
+       moveItemInArray(secondList[0], event.previousIndex, event.currentIndex);
+       for (let x = 0; x < secondList[0].length; x++) {
+         secondList[0][x].position = x;
+       }
+       this.udpateProcessOrder(secondList[0]);
+     }
+   }
 
-  drop7(event: CdkDragDrop<string[]>) {
-    if (this.isAdmin) {
-      moveItemInArray(this.seventhProcessRow, event.previousIndex, event.currentIndex);
-      for (let x = 0; x < this.seventhProcessRow.length; x++) {
-        this.seventhProcessRow[x].position = x;
-      }
-      this.udpateProcess();
-    }
-  }
+   drop3(event: CdkDragDrop<string[]>) {
+     if (this.isAdmin) {
 
-  drop8(event: CdkDragDrop<string[]>) {
-    if (this.isAdmin) {
-      moveItemInArray(this.eighthProcessRow, event.previousIndex, event.currentIndex);
-      for (let x = 0; x < this.eighthProcessRow.length; x++) {
-        this.eighthProcessRow[x].position = x;
-      }
-      this.udpateProcess();
-    }
-  }
+       const thirdList: any = [];
+       this.processList$.pipe(map((data) =>
+         data.filter((process) => process.verticalorder === 3))).subscribe((pro) => thirdList.push(pro));
+
+       moveItemInArray(thirdList[0], event.previousIndex, event.currentIndex);
+       for (let x = 0; x < thirdList[0].length; x++) {
+         thirdList[0][x].position = x;
+       }
+       this.udpateProcessOrder(thirdList[0]);
+     }
+   }
+
+   drop4(event: CdkDragDrop<string[]>) {
+     if (this.isAdmin) {
+
+       const forthList: any = [];
+       this.processList$.pipe(map((data) =>
+         data.filter((process) => process.verticalorder === 4))).subscribe((pro) => forthList.push(pro));
+
+       moveItemInArray(forthList[0], event.previousIndex, event.currentIndex);
+       for (let x = 0; x < forthList[0].length; x++) {
+         forthList[0][x].position = x;
+       }
+       this.udpateProcessOrder(forthList[0]);
+     }
+   }
+
+   drop5(event: CdkDragDrop<string[]>) {
+     if (this.isAdmin) {
+
+       const fifthList: any = [];
+       this.processList$.pipe(map((data) =>
+         data.filter((process) => process.verticalorder === 5))).subscribe((pro) => fifthList.push(pro));
+
+       moveItemInArray(fifthList[0], event.previousIndex, event.currentIndex);
+       for (let x = 0; x < fifthList[0].length; x++) {
+         fifthList[0][x].position = x;
+       }
+       this.udpateProcessOrder(fifthList[0]);
+     }
+   }
+
+   drop6(event: CdkDragDrop<string[]>) {
+     if (this.isAdmin) {
+
+       const sixtList: any = [];
+       this.processList$.pipe(map((data) =>
+         data.filter((process) => process.verticalorder === 6))).subscribe((pro) => sixtList.push(pro));
+
+       moveItemInArray(sixtList[0], event.previousIndex, event.currentIndex);
+       for (let x = 0; x < sixtList[0].length; x++) {
+         sixtList[0][x].position = x;
+       }
+       this.udpateProcessOrder(sixtList[0]);
+     }
+   }
+
+   drop7(event: CdkDragDrop<string[]>) {
+     if (this.isAdmin) {
+
+       const seventhList: any = [];
+       this.processList$.pipe(map((data) =>
+         data.filter((process) => process.verticalorder === 7))).subscribe((pro) => seventhList.push(pro));
+
+       moveItemInArray(seventhList[0], event.previousIndex, event.currentIndex);
+       for (let x = 0; x < seventhList[0].length; x++) {
+         seventhList[0][x].position = x;
+       }
+       this.udpateProcessOrder(seventhList[0]);
+     }
+   }
+
+   drop8(event: CdkDragDrop<string[]>) {
+     if (this.isAdmin) {
+
+       const eightList: any = [];
+       this.processList$.pipe(map((data) =>
+         data.filter((process) => process.verticalorder === 8))).subscribe((pro) => eightList.push(pro));
+
+       moveItemInArray(eightList[0], event.previousIndex, event.currentIndex);
+       for (let x = 0; x < eightList[0].length; x++) {
+         eightList[0][x].position = x;
+       }
+       this.udpateProcessOrder(eightList[0]);
+     }
+   }
+
 
 
   addNewProcess(newProcess: ProcessElement) {
-    this.processService.addProcessElement(newProcess)
-      .subscribe(process => {
-        this.distributeProcessElements(process);
-      });
-    this.detailProcessList.push(newProcess);
+    this.store.dispatch({type: '[Process] addNewProcess', payload: newProcess});
   }
 
-  udpateProcess() {
-    this.processService.updateProcessList(this.detailProcessList, 'detail')
-      .subscribe(() => {
-         this.getAllProcess();
-      });
+  udpateProcess(processElement: any) {
+    this.store.dispatch({ type: '[Process] updateProcess', payload: processElement });
+  }
+
+  udpateProcessOrder(processElement: any) {
+    this.store.dispatch({ type: '[Process] updateProcessOrder', payload: processElement });
   }
 
   deleteProcessElement(id: number) {
-    this.processService.deleteProcess(id)
-      .subscribe(process => {
-        this.distributeProcessElements(process);
-      });
-  }
+    this.store.dispatch({type: '[Process] deleteProcess', payload: id});
+      }
 
   getDepartments() {
     this.legend.getDepartments()
@@ -258,24 +258,14 @@ export class ProcessComponent implements OnInit {
       });*/
   }
 
-  clearProcessRows() {
-    this.firstProcessRow = [];
-    this.secondProcessRow = [];
-    this.thirdProcessRow = [];
-    this.fourthProcessRow = [];
-    this.fifthProcessRow = [];
-    this.sixthProcessRow = [];
-    this.seventhProcessRow = [];
-    this.eighthProcessRow = [];
-  }
+
 
   navigateBack() {
     const parent = localStorage.getItem('parent');
     // tslint:disable-next-line:radix
     const convertedNumber = parseInt(parent);
-    console.log(convertedNumber)
+    console.log(convertedNumber);
     this.getAllProcess( convertedNumber);
   }
-
 }
 

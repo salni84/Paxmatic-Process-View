@@ -10,8 +10,8 @@ public class BasicProcess {
     @Id
     @GeneratedValue Integer id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "processname")
+    private String processname;
 
     @Column(name = "color")
     private String color;
@@ -37,9 +37,6 @@ public class BasicProcess {
     @Column(name = "visible")
     private Boolean visible;
 
-    @Column(name = "visiblename")
-    private String visiblename;
-
     @Column(name = "bubble")
     private Boolean bubble;
 
@@ -47,16 +44,16 @@ public class BasicProcess {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getProcessname() {
+        return processname;
     }
 
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProcessname(String name) {
+        this.processname = name;
     }
 
     public void setColor(String color) {
@@ -89,10 +86,6 @@ public class BasicProcess {
 
     public void setVisible(Boolean visible) {
         this.visible = visible;
-    }
-
-    public void setVisiblename(String visiblename) {
-        this.visiblename = visiblename;
     }
 
     public void setBubble(Boolean bubble) {
@@ -129,10 +122,6 @@ public class BasicProcess {
 
     public Boolean getVisible() {
         return visible;
-    }
-
-    public String getVisiblename() {
-        return visiblename;
     }
 
     public Boolean getBubble() {

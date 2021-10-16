@@ -3,10 +3,10 @@ package main.Service;
 import main.Model.BasicProcess;
 import main.Repository.ProcessRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,7 +17,7 @@ public class ProcessService {
     private ProcessRepository processRepository;
 
     public Iterable<BasicProcess> findAll() {
-        return this.processRepository.findAll();
+        return this.processRepository.findAll(Sort.by(Sort.Direction.ASC, "position"));
     }
 
 
@@ -42,5 +42,26 @@ public class ProcessService {
         this.processRepository.deleteById(id);
         Integer parent = basic.get().getParent();
          return findByParent(parent);
+    }
+
+    @Async
+    public Iterable<BasicProcess> updateProcess(BasicProcess process) {
+        Optional<BasicProcess> processDB= processRepository.findById(process.getId());
+        processDB.get().setProcessname(process.getProcessname());
+        processDB.get().setColor(process.getColor());
+        this.processRepository.save(process);
+        return findAll();
+    }
+
+
+    @Async
+    public Iterable<BasicProcess> updateProcessOrder(BasicProcess[] process) {
+        for (int x= 0; x < process.length; x++) {
+            Optional<BasicProcess> processDB= processRepository.findById(process[x].getId());
+            processDB.get().setProcessname(process[x].getProcessname());
+            processDB.get().setColor(process[x].getColor());
+            this.processRepository.save(process[x]);
+        }
+        return findAll();
     }
 }

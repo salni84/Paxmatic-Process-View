@@ -61,7 +61,6 @@ export class CreateProcessComponent implements OnInit {
     this.newProcess.level = this.level;
     this.newProcess.verticalorder = this.order;
     this.newProcess.visible = true;
-    this.newProcess.visiblename = this.newProcess.name;
     this.newProcess.uuid = this.getRandomNumber();
     this.newProcess.parent = this.uuid;
     this.newProcess.position = 0;
@@ -70,14 +69,13 @@ export class CreateProcessComponent implements OnInit {
   }
 
   createEmptyProcessElement() {
-    this.newProcess.name = '';
+    this.newProcess.processname = '';
     this.newProcess.color = '';
     this.newProcess.visible = false;
     this.newProcess.level = this.level;
     this.newProcess.verticalorder = this.order;
     this.newProcess.bubble = false;
     this.newProcess.form = 0;
-    this.newProcess.visiblename = '';
     this.newProcessEvent.emit(this.newProcess);
   }
 }

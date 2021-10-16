@@ -74,7 +74,7 @@ describe('Process-Service', () => {
   });
 
   it(`should test PUT-method`, () => {
-    service.updateProcessList(expectedBasicProcess, 'basic')
+    service.updateProcessProperties(expectedBasicProcess, 'basic')
       .subscribe(data => {
         expect(data.length).toBe(3);
         expect(data).toBe(expectedBasicProcess);

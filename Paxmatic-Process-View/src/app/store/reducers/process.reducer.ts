@@ -1,22 +1,45 @@
-import {ActionTypes, LoginActions} from '../actions/login.actions';
+import {ActionTypes, ProcessActions} from '../actions/process.actions';
+import {ProcessElement} from '../../model/process-element';
 
 
-export interface LoginReducer {
-  isLoggedIn: boolean;
+export interface ProcessReducer {
+  process: ProcessElement[];
 }
 
-export const initialState: LoginReducer = {
-  isLoggedIn: false,
+export const initialState: ProcessReducer = {
+  process: []
 };
 
-export function loginReducer(state = initialState, action: LoginActions): LoginReducer {
+export function processReducer(state = initialState, action: ProcessActions): ProcessReducer {
   switch (action.type) {
-    case ActionTypes.isLoggedIn: {
+    case ActionTypes.loadAllProcess:
       return {
         ...state,
-        isLoggedIn: action.payload,
+        process: action.payload,
       };
-    }
+
+    case ActionTypes.processLoaded:
+      return {
+        ...state, process: action.payload
+      };
+
+      case ActionTypes.updateProcess:
+      return {
+        ...state,
+        process: action.payload
+      };
+
+    case ActionTypes.deleteProcess:
+      return {
+        ...state, process: action.payload
+      };
+
+    case ActionTypes.addNewProcess:
+      return {
+        ...state, process: action.payload
+      };
+
+
     default:
       return state;
   }
