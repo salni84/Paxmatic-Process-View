@@ -1,6 +1,10 @@
 <div class="detail-title" xmlns="http://www.w3.org/1999/html">
-  <mat-icon class="arrow" (click)="navigateBack()">fast_rewind</mat-icon>
-  <h2>Detailprozess </h2><h2>{{level}}</h2>
+
+  <mat-icon class="arrow" (click)="navigateBack()" *ngIf="breadcrumb.length > 0">fast_rewind</mat-icon>
+  <ng-container *ngFor="let p of processName">
+    <h2 >{{p}} -></h2>
+  </ng-container>
+
 </div>
 <app-legend></app-legend>
 
@@ -30,7 +34,7 @@
                     [ngStyle]="{backgroundColor: p.color}"
                     [class.disableLink]="p.form && !isAdmin"
                     [class.isInvisible]="!p.visible" cdkDrag
-                    (click)="getChildProcess(p.parent, p.uuid, 1)">
+                    (click)="getChildProcess(p.processname, p.parent, p.uuid)">
             <div class="names"><label>{{p.processname}}</label></div>
             <div class="mat-card-after" *ngIf="p.form == 0" [ngStyle]="{'border-left-color': p.color}"></div>
             <div class="mat-card-before" *ngIf="p.form == 0"
@@ -55,7 +59,7 @@
                 <button mat-raised-button *ngIf="!p.bubble" class="editButton" (click)="p.bubble = 1">Oval</button>
                 <button mat-raised-button *ngIf="p.bubble" class="editButton" (click)="p.bubble = 0">Pfeil</button>
               </ng-container>
-              <button mat-raised-button class="editButton" (click)="deleteProcessElement(p.id, p.parent)">Löschen</button>
+              <button mat-raised-button class="editButton" (click)="deleteProcessElement(p.id)">Löschen</button>
               <button *ngIf="p.visible" mat-raised-button class="editButton" (click)="udpateProcess(p)">Update</button>
             </div>
           </div>
@@ -86,7 +90,7 @@
           <mat-card [class.circle]="p.form" [class.bubble]="p.bubble" [ngStyle]="{backgroundColor: p.color}"
                     [class.disableLink]="p.form && !isAdmin"
                     [class.isInvisible]="!p.visible" cdkDrag
-                    (click)="getChildProcess(p.parent, p.uuid, 1)">
+                    (click)="getChildProcess(p.processname, p.parent, p.uuid)">
             <div class="names">
               <label>{{p.processname}}</label>
             </div>
@@ -152,7 +156,7 @@
                     [class.disableLink]="p.form && !isAdmin"
                     [ngStyle]="{backgroundColor: p.color}"
                     [class.isInvisible]="!p.visible" cdkDrag
-                    (click)="getChildProcess(p.parent, p.uuid, 1)">
+                    (click)="getChildProcess(p.processname, p.parent, p.uuid)">
             <p class="doc-icon" *ngIf="p.hasDocument">
               <mat-icon>attach_file</mat-icon>
             </p>
@@ -219,7 +223,7 @@
                     [ngStyle]="{backgroundColor: p.color}"
                     [class.disableLink]="p.form && !isAdmin"
                     [class.isInvisible]="!p.visible" cdkDrag
-                    (click)="getChildProcess(p.parent, p.uuid, 1)">
+                    (click)="getChildProcess(p.processname, p.parent, p.uuid)">
             <div class="names">
               <label>{{p.processname}}</label>
             </div>
@@ -345,7 +349,7 @@
                     [ngStyle]="{backgroundColor: p.color}"
                     [class.disableLink]="p.form && !isAdmin"
                     [class.isInvisible]="!p.visible" cdkDrag
-                    (click)="getChildProcess(p.parent, p.uuid, 1)">
+                    (click)="getChildProcess(p.processname, p.parent, p.uuid)">
             <div class="names">
               <label>{{p.processname}}</label>
             </div>
@@ -470,7 +474,7 @@
                     [ngStyle]="{backgroundColor: p.color}"
                     [class.disableLink]="p.form && !isAdmin"
                     [class.isInvisible]="!p.visible" cdkDrag
-                    (click)="getChildProcess(p.parent, p.uuid, 1)">
+                    (click)="getChildProcess(p.processname, p.parent, p.uuid)">
             <div class="names">
               <label>{{p.processname}}</label>
             </div>

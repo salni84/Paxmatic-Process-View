@@ -12,12 +12,11 @@ import {Observable, pipe} from 'rxjs';
 import {
   getBasicProcess,
   getChildProcessSelector,
-  getCurrentProcessSelector,
-  getProcess
+
 } from '../../store/selectors/process.selector';
 import {isLoggedIn} from '../../store/selectors/login.selector';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-import {filter, first, map, switchMap} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 
 
 
@@ -32,6 +31,7 @@ export class ProcessComponent implements OnInit {
   level = 1;
   uuid: number;
   parent = 0;
+  breadcrumb = [];
   showCreateElement: boolean[] = [false, false, false, false, false, false, false, false];
   hideCreateElement: boolean[] = [false, false, false, false, false, false, false, false];
   showAddButton: boolean[] = [true, true, true, true, true, true, true, true];
@@ -41,6 +41,7 @@ export class ProcessComponent implements OnInit {
   departments: any = [];
   loginStatus$: Observable<any>;
   processList$: Observable<ProcessElement[]>;
+  processName = []
 
 
 
@@ -54,14 +55,13 @@ export class ProcessComponent implements OnInit {
               private documentService: DocumentService,
               private legend: LegendService) {
     this.loginStatus$ = store.select(isLoggedIn);
-
   }
 
 
   ngOnInit() {
+    console.log(this.breadcrumb)
 
-    this.processList$ = this.store1.select(getBasicProcess)
-
+    this.processList$ = this.store1.select(getBasicProcess);
 
     this.loginStatus$.subscribe((loginStatus) => {
      if (loginStatus) {
@@ -92,9 +92,11 @@ export class ProcessComponent implements OnInit {
     this.showAddButton.fill(true);
   }
 
-  getChildProcess(parent?: number, uuid?: number, increase?: number ) {
+  getChildProcess(processName: string, parent?: number, uuid?: number, ) {
+    this.breadcrumb.push(parent);
     this.parent = uuid;
     this.processList$ = this.store1.select(getChildProcessSelector(uuid));
+    this.processName.push(processName)
   }
 
 
@@ -111,8 +113,8 @@ export class ProcessComponent implements OnInit {
     this.store.dispatch({ type: '[Process] updateProcessOrder', payload: processElement });
   }
 
-  deleteProcessElement(id: number, parent: number) {
-    this.store.dispatch({type: '[Process] deleteProcess', payload: id, parent});
+  deleteProcessElement(id: number) {
+    this.store.dispatch({type: '[Process] deleteProcess', payload: id});
   }
 
  drop1(event: CdkDragDrop<string[]>) {
@@ -236,9 +238,6 @@ export class ProcessComponent implements OnInit {
    }
 
 
-
-
-
   getDepartments() {
     this.legend.getDepartments()
       .subscribe(data => {
@@ -262,13 +261,11 @@ export class ProcessComponent implements OnInit {
   }
 
 
-/*
+
   navigateBack() {
-    const parent = localStorage.getItem('parent');
-    // tslint:disable-next-line:radix
-    const convertedNumber = parseInt(parent);
-    console.log(convertedNumber);
-    this.getAllProcess( convertedNumber);
-  }*/
+    const lastParent = this.breadcrumb.pop();
+    this.processList$ = this.store1.select(getChildProcessSelector(lastParent));
+    this.processName.pop();
+  }
 }
 

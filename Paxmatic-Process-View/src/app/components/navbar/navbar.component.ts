@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ProcessService} from "../../../service/process-service";
-import {ProcessComponent} from "../process/process.component";
+import {Store} from '@ngrx/store';
+import {ProcessElement} from '../../model/process-element';
+import {getBasicProcess} from "../../store/selectors/process.selector";
 
 @Component({
   selector: 'app-navbar',
@@ -9,9 +10,7 @@ import {ProcessComponent} from "../process/process.component";
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() {
-
-  }
+  constructor(private store: Store<{process: ProcessElement[]}>) {}
 
   ngOnInit() {
   }
@@ -20,5 +19,7 @@ export class NavbarComponent implements OnInit {
     window.scrollTo(0, 0);
   }
 
+  getBasicProcess() {
 
+  }
 }
