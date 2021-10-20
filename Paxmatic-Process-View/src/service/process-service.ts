@@ -18,12 +18,8 @@ export class ProcessService {
   }
 
 
-  getProcess(uuid?: number): Observable<any> {
-    if (uuid) {
-      return this.http.get(this.serverURL + uuid);
-    } else {
-      return this.http.get(this.serverURL + 'basic' + '/' + 1);
-    }
+  getProcess(parent: number): Observable<any> {
+    return this.http.get(this.serverURL + parent);
   }
 
   getFullProcessLoad(): Observable<any> {

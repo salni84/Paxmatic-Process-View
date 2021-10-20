@@ -9,7 +9,12 @@ import {Document} from '../../model/document';
 import {LegendService} from '../../../service/legend-service';
 import {select, State, Store} from '@ngrx/store';
 import {Observable, pipe} from 'rxjs';
-import {getProcess} from '../../store/selectors/process.selector';
+import {
+  getBasicProcess,
+  getChildProcessSelector,
+  getCurrentProcessSelector,
+  getProcess
+} from '../../store/selectors/process.selector';
 import {isLoggedIn} from '../../store/selectors/login.selector';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {filter, first, map, switchMap} from 'rxjs/operators';
@@ -26,7 +31,7 @@ export class ProcessComponent implements OnInit {
   @Input() newProcess: ProcessElement;
   level = 1;
   uuid: number;
-  parent: number;
+  parent = 0;
   showCreateElement: boolean[] = [false, false, false, false, false, false, false, false];
   hideCreateElement: boolean[] = [false, false, false, false, false, false, false, false];
   showAddButton: boolean[] = [true, true, true, true, true, true, true, true];
@@ -49,12 +54,15 @@ export class ProcessComponent implements OnInit {
               private documentService: DocumentService,
               private legend: LegendService) {
     this.loginStatus$ = store.select(isLoggedIn);
-    this.processList$ = store1.select(getProcess);
-    this.store.dispatch({ type: '[Process] loadAllProcess' });
+
   }
 
 
   ngOnInit() {
+
+    this.processList$ = this.store1.select(getBasicProcess)
+
+
     this.loginStatus$.subscribe((loginStatus) => {
      if (loginStatus) {
        this.isAdmin = true;
@@ -84,19 +92,28 @@ export class ProcessComponent implements OnInit {
     this.showAddButton.fill(true);
   }
 
-  getAllProcess(parent?: number, uuid?: number, increase?: number) {
-    this.uuid = uuid;
-    if (increase) {
-      this.level = this.level + increase;
-      localStorage.setItem('parent', uuid?.toString());
-      console.log(uuid);
-    }
-    if (parent === undefined) {
-      uuid = this.parent;
-    }
+  getChildProcess(parent?: number, uuid?: number, increase?: number ) {
+    this.parent = uuid;
+    this.processList$ = this.store1.select(getChildProcessSelector(uuid));
   }
 
 
+  addNewProcess(newProcess: ProcessElement) {
+    this.store.dispatch({type: '[Process] addNewProcess', payload: newProcess});
+  }
+
+
+  udpateProcess(processElement: any) {
+    this.store.dispatch({ type: '[Process] updateProcess', payload: processElement });
+  }
+
+  udpateProcessOrder(processElement: any) {
+    this.store.dispatch({ type: '[Process] updateProcessOrder', payload: processElement });
+  }
+
+  deleteProcessElement(id: number, parent: number) {
+    this.store.dispatch({type: '[Process] deleteProcess', payload: id, parent});
+  }
 
  drop1(event: CdkDragDrop<string[]>) {
    if (this.isAdmin) {
@@ -220,21 +237,7 @@ export class ProcessComponent implements OnInit {
 
 
 
-  addNewProcess(newProcess: ProcessElement) {
-    this.store.dispatch({type: '[Process] addNewProcess', payload: newProcess});
-  }
 
-  udpateProcess(processElement: any) {
-    this.store.dispatch({ type: '[Process] updateProcess', payload: processElement });
-  }
-
-  udpateProcessOrder(processElement: any) {
-    this.store.dispatch({ type: '[Process] updateProcessOrder', payload: processElement });
-  }
-
-  deleteProcessElement(id: number) {
-    this.store.dispatch({type: '[Process] deleteProcess', payload: id});
-      }
 
   getDepartments() {
     this.legend.getDepartments()
@@ -259,13 +262,13 @@ export class ProcessComponent implements OnInit {
   }
 
 
-
+/*
   navigateBack() {
     const parent = localStorage.getItem('parent');
     // tslint:disable-next-line:radix
     const convertedNumber = parseInt(parent);
     console.log(convertedNumber);
     this.getAllProcess( convertedNumber);
-  }
+  }*/
 }
 

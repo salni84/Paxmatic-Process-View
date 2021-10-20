@@ -4,10 +4,12 @@ import {ProcessElement} from '../../model/process-element';
 
 export interface ProcessReducer {
   process: ProcessElement[];
+  parent: number;
 }
 
 export const initialState: ProcessReducer = {
-  process: []
+  process: [],
+  parent: null,
 };
 
 export function processReducer(state = initialState, action: ProcessActions): ProcessReducer {
@@ -16,6 +18,7 @@ export function processReducer(state = initialState, action: ProcessActions): Pr
       return {
         ...state,
         process: action.payload,
+        parent: 0
       };
 
     case ActionTypes.processLoaded:
@@ -31,12 +34,14 @@ export function processReducer(state = initialState, action: ProcessActions): Pr
 
     case ActionTypes.deleteProcess:
       return {
-        ...state, process: action.payload
+        ...state,
+        process: [action.payload, state.parent]
       };
 
     case ActionTypes.addNewProcess:
       return {
-        ...state, process: action.payload
+        ...state,
+        process: [action.payload, state.parent]
       };
 
 

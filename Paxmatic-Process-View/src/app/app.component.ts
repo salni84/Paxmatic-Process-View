@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {Store} from '@ngrx/store';
+import {ProcessElement} from './model/process-element';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Paxmatic-Process-View';
+
+  constructor(private store1: Store<{process: ProcessElement[]}>) {
+    this.store1.dispatch({ type: '[Process] loadAllProcess'});
+  }
 }

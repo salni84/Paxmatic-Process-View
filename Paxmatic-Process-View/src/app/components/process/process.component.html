@@ -19,6 +19,7 @@
         <app-create-process *ngIf="showCreateElement[0]"
                             (newProcessEvent)="addNewProcess($event)"
                             [level]="level"
+                            [parent]="parent"
                             [order]="1"
                             [uuid]="uuid" ></app-create-process>
 
@@ -29,7 +30,7 @@
                     [ngStyle]="{backgroundColor: p.color}"
                     [class.disableLink]="p.form && !isAdmin"
                     [class.isInvisible]="!p.visible" cdkDrag
-                    (click)="getAllProcess(p.parent, p.uuid, 1)">
+                    (click)="getChildProcess(p.parent, p.uuid, 1)">
             <div class="names"><label>{{p.processname}}</label></div>
             <div class="mat-card-after" *ngIf="p.form == 0" [ngStyle]="{'border-left-color': p.color}"></div>
             <div class="mat-card-before" *ngIf="p.form == 0"
@@ -54,7 +55,7 @@
                 <button mat-raised-button *ngIf="!p.bubble" class="editButton" (click)="p.bubble = 1">Oval</button>
                 <button mat-raised-button *ngIf="p.bubble" class="editButton" (click)="p.bubble = 0">Pfeil</button>
               </ng-container>
-              <button mat-raised-button class="editButton" (click)="deleteProcessElement(p.id)">Löschen</button>
+              <button mat-raised-button class="editButton" (click)="deleteProcessElement(p.id, p.parent)">Löschen</button>
               <button *ngIf="p.visible" mat-raised-button class="editButton" (click)="udpateProcess(p)">Update</button>
             </div>
           </div>
@@ -76,6 +77,7 @@
         <app-create-process *ngIf="showCreateElement[1]"
                             (newProcessEvent)="addNewProcess($event)"
                             [level]="level"
+                            [parent]="parent"
                             [order]="2"
                             [uuid]="uuid"
         ></app-create-process>
@@ -84,7 +86,7 @@
           <mat-card [class.circle]="p.form" [class.bubble]="p.bubble" [ngStyle]="{backgroundColor: p.color}"
                     [class.disableLink]="p.form && !isAdmin"
                     [class.isInvisible]="!p.visible" cdkDrag
-                    (click)="getAllProcess(p.parent, p.uuid, 1)">
+                    (click)="getChildProcess(p.parent, p.uuid, 1)">
             <div class="names">
               <label>{{p.processname}}</label>
             </div>
@@ -140,6 +142,7 @@
       <app-create-process *ngIf="showCreateElement[2]"
                           (newProcessEvent)="addNewProcess($event)"
                           [level]="level"
+                          [parent]="parent"
                           [order]="3"
                           [uuid]="uuid"
       ></app-create-process>
@@ -149,7 +152,7 @@
                     [class.disableLink]="p.form && !isAdmin"
                     [ngStyle]="{backgroundColor: p.color}"
                     [class.isInvisible]="!p.visible" cdkDrag
-                    (click)="getAllProcess(p.parent, p.uuid, 1)">
+                    (click)="getChildProcess(p.parent, p.uuid, 1)">
             <p class="doc-icon" *ngIf="p.hasDocument">
               <mat-icon>attach_file</mat-icon>
             </p>
@@ -205,6 +208,7 @@
       <app-create-process *ngIf="showCreateElement[3]"
                           (newProcessEvent)="addNewProcess($event)"
                           [level]="level"
+                          [parent]="parent"
                           [order]="4"
                           [uuid]="uuid"
       ></app-create-process>
@@ -215,7 +219,7 @@
                     [ngStyle]="{backgroundColor: p.color}"
                     [class.disableLink]="p.form && !isAdmin"
                     [class.isInvisible]="!p.visible" cdkDrag
-                    (click)="getAllProcess(p.parent, p.uuid, 1)">
+                    (click)="getChildProcess(p.parent, p.uuid, 1)">
             <div class="names">
               <label>{{p.processname}}</label>
             </div>
@@ -268,6 +272,7 @@
       <app-create-process *ngIf="showCreateElement[4]"
                           (newProcessEvent)="addNewProcess($event)"
                           [level]="level"
+                          [parent]="parent"
                           [order]="5"
                           [uuid]="uuid"
       ></app-create-process>
@@ -329,6 +334,7 @@
       <app-create-process *ngIf="showCreateElement[5]"
                           (newProcessEvent)="addNewProcess($event)"
                           [level]="level"
+                          [parent]="parent"
                           [order]="6"
                           [uuid]="uuid"
       ></app-create-process>
@@ -339,7 +345,7 @@
                     [ngStyle]="{backgroundColor: p.color}"
                     [class.disableLink]="p.form && !isAdmin"
                     [class.isInvisible]="!p.visible" cdkDrag
-                    (click)="getAllProcess(p.parent, p.uuid, 1)">
+                    (click)="getChildProcess(p.parent, p.uuid, 1)">
             <div class="names">
               <label>{{p.processname}}</label>
             </div>
@@ -391,6 +397,7 @@
       <app-create-process *ngIf="showCreateElement[6]"
                           (newProcessEvent)="addNewProcess($event)"
                           [level]="level"
+                          [parent]="parent"
                           [order]="7"
                           [uuid]="uuid"
       ></app-create-process>
@@ -452,6 +459,7 @@
       <app-create-process *ngIf="showCreateElement[7]"
                           (newProcessEvent)="addNewProcess($event)"
                           [level]="level"
+                          [parent]="parent"
                           [order]="8"
                           [uuid]="uuid"
       ></app-create-process>
@@ -462,7 +470,7 @@
                     [ngStyle]="{backgroundColor: p.color}"
                     [class.disableLink]="p.form && !isAdmin"
                     [class.isInvisible]="!p.visible" cdkDrag
-                    (click)="getAllProcess(p.parent, p.uuid, 1)">
+                    (click)="getChildProcess(p.parent, p.uuid, 1)">
             <div class="names">
               <label>{{p.processname}}</label>
             </div>

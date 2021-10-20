@@ -62,9 +62,10 @@ export class CreateProcessComponent implements OnInit {
     this.newProcess.verticalorder = this.order;
     this.newProcess.visible = true;
     this.newProcess.uuid = this.getRandomNumber();
-    this.newProcess.parent = this.uuid;
+    this.newProcess.parent = this.parent;
     this.newProcess.position = 0;
     this.newProcessEvent.emit(this.newProcess);
+
 
   }
 

@@ -7,6 +7,7 @@ export enum ActionTypes {
   deleteProcess = '[Process] deleteProcess',
   addNewProcess = '[Process] addNewProcess',
   updateProcessOrder = '[Process] updateProcessOrder',
+  getBasicProcess = '[Process] getBasicprocess',
 }
 
 export class LoadAllProcess implements Action {
@@ -35,14 +36,27 @@ export class UpdateProcessOrder implements Action {
 
 export class DeleteProcess implements Action {
   readonly type = ActionTypes.deleteProcess;
-  constructor(public payload) {
+  constructor(public payload, public parent) {
   }
 }
 
 export class AddNewProcess implements Action {
   readonly type = ActionTypes.addNewProcess;
+  constructor(public payload, public parent) {
+  }
+}
+
+export class GetBasicProcess implements Action {
+  readonly type = ActionTypes.getBasicProcess;
   constructor(public payload) {
   }
 }
 
-export type ProcessActions = LoadAllProcess |ProcessLoaded | UpdateProcess | DeleteProcess | AddNewProcess | UpdateProcessOrder;
+export type ProcessActions =
+  LoadAllProcess |
+  ProcessLoaded |
+  UpdateProcess |
+  DeleteProcess |
+  AddNewProcess |
+  UpdateProcessOrder |
+  GetBasicProcess;
