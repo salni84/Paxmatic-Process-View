@@ -1,8 +1,12 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatAccordion} from '@angular/material/expansion';
-import {LoginService} from '../../../service/login-service';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Departments} from '../../model/departments';
 import {LegendService} from '../../../service/legend-service';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import {select, Store} from '@ngrx/store';
+import {getCurrentDepartmentsSelector, getDepartments} from '../../store/selectors/departments.selector';
+import {Observable} from 'rxjs';
+import {logger} from "codelyzer/util/logger";
+
 
 
 @Component({
@@ -12,51 +16,20 @@ import {LegendService} from '../../../service/legend-service';
 })
 export class LegendComponent implements OnInit {
 
-  @ViewChild(MatAccordion) accordion: MatAccordion;
-  departmentlist: any = [];
-  panelOpenState = false;
+  @Input() departmentName: any;
+  @Input() departments: Departments[];
+  @Input() parent;
+  @Input() uuid;
   isAdmin = false;
   color: any[] = [];
-  department: Departments = {name: 'Abteilung', color: 'white'};
+  legends$: Observable<any>;
+  departmentColor: any;
 
-  constructor(private legend: LegendService,
-              private loginService: LoginService,
-  ) {
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.getLegend();
-    this.loginService.getLoginStatus().subscribe((data) => {
-      this.isAdmin = data;
-    });
   }
 
-  getLegend() {
-    this.legend.getDepartments()
-      .subscribe(data => {
-        this.departmentlist = data;
-      });
-  }
 
-  updateDepartments() {
-    this.legend.updateDepartments(this.departmentlist)
-      .subscribe(() => {
-        this.legend.getDepartments();
-      });
-  }
-
-  newDepartment() {
-    this.legend.createDepartment(this.department)
-      .subscribe(() => {
-        this.getLegend();
-      });
-    this.departmentlist.push(this.department);
-  }
-
-  deleteDepartment(id: number) {
-    this.legend.deleteDepartment(id)
-      .subscribe(() => {
-        this.getLegend();
-      });
-  }
 }

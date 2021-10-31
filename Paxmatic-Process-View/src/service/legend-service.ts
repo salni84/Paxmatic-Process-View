@@ -11,28 +11,29 @@ import {Observable} from 'rxjs';
 
 export class LegendService {
 
-  private serverURL = environment.serverURL;
+  private serverURL = 'https://spring-boot-server-pax.herokuapp.com/';
 
   constructor(private http: HttpClient) {
   }
 
-  getDepartments() {
-    return this.http.get(this.serverURL + 'departments');
+  getDepartments(): Observable<any> {
+    return this.http.get(this.serverURL + 'departments/all');
   }
 
   updateDepartments(departments: Departments[]) {
     const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(departments);
-    return this.http.put(this.serverURL + 'departments', body, {headers});
+    return this.http.put(this.serverURL + 'updateDepartment', body, {headers});
   }
 
-  createDepartment(department: Departments): Observable<any> {
+  createDepartment(department): Observable<any> {
     const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(department);
-    return this.http.post(this.serverURL + 'departments' + '/' + 'new', body, {headers});
+    return this.http.post(this.serverURL + 'newDepartment', body, {headers});
   }
 
-  deleteDepartment(id: number): Observable<any> {
-    return this.http.delete(this.serverURL + 'departments' + '/' + id);
+  deleteDepartment(id): Observable<any> {
+    const body = JSON.stringify(id);
+    return this.http.delete(this.serverURL + 'deleteDepartment' + '/' + body);
   }
 }

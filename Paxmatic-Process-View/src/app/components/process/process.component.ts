@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ProcessElement} from '../../model/process-element';
 import {ProcessService} from '../../../service/process-service';
 import {ActivatedRoute} from '@angular/router';
@@ -7,8 +7,8 @@ import {Location} from '@angular/common';
 import {DocumentService} from '../../../service/document.service';
 import {Document} from '../../model/document';
 import {LegendService} from '../../../service/legend-service';
-import {select, State, Store} from '@ngrx/store';
-import {Observable, pipe} from 'rxjs';
+import {select, Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
 import {
   getBasicProcess,
   getChildProcessSelector,
@@ -17,6 +17,10 @@ import {
 import {isLoggedIn} from '../../store/selectors/login.selector';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {map} from 'rxjs/operators';
+import {Departments} from '../../model/departments';
+import {
+  getCurrentDepartmentsSelector,
+} from '../../store/selectors/departments.selector';
 
 
 
@@ -38,31 +42,35 @@ export class ProcessComponent implements OnInit {
   isAdmin = false;
   matchDocs: Document[] = [];
   matchNames: string[] = [];
-  departments: any = [];
+  departments: Departments[] = [];
+  legends$: Observable<any>;
   loginStatus$: Observable<any>;
   processList$: Observable<ProcessElement[]>;
-  processName = []
-
-
+  processName = [];
+  backgroundColorRow1 = 'lightgreen';
+  backgroundColorRow2 = 'lightgreen';
+  backgroundColorRow3 = 'lightgreen';
+  backgroundColorRow4 = 'lightgreen';
+  backgroundColorRow5 = 'lightgreen';
+  backgroundColorRow6 = 'lightgreen';
+  backgroundColorRow7 = 'lightgreen';
+  backgroundColorRow8 = 'lightgreen';
 
   constructor(private location: Location,
-              private store: Store<{login: boolean}>,
-              private store1: Store<{process: ProcessElement[]}>,
-              private processStore: Store<any>,
+              private store: Store,
               private processService: ProcessService,
               private route: ActivatedRoute,
               private loginService: LoginService,
               private documentService: DocumentService,
-              private legend: LegendService) {
+              private legendService: LegendService,
+              private legend: LegendService
+  ) {
     this.loginStatus$ = store.select(isLoggedIn);
   }
 
 
   ngOnInit() {
-    console.log(this.breadcrumb)
-
-    this.processList$ = this.store1.select(getBasicProcess);
-
+    this.processList$ = this.store.select(getBasicProcess);
     this.loginStatus$.subscribe((loginStatus) => {
      if (loginStatus) {
        this.isAdmin = true;
@@ -71,7 +79,6 @@ export class ProcessComponent implements OnInit {
        this.isAdmin = false;
      }
     });
-    this.getDepartments();
   }
 
   showAddProcessComponent(id: number) {
@@ -93,10 +100,22 @@ export class ProcessComponent implements OnInit {
   }
 
   getChildProcess(processName: string, parent?: number, uuid?: number, ) {
-    this.breadcrumb.push(parent);
-    this.parent = uuid;
-    this.processList$ = this.store1.select(getChildProcessSelector(uuid));
-    this.processName.push(processName)
+   this.breadcrumb.push(parent);
+   this.parent = uuid;
+   this.loginStatus$ = this.store.select(isLoggedIn);
+   this.processList$ = this.store.select(getChildProcessSelector(uuid));
+   this.legends$ = this.store.select(getCurrentDepartmentsSelector(uuid));
+
+
+   this.legends$.subscribe((data) => {
+     this.departments = [];
+     data.forEach((x) => {
+       this.departments.push(x);
+     });
+
+     this.updateColors(this.departments);
+     this.processName.push(processName);
+   });
   }
 
 
@@ -117,7 +136,7 @@ export class ProcessComponent implements OnInit {
     this.store.dispatch({type: '[Process] deleteProcess', payload: id});
   }
 
- drop1(event: CdkDragDrop<string[]>) {
+  drop1(event: CdkDragDrop<string[]>) {
    if (this.isAdmin) {
 
      const firstList: any = [];
@@ -238,13 +257,6 @@ export class ProcessComponent implements OnInit {
    }
 
 
-  getDepartments() {
-    this.legend.getDepartments()
-      .subscribe(data => {
-        this.departments = data;
-      });
-  }
-
 
 
   showDocuments(data) {
@@ -261,11 +273,84 @@ export class ProcessComponent implements OnInit {
   }
 
 
-
   navigateBack() {
     const lastParent = this.breadcrumb.pop();
-    this.processList$ = this.store1.select(getChildProcessSelector(lastParent));
+    this.processList$ = this.store.select(getChildProcessSelector(lastParent));
     this.processName.pop();
+    this.departments.pop();
   }
+
+
+  updateDepartments(departments: Departments[]) {
+  this.legend.updateDepartments(departments)
+    .subscribe(() => {
+      this.getDepartments();
+    });
 }
 
+  addNewDepartment() {
+  const newDep = {
+    departmentname: 'Placeholder',
+    color: 'grey',
+    verticalorder: 1,
+    parent: this.parent,
+  };
+  this.legend.createDepartment(newDep)
+    .subscribe(() => this.getDepartments());
+}
+
+
+  deleteDepartment(id: number) {
+  this.legend.deleteDepartment(id)
+    .subscribe(() => this.getDepartments());
+}
+
+  getDepartments() {
+  this.legend.getDepartments()
+    .subscribe((data) => this.departments = data)
+}
+
+
+  drop(event: CdkDragDrop<string[]>) {
+
+  // if (this.isAdmin) {
+  moveItemInArray(this.departments, event.previousIndex, event.currentIndex);
+  for (let x = 0; x < this.departments.length; x++) {
+    this.departments[x].verticalorder = x;
+  }
+  this.updateDepartments(this.departments);
+  this.processList$ = this.store.select(getChildProcessSelector(this.parent));
+  this.updateColors(this.departments)
+}
+
+updateColors(departments){
+  this.departments.forEach(item => {
+
+  if (departments[0].verticalorder === 0) {
+    this.backgroundColorRow1 = departments[0].color;
+  }
+  if (departments[1].verticalorder === 1) {
+    this.backgroundColorRow2 = departments[1].color;
+  }
+  if (departments[2].verticalorder === 2) {
+    this.backgroundColorRow3 = departments[2].color;
+  }
+  if (departments[3].verticalorder === 3) {
+    this.backgroundColorRow4 = departments[3].color;
+  }
+  if (departments[4].verticalorder === 4) {
+    this.backgroundColorRow5 = departments[4].color;
+  }
+  if (departments[5].verticalorder === 5) {
+    this.backgroundColorRow6 = departments[5].color;
+  }
+  if (departments[6].verticalorder === 6) {
+    this.backgroundColorRow7 = departments[6].color;
+  }
+  if (departments[7].verticalorder === 7) {
+    this.backgroundColorRow8 = departments[7].color;
+  }
+});
+
+}
+}

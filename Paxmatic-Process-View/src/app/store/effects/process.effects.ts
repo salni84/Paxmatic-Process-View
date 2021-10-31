@@ -1,17 +1,15 @@
 import {Injectable} from '@angular/core';
-
 import {ProcessService} from '../../../service/process-service';
-import {map, mergeMap, withLatestFrom} from 'rxjs/operators';
-import {Actions, concatLatestFrom, createEffect, ofType} from '@ngrx/effects';
+import {map, mergeMap} from 'rxjs/operators';
+import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {LoadAllProcess, ProcessLoaded} from '../actions/process.actions';
-import {Store} from '@ngrx/store';
+
 
 @Injectable()
 export class ProcessEffects {
 
-  constructor(private actions$: Actions, private processService: ProcessService, private store: Store) {
+  constructor(private actions$: Actions, private processService: ProcessService) {
   }
-
 
   loadAllProcess$ = createEffect(() => this.actions$.pipe(
     ofType('[Process] loadAllProcess'),

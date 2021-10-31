@@ -8,9 +8,15 @@
   padding-left: 10em;
 }
 
-h2 {
+h2, h3 {
+  margin-right: 10px;
+  color: white;
+}
+
+.arrow {
   margin-right: 20px;
 }
+
 
 .mat-raised-button {
   line-height: 0;
@@ -19,8 +25,13 @@ h2 {
 .main {
   display: flow-root;
   width: -webkit-fill-available;
-  padding-top: 50px;
+  padding-top: 0px;
 }
+
+.legendBar {
+  height: 100px;
+}
+
 
 .container {
   margin-top: 10px;
@@ -64,6 +75,7 @@ h2 {
   margin-left: 10px;
   height: 30px;
 }
+
 
 .toggle {
   display: inline;
@@ -266,3 +278,92 @@ h2 {
   margin-right: 20px;
   color: white;
 }
+
+
+
+
+.combi {
+  width: 100px;
+  padding: 5px 15px;
+  margin-bottom: 5px;
+}
+
+.editColor {
+  width: 120px;
+  margin-bottom: 10px;
+}
+
+.update {
+  display: inline-flex;
+  margin-right: 10px;
+}
+
+.newLegend {
+  margin-top: 17px;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.buttons {
+  display: flex;
+}
+
+.box {
+  display: flex;
+}
+
+.deleteBox {
+  cursor: pointer;
+}
+
+.readOnly {
+  pointer-events: none;
+}
+
+.newDepartments {
+  display: table-caption;
+}
+
+.departmentBox {
+  color: black;
+  display: flex;
+  flex-direction: row;
+}
+
+.legend {
+  width: 130px;
+  display: flex;
+  padding: 10px;
+  margin-left: 15px;
+  margin-top: 15px;
+}
+
+.departmentsArea {
+  width: 1000px;
+  min-height: 60px;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.example-list {
+  width: 150px;
+  max-width: 100%;
+  min-height: 60px;
+  display: -webkit-inline-box;
+
+}
+
+.example-box {
+  padding: 20px 10px;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  font-size: 14px;
+}
+
+

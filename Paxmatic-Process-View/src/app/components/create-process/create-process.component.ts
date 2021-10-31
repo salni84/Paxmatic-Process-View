@@ -16,6 +16,7 @@ export class CreateProcessComponent implements OnInit {
   @Input() level;
   @Input() order;
   @Input() uuid;
+  @Input() color;
   @Output() newProcessEvent = new EventEmitter<ProcessElement>();
   newProcess: ProcessElement = new ProcessElement();
   selectedForm;
@@ -57,7 +58,7 @@ export class CreateProcessComponent implements OnInit {
     }
     this.newProcess.bubble = false;
     // this.newProcess.color = this.selectedDepartment;
-    this.newProcess.color = 'blue';
+    this.newProcess.color = this.color;
     this.newProcess.level = this.level;
     this.newProcess.verticalorder = this.order;
     this.newProcess.visible = true;

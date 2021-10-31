@@ -11,8 +11,7 @@ import {CdkDragDrop} from '@angular/cdk/drag-drop';
 
 export class ProcessService {
 
-  //private serverURL = 'http://robertobackend-env.eba-nwy2bvpi.us-east-2.elasticbeanstalk.com/';
-  private serverURL = 'http://localhost:8080/';
+  private serverURL = 'https://spring-boot-server-pax.herokuapp.com/';
 
   constructor(private http: HttpClient) {
   }

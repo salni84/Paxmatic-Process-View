@@ -33,12 +33,11 @@ import {DialogModalComponent} from './dialog/dialog-modal/dialog-modal.component
 import {LegendComponent} from './components/legend/legend.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {StoreModule} from '@ngrx/store';
-import {StoreDevtoolsModule} from "@ngrx/store-devtools";
-import {loginReducer} from "./store/reducers/login.reducer";
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
-import {processReducer} from "./store/reducers/process.reducer";
-import {ProcessEffects} from "./store/effects/process.effects";
-import {reducers} from "./store/state/app.state";
+import {ProcessEffects} from './store/effects/process.effects';
+import {reducers} from './store/state/app.state';
+import {LegendEffects} from './store/effects/legend.effects';
 
 @NgModule({
   declarations: [
@@ -84,7 +83,7 @@ import {reducers} from "./store/state/app.state";
       },
     }),
     StoreDevtoolsModule.instrument(),
-    EffectsModule.forRoot([ProcessEffects]),
+    EffectsModule.forRoot([ProcessEffects, LegendEffects]),
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
